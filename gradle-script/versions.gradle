@@ -1,0 +1,22 @@
+ext {
+
+    // Plugins
+    vKotlin = '1.3.71'
+    vAndroidPlugin = '3.6.2'
+    vKtlintPlugin = '9.2.1'
+    vCheckstylePlugin = '8.4'
+
+    // Android
+    vAndroidCompileSdk = 30
+    vAndroidBuildTools = '30.0.3'
+    vAndroidMinSdk = 17
+    vAndroidTargetSdk = 30
+
+    // Libs
+    vAndroidxAppCompat = '1.3.0'
+    vGoogleAndroidMaterial = '1.4.0'
+    vAndroidxConstraintLayout = '2.0.4'
+    vJunit4 = '4.+'
+    vAndroidxJunit = '1.1.3'
+    vAndroidxEspresso = '3.4.0'
+}

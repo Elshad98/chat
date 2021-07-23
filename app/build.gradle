@@ -2,19 +2,20 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "${project.rootDir}/gradle-script/ktlint.gradle"
 apply from: "${project.rootDir}/gradle-script/checkstyle.gradle"
+apply from: "${project.rootDir}/gradle-script/versions.gradle"
 
 preBuild.dependsOn('checkstyleDefault')
 check.dependsOn('checkstyleDefault')
 assemble.dependsOn('lint')
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion vAndroidCompileSdk
+    buildToolsVersion vAndroidBuildTools
 
     defaultConfig {
         applicationId "com.example.chat"
-        minSdkVersion 17
-        targetSdkVersion 30
+        minSdkVersion vAndroidMinSdk
+        targetSdkVersion vAndroidTargetSdk
         versionCode 1
         versionName "1.0"
 
@@ -38,11 +39,11 @@ android {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$vKotlin"
+    implementation "androidx.appcompat:appcompat:$vAndroidxAppCompat"
+    implementation "com.google.android.material:material:$vGoogleAndroidMaterial"
+    implementation "androidx.constraintlayout:constraintlayout:$vAndroidxConstraintLayout"
+    testImplementation "junit:junit:$vJunit4"
+    androidTestImplementation "androidx.test.ext:junit:$vAndroidxJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$vAndroidxEspresso"
 }

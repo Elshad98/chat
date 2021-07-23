@@ -1,7 +1,8 @@
 apply plugin: 'checkstyle'
+apply from: "${project.rootDir}/gradle-script/versions.gradle"
 
 checkstyle {
-    toolVersion = '8.4'
+    toolVersion = vCheckstylePlugin
 }
 
 task checkstyleCore(type: Checkstyle) {
