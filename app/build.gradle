@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
 apply from: "${project.rootDir}/gradle-script/ktlint.gradle"
 apply from: "${project.rootDir}/gradle-script/checkstyle.gradle"
 apply from: "${project.rootDir}/gradle-script/versions.gradle"
@@ -39,10 +43,48 @@ android {
 
 dependencies {
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$vKotlin"
-    implementation "androidx.appcompat:appcompat:$vAndroidxAppCompat"
+    implementation "com.google.firebase:firebase-analytics:$vFirebaseAnalytics"
     implementation "com.google.android.material:material:$vGoogleAndroidMaterial"
+
+    // Androidx
+    implementation "androidx.appcompat:appcompat:$vAndroidxAppCompat"
+    implementation "androidx.core:core-ktx:$vAndroidxAppCompat"
     implementation "androidx.constraintlayout:constraintlayout:$vAndroidxConstraintLayout"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$vKotlinCoroutines"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$vDagger"
+    implementation "com.google.dagger:dagger-android:$vDagger"
+    implementation "com.google.dagger:dagger-android-support:$vDagger"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "com.google.dagger:dagger-compiler:$vDagger"
+    kapt "com.google.dagger:dagger-android-processor:$vDagger"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$vRetrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$vRetrofit"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$vGson"
+
+    // Room
+    implementation "androidx.room:room-runtime:$vRoom"
+    kapt "androidx.room:room-compiler:$vRoom"
+
+    // LifeCycle
+    kapt "androidx.lifecycle:lifecycle-compiler:$vAndroidxLifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$vAndroidxLifecycle"
+    implementation "androidx.lifecycle:lifecycle-extensions:$vAndroidxLifecycle"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$vAndroidxLifecycle"
+
+    // Form edit text
+    implementation "com.andreabaccega:android-form-edittext:$vFormEditText"
+
+    // Test
     testImplementation "junit:junit:$vJunit4"
     androidTestImplementation "androidx.test.ext:junit:$vAndroidxJunit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$vAndroidxEspresso"

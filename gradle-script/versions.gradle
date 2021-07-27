@@ -5,6 +5,8 @@ ext {
     vAndroidPlugin = '3.6.2'
     vKtlintPlugin = '9.2.1'
     vCheckstylePlugin = '8.4'
+    vGoogleServicesPlugin = '4.2.0'
+    vFirebasePlugin = '1.2.0'
 
     // Android
     vAndroidCompileSdk = 30
@@ -12,11 +14,21 @@ ext {
     vAndroidMinSdk = 17
     vAndroidTargetSdk = 30
 
+    // Firebase
+    vFirebaseAnalytics = '17.6.0'
+
     // Libs
-    vAndroidxAppCompat = '1.3.0'
+    vAndroidxAppCompat = '1.3.1'
     vGoogleAndroidMaterial = '1.4.0'
-    vAndroidxConstraintLayout = '2.0.4'
+    vAndroidxConstraintLayout = '2.1.0'
     vJunit4 = '4.+'
     vAndroidxJunit = '1.1.3'
     vAndroidxEspresso = '3.4.0'
+    vAndroidxLifecycle = '2.0.0'
+    vKotlinCoroutines = '1.3.0'
+    vFormEditText = '1.3.5'
+    vDagger = '2.35.1'
+    vRetrofit = '2.6.0'
+    vGson = '2.8.6'
+    vRoom = '2.1.0'
 }
