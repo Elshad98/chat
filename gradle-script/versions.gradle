@@ -15,10 +15,12 @@ ext {
     vAndroidTargetSdk = 30
 
     // Firebase
-    vFirebaseAnalytics = '17.6.0'
+    vFirebaseAnalytics = '19.0.0'
+    vFirebaseMessaging = '22.0.0'
 
     // Libs
     vAndroidxAppCompat = '1.3.1'
+    vAndroidxCoreKtx = '1.6.0'
     vGoogleAndroidMaterial = '1.4.0'
     vAndroidxConstraintLayout = '2.1.0'
     vJunit4 = '4.+'
@@ -31,4 +33,5 @@ ext {
     vRetrofit = '2.6.0'
     vGson = '2.8.6'
     vRoom = '2.1.0'
+    vOkHttp = '3.12.6'
 }

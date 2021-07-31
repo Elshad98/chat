@@ -47,10 +47,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$vKotlin"
     implementation "com.google.firebase:firebase-analytics:$vFirebaseAnalytics"
     implementation "com.google.android.material:material:$vGoogleAndroidMaterial"
+    implementation "com.google.firebase:firebase-messaging:$vFirebaseMessaging"
 
     // Androidx
     implementation "androidx.appcompat:appcompat:$vAndroidxAppCompat"
-    implementation "androidx.core:core-ktx:$vAndroidxAppCompat"
+    implementation "androidx.core:core-ktx:$vAndroidxCoreKtx"
     implementation "androidx.constraintlayout:constraintlayout:$vAndroidxConstraintLayout"
 
     // Kotlin
@@ -70,6 +71,10 @@ dependencies {
 
     // Gson
     implementation "com.google.code.gson:gson:$vGson"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$vOkHttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$vOkHttp"
 
     // Room
     implementation "androidx.room:room-runtime:$vRoom"
