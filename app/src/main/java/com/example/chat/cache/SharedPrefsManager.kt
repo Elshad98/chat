@@ -18,7 +18,8 @@ class SharedPrefsManager @Inject constructor(
     fun saveToken(token: String): Either<Failure, None> {
         prefs.edit().apply {
             putString(ACCOUNT_TOKEN, token)
-        }.apply()
+        }
+            .apply()
 
         return Either.Right(None())
     }

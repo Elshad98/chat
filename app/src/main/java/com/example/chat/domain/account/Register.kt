@@ -16,4 +16,3 @@ class Register @Inject constructor(
 
     data class Params(val email: String, val name: String, val password: String)
 }
-

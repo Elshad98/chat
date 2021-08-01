@@ -37,11 +37,9 @@ class AccountRepositoryImpl(
         throw UnsupportedOperationException("Password recovery is not supported")
     }
 
-
     override fun getCurrentAccount(): Either<Failure, AccountEntity> {
         throw UnsupportedOperationException("Get account is not supported")
     }
-
 
     override fun updateAccountToken(token: String): Either<Failure, None> {
         return accountCache.saveToken(token)
@@ -50,7 +48,6 @@ class AccountRepositoryImpl(
     override fun updateAccountLastSeen(): Either<Failure, None> {
         throw UnsupportedOperationException("Updating last seen is not supported")
     }
-
 
     override fun editAccount(entity: AccountEntity): Either<Failure, AccountEntity> {
         throw UnsupportedOperationException("Editing account is not supported")

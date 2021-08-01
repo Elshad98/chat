@@ -51,8 +51,8 @@ dependencies {
 
     // Androidx
     implementation "androidx.appcompat:appcompat:$vAndroidxAppCompat"
-    implementation "androidx.core:core-ktx:$vAndroidxCoreKtx"
-    implementation "androidx.constraintlayout:constraintlayout:$vAndroidxConstraintLayout"
+    implementation "androidx.core:core-ktx:$vAndroidxAppCompat"
+    implementation "androidx.constraintlayout:constraintlayout:$vAndroidxAppCompat"
 
     // Kotlin
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$vKotlinCoroutines"
@@ -82,7 +82,7 @@ dependencies {
 
     // LifeCycle
     kapt "androidx.lifecycle:lifecycle-compiler:$vAndroidxLifecycle"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$vAndroidxLifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime:$vAndroidxLifecycle"
     implementation "androidx.lifecycle:lifecycle-extensions:$vAndroidxLifecycle"
     implementation "androidx.lifecycle:lifecycle-common-java8:$vAndroidxLifecycle"
 

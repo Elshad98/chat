@@ -14,7 +14,6 @@ object ServiceFactory {
     private const val CONNECT_TIMEOUT_MILLIS = 5_000L
     private const val READ_TIMEOUT_MILLIS = 5_000L
 
-
     fun makeService(isDebug: Boolean): ApiService {
         val okHttpClient = makeOkHttpClient(
             makeLoggingInterceptor(isDebug)
