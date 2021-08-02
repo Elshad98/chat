@@ -13,5 +13,7 @@ class UpdateToken @Inject constructor(
     override suspend fun run(params: Params): Either<Failure, None> =
         accountRepository.updateAccountToken(params.token)
 
-    data class Params(val token: String)
+    data class Params(
+        val token: String
+    )
 }

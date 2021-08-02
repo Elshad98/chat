@@ -27,7 +27,7 @@ class Request @Inject constructor(
         return try {
             val response = call.execute()
             if (response.isSucceed()) {
-                Either.Right(transform((response.body()!!)))
+                Either.Right(transform(response.body()!!))
             } else {
                 Either.Left(Failure.ServerError)
             }

@@ -29,8 +29,10 @@ class MainActivity : AppCompatActivity() {
             ServiceFactory.makeService(true)
         )
 
-        val accountRepository: AccountRepository =
-            AccountRepositoryImpl(accountRemote, accountCache)
+        val accountRepository: AccountRepository = AccountRepositoryImpl(
+            accountRemote,
+            accountCache
+        )
 
         accountCache.saveToken("12345")
 
