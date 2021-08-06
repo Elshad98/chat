@@ -20,10 +20,11 @@ ext {
 
     // Libs
     vAndroidxAppCompat = '1.0.2'
+    vAndroidxConstraintLayout = '1.1.3'
     vAndroidxLifecycle = '2.0.0'
     vAndroidxJunit = '1.1.3'
     vAndroidxEspresso = '3.4.0'
-    vGoogleAndroidMaterial = '1.4.0'
+    vGoogleAndroidMaterial = '1.0.0'
     vJunit4 = '4.+'
     vKotlinCoroutines = '1.3.7'
     vFormEditText = '1.3.5'

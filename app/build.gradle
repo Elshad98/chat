@@ -45,14 +45,16 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$vKotlin"
+
+    // Firebase
     implementation "com.google.firebase:firebase-analytics:$vFirebaseAnalytics"
-    implementation "com.google.android.material:material:$vGoogleAndroidMaterial"
     implementation "com.google.firebase:firebase-messaging:$vFirebaseMessaging"
 
-    // Androidx
+    // Android support
     implementation "androidx.appcompat:appcompat:$vAndroidxAppCompat"
     implementation "androidx.core:core-ktx:$vAndroidxAppCompat"
-    implementation "androidx.constraintlayout:constraintlayout:$vAndroidxAppCompat"
+    implementation "com.google.android.material:material:$vGoogleAndroidMaterial"
+    implementation "androidx.constraintlayout:constraintlayout:$vAndroidxConstraintLayout"
 
     // Kotlin
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$vKotlinCoroutines"
@@ -61,7 +63,6 @@ dependencies {
     implementation "com.google.dagger:dagger:$vDagger"
     implementation "com.google.dagger:dagger-android:$vDagger"
     implementation "com.google.dagger:dagger-android-support:$vDagger"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:$vDagger"
     kapt "com.google.dagger:dagger-android-processor:$vDagger"
 
