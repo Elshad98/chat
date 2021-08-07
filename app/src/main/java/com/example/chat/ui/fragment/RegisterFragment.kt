@@ -2,12 +2,11 @@ package com.example.chat.ui.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import com.example.chat.App
 import com.example.chat.R
 import com.example.chat.domain.type.None
 import com.example.chat.presentation.viewmodel.AccountViewModel
-import com.example.chat.ui.ext.onFailure
-import com.example.chat.ui.ext.onSuccess
 import kotlinx.android.synthetic.main.fragment_register.*
 
 class RegisterFragment : BaseFragment() {
@@ -21,10 +20,12 @@ class RegisterFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
 
-        accountViewModel = viewModel {
-            onSuccess(registerData, ::handleRegister)
-            onFailure(failureData, ::handleFailure)
-        }
+        accountViewModel = viewModel(AccountViewModel::class.java)
+        accountViewModel.registerData.observe(this, Observer(::handleRegister))
+        accountViewModel.failureData.observe(
+            this,
+            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -58,10 +58,10 @@ abstract class BaseFragment : Fragment() {
         activity.base(block)
     }
 
-    inline fun <reified T : ViewModel> viewModel(body: T.() -> Unit): T {
-        val viewModel = ViewModelProviders.of(this, viewModelFactory)[T::class.java]
-        viewModel.body()
-        return viewModel
+    fun <T : ViewModel> viewModel(viewModelClass: Class<T>): T {
+        return ViewModelProviders
+            .of(this, viewModelFactory)
+            .get(viewModelClass)
     }
 
     fun close() {
