@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.example.chat.App
 import com.example.chat.R
 import com.example.chat.domain.type.None
+import com.example.chat.extensions.longToast
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import kotlinx.android.synthetic.main.fragment_register.*
 
@@ -52,7 +53,7 @@ class RegisterFragment : BaseFragment() {
     private fun validatePasswords(): Boolean {
         val valid = register_input_password.text.toString() == register_input_confirm_password.text.toString()
         if (!valid) {
-            showMessage(getString(R.string.error_password_mismatch))
+            context?.longToast(R.string.error_password_mismatch)
         }
         return valid
     }
@@ -75,6 +76,6 @@ class RegisterFragment : BaseFragment() {
 
     private fun handleRegister(none: None? = None()) {
         hideProgress()
-        showMessage(getString(R.string.account_created))
+        context?.longToast(R.string.account_created)
     }
 }

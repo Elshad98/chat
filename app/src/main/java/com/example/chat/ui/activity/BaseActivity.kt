@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -14,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.chat.R
 import com.example.chat.domain.type.exception.Failure
+import com.example.chat.extensions.longToast
 import com.example.chat.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
@@ -63,20 +63,16 @@ abstract class BaseActivity : AppCompatActivity() {
     fun handleFailure(failure: Failure?) {
         hideProgress()
         when (failure) {
-            is Failure.NetworkConnectionError -> showMessage(getString(R.string.error_network))
-            is Failure.ServerError -> showMessage(getString(R.string.error_server))
-            is Failure.EmailAlreadyExistError -> showMessage(getString(R.string.error_email_already_exist))
+            is Failure.NetworkConnectionError -> longToast(R.string.error_network)
+            is Failure.ServerError -> longToast(R.string.error_server)
+            is Failure.EmailAlreadyExistError -> longToast(R.string.error_email_already_exist)
         }
     }
 
-    fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    inline fun <reified T : ViewModel> viewModel(body: T.() -> Unit): T {
-        val viewModel = ViewModelProviders.of(this, viewModelFactory)[T::class.java]
-        viewModel.body()
-        return viewModel
+    fun <T : ViewModel> viewModel(viewModelClass: Class<T>): T {
+        return ViewModelProviders
+            .of(this, viewModelFactory)
+            .get(viewModelClass)
     }
 }
 

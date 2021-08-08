@@ -52,8 +52,6 @@ abstract class BaseFragment : Fragment() {
 
     fun handleFailure(failure: Failure?) = base { handleFailure(failure) }
 
-    fun showMessage(message: String) = base { showMessage(message) }
-
     inline fun base(block: BaseActivity.() -> Unit) {
         activity.base(block)
     }
