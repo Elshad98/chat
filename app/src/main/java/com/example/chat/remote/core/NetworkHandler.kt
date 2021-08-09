@@ -1,7 +1,7 @@
 package com.example.chat.remote.core
 
 import android.content.Context
-import com.example.chat.extensions.networkInfo
+import com.example.chat.extensions.isConnected
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,5 +14,5 @@ class NetworkHandler @Inject constructor(
 ) {
 
     val isConnected
-        get() = context.networkInfo?.isConnected
+        get() = context.isConnected
 }

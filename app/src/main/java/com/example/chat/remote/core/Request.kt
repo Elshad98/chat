@@ -15,8 +15,7 @@ class Request @Inject constructor(
     fun <T : BaseResponse, R> make(call: Call<T>, transform: (T) -> R): Either<Failure, R> {
         return when (networkHandler.isConnected) {
             true -> execute(call, transform)
-            false,
-            null -> Either.Left(Failure.NetworkConnectionError)
+            false -> Either.Left(Failure.NetworkConnectionError)
         }
     }
 

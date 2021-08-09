@@ -53,7 +53,7 @@ class RegisterFragment : BaseFragment() {
     private fun validatePasswords(): Boolean {
         val valid = register_input_password.text.toString() == register_input_confirm_password.text.toString()
         if (!valid) {
-            context?.longToast(R.string.error_password_mismatch)
+            requireContext().longToast(R.string.error_password_mismatch)
         }
         return valid
     }
