@@ -4,7 +4,6 @@ import com.example.chat.remote.core.BaseResponse
 import retrofit2.Call
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface ApiService {
@@ -22,7 +21,6 @@ interface ApiService {
         const val PARAM_USER_DATE = "user_date"
     }
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(REGISTER)
     fun register(@FieldMap params: Map<String, String>): Call<BaseResponse>

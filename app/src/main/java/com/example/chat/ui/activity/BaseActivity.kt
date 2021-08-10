@@ -54,8 +54,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun hideSoftKeyboard() {
         currentFocus?.let {
-            val inputMethodManager =
-                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
         }
     }
@@ -76,7 +75,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 }
 
-inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) =
+inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction): Int =
     beginTransaction().func().commit()
 
 inline fun Activity?.base(block: BaseActivity.() -> Unit) {
