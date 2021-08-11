@@ -3,7 +3,7 @@ package com.example.chat.cache
 import android.content.SharedPreferences
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.None
-import com.example.chat.domain.type.exception.Failure
+import com.example.chat.domain.type.Failure
 import javax.inject.Inject
 
 class SharedPrefsManager @Inject constructor(

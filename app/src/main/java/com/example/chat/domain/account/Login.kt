@@ -2,18 +2,19 @@ package com.example.chat.domain.account
 
 import com.example.chat.domain.interactor.UseCase
 import com.example.chat.domain.type.Either
-import com.example.chat.domain.type.None
 import com.example.chat.domain.type.Failure
 import javax.inject.Inject
 
-class UpdateToken @Inject constructor(
+class Login @Inject constructor(
     private val accountRepository: AccountRepository
-) : UseCase<None, UpdateToken.Params>() {
+) : UseCase<AccountEntity, Login.Params>() {
 
-    override suspend fun run(params: Params): Either<Failure, None> =
-        accountRepository.updateAccountToken(params.token)
+    override suspend fun run(params: Params): Either<Failure, AccountEntity> {
+        return accountRepository.login(params.email, params.password)
+    }
 
     data class Params(
-        val token: String
+        val email: String,
+        val password: String
     )
 }

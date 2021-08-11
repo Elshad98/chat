@@ -3,7 +3,7 @@ package com.example.chat.remote.account
 import com.example.chat.data.account.AccountRemote
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.None
-import com.example.chat.domain.type.exception.Failure
+import com.example.chat.domain.type.Failure
 import com.example.chat.remote.core.Request
 import com.example.chat.remote.service.ApiService
 import javax.inject.Inject

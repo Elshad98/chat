@@ -1,7 +1,7 @@
 package com.example.chat.domain.interactor
 
 import com.example.chat.domain.type.Either
-import com.example.chat.domain.type.exception.Failure
+import com.example.chat.domain.type.Failure
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 

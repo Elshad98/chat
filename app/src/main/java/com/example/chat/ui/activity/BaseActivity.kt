@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.chat.R
-import com.example.chat.domain.type.exception.Failure
+import com.example.chat.domain.type.Failure
 import com.example.chat.extensions.longToast
 import com.example.chat.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.toolbar.*
