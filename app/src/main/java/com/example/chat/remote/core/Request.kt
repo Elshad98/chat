@@ -13,9 +13,10 @@ class Request @Inject constructor(
 ) {
 
     fun <T : BaseResponse, R> make(call: Call<T>, transform: (T) -> R): Either<Failure, R> {
-        return when (networkHandler.isConnected) {
-            true -> execute(call, transform)
-            false -> Either.Left(Failure.NetworkConnectionError)
+        return if (networkHandler.isConnected) {
+            execute(call, transform)
+        } else {
+            Either.Left(Failure.NetworkConnectionError)
         }
     }
 
@@ -43,6 +44,8 @@ fun <T : BaseResponse> Response<T>.isSucceed(): Boolean {
 fun <T : BaseResponse> Response<T>.parseError(): Failure {
     return when ((body() as BaseResponse).message) {
         "email already exists" -> Failure.EmailAlreadyExistError
+        "error in email or password" -> Failure.AuthError
+        "Token is invalid" -> Failure.TokenError
         else -> Failure.ServerError
     }
 }
