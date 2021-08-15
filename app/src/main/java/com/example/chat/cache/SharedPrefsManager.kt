@@ -80,4 +80,9 @@ class SharedPrefsManager @Inject constructor(
 
         return Either.Right(None())
     }
+
+    fun containsAnyAccount(): Boolean {
+        val id = prefs.getLong(ACCOUNT_ID, 0)
+        return id != 0L
+    }
 }
