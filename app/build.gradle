@@ -63,6 +63,7 @@ dependencies {
     implementation "com.google.dagger:dagger:$vDagger"
     implementation "com.google.dagger:dagger-android:$vDagger"
     implementation "com.google.dagger:dagger-android-support:$vDagger"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:$vDagger"
     kapt "com.google.dagger:dagger-android-processor:$vDagger"
 
@@ -89,6 +90,9 @@ dependencies {
 
     // Form edit text
     implementation "com.andreabaccega:android-form-edittext:$vFormEditText"
+
+    // Circle image view
+    implementation "de.hdodenhof:circleimageview:$vCircleImageView"
 
     // Test
     testImplementation "junit:junit:$vJunit4"

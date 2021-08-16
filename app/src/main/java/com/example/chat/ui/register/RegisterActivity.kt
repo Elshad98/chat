@@ -1,6 +1,6 @@
-package com.example.chat.ui.activity
+package com.example.chat.ui.register
 
-import com.example.chat.ui.fragment.RegisterFragment
+import com.example.chat.ui.core.BaseActivity
 
 class RegisterActivity : BaseActivity() {
 

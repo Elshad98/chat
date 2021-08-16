@@ -33,4 +33,5 @@ ext {
     vGson = '2.8.6'
     vRoom = '2.1.0'
     vOkHttp = '3.12.6'
+    vCircleImageView = '3.1.0'
 }

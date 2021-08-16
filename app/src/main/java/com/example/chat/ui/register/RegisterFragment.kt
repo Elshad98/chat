@@ -1,13 +1,15 @@
-package com.example.chat.ui.fragment
+package com.example.chat.ui.register
 
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import com.example.chat.App
+import com.example.chat.ui.App
 import com.example.chat.R
+import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.type.None
 import com.example.chat.extensions.longToast
 import com.example.chat.presentation.viewmodel.AccountViewModel
+import com.example.chat.ui.core.BaseFragment
 import kotlinx.android.synthetic.main.fragment_register.*
 
 class RegisterFragment : BaseFragment() {
@@ -23,6 +25,7 @@ class RegisterFragment : BaseFragment() {
 
         accountViewModel = viewModel(AccountViewModel::class.java)
         accountViewModel.registerData.observe(this, Observer(::handleRegister))
+        accountViewModel.accountData.observe(this, Observer(::handleLogin))
         accountViewModel.failureData.observe(
             this,
             Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
@@ -33,6 +36,9 @@ class RegisterFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         register_btn_new_membership.setOnClickListener {
             register()
+        }
+        register_btn_already_have_account.setOnClickListener {
+            activity?.finish()
         }
     }
 
@@ -74,8 +80,18 @@ class RegisterFragment : BaseFragment() {
         }
     }
 
-    private fun handleRegister(none: None? = None()) {
+    private fun handleLogin(accountEntity: AccountEntity) {
         hideProgress()
-        context?.longToast(R.string.account_created)
+        activity?.let {
+            navigator.showHome(it)
+            it.finish()
+        }
+    }
+
+    private fun handleRegister(none: None? = None()) {
+        accountViewModel.login(
+            register_input_email.text.toString(),
+            register_input_password.text.toString()
+        )
     }
 }

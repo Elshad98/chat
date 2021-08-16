@@ -1,4 +1,4 @@
-package com.example.chat.ui.activity
+package com.example.chat.ui.core
 
 import android.app.Activity
 import android.content.Context
@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.chat.R
 import com.example.chat.domain.type.Failure
 import com.example.chat.extensions.longToast
-import com.example.chat.ui.fragment.BaseFragment
+import com.example.chat.ui.core.navigation.Navigator
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
@@ -25,9 +25,14 @@ abstract class BaseActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    @Inject
+    lateinit var navigator: Navigator
+
+    open val contentId = R.layout.activity_layout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout)
+        setContentView(contentId)
 
         setSupportActionBar(toolbar)
         addFragment(savedInstanceState)
@@ -65,6 +70,8 @@ abstract class BaseActivity : AppCompatActivity() {
             is Failure.NetworkConnectionError -> longToast(R.string.error_network)
             is Failure.ServerError -> longToast(R.string.error_server)
             is Failure.EmailAlreadyExistError -> longToast(R.string.error_email_already_exist)
+            is Failure.AuthError -> longToast(R.string.error_auth)
+            is Failure.TokenError -> navigator.showLogin(this)
         }
     }
 

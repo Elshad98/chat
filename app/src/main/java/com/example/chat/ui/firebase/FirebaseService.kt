@@ -1,7 +1,7 @@
-package com.example.chat.ui.service
+package com.example.chat.ui.firebase
 
 import android.util.Log
-import com.example.chat.App
+import com.example.chat.ui.App
 import com.example.chat.domain.account.UpdateToken
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
