@@ -39,7 +39,7 @@ class HomeActivity : BaseActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        btnLogout.setOnClickListener {
+        navigation_btn_logout.setOnClickListener {
             accountViewModel.logout()
         }
     }
@@ -47,10 +47,10 @@ class HomeActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                if (drawerLayout.isDrawerOpen(navigation_view)) {
-                    drawerLayout.closeDrawer(navigation_view)
+                if (drawer_layout.isDrawerOpen(navigation_view)) {
+                    drawer_layout.closeDrawer(navigation_view)
                 } else {
-                    drawerLayout.openDrawer(navigation_view)
+                    drawer_layout.openDrawer(navigation_view)
                 }
             }
         }
@@ -60,11 +60,11 @@ class HomeActivity : BaseActivity() {
 
     private fun handleAccount(accountEntity: AccountEntity?) {
         accountEntity?.let {
-            tvUserName.text = it.name
-            tvUserEmail.text = it.email
-            tvUserStatus.text = it.status
+            navigation_label_user_name.text = it.name
+            navigation_label_user_email.text = it.email
+            navigation_label_user_status.text = it.status
 
-            tvUserStatus.visibility = if (it.status.isNotEmpty()) View.VISIBLE else View.GONE
+            navigation_label_user_status.visibility = if (it.status.isNotEmpty()) View.VISIBLE else View.GONE
         }
     }
 
@@ -74,8 +74,8 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(navigation_view)) {
-            drawerLayout.closeDrawer(navigation_view)
+        if (drawer_layout.isDrawerOpen(navigation_view)) {
+            drawer_layout.closeDrawer(navigation_view)
         } else {
             super.onBackPressed()
         }
