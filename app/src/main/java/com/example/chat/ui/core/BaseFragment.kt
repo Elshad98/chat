@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +18,7 @@ abstract class BaseFragment : Fragment() {
 
     abstract val layoutId: Int
 
+    @StringRes
     open val titleToolbar = R.string.app_name
     open val showToolbar = true
 
@@ -46,15 +48,15 @@ abstract class BaseFragment : Fragment() {
     open fun onBackPressed() {
     }
 
-    fun showProgress() = base { progressStatus(View.VISIBLE) }
+    fun showProgress() = base { showProgress() }
 
-    fun hideProgress() = base { progressStatus(View.GONE) }
+    fun hideProgress() = base { hideProgress() }
 
     fun hideSoftKeyboard() = base { hideSoftKeyboard() }
 
     fun handleFailure(failure: Failure?) = base { handleFailure(failure) }
 
-    inline fun base(block: BaseActivity.() -> Unit) {
+    private inline fun base(block: BaseActivity.() -> Unit) {
         activity.base(block)
     }
 

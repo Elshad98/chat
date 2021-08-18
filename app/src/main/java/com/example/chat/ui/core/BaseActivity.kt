@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -28,6 +29,7 @@ abstract class BaseActivity : AppCompatActivity() {
     @Inject
     lateinit var navigator: Navigator
 
+    @LayoutRes
     open val contentId = R.layout.activity_layout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +45,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    fun addFragment(savedInstanceState: Bundle?) {
+    private fun addFragment(savedInstanceState: Bundle?) {
         savedInstanceState ?: supportFragmentManager.inTransaction {
             add(R.id.fragment_container, fragment)
         }
@@ -53,7 +55,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun hideProgress() = progressStatus(View.GONE)
 
-    fun progressStatus(viewStatus: Int) {
+    private fun progressStatus(viewStatus: Int) {
         toolbar_progress_bar.visibility = viewStatus
     }
 
