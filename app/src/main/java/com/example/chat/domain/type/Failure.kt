@@ -8,7 +8,7 @@ sealed class Failure {
     object AlreadyRequestedFriendError: Failure()
     object NetworkConnectionError : Failure()
     object EmailAlreadyExistError : Failure()
-    object ContactNOtFoundedError: Failure()
+    object ContactNotFoundError: Failure()
     object NoSavedAccountsError : Failure()
     object AlreadyFriendError: Failure()
     object ServerError : Failure()
