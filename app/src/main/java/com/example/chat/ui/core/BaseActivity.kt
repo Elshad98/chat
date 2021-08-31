@@ -21,7 +21,7 @@ import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    abstract val fragment: BaseFragment
+    abstract var fragment: BaseFragment
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -45,9 +45,16 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    private fun addFragment(savedInstanceState: Bundle?) {
+    private fun addFragment(savedInstanceState: Bundle?, fragment: BaseFragment = this.fragment) {
         savedInstanceState ?: supportFragmentManager.inTransaction {
             add(R.id.fragment_container, fragment)
+        }
+    }
+
+    fun replaceFragment(fragment: BaseFragment) {
+        this.fragment = fragment
+        supportFragmentManager.inTransaction {
+            replace(R.id.fragment_container, fragment)
         }
     }
 
@@ -66,7 +73,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun handleFailure(failure: Failure?) {
+    open fun handleFailure(failure: Failure?) {
         hideProgress()
         when (failure) {
             is Failure.NetworkConnectionError -> longToast(R.string.error_network)
@@ -74,6 +81,8 @@ abstract class BaseActivity : AppCompatActivity() {
             is Failure.EmailAlreadyExistError -> longToast(R.string.error_email_already_exist)
             is Failure.AuthError -> longToast(R.string.error_auth)
             is Failure.TokenError -> navigator.showLogin(this)
+            is Failure.AlreadyFriendError -> longToast(R.string.error_already_friend)
+            is Failure.AlreadyRequestedFriendError -> longToast(R.string.error_already_requested_friend)
         }
     }
 

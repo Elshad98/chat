@@ -7,6 +7,8 @@ import com.example.chat.presentation.injection.RemoteModule
 import com.example.chat.presentation.injection.ViewModelModule
 import com.example.chat.ui.core.navigation.RouterActivity
 import com.example.chat.ui.firebase.FirebaseService
+import com.example.chat.ui.friends.FriendRequestsFragment
+import com.example.chat.ui.friends.FriendsFragment
 import com.example.chat.ui.home.ChatsFragment
 import com.example.chat.ui.home.HomeActivity
 import com.example.chat.ui.login.LoginFragment
@@ -51,6 +53,10 @@ interface AppComponent {
     fun inject(fragment: LoginFragment)
 
     fun inject(fragment: ChatsFragment)
+
+    fun inject(fragment: FriendsFragment)
+
+    fun inject(fragment: FriendRequestsFragment)
 
     // Services
     fun inject(service: FirebaseService)

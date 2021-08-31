@@ -5,12 +5,12 @@ package com.example.chat.domain.type
  */
 sealed class Failure {
 
-    object AlreadyRequestedFriendError: Failure()
+    object AlreadyRequestedFriendError : Failure()
     object NetworkConnectionError : Failure()
     object EmailAlreadyExistError : Failure()
-    object ContactNotFoundError: Failure()
+    object ContactNotFoundError : Failure()
     object NoSavedAccountsError : Failure()
-    object AlreadyFriendError: Failure()
+    object AlreadyFriendError : Failure()
     object ServerError : Failure()
     object TokenError : Failure()
     object AuthError : Failure()
