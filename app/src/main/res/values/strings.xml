@@ -52,4 +52,7 @@
     <string name="message_text_promt_app">Установи приложение для персонального чата:</string>
     <string name="message_subject_promt_app">Привет, пообщаемся?</string>
     <string name="url_google_play">https://play.google.com/store/apps/details?id=</string>
+
+    <string name="request_has_been_sent">Запрос отправлен.</string>
+    <string name="no_incoming_invitations">Нет входящих приглашений.</string>
 </resources>

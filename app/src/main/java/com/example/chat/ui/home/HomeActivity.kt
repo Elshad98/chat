@@ -125,7 +125,6 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun handleFailure(failure: Failure?) {
-        longToast("FAILURE: $failure")
         hideProgress()
         when (failure) {
             Failure.ContactNotFoundError -> showEmailNotFoundDialog()
@@ -164,14 +163,14 @@ class HomeActivity : BaseActivity() {
         containerAddFriend.visibility = View.GONE
 
         hideProgress()
-        longToast("Запрос отправлен.")
+        longToast(R.string.request_has_been_sent)
     }
 
     private fun handleFriendRequests(requests: List<FriendEntity>?) {
         if (requests?.isEmpty() == true) {
             requestContainer.visibility = View.GONE
             if (drawer_layout.isDrawerOpen(navigation_view)) {
-                longToast("Нет входящих приглашений.")
+                longToast(R.string.no_incoming_invitations)
             }
         }
     }
@@ -179,7 +178,7 @@ class HomeActivity : BaseActivity() {
     private fun showEmailNotFoundDialog() {
         AlertDialog.Builder(this)
             .setMessage(getString(R.string.message_promt_app))
-            .setPositiveButton(android.R.string.yes) { dialog, which ->
+            .setPositiveButton(android.R.string.yes) { _, _ ->
                 navigator.showEmailInvite(this, etEmail.text.toString())
             }
             .setNegativeButton(android.R.string.no, null)

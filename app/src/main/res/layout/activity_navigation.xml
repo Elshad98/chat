@@ -21,6 +21,7 @@
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:text="dsadsad"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_container" />
     </androidx.constraintlayout.widget.ConstraintLayout>

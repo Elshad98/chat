@@ -7,7 +7,6 @@ import com.example.chat.remote.friends.GetFriendsResponse
 import retrofit2.Call
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface ApiService {
@@ -40,47 +39,38 @@ interface ApiService {
         const val PARAM_APPROVED_USER = "approved_user"
     }
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(REGISTER)
     fun register(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(LOGIN)
     fun login(@FieldMap params: Map<String, String>): Call<AuthResponse>
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(UPDATE_TOKEN)
     fun updateToken(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(ADD_FRIEND)
     fun addFriend(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(APPROVE_FRIEND_REQUEST)
     fun approveFriendRequest(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(CANCEL_FRIEND_REQUEST)
     fun cancelFriendRequest(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(DELETE_FRIEND)
     fun deleteFriend(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(GET_FRIENDS)
     fun getFriends(@FieldMap params: Map<String, String>): Call<GetFriendsResponse>
 
-    @Headers("User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
     @FormUrlEncoded
     @POST(GET_FRIEND_REQUESTS)
     fun getFriendRequests(@FieldMap params: Map<String, String>): Call<GetFriendRequestsResponse>
