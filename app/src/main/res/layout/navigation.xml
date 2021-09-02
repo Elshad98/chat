@@ -222,12 +222,10 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="8dp">
 
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true">
-
 
                         <Button
                             android:id="@+id/btnAdd"
@@ -248,7 +246,6 @@
                     </RelativeLayout>
 
                 </RelativeLayout>
-
 
             </RelativeLayout>
         </RelativeLayout>
