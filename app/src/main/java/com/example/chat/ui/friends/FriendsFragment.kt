@@ -53,7 +53,7 @@ class FriendsFragment : BaseListFragment() {
         activity?.let {
             AlertDialog.Builder(it)
                 .setMessage(getString(R.string.delete_friend))
-                .setPositiveButton(android.R.string.yes) { dialog, which ->
+                .setPositiveButton(android.R.string.yes) { _, _ ->
                     viewModel.deleteFriend(friend)
                 }
                 .setNegativeButton(android.R.string.no, null)
