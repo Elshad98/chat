@@ -19,7 +19,7 @@ abstract class BaseListFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         layoutManager = LinearLayoutManager(context)
 
-        recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView).apply {
+        recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
             setHasFixedSize(true)
             adapter = viewAdapter
             layoutManager = this@BaseListFragment.layoutManager

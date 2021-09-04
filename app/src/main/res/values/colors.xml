@@ -6,6 +6,7 @@
     <color name="dark_grey">#454E4F</color>
     <color name="light_grey">#E0E0E0</color>
     <color name="light_magenta">#E3BFE3</color>
+    <color name="eerie_black">#191919</color>
 
     <color name="background">@android:color/white</color>
 

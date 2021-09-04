@@ -18,7 +18,7 @@
             android:layout_width="28dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/large_margin"
             android:backgroundTint="@color/progressBarTint"
             android:indeterminateTint="@color/progressBarTint"
             android:indeterminateTintMode="src_in"
