@@ -17,17 +17,17 @@ class FriendRequestsAdapter : BaseAdapter<FriendRequestsAdapter.FriendRequestVie
     class FriendRequestViewHolder(view: View) : BaseViewHolder(view) {
 
         init {
-            view.btnApprove.setOnClickListener { view ->
+            view.friend_btn_approve.setOnClickListener { view ->
                 onClick?.onClick(item, view)
             }
-            view.btnCancel.setOnClickListener { view ->
+            view.friend_btn_cancel.setOnClickListener { view ->
                 onClick?.onClick(item, view)
             }
         }
 
         override fun onBind(item: Any) {
             (item as? FriendEntity)?.let { friend ->
-                view.tvName.text = friend.name
+                view.friend_label_name.text = friend.name
             }
         }
     }

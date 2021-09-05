@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rlMain"
+    android:id="@+id/friend_rl_main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="false"
@@ -14,25 +14,24 @@
     android:paddingBottom="@dimen/small_padding">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgPhoto"
+        android:id="@+id/friend_img_photo"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_account_circle" />
 
     <LinearLayout
-        android:id="@+id/contact_name_and_status"
+        android:id="@+id/friend_contact_name_and_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/buttonContainer"
-        android:layout_toEndOf="@+id/imgPhoto"
-        android:layout_toRightOf="@+id/imgPhoto"
+        android:layout_toStartOf="@+id/friend_button_container"
+        android:layout_toEndOf="@+id/friend_img_photo"
         android:orientation="vertical"
         android:padding="@dimen/small_padding">
 
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/friend_label_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
@@ -45,7 +44,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/buttonContainer"
+        android:id="@+id/friend_button_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -54,7 +53,7 @@
         android:orientation="horizontal">
 
         <FrameLayout
-            android:id="@+id/btnApprove"
+            android:id="@+id/friend_btn_approve"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginEnd="@dimen/small_margin"
@@ -72,7 +71,7 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/btnCancel"
+            android:id="@+id/friend_btn_cancel"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="?attr/selectableItemBackgroundBorderless"

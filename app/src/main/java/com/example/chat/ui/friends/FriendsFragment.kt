@@ -36,7 +36,7 @@ class FriendsFragment : BaseListFragment() {
 
         setOnItemClickListener { item, view ->
             (item as? FriendEntity)?.let { friend ->
-                if (view.id == R.id.btnRemove) {
+                if (view.id == R.id.friend_btn_remove) {
                     showDeleteFriendDialog(friend)
                 }
             }

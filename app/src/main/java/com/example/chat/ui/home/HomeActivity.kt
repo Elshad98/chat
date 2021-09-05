@@ -61,42 +61,42 @@ class HomeActivity : BaseActivity() {
             accountViewModel.logout()
         }
 
-        btnChats.setOnClickListener {
+        navigation_btn_chats.setOnClickListener {
             replaceFragment(ChatsFragment())
             closeDrawer()
         }
 
-        btnAddFriend.setOnClickListener {
-            if (containerAddFriend.visibility == View.VISIBLE) {
-                containerAddFriend.visibility = View.GONE
+        navigation_btn_add_friend.setOnClickListener {
+            if (navigation_container_add_friend.visibility == View.VISIBLE) {
+                navigation_container_add_friend.visibility = View.GONE
             } else {
-                containerAddFriend.visibility = View.VISIBLE
+                navigation_container_add_friend.visibility = View.VISIBLE
             }
         }
 
-        btnAdd.setOnClickListener {
+        navigation_btn_add.setOnClickListener {
             hideSoftKeyboard()
             showProgress()
-            friendsViewModel.addFriend(etEmail.text.toString())
+            friendsViewModel.addFriend(navigation_input_email.text.toString())
         }
 
-        btnFriends.setOnClickListener {
+        navigation_btn_friends.setOnClickListener {
             replaceFragment(FriendsFragment())
             closeDrawer()
         }
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.requestContainer, FriendRequestsFragment())
+            .replace(R.id.navigation_request_container, FriendRequestsFragment())
             .commit()
 
-        btnRequests.setOnClickListener {
+        navigation_btn_requests.setOnClickListener {
             friendsViewModel.getFriendRequests()
 
-            if (requestContainer.visibility == View.VISIBLE) {
-                requestContainer.visibility = View.GONE
+            if (navigation_request_container.visibility == View.VISIBLE) {
+                navigation_request_container.visibility = View.GONE
             } else {
-                requestContainer.visibility = View.VISIBLE
+                navigation_request_container.visibility = View.VISIBLE
             }
         }
     }
@@ -159,8 +159,8 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun handleAddFriend(none: None?) {
-        etEmail.text.clear()
-        containerAddFriend.visibility = View.GONE
+        navigation_input_email.text.clear()
+        navigation_container_add_friend.visibility = View.GONE
 
         hideProgress()
         longToast(R.string.request_has_been_sent)
@@ -168,7 +168,7 @@ class HomeActivity : BaseActivity() {
 
     private fun handleFriendRequests(requests: List<FriendEntity>?) {
         if (requests?.isEmpty() == true) {
-            requestContainer.visibility = View.GONE
+            navigation_request_container.visibility = View.GONE
             if (drawer_layout.isDrawerOpen(navigation_view)) {
                 longToast(R.string.no_incoming_invitations)
             }
@@ -179,7 +179,7 @@ class HomeActivity : BaseActivity() {
         AlertDialog.Builder(this)
             .setMessage(getString(R.string.message_promt_app))
             .setPositiveButton(android.R.string.yes) { _, _ ->
-                navigator.showEmailInvite(this, etEmail.text.toString())
+                navigator.showEmailInvite(this, navigation_input_email.text.toString())
             }
             .setNegativeButton(android.R.string.no, null)
             .setIcon(android.R.drawable.ic_dialog_alert)

@@ -17,14 +17,14 @@ class FriendsAdapter : BaseAdapter<FriendsAdapter.FriendViewHolder>() {
     class FriendViewHolder(view: View) : BaseViewHolder(view) {
 
         init {
-            view.btnRemove.setOnClickListener {
+            view.friend_btn_remove.setOnClickListener {
                 onClick?.onClick(item, it)
             }
         }
         override fun onBind(item: Any) {
             (item as? FriendEntity)?.let { friend ->
-                view.tvName.text = friend.name
-                view.tvStatus.text = friend.status
+                view.friend_label_name.text = friend.name
+                view.friend_label_status.text = friend.status
             }
         }
     }

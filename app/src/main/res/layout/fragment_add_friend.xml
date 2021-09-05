@@ -22,7 +22,7 @@
 
             <com.andreabaccega.widget.FormEditText
                 android:background="@drawable/rounded_edittext_register_login"
-                android:id="@+id/etEmail"
+                android:id="@+id/navigation_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -41,10 +41,10 @@
                 whatever:emptyErrorString="@string/error_field_must_not_be_empty"/>
 
             <RelativeLayout
-                android:id="@+id/rlActions"
+                android:id="@+id/navigation_rl_actions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etEmail"
+                android:layout_below="@+id/navigation_input_email"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/small_margin"
                 android:layout_marginStart="8dp"
@@ -57,7 +57,7 @@
                     android:layout_centerVertical="true">
 
                     <Button
-                        android:id="@+id/btnAdd"
+                        android:id="@+id/navigation_btn_add"
                         style="@style/Button.Primary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

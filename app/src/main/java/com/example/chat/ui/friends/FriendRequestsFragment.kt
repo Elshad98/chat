@@ -37,11 +37,11 @@ class FriendRequestsFragment : BaseListFragment() {
         setOnItemClickListener { item, view ->
             (item as? FriendEntity)?.let { friend ->
                 when (view.id) {
-                    R.id.btnApprove -> {
+                    R.id.friend_btn_approve -> {
                         showProgress()
                         friendsViewModel.approveFriend(friend)
                     }
-                    R.id.btnCancel -> {
+                    R.id.friend_btn_cancel -> {
                         showProgress()
                         friendsViewModel.cancelFriend(friend)
                     }

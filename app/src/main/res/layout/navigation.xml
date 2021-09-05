@@ -85,7 +85,7 @@
             app:layout_constraintTop_toBottomOf="@+id/navigation_profile_container" />
 
         <RelativeLayout
-            android:id="@+id/btnChats"
+            android:id="@+id/navigation_btn_chats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -120,7 +120,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/btnFriends"
+            android:id="@+id/navigation_btn_friends"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -129,7 +129,7 @@
             android:padding="@dimen/large_padding">
 
             <LinearLayout
-                android:id="@+id/llFriendsList"
+                android:id="@+id/navigation_ll_friends_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -155,7 +155,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/btnAddFriend"
+            android:id="@+id/navigation_btn_add_friend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -189,7 +189,7 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/containerAddFriend"
+                android:id="@+id/navigation_container_add_friend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/navigation_ll_add_friend"
@@ -197,7 +197,7 @@
                 android:visibility="gone">
 
                 <com.andreabaccega.widget.FormEditText
-                    android:id="@+id/etEmail"
+                    android:id="@+id/navigation_input_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_edittext_register_login"
@@ -215,10 +215,10 @@
                     whatever:testType="email" />
 
                 <RelativeLayout
-                    android:id="@+id/rlActions"
+                    android:id="@+id/navigation_rl_actions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/etEmail"
+                    android:layout_below="@+id/navigation_input_email"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/small_margin">
 
@@ -228,7 +228,7 @@
                         android:layout_centerVertical="true">
 
                         <Button
-                            android:id="@+id/btnAdd"
+                            android:id="@+id/navigation_btn_add"
                             style="@style/Button.Primary"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -251,7 +251,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/btnRequests"
+            android:id="@+id/navigation_btn_requests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
@@ -260,7 +260,7 @@
             android:padding="@dimen/large_padding">
 
             <LinearLayout
-                android:id="@+id/layoutRequests"
+                android:id="@+id/navigation_layout_requests"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -285,10 +285,10 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/requestContainer"
+                android:id="@+id/navigation_request_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/layoutRequests"
+                android:layout_below="@+id/navigation_layout_requests"
                 android:visibility="gone" />
         </RelativeLayout>
     </LinearLayout>
