@@ -66,7 +66,7 @@ class FriendsFragment : BaseListFragment() {
         hideProgress()
         friends?.let {
             viewAdapter.clear()
-            viewAdapter.add(it)
+            viewAdapter.addItems(it)
             viewAdapter.notifyDataSetChanged()
         }
     }

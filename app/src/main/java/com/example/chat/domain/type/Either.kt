@@ -9,25 +9,25 @@ package com.example.chat.domain.type
  * @see Left
  * @see Right
  */
-sealed class Either<out L, out R> {
+sealed class Either<out LeftT, out RightT> {
 
     /**
      * Represents the left side of [Either] class which by convention is a "Failure".
      */
-    data class Left<out L>(val a: L) : Either<L, Nothing>()
+    data class Left<out LeftT>(val a: LeftT) : Either<LeftT, Nothing>()
 
     /**
      * Represents the right side of [Either] class which by convention is a "Success".
      */
-    data class Right<out R>(val b: R) : Either<Nothing, R>()
+    data class Right<out RightT>(val b: RightT) : Either<Nothing, RightT>()
 
-    val isRight get() = this is Right<R>
-    val isLeft get() = this is Left<L>
+    val isRight get() = this is Right<RightT>
+    val isLeft get() = this is Left<LeftT>
 
-    fun <L> left(a: L) = Left(a)
-    fun <R> right(b: R) = Right(b)
+    fun <LeftT> left(a: LeftT) = Left(a)
+    fun <RightT> right(b: RightT) = Right(b)
 
-    fun either(functionLeft: (L) -> Any, functionRight: (R) -> Any): Any =
+    fun either(functionLeft: (LeftT) -> Any, functionRight: (RightT) -> Any): Any =
         when (this) {
             is Left -> functionLeft(a)
             is Right -> functionRight(b)
@@ -38,18 +38,18 @@ fun <A, B, C> ((A) -> B).compose(func: (B) -> C): (A) -> C = {
     func(this(it))
 }
 
-fun <T, L, R> Either<L, R>.flatMap(func: (R) -> Either<L, T>): Either<L, T> {
+fun <T, LeftT, RightT> Either<LeftT, RightT>.flatMap(func: (RightT) -> Either<LeftT, T>): Either<LeftT, T> {
     return when (this) {
         is Either.Left -> Either.Left(a)
         is Either.Right -> func(b)
     }
 }
 
-fun <T, L, R> Either<L, R>.map(func: (R) -> (T)): Either<L, T> {
+fun <T, Left, RightT> Either<Left, RightT>.map(func: (RightT) -> (T)): Either<Left, T> {
     return this.flatMap(func.compose(::right))
 }
 
-fun <L, R> Either<L, R>.onNext(func: (R) -> Unit): Either<L, R> {
+fun <LeftT, RightT> Either<LeftT, RightT>.onNext(func: (RightT) -> Unit): Either<LeftT, RightT> {
     this.flatMap(func.compose(::right))
     return this
 }

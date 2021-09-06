@@ -60,7 +60,7 @@ class FriendRequestsFragment : BaseListFragment() {
         hideProgress()
         requests?.let {
             viewAdapter.clear()
-            viewAdapter.add(it)
+            viewAdapter.addItems(it)
             viewAdapter.notifyDataSetChanged()
         }
     }

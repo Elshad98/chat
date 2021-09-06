@@ -37,11 +37,11 @@ class Request @Inject constructor(
     }
 }
 
-fun <T : BaseResponse> Response<T>.isSucceed(): Boolean {
+private fun <T : BaseResponse> Response<T>.isSucceed(): Boolean {
     return isSuccessful && body() != null && (body() as BaseResponse).success == 1
 }
 
-fun <T : BaseResponse> Response<T>.parseError(): Failure {
+private fun <T : BaseResponse> Response<T>.parseError(): Failure {
     return when ((body() as BaseResponse).message) {
         "email already exists" -> Failure.EmailAlreadyExistError
         "error in email or password" -> Failure.AuthError

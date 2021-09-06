@@ -29,11 +29,11 @@ abstract class BaseAdapter<ViewHolderT : BaseAdapter.BaseViewHolder> : RecyclerV
 
     fun getItem(position: Int): Any = items[position]
 
-    fun add(newItem: Any) {
+    fun addItem(newItem: Any) {
         items.add(newItem)
     }
 
-    fun add(newItems: List<Any>) {
+    fun addItems(newItems: List<Any>) {
         items.addAll(newItems)
     }
 
