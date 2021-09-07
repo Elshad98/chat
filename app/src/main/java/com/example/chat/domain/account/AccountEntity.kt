@@ -4,12 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 class AccountEntity(
     @SerializedName("user_id")
-    val id: Long,
-    val name: String,
-    val email: String,
-    val token: String,
-    val status: String,
+    var id: Long,
+    var name: String,
+    var email: String,
+    var token: String,
+    var status: String,
     @SerializedName("user_data")
-    val userData: Long,
-    val image: String
+    var userData: Long,
+    var image: String,
+    var password: String
 )

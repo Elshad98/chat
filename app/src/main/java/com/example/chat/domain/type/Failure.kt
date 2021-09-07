@@ -11,6 +11,7 @@ sealed class Failure {
     object ContactNotFoundError : Failure()
     object NoSavedAccountsError : Failure()
     object AlreadyFriendError : Failure()
+    object FilePickError: Failure()
     object ServerError : Failure()
     object TokenError : Failure()
     object AuthError : Failure()
