@@ -2,10 +2,10 @@ package com.example.chat.remote.core
 
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.Failure
-import retrofit2.Call
-import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
+import retrofit2.Call
+import retrofit2.Response
 
 @Singleton
 class Request @Inject constructor(

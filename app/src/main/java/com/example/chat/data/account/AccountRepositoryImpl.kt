@@ -2,8 +2,12 @@ package com.example.chat.data.account
 
 import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.account.AccountRepository
-import com.example.chat.domain.type.*
-import java.util.*
+import com.example.chat.domain.type.Either
+import com.example.chat.domain.type.Failure
+import com.example.chat.domain.type.None
+import com.example.chat.domain.type.flatMap
+import com.example.chat.domain.type.onNext
+import java.util.Calendar
 
 class AccountRepositoryImpl(
     private val accountRemote: AccountRemote,

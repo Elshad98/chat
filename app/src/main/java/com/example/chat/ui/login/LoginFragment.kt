@@ -8,7 +8,10 @@ import com.example.chat.domain.account.AccountEntity
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseFragment
-import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_login.login_btn_login
+import kotlinx.android.synthetic.main.fragment_login.login_btn_register
+import kotlinx.android.synthetic.main.fragment_login.login_input_email
+import kotlinx.android.synthetic.main.fragment_login.login_input_password
 
 class LoginFragment : BaseFragment() {
 

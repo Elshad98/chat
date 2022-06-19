@@ -3,14 +3,19 @@ package com.example.chat.ui.register
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import com.example.chat.ui.App
 import com.example.chat.R
 import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.type.None
 import com.example.chat.extensions.longToast
 import com.example.chat.presentation.viewmodel.AccountViewModel
+import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseFragment
-import kotlinx.android.synthetic.main.fragment_register.*
+import kotlinx.android.synthetic.main.fragment_register.register_btn_already_have_account
+import kotlinx.android.synthetic.main.fragment_register.register_btn_new_membership
+import kotlinx.android.synthetic.main.fragment_register.register_input_confirm_password
+import kotlinx.android.synthetic.main.fragment_register.register_input_email
+import kotlinx.android.synthetic.main.fragment_register.register_input_password
+import kotlinx.android.synthetic.main.fragment_register.register_input_username
 
 class RegisterFragment : BaseFragment() {
 

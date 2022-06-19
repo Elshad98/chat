@@ -16,8 +16,9 @@ import com.example.chat.R
 import com.example.chat.domain.type.Failure
 import com.example.chat.extensions.longToast
 import com.example.chat.ui.core.navigation.Navigator
-import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.toolbar.toolbar
+import kotlinx.android.synthetic.main.toolbar.toolbar_progress_bar
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -30,7 +31,7 @@ abstract class BaseActivity : AppCompatActivity() {
     lateinit var navigator: Navigator
 
     @LayoutRes
-    open val contentId = R.layout.activity_layout
+    protected open val contentId = R.layout.activity_layout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,9 +46,17 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    private fun addFragment(savedInstanceState: Bundle?, fragment: BaseFragment = this.fragment) {
-        savedInstanceState ?: supportFragmentManager.inTransaction {
-            add(R.id.fragment_container, fragment)
+    protected open fun handleFailure(failure: Failure?) {
+        hideProgress()
+        when (failure) {
+            is Failure.AuthError -> longToast(R.string.error_auth)
+            is Failure.ServerError -> longToast(R.string.error_server)
+            is Failure.TokenError -> navigator.showLogin(context = this)
+            is Failure.NetworkConnectionError -> longToast(R.string.error_network)
+            is Failure.AlreadyFriendError -> longToast(R.string.error_already_friend)
+            is Failure.EmailAlreadyExistError -> longToast(R.string.error_email_already_exist)
+            is Failure.AlreadyRequestedFriendError -> longToast(R.string.error_already_requested_friend)
+            else -> Unit
         }
     }
 
@@ -62,10 +71,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun hideProgress() = progressStatus(View.GONE)
 
-    private fun progressStatus(viewStatus: Int) {
-        toolbar_progress_bar.visibility = viewStatus
-    }
-
     fun hideSoftKeyboard() {
         currentFocus?.let {
             val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -73,23 +78,20 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    open fun handleFailure(failure: Failure?) {
-        hideProgress()
-        when (failure) {
-            is Failure.NetworkConnectionError -> longToast(R.string.error_network)
-            is Failure.ServerError -> longToast(R.string.error_server)
-            is Failure.EmailAlreadyExistError -> longToast(R.string.error_email_already_exist)
-            is Failure.AuthError -> longToast(R.string.error_auth)
-            is Failure.TokenError -> navigator.showLogin(this)
-            is Failure.AlreadyFriendError -> longToast(R.string.error_already_friend)
-            is Failure.AlreadyRequestedFriendError -> longToast(R.string.error_already_requested_friend)
-        }
-    }
-
     fun <T : ViewModel> viewModel(viewModelClass: Class<T>): T {
         return ViewModelProviders
             .of(this, viewModelFactory)
             .get(viewModelClass)
+    }
+
+    private fun progressStatus(viewStatus: Int) {
+        toolbar_progress_bar.visibility = viewStatus
+    }
+
+    private fun addFragment(savedInstanceState: Bundle?, fragment: BaseFragment = this.fragment) {
+        savedInstanceState ?: supportFragmentManager.inTransaction {
+            add(R.id.fragment_container, fragment)
+        }
     }
 }
 

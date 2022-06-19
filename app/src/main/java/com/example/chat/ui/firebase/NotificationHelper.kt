@@ -6,8 +6,8 @@ import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.extensions.longToast
 import com.example.chat.remote.service.ApiService
 import com.google.firebase.messaging.RemoteMessage
-import org.json.JSONObject
 import javax.inject.Inject
+import org.json.JSONObject
 
 class NotificationHelper @Inject constructor(
     val context: Context

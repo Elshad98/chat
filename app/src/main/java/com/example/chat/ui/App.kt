@@ -47,7 +47,7 @@ interface AppComponent {
 
     fun inject(activity: HomeActivity)
 
-    // Fragment
+    // Fragments
     fun inject(fragment: RegisterFragment)
 
     fun inject(fragment: LoginFragment)

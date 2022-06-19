@@ -4,7 +4,9 @@ import android.view.View
 import com.example.chat.R
 import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.ui.core.BaseAdapter
-import kotlinx.android.synthetic.main.item_friend.view.*
+import kotlinx.android.synthetic.main.item_friend.view.friend_btn_remove
+import kotlinx.android.synthetic.main.item_friend.view.friend_label_name
+import kotlinx.android.synthetic.main.item_friend.view.friend_label_status
 
 class FriendsAdapter : BaseAdapter<FriendsAdapter.FriendViewHolder>() {
 

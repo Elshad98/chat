@@ -4,7 +4,9 @@ import android.view.View
 import com.example.chat.R
 import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.ui.core.BaseAdapter
-import kotlinx.android.synthetic.main.item_friend_request.view.*
+import kotlinx.android.synthetic.main.item_friend_request.view.friend_btn_approve
+import kotlinx.android.synthetic.main.item_friend_request.view.friend_btn_cancel
+import kotlinx.android.synthetic.main.item_friend_request.view.friend_label_name
 
 class FriendRequestsAdapter : BaseAdapter<FriendRequestsAdapter.FriendRequestViewHolder>() {
 

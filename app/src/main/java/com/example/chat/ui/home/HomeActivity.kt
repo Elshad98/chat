@@ -18,8 +18,20 @@ import com.example.chat.ui.core.BaseActivity
 import com.example.chat.ui.core.BaseFragment
 import com.example.chat.ui.friends.FriendRequestsFragment
 import com.example.chat.ui.friends.FriendsFragment
-import kotlinx.android.synthetic.main.activity_navigation.*
-import kotlinx.android.synthetic.main.navigation.*
+import kotlinx.android.synthetic.main.activity_navigation.drawer_layout
+import kotlinx.android.synthetic.main.navigation.navigation_btn_add
+import kotlinx.android.synthetic.main.navigation.navigation_btn_add_friend
+import kotlinx.android.synthetic.main.navigation.navigation_btn_chats
+import kotlinx.android.synthetic.main.navigation.navigation_btn_friends
+import kotlinx.android.synthetic.main.navigation.navigation_btn_logout
+import kotlinx.android.synthetic.main.navigation.navigation_btn_requests
+import kotlinx.android.synthetic.main.navigation.navigation_container_add_friend
+import kotlinx.android.synthetic.main.navigation.navigation_input_email
+import kotlinx.android.synthetic.main.navigation.navigation_label_user_email
+import kotlinx.android.synthetic.main.navigation.navigation_label_user_name
+import kotlinx.android.synthetic.main.navigation.navigation_label_user_status
+import kotlinx.android.synthetic.main.navigation.navigation_request_container
+import kotlinx.android.synthetic.main.navigation.navigation_view
 
 class HomeActivity : BaseActivity() {
 
