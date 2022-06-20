@@ -1,10 +1,8 @@
 package com.example.chat.ui.core
 
 import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
@@ -14,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.chat.R
 import com.example.chat.domain.type.Failure
+import com.example.chat.extensions.getInputMethodManager
 import com.example.chat.extensions.longToast
 import com.example.chat.ui.core.navigation.Navigator
 import javax.inject.Inject
@@ -72,9 +71,8 @@ abstract class BaseActivity : AppCompatActivity() {
     fun hideProgress() = progressStatus(View.GONE)
 
     fun hideSoftKeyboard() {
-        currentFocus?.let {
-            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
+        currentFocus?.let { view ->
+            getInputMethodManager().hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 
