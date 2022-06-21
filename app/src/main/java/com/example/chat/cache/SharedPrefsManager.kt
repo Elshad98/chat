@@ -56,13 +56,13 @@ class SharedPrefsManager @Inject constructor(
         }
 
         val account = AccountEntity(
-            prefs.getLong(ACCOUNT_ID, 0),
-            prefs.getString(ACCOUNT_NAME, "")!!,
-            prefs.getString(ACCOUNT_EMAIL, "")!!,
-            prefs.getString(ACCOUNT_TOKEN, "")!!,
-            prefs.getString(ACCOUNT_STATUS, "")!!,
-            prefs.getLong(ACCOUNT_DATA, 0),
-            prefs.getString(ACCOUNT_IMAGE, "")!!
+            id = prefs.getLong(ACCOUNT_ID, 0),
+            name = prefs.getString(ACCOUNT_NAME, "")!!,
+            email = prefs.getString(ACCOUNT_EMAIL, "")!!,
+            token = prefs.getString(ACCOUNT_TOKEN, "")!!,
+            status = prefs.getString(ACCOUNT_STATUS, "")!!,
+            userData = prefs.getLong(ACCOUNT_DATA, 0),
+            image = prefs.getString(ACCOUNT_IMAGE, "")!!
         )
 
         return Either.Right(account)

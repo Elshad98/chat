@@ -45,8 +45,7 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-    open fun onBackPressed() {
-    }
+    open fun onBackPressed() = Unit
 
     fun showProgress() = base { showProgress() }
 

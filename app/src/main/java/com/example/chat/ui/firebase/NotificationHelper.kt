@@ -15,12 +15,12 @@ class NotificationHelper @Inject constructor(
 
     companion object {
 
-        const val TYPE = "type"
-        const val MESSAGE = "message"
-        const val TYPE_ADD_FRIEND = "addFriend"
-        const val JSON_MESSAGE = "firebase_json_message"
-        const val TYPE_APPROVED_FRIEND = "approveFriendRequest"
-        const val TYPE_CANCELLED_FRIEND_REQUEST = "cancelFriendRequest"
+        private const val TYPE = "type"
+        private const val MESSAGE = "message"
+        private const val TYPE_ADD_FRIEND = "addFriend"
+        private const val JSON_MESSAGE = "firebase_json_message"
+        private const val TYPE_APPROVED_FRIEND = "approveFriendRequest"
+        private const val TYPE_CANCELLED_FRIEND_REQUEST = "cancelFriendRequest"
     }
 
     fun sendNotification(remoteMessage: RemoteMessage?) {
@@ -60,14 +60,13 @@ class NotificationHelper @Inject constructor(
             jsonMessage.getJSONObject(ApiService.PARAM_APPROVED_USER)
         }
 
-        val friendsId = jsonMessage.getLong(ApiService.PARAM_FRIENDS_ID)
-
-        val id = requestUser.getLong(ApiService.PARAM_USER_ID)
-        val name = requestUser.getString(ApiService.PARAM_NAME)
-        val email = requestUser.getString(ApiService.PARAM_EMAIL)
-        val status = requestUser.getString(ApiService.PARAM_STATUS)
-        val image = requestUser.getString(ApiService.PARAM_USER_ID)
-
-        return FriendEntity(id, name, email, friendsId, status, image)
+        return FriendEntity(
+            id = requestUser.getLong(ApiService.PARAM_USER_ID),
+            name = requestUser.getString(ApiService.PARAM_NAME),
+            email = requestUser.getString(ApiService.PARAM_EMAIL),
+            image = requestUser.getString(ApiService.PARAM_USER_ID),
+            status = requestUser.getString(ApiService.PARAM_STATUS),
+            friendsId = jsonMessage.getLong(ApiService.PARAM_FRIENDS_ID)
+        )
     }
 }

@@ -45,7 +45,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    protected open fun handleFailure(failure: Failure?) {
+    open fun handleFailure(failure: Failure?) {
         hideProgress()
         when (failure) {
             is Failure.AuthError -> longToast(R.string.error_auth)
