@@ -2,7 +2,6 @@ package com.example.chat.ui.home
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.example.chat.R
@@ -10,7 +9,9 @@ import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
+import com.example.chat.extensions.gone
 import com.example.chat.extensions.longToast
+import com.example.chat.extensions.toggleVisibility
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.viewmodel.FriendsViewModel
 import com.example.chat.ui.App
@@ -79,11 +80,7 @@ class HomeActivity : BaseActivity() {
         }
 
         navigation_btn_add_friend.setOnClickListener {
-            if (navigation_container_add_friend.visibility == View.VISIBLE) {
-                navigation_container_add_friend.visibility = View.GONE
-            } else {
-                navigation_container_add_friend.visibility = View.VISIBLE
-            }
+            navigation_container_add_friend.toggleVisibility()
         }
 
         navigation_btn_add.setOnClickListener {
@@ -105,11 +102,7 @@ class HomeActivity : BaseActivity() {
         navigation_btn_requests.setOnClickListener {
             friendsViewModel.getFriendRequests()
 
-            if (navigation_request_container.visibility == View.VISIBLE) {
-                navigation_request_container.visibility = View.GONE
-            } else {
-                navigation_request_container.visibility = View.VISIBLE
-            }
+            navigation_request_container.toggleVisibility()
         }
     }
 
@@ -160,8 +153,7 @@ class HomeActivity : BaseActivity() {
             navigation_label_user_email.text = it.email
             navigation_label_user_status.text = it.status
 
-            navigation_label_user_status.visibility =
-                if (it.status.isNotEmpty()) View.VISIBLE else View.GONE
+            navigation_label_user_status.toggleVisibility(it.status.isNotEmpty())
         }
     }
 
@@ -172,7 +164,7 @@ class HomeActivity : BaseActivity() {
 
     private fun handleAddFriend(none: None?) {
         navigation_input_email.text.clear()
-        navigation_container_add_friend.visibility = View.GONE
+        navigation_container_add_friend.gone()
 
         hideProgress()
         longToast(R.string.request_has_been_sent)
@@ -180,7 +172,7 @@ class HomeActivity : BaseActivity() {
 
     private fun handleFriendRequests(requests: List<FriendEntity>?) {
         if (requests?.isEmpty() == true) {
-            navigation_request_container.visibility = View.GONE
+            navigation_request_container.gone()
             if (drawer_layout.isDrawerOpen(navigation_view)) {
                 longToast(R.string.no_incoming_invitations)
             }

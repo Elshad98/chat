@@ -2,7 +2,6 @@ package com.example.chat.ui.core
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
@@ -13,7 +12,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.chat.R
 import com.example.chat.domain.type.Failure
 import com.example.chat.extensions.getInputMethodManager
+import com.example.chat.extensions.gone
 import com.example.chat.extensions.longToast
+import com.example.chat.extensions.visible
 import com.example.chat.ui.core.navigation.Navigator
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.toolbar.toolbar
@@ -66,9 +67,9 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun showProgress() = progressStatus(View.VISIBLE)
+    fun showProgress() = toolbar_progress_bar.visible()
 
-    fun hideProgress() = progressStatus(View.GONE)
+    fun hideProgress() = toolbar_progress_bar.gone()
 
     fun hideSoftKeyboard() {
         currentFocus?.let { view ->
@@ -80,10 +81,6 @@ abstract class BaseActivity : AppCompatActivity() {
         return ViewModelProviders
             .of(this, viewModelFactory)
             .get(viewModelClass)
-    }
-
-    private fun progressStatus(viewStatus: Int) {
-        toolbar_progress_bar.visibility = viewStatus
     }
 
     private fun addFragment(savedInstanceState: Bundle?, fragment: BaseFragment = this.fragment) {
