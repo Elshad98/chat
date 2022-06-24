@@ -17,8 +17,5 @@ fun View.visible() = run { visibility = View.VISIBLE }
 
 fun View.gone() = run { visibility = View.GONE }
 
-fun View.toggleVisibility(visible: Boolean) =
+fun View.toggleVisibility(visible: Boolean = isGone) =
     run { visibility = if (visible) View.VISIBLE else View.GONE }
-
-fun View.toggleVisibility() =
-    run { visibility = if (isGone) View.VISIBLE else View.GONE }
