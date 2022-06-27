@@ -13,7 +13,7 @@ class Request @Inject constructor(
 ) {
 
     fun <T : BaseResponse, R> make(call: Call<T>, transform: (T) -> R): Either<Failure, R> {
-        return if (networkHandler.isConnected) {
+        return if (networkHandler.isNetworkAvailable()) {
             execute(call, transform)
         } else {
             Either.Left(Failure.NetworkConnectionError)
