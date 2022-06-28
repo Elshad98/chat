@@ -17,7 +17,10 @@ class AccountRepositoryImpl(
     override fun login(email: String, password: String): Either<Failure, AccountEntity> {
         return accountCache.getToken()
             .flatMap { token -> accountRemote.login(email, password, token) }
-            .onNext { account -> accountCache.saveAccount(account) }
+            .onNext { account ->
+                account.password = password
+                accountCache.saveAccount(account)
+            }
     }
 
     override fun logout(): Either<Failure, None> {
@@ -25,15 +28,17 @@ class AccountRepositoryImpl(
     }
 
     override fun register(email: String, name: String, password: String): Either<Failure, None> {
-        return accountCache.getToken().flatMap { token ->
-            accountRemote.register(
-                email,
-                name,
-                password,
-                token,
-                Calendar.getInstance().timeInMillis
-            )
-        }
+        return accountCache
+            .getToken()
+            .flatMap { token ->
+                accountRemote.register(
+                    email,
+                    name,
+                    password,
+                    token,
+                    userDate = Calendar.getInstance().timeInMillis
+                )
+            }
     }
 
     override fun forgetPassword(email: String): Either<Failure, None> {
@@ -47,7 +52,8 @@ class AccountRepositoryImpl(
     override fun updateAccountToken(token: String): Either<Failure, None> {
         accountCache.saveToken(token)
 
-        return accountCache.getCurrentAccount()
+        return accountCache
+            .getCurrentAccount()
             .flatMap { account -> accountRemote.updateToken(account.id, token, account.token) }
     }
 
@@ -56,6 +62,22 @@ class AccountRepositoryImpl(
     }
 
     override fun editAccount(entity: AccountEntity): Either<Failure, AccountEntity> {
-        throw UnsupportedOperationException("Editing account is not supported")
+        return accountCache
+            .getCurrentAccount()
+            .flatMap {
+                accountRemote.editUser(
+                    entity.id,
+                    entity.email,
+                    entity.name,
+                    entity.password,
+                    entity.status,
+                    entity.token,
+                    entity.image
+                )
+            }
+            .onNext { account ->
+                entity.image = account.image
+                accountCache.saveAccount(entity)
+            }
     }
 }

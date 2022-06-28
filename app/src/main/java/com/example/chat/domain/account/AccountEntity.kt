@@ -12,5 +12,5 @@ class AccountEntity(
     @SerializedName("user_data")
     var userData: Long,
     var image: String,
-    val password: String
+    var password: String
 )
