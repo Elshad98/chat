@@ -43,6 +43,7 @@ private fun <T : BaseResponse> Response<T>.isSucceed(): Boolean {
 
 private fun <T : BaseResponse> Response<T>.parseError(): Failure {
     return when ((body() as BaseResponse).message) {
+        "there is a user has this email",
         "email already exists" -> Failure.EmailAlreadyExistError
         "error in email or password" -> Failure.AuthError
         "Token is invalid" -> Failure.TokenError
