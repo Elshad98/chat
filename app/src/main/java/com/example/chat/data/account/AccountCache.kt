@@ -7,11 +7,11 @@ import com.example.chat.domain.type.None
 
 interface AccountCache {
 
+    fun logout(): Either<Failure, None>
+
     fun getToken(): Either<Failure, String>
 
     fun saveToken(token: String): Either<Failure, None>
-
-    fun logout(): Either<Failure, None>
 
     fun getCurrentAccount(): Either<Failure, AccountEntity>
 

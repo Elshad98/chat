@@ -2,6 +2,7 @@ package com.example.chat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.example.chat.domain.account.AccountEntity
+import com.example.chat.domain.account.EditAccount
 import com.example.chat.domain.account.GetAccount
 import com.example.chat.domain.account.Login
 import com.example.chat.domain.account.Logout
@@ -10,15 +11,17 @@ import com.example.chat.domain.type.None
 import javax.inject.Inject
 
 class AccountViewModel @Inject constructor(
-    val registerUseCase: Register,
     val loginUseCase: Login,
+    val logoutUseCase: Logout,
+    val registerUseCase: Register,
     val getAccountUseCase: GetAccount,
-    val logoutUseCase: Logout
+    val editAccountUseCase: EditAccount
 ) : BaseViewModel() {
 
     var registerData: MutableLiveData<None> = MutableLiveData()
     val accountData: MutableLiveData<AccountEntity> = MutableLiveData()
     val logoutData: MutableLiveData<None> = MutableLiveData()
+    val editAccountData: MutableLiveData<AccountEntity> = MutableLiveData()
 
     fun register(email: String, name: String, password: String) {
         registerUseCase(Register.Params(email, name, password)) {
@@ -44,6 +47,12 @@ class AccountViewModel @Inject constructor(
         }
     }
 
+    fun editAccount(account: AccountEntity) {
+        editAccountUseCase(account) {
+            it.either(::handleFailure, ::handleEditAccount)
+        }
+    }
+
     private fun handleRegister(none: None) {
         registerData.value = none
     }
@@ -54,6 +63,10 @@ class AccountViewModel @Inject constructor(
 
     private fun handleLogout(none: None) {
         logoutData.value = none
+    }
+
+    private fun handleEditAccount(account: AccountEntity) {
+        editAccountData.value = account
     }
 
     override fun onCleared() {

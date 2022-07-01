@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.viewmodel.FriendsViewModel
+import com.example.chat.presentation.viewmodel.MediaViewModel
 import com.example.chat.presentation.viewmodel.ViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -14,6 +15,11 @@ abstract class ViewModelModule {
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MediaViewModel::class)
+    abstract fun bindMediaViewModel(mediaViewModel: MediaViewModel): ViewModel
 
     @Binds
     @IntoMap
