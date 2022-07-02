@@ -38,6 +38,8 @@ class FriendsFragment : BaseListFragment() {
             (item as? FriendEntity)?.let { friend ->
                 if (view.id == R.id.friend_btn_remove) {
                     showDeleteFriendDialog(friend)
+                } else {
+                    navigator.showUser(requireActivity(), friend)
                 }
             }
         }

@@ -39,7 +39,7 @@
             android:layout_marginBottom="2dp"
             android:gravity="center"
             android:maxLines="1"
-            android:textColor="@color/eerie_black"
+            android:textColor="@color/translucent"
             android:textSize="@dimen/medium_text_size"
             android:textStyle="bold"
             tools:text="@string/name" />

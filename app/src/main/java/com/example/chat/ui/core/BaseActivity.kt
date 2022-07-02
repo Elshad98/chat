@@ -1,6 +1,7 @@
 package com.example.chat.ui.core
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,9 @@ abstract class BaseActivity : AppCompatActivity() {
     @Inject
     lateinit var navigator: Navigator
 
+    @Inject
+    lateinit var permissionManager: PermissionManager
+
     @LayoutRes
     protected open val contentId = R.layout.activity_layout
 
@@ -46,6 +50,20 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        fragment.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        permissionManager.requestObject?.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
     open fun handleFailure(failure: Failure?) {
         hideProgress()
         when (failure) {
@@ -56,6 +74,7 @@ abstract class BaseActivity : AppCompatActivity() {
             is Failure.AlreadyFriendError -> longToast(R.string.error_already_friend)
             is Failure.EmailAlreadyExistError -> longToast(R.string.error_email_already_exist)
             is Failure.AlreadyRequestedFriendError -> longToast(R.string.error_already_requested_friend)
+            is Failure.FilePickError -> longToast(getString(R.string.error_picking_file))
             else -> Unit
         }
     }

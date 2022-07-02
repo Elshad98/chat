@@ -1,8 +1,9 @@
 package com.example.chat.ui.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.domain.account.AccountEntity
@@ -12,11 +13,13 @@ import com.example.chat.domain.type.None
 import com.example.chat.extensions.gone
 import com.example.chat.extensions.longToast
 import com.example.chat.extensions.toggleVisibility
+import com.example.chat.extensions.visible
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.viewmodel.FriendsViewModel
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseActivity
 import com.example.chat.ui.core.BaseFragment
+import com.example.chat.ui.firebase.NotificationHelper
 import com.example.chat.ui.friends.FriendRequestsFragment
 import com.example.chat.ui.friends.FriendsFragment
 import kotlinx.android.synthetic.main.activity_navigation.drawer_layout
@@ -31,6 +34,7 @@ import kotlinx.android.synthetic.main.navigation.navigation_input_email
 import kotlinx.android.synthetic.main.navigation.navigation_label_user_email
 import kotlinx.android.synthetic.main.navigation.navigation_label_user_name
 import kotlinx.android.synthetic.main.navigation.navigation_label_user_status
+import kotlinx.android.synthetic.main.navigation.navigation_profile_container
 import kotlinx.android.synthetic.main.navigation.navigation_request_container
 import kotlinx.android.synthetic.main.navigation.navigation_view
 
@@ -64,8 +68,6 @@ class HomeActivity : BaseActivity() {
             this,
             Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
         )
-
-        accountViewModel.getAccount()
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -104,6 +106,24 @@ class HomeActivity : BaseActivity() {
 
             navigation_request_container.toggleVisibility()
         }
+
+        when (intent.getStringExtra("type")) {
+            NotificationHelper.TYPE_ADD_FRIEND -> {
+                openDrawer()
+                friendsViewModel.getFriendRequests()
+                navigation_request_container.visible()
+            }
+        }
+
+        navigation_profile_container.setOnClickListener {
+            navigator.showAccount(this)
+            Handler(Looper.getMainLooper()).postDelayed({ closeDrawer() }, 200)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        accountViewModel.getAccount()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -132,7 +152,10 @@ class HomeActivity : BaseActivity() {
     override fun handleFailure(failure: Failure?) {
         hideProgress()
         when (failure) {
-            Failure.ContactNotFoundError -> showEmailNotFoundDialog()
+            Failure.ContactNotFoundError -> navigator.showEmailNotFoundDialog(
+                this,
+                navigation_input_email.text.toString()
+            )
             else -> super.handleFailure(failure)
         }
     }
@@ -177,16 +200,5 @@ class HomeActivity : BaseActivity() {
                 longToast(R.string.no_incoming_invitations)
             }
         }
-    }
-
-    private fun showEmailNotFoundDialog() {
-        AlertDialog.Builder(this)
-            .setMessage(getString(R.string.message_promt_app))
-            .setPositiveButton(android.R.string.yes) { _, _ ->
-                navigator.showEmailInvite(this, navigation_input_email.text.toString())
-            }
-            .setNegativeButton(android.R.string.no, null)
-            .setIcon(android.R.drawable.ic_dialog_alert)
-            .show()
     }
 }

@@ -12,6 +12,10 @@ preBuild.dependsOn('checkstyleDefault')
 check.dependsOn('checkstyleDefault')
 assemble.dependsOn('lint')
 
+repositories {
+    jcenter()
+}
+
 android {
     compileSdkVersion vAndroidCompileSdk
     buildToolsVersion vAndroidBuildTools
@@ -93,6 +97,13 @@ dependencies {
 
     // Circle image view
     implementation "de.hdodenhof:circleimageview:$vCircleImageView"
+
+    // Permission Utils
+    implementation "com.github.kayvannj:PermissionUtils:$vPermissionUtils"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$vGlide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$vGlide"
 
     // Test
     testImplementation "junit:junit:$vJunit4"
