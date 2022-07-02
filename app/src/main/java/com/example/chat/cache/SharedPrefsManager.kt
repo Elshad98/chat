@@ -1,6 +1,7 @@
 package com.example.chat.cache
 
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.Failure
@@ -36,6 +37,9 @@ class SharedPrefsManager @Inject constructor(
     }
 
     fun saveAccount(account: AccountEntity): Either<Failure, None> {
+        prefs.edit {
+
+        }
         prefs.edit().apply {
             putSafely(PREF_ACCOUNT_ID, account.id)
             putSafely(PREF_ACCOUNT_NAME, account.name)

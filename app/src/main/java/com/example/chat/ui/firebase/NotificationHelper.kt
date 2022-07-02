@@ -12,6 +12,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.chat.R
 import com.example.chat.domain.friends.FriendEntity
+import com.example.chat.extensions.getNotificationManager
 import com.example.chat.remote.service.ApiService
 import com.example.chat.ui.home.HomeActivity
 import com.google.firebase.messaging.RemoteMessage
@@ -35,7 +36,7 @@ class NotificationHelper @Inject constructor(
         private const val NOTIFICATION_ID = 110
     }
 
-    private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    private val notificationManager = context.getNotificationManager()
 
     init {
         createChannel()
