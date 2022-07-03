@@ -1,9 +1,9 @@
 package com.example.chat.ui.core
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.chat.extensions.inflate
 
 abstract class BaseAdapter<ViewHolderT : BaseAdapter.BaseViewHolder> : RecyclerView.Adapter<ViewHolderT>() {
 
@@ -23,7 +23,7 @@ abstract class BaseAdapter<ViewHolderT : BaseAdapter.BaseViewHolder> : RecyclerV
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderT {
-        val view = LayoutInflater.from(parent.context).inflate(layoutRes, parent, false)
+        val view = parent.inflate(layoutRes)
         return createHolder(view, viewType)
     }
 
