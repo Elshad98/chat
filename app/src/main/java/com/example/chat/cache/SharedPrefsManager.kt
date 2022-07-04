@@ -37,9 +37,6 @@ class SharedPrefsManager @Inject constructor(
     }
 
     fun saveAccount(account: AccountEntity): Either<Failure, None> {
-        prefs.edit {
-
-        }
         prefs.edit().apply {
             putSafely(PREF_ACCOUNT_ID, account.id)
             putSafely(PREF_ACCOUNT_NAME, account.name)

@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -14,6 +12,7 @@ import com.example.chat.R
 import com.example.chat.domain.type.Failure
 import com.example.chat.extensions.getInputMethodManager
 import com.example.chat.extensions.gone
+import com.example.chat.extensions.inTransaction
 import com.example.chat.extensions.longToast
 import com.example.chat.extensions.visible
 import com.example.chat.ui.core.navigation.Navigator
@@ -108,9 +107,6 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 }
-
-inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction): Int =
-    beginTransaction().func().commit()
 
 inline fun Activity?.base(block: BaseActivity.() -> Unit) {
     (this as? BaseActivity)?.let(block)
