@@ -9,7 +9,7 @@ import com.example.chat.domain.type.None
 import javax.inject.Inject
 
 class SharedPrefsManager @Inject constructor(
-    private val prefs: SharedPreferences
+    private val preferences: SharedPreferences
 ) {
 
     companion object {
@@ -25,19 +25,19 @@ class SharedPrefsManager @Inject constructor(
     }
 
     fun getToken(): Either<Failure, String> {
-        return Either.Right(prefs.getString(PREF_ACCOUNT_TOKEN, "")!!)
+        return Either.Right(preferences.getString(PREF_ACCOUNT_TOKEN, "")!!)
     }
 
     fun saveToken(token: String): Either<Failure, None> {
-        prefs.edit().apply {
+        preferences.edit {
             putString(PREF_ACCOUNT_TOKEN, token)
-        }.apply()
+        }
 
         return Either.Right(None())
     }
 
     fun saveAccount(account: AccountEntity): Either<Failure, None> {
-        prefs.edit().apply {
+        preferences.edit {
             putSafely(PREF_ACCOUNT_ID, account.id)
             putSafely(PREF_ACCOUNT_NAME, account.name)
             putSafely(PREF_ACCOUNT_EMAIL, account.email)
@@ -46,13 +46,13 @@ class SharedPrefsManager @Inject constructor(
             putString(PREF_ACCOUNT_STATUS, account.status)
             putSafely(PREF_ACCOUNT_DATA, account.userData)
             putSafely(PREF_ACCOUNT_PASSWORD, account.password)
-        }.apply()
+        }
 
         return Either.Right(None())
     }
 
     fun getAccount(): Either<Failure, AccountEntity> {
-        val id = prefs.getLong(PREF_ACCOUNT_ID, 0)
+        val id = preferences.getLong(PREF_ACCOUNT_ID, 0)
 
         if (id == 0L) {
             return Either.Left(Failure.NoSavedAccountsError)
@@ -60,19 +60,19 @@ class SharedPrefsManager @Inject constructor(
 
         val account = AccountEntity(
             id = id,
-            userData = prefs.getLong(PREF_ACCOUNT_DATA, 0),
-            name = prefs.getString(PREF_ACCOUNT_NAME, "")!!,
-            email = prefs.getString(PREF_ACCOUNT_EMAIL, "")!!,
-            image = prefs.getString(PREF_ACCOUNT_IMAGE, "")!!,
-            token = prefs.getString(PREF_ACCOUNT_TOKEN, "")!!,
-            status = prefs.getString(PREF_ACCOUNT_STATUS, "")!!,
-            password = prefs.getString(PREF_ACCOUNT_PASSWORD, "")!!
+            userData = preferences.getLong(PREF_ACCOUNT_DATA, 0),
+            name = preferences.getString(PREF_ACCOUNT_NAME, "")!!,
+            email = preferences.getString(PREF_ACCOUNT_EMAIL, "")!!,
+            image = preferences.getString(PREF_ACCOUNT_IMAGE, "")!!,
+            token = preferences.getString(PREF_ACCOUNT_TOKEN, "")!!,
+            status = preferences.getString(PREF_ACCOUNT_STATUS, "")!!,
+            password = preferences.getString(PREF_ACCOUNT_PASSWORD, "")!!
         )
         return Either.Right(account)
     }
 
     fun removeAccount(): Either<Failure, None> {
-        prefs.edit().apply {
+        preferences.edit {
             remove(PREF_ACCOUNT_ID)
             remove(PREF_ACCOUNT_NAME)
             remove(PREF_ACCOUNT_DATA)
@@ -80,13 +80,13 @@ class SharedPrefsManager @Inject constructor(
             remove(PREF_ACCOUNT_IMAGE)
             remove(PREF_ACCOUNT_STATUS)
             remove(PREF_ACCOUNT_PASSWORD)
-        }.apply()
+        }
 
         return Either.Right(None())
     }
 
     fun containsAnyAccount(): Boolean {
-        return prefs.getLong(PREF_ACCOUNT_ID, 0) != 0L
+        return preferences.getLong(PREF_ACCOUNT_ID, 0) != 0L
     }
 }
 
