@@ -28,30 +28,38 @@ class FriendsViewModel @Inject constructor(
     val cancelFriendData: MutableLiveData<None> = MutableLiveData()
 
     fun getFriends() {
-        getFriendsUseCase(None()) { it.either(::handleFailure, ::handleFriends) }
+        getFriendsUseCase(None()) { either ->
+            either.fold(::handleFailure, ::handleFriends)
+        }
     }
 
     fun getFriendRequests() {
-        getFriendRequestsUseCase(None()) { it.either(::handleFailure, ::handleFriendRequests) }
+        getFriendRequestsUseCase(None()) { either ->
+            either.fold(::handleFailure, ::handleFriendRequests)
+        }
     }
 
     fun deleteFriend(friendEntity: FriendEntity) {
-        deleteFriendUseCase(friendEntity) { it.either(::handleFailure, ::handleDeleteFriend) }
+        deleteFriendUseCase(friendEntity) { either ->
+            either.fold(::handleFailure, ::handleDeleteFriend)
+        }
     }
 
     fun addFriend(email: String) {
-        addFriendUseCase(AddFriend.Params(email)) { it.either(::handleFailure, ::handleAddFriend) }
+        addFriendUseCase(AddFriend.Params(email)) { either ->
+            either.fold(::handleFailure, ::handleAddFriend)
+        }
     }
 
     fun approveFriend(friendEntity: FriendEntity) {
-        approveFriendRequestUseCase(friendEntity) {
-            it.either(::handleFailure, ::handleApproveFriend)
+        approveFriendRequestUseCase(friendEntity) { either ->
+            either.fold(::handleFailure, ::handleApproveFriend)
         }
     }
 
     fun cancelFriend(friendEntity: FriendEntity) {
-        cancelFriendRequestUseCase(friendEntity) {
-            it.either(::handleFailure, ::handleCancelFriend)
+        cancelFriendRequestUseCase(friendEntity) { either ->
+            either.fold(::handleFailure, ::handleCancelFriend)
         }
     }
 

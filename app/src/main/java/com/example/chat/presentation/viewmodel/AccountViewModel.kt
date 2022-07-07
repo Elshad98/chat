@@ -24,32 +24,32 @@ class AccountViewModel @Inject constructor(
     val editAccountData: MutableLiveData<AccountEntity> = MutableLiveData()
 
     fun register(email: String, name: String, password: String) {
-        registerUseCase(Register.Params(email, name, password)) {
-            it.either(::handleFailure, ::handleRegister)
+        registerUseCase(Register.Params(email, name, password)) { either ->
+            either.fold(::handleFailure, ::handleRegister)
         }
     }
 
     fun login(email: String, password: String) {
-        loginUseCase(Login.Params(email, password)) {
-            it.either(::handleFailure, ::handleAccount)
+        loginUseCase(Login.Params(email, password)) { either ->
+            either.fold(::handleFailure, ::handleAccount)
         }
     }
 
     fun getAccount() {
-        getAccountUseCase(None()) {
-            it.either(::handleFailure, ::handleAccount)
+        getAccountUseCase(None()) { either ->
+            either.fold(::handleFailure, ::handleAccount)
         }
     }
 
     fun logout() {
-        logoutUseCase(None()) {
-            it.either(::handleFailure, ::handleLogout)
+        logoutUseCase(None()) { either ->
+            either.fold(::handleFailure, ::handleLogout)
         }
     }
 
     fun editAccount(account: AccountEntity) {
-        editAccountUseCase(account) {
-            it.either(::handleFailure, ::handleEditAccount)
+        editAccountUseCase(account) { either ->
+            either.fold(::handleFailure, ::handleEditAccount)
         }
     }
 

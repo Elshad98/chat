@@ -35,7 +35,9 @@ class MediaViewModel @Inject constructor(
     }
 
     fun createCameraFile() {
-        createImageFileUseCase(None()) { it.either(::handleFailure, ::handleCameraFileCreated) }
+        createImageFileUseCase(None()) { either ->
+            either.fold(::handleFailure, ::handleCameraFileCreated)
+        }
     }
 
     fun onPickImageResult(requestCode: Int, resultCode: Int, intent: Intent?) {
@@ -66,11 +68,15 @@ class MediaViewModel @Inject constructor(
 
     private fun getPickedImage(uri: Uri?) {
         updateProgress(true)
-        getPickedImageUseCase(uri) { it.either(::handleFailure, ::handleImageBitmap) }
+        getPickedImageUseCase(uri) { either ->
+            either.fold(::handleFailure, ::handleImageBitmap)
+        }
     }
 
     private fun encodeImage(bitmap: Bitmap) {
-        encodeImageBitmapUseCase(bitmap) { it.either(::handleFailure, ::handleImageString) }
+        encodeImageBitmapUseCase(bitmap) { either ->
+            either.fold(::handleFailure, ::handleImageString)
+        }
     }
 
     class PickedImage(val bitmap: Bitmap, val string: String)
