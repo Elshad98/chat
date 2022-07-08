@@ -30,10 +30,17 @@ class AccountFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
-
         mediaViewModel = viewModel(MediaViewModel::class.java)
         accountViewModel = viewModel(AccountViewModel::class.java)
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        mediaViewModel.onPickImageResult(resultCode, resultCode, data)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         accountViewModel.accountData.observe(viewLifecycleOwner, Observer(::handleAccount))
         accountViewModel.editAccountData.observe(
             viewLifecycleOwner,
@@ -53,15 +60,7 @@ class AccountFragment : BaseFragment() {
             viewLifecycleOwner,
             Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
         )
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        mediaViewModel.onPickImageResult(resultCode, resultCode, data)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         showProgress()
         accountViewModel.getAccount()
         account_btn_edit.setOnClickListener {

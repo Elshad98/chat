@@ -23,18 +23,16 @@ class LoginFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
-
         accountViewModel = viewModel(AccountViewModel::class.java)
-        accountViewModel.accountData.observe(this, Observer(::renderAccount))
-        accountViewModel.failureData.observe(
-            this,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        accountViewModel.accountData.observe(viewLifecycleOwner, Observer(::renderAccount))
+        accountViewModel.failureData.observe(
+            viewLifecycleOwner,
+            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
+        )
         login_btn_login.setOnClickListener { validateFields() }
         login_btn_register.setOnClickListener {
             activity?.let(navigator::showSignUp)

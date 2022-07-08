@@ -27,18 +27,17 @@ class RegisterFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
-
         accountViewModel = viewModel(AccountViewModel::class.java)
-        accountViewModel.registerData.observe(this, Observer(::handleRegister))
-        accountViewModel.accountData.observe(this, Observer(::handleLogin))
-        accountViewModel.failureData.observe(
-            this,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        accountViewModel.registerData.observe(viewLifecycleOwner, Observer(::handleRegister))
+        accountViewModel.accountData.observe(viewLifecycleOwner, Observer(::handleLogin))
+        accountViewModel.failureData.observe(
+            viewLifecycleOwner,
+            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
+        )
         register_btn_new_membership.setOnClickListener {
             register()
         }

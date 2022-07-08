@@ -21,11 +21,11 @@ class FriendRequestsFragment : BaseListFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
+        friendsViewModel = viewModel(FriendsViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        friendsViewModel = viewModel(FriendsViewModel::class.java)
         friendsViewModel.friendRequestsData.observe(viewLifecycleOwner, Observer(::handleFriendRequests))
         friendsViewModel.approveFriendData.observe(viewLifecycleOwner, Observer(::handleFriendRequestAction))
         friendsViewModel.cancelFriendData.observe(viewLifecycleOwner, Observer(::handleFriendRequestAction))
