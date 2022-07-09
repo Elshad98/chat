@@ -17,10 +17,8 @@ object GlideHelper {
         view: ImageView,
         placeholder: Drawable? = view.drawable
     ) {
-        val imgPath = SERVER_URL + path?.replace("..", "")
-
         Glide.with(context)
-            .load(imgPath)
+            .load(SERVER_URL + path)
             .placeholder(placeholder)
             .error(placeholder)
             .into(view)

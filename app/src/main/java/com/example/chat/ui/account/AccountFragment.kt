@@ -36,7 +36,7 @@ class AccountFragment : BaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        mediaViewModel.onPickImageResult(resultCode, resultCode, data)
+        mediaViewModel.onPickImageResult(requestCode, resultCode, data)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
