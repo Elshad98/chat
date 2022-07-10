@@ -14,9 +14,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <FrameLayout
                 android:id="@+id/account_frame_img"
@@ -30,9 +30,9 @@
                     android:id="@+id/user_img_photo"
                     android:layout_width="@dimen/image_width"
                     android:layout_height="@dimen/image_height"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_account_circle"
                     android:tint="@color/grey"
                     android:visibility="visible" />
@@ -52,154 +52,149 @@
                     <ProgressBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:backgroundTint="@color/progressBarTint"
                         android:indeterminateTint="@color/progressBarTint"
-                        android:indeterminateTintMode="src_in"
-                        android:layout_gravity="center" />
+                        android:indeterminateTintMode="src_in" />
 
                 </FrameLayout>
 
             </FrameLayout>
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/email_colon"
-                android:layout_marginLeft="4dp"
-                android:textStyle="bold"
                 android:textColor="@android:color/secondary_text_light"
-                android:textSize="@dimen/normal_text_size" />
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold" />
 
             <com.andreabaccega.widget.FormEditText
                 android:id="@+id/account_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                whatever:testType="email"
-                whatever:testErrorString="@string/error_email_address_not_valid"
-                whatever:emptyErrorString="@string/error_field_must_not_be_empty"
                 android:hint="@string/email"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
-                android:textSize="@dimen/normal_text_size" />
-
+                android:textSize="@dimen/normal_text_size"
+                whatever:emptyErrorString="@string/error_field_must_not_be_empty"
+                whatever:testErrorString="@string/error_email_address_not_valid"
+                whatever:testType="email" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="4dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/name_colon"
-                android:textStyle="bold"
                 android:textColor="@android:color/secondary_text_light"
-                android:textSize="@dimen/normal_text_size" />
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold" />
 
             <com.andreabaccega.widget.FormEditText
                 android:id="@+id/account_input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:imeOptions="actionNext"
                 android:inputType="text"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                whatever:emptyErrorString="@string/error_field_must_not_be_empty"
-                android:hint="@string/name"
-                android:imeOptions="actionNext"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
-                android:textSize="@dimen/normal_text_size" />
-
+                android:textSize="@dimen/normal_text_size"
+                whatever:emptyErrorString="@string/error_field_must_not_be_empty" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="4dp"
+                android:layout_marginTop="16dp"
                 android:padding="@dimen/extra_small_padding"
                 android:text="@string/status_colon"
-                android:textStyle="bold"
                 android:textColor="@android:color/secondary_text_light"
-                android:textSize="@dimen/normal_text_size" />
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold" />
 
             <com.andreabaccega.widget.FormEditText
                 android:id="@+id/account_input_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
                 android:hint="@string/status"
                 android:inputType="textMultiLine"
                 android:maxLength="200"
-                whatever:emptyErrorString="@string/error_field_must_not_be_empty"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
-                android:textSize="@dimen/normal_text_size" />
-
+                android:textSize="@dimen/normal_text_size"
+                whatever:emptyErrorString="@string/error_field_must_not_be_empty" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="4dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/current_password_colon"
-                android:textStyle="bold"
                 android:textColor="@android:color/secondary_text_light"
-                android:textSize="@dimen/normal_text_size" />
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold" />
 
             <com.andreabaccega.widget.FormEditText
                 android:id="@+id/account_input_current_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
                 android:hint="@string/current_password"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
                 android:textSize="@dimen/normal_text_size" />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="4dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/new_password_colon"
-                android:textStyle="bold"
                 android:textColor="@android:color/secondary_text_light"
-                android:textSize="@dimen/normal_text_size" />
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold" />
 
             <com.andreabaccega.widget.FormEditText
                 android:id="@+id/account_input_new_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
                 android:hint="@string/new_password"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
                 android:textSize="@dimen/normal_text_size" />
 
         </LinearLayout>
-    </ScrollView>
 
+    </ScrollView>
 
     <RelativeLayout
         android:id="@+id/account_rl_actions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="16dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_centerHorizontal="true">
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -207,21 +202,23 @@
             android:layout_centerVertical="true">
 
             <Button
-                style="@style/Button.Primary"
                 android:id="@+id/account_btn_edit"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
+                style="@style/Button.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
                 android:shadowColor="#E3BFE3"
                 android:shadowDx="0"
                 android:shadowDy="0"
-                android:textAllCaps="false"
                 android:shadowRadius="5"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:layout_centerInParent="true"
-                android:text="@string/update_account"/>
+                android:text="@string/update_account"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
         </RelativeLayout>
+
     </RelativeLayout>
+
 </RelativeLayout>

@@ -68,6 +68,7 @@
                 android:padding="@dimen/small_padding"
                 android:src="@drawable/ic_done_black_24dp"
                 app:tint="@android:color/white" />
+
         </FrameLayout>
 
         <FrameLayout
@@ -88,6 +89,7 @@
                 app:tint="@android:color/white" />
 
         </FrameLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -75,6 +75,7 @@
                     tools:text="Status" />
 
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
@@ -116,7 +117,9 @@
                     android:gravity="start|center_vertical"
                     android:text="@string/chats"
                     android:textSize="@dimen/medium_text_size" />
+
             </LinearLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -151,7 +154,9 @@
                     android:gravity="start|center_vertical"
                     android:text="@string/friends"
                     android:textSize="@dimen/normal_text_size" />
+
             </LinearLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -186,6 +191,7 @@
                     android:gravity="start|center_vertical"
                     android:text="@string/add_friend"
                     android:textSize="@dimen/normal_text_size" />
+
             </LinearLayout>
 
             <RelativeLayout
@@ -248,6 +254,7 @@
                 </RelativeLayout>
 
             </RelativeLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -290,7 +297,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/navigation_layout_requests"
                 android:visibility="gone" />
+
         </RelativeLayout>
+
     </LinearLayout>
 
     <RelativeLayout
@@ -331,6 +340,9 @@
                 android:gravity="start|center_vertical"
                 android:text="@string/logout"
                 android:textSize="@dimen/normal_text_size" />
+
         </LinearLayout>
+
     </RelativeLayout>
+
 </com.google.android.material.navigation.NavigationView>

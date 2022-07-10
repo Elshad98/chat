@@ -80,7 +80,6 @@
         tools:layout_editor_absoluteX="84dp"
         whatever:emptyErrorString="@string/error_field_must_not_be_empty" />
 
-
     <com.andreabaccega.widget.FormEditText
         android:id="@+id/register_input_username"
         android:layout_width="match_parent"
@@ -152,6 +151,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_btn_new_membership"
         tools:layout_editor_absoluteX="120dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

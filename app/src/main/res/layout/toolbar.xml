@@ -20,6 +20,7 @@
             android:layout_gravity="right"
             android:layout_marginEnd="@dimen/large_margin"
             android:visibility="invisible" />
+
     </androidx.appcompat.widget.Toolbar>
 
 </com.google.android.material.appbar.AppBarLayout>

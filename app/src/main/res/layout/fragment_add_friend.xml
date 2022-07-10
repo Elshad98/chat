@@ -4,14 +4,12 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@android:color/white">
-
+    android:background="@android:color/white"
+    android:padding="16dp">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:isScrollContainer="false">
@@ -21,12 +19,12 @@
             android:layout_height="wrap_content">
 
             <com.andreabaccega.widget.FormEditText
-                android:background="@drawable/rounded_edittext_register_login"
                 android:id="@+id/navigation_input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_edittext_register_login"
                 android:gravity="start|center_vertical"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
@@ -36,9 +34,9 @@
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/medium_text_size"
-                whatever:testType="email"
+                whatever:emptyErrorString="@string/error_field_must_not_be_empty"
                 whatever:testErrorString="@string/error_email_address_not_valid"
-                whatever:emptyErrorString="@string/error_field_must_not_be_empty"/>
+                whatever:testType="email" />
 
             <RelativeLayout
                 android:id="@+id/navigation_rl_actions"
@@ -46,33 +44,26 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/navigation_input_email"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/small_margin"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin">
 
-                <RelativeLayout
+                <Button
+                    android:id="@+id/navigation_btn_add"
+                    style="@style/Button.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true">
-
-                    <Button
-                        android:id="@+id/navigation_btn_add"
-                        style="@style/Button.Primary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:shadowColor="#E3BFE3"
-                        android:shadowDx="0"
-                        android:shadowDy="0"
-                        android:shadowRadius="5"
-                        android:textAllCaps="false"
-                        android:text="@string/send_request"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
-
-                </RelativeLayout>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:shadowColor="#E3BFE3"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"
+                    android:text="@string/send_request"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/medium_text_size" />
 
             </RelativeLayout>
 
