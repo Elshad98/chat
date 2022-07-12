@@ -4,7 +4,6 @@ ext {
     vKotlin = '1.3.71'
     vAndroidPlugin = '3.6.2'
     vKtlintPlugin = '9.2.1'
-    vCheckstylePlugin = '8.4'
     vGoogleServicesPlugin = '4.2.0'
     vFirebasePlugin = '1.2.0'
 

@@ -5,12 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 apply from: "${project.rootDir}/gradle-script/ktlint.gradle"
-apply from: "${project.rootDir}/gradle-script/checkstyle.gradle"
 apply from: "${project.rootDir}/gradle-script/versions.gradle"
-
-preBuild.dependsOn('checkstyleDefault')
-check.dependsOn('checkstyleDefault')
-assemble.dependsOn('lint')
 
 repositories {
     jcenter()
