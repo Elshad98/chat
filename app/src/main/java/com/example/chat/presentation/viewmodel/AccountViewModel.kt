@@ -11,14 +11,14 @@ import com.example.chat.domain.type.None
 import javax.inject.Inject
 
 class AccountViewModel @Inject constructor(
-    val loginUseCase: Login,
-    val logoutUseCase: Logout,
-    val registerUseCase: Register,
-    val getAccountUseCase: GetAccount,
-    val editAccountUseCase: EditAccount
+    private val loginUseCase: Login,
+    private val logoutUseCase: Logout,
+    private val registerUseCase: Register,
+    private val getAccountUseCase: GetAccount,
+    private val editAccountUseCase: EditAccount
 ) : BaseViewModel() {
 
-    var registerData: MutableLiveData<None> = MutableLiveData()
+    val registerData: MutableLiveData<None> = MutableLiveData()
     val accountData: MutableLiveData<AccountEntity> = MutableLiveData()
     val logoutData: MutableLiveData<None> = MutableLiveData()
     val editAccountData: MutableLiveData<AccountEntity> = MutableLiveData()

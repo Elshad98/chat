@@ -18,7 +18,7 @@ object GlideHelper {
         placeholder: Drawable? = view.drawable
     ) {
         Glide.with(context)
-            .load(SERVER_URL + path)
+            .load(SERVER_URL + path?.replace("..", ""))
             .placeholder(placeholder)
             .error(placeholder)
             .into(view)

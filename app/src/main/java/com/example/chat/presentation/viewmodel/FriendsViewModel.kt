@@ -12,12 +12,12 @@ import com.example.chat.domain.type.None
 import javax.inject.Inject
 
 class FriendsViewModel @Inject constructor(
-    val getFriendsUseCase: GetFriends,
-    val deleteFriendUseCase: DeleteFriend,
-    val addFriendUseCase: AddFriend,
-    val getFriendRequestsUseCase: GetFriendRequests,
-    val approveFriendRequestUseCase: ApproveFriendRequest,
-    val cancelFriendRequestUseCase: CancelFriendRequest
+    private val getFriendsUseCase: GetFriends,
+    private val deleteFriendUseCase: DeleteFriend,
+    private val addFriendUseCase: AddFriend,
+    private val getFriendRequestsUseCase: GetFriendRequests,
+    private val approveFriendRequestUseCase: ApproveFriendRequest,
+    private val cancelFriendRequestUseCase: CancelFriendRequest
 ) : BaseViewModel() {
 
     val friendsData: MutableLiveData<List<FriendEntity>> = MutableLiveData()
