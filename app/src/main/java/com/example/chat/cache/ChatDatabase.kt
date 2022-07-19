@@ -1,0 +1,38 @@
+package com.example.chat.cache
+
+import android.app.Application
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.example.chat.cache.friends.FriendsDao
+import com.example.chat.domain.friends.FriendEntity
+
+@Database(entities = [FriendEntity::class], version = 1, exportSchema = false)
+abstract class ChatDatabase : RoomDatabase() {
+
+    companion object {
+
+        private const val DB_NAME = "chat_database"
+
+        private var INSTANCE: ChatDatabase? = null
+        private var LOCK = Any()
+
+        fun getInstance(application: Application): ChatDatabase {
+            INSTANCE?.let {
+                return it
+            }
+
+            synchronized(LOCK) {
+                INSTANCE?.let {
+                    return it
+                }
+                val db = Room.databaseBuilder(application, ChatDatabase::class.java, DB_NAME)
+                    .build()
+                INSTANCE = db
+                return db
+            }
+        }
+    }
+
+    abstract val friendsDao: FriendsDao
+}
