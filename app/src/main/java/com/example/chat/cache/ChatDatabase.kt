@@ -1,6 +1,6 @@
 package com.example.chat.cache
 
-import android.app.Application
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -17,7 +17,7 @@ abstract class ChatDatabase : RoomDatabase() {
         private var INSTANCE: ChatDatabase? = null
         private var LOCK = Any()
 
-        fun getInstance(application: Application): ChatDatabase {
+        fun getInstance(context: Context): ChatDatabase {
             INSTANCE?.let {
                 return it
             }
@@ -26,7 +26,7 @@ abstract class ChatDatabase : RoomDatabase() {
                 INSTANCE?.let {
                     return it
                 }
-                val db = Room.databaseBuilder(application, ChatDatabase::class.java, DB_NAME)
+                val db = Room.databaseBuilder(context, ChatDatabase::class.java, DB_NAME)
                     .build()
                 INSTANCE = db
                 return db

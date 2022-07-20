@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.chat.data.account.AccountCache
 import com.example.chat.data.account.AccountRemote
 import com.example.chat.data.account.AccountRepositoryImpl
+import com.example.chat.data.friends.FriendsCache
 import com.example.chat.data.friends.FriendsRemote
 import com.example.chat.data.friends.FriendsRepositoryImpl
 import com.example.chat.data.media.MediaRepositoryImpl
@@ -38,9 +39,10 @@ class AppModule(
     @Provides
     @Singleton
     fun provideFriendsRepository(
-        remote: FriendsRemote,
-        accountCache: AccountCache
+        friendsRemote: FriendsRemote,
+        accountCache: AccountCache,
+        friendsCache: FriendsCache
     ): FriendsRepository {
-        return FriendsRepositoryImpl(accountCache, remote)
+        return FriendsRepositoryImpl(friendsCache, accountCache, friendsRemote)
     }
 }
