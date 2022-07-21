@@ -103,6 +103,10 @@ class AccountFragment : BaseFragment() {
         }
     }
 
+    override fun updateProgress(status: Boolean) {
+        account_group_progress.toggleVisibility(status)
+    }
+
     private fun validatePasswords(): Boolean {
         val currentPassword = account_input_current_password.text.toString()
         val newPassword = account_input_new_password.text.toString()
@@ -172,9 +176,5 @@ class AccountFragment : BaseFragment() {
     private fun handleEditingAccount(account: AccountEntity?) {
         requireContext().longToast(getString(R.string.success_edit_user))
         accountViewModel.getAccount()
-    }
-
-    private fun updateProgress(progress: Boolean?) {
-        account_group_progress.toggleVisibility(progress == true)
     }
 }

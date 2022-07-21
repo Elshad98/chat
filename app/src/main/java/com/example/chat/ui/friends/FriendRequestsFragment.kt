@@ -13,7 +13,6 @@ import com.example.chat.ui.core.BaseListFragment
 class FriendRequestsFragment : BaseListFragment() {
 
     override val viewAdapter = FriendRequestsAdapter()
-
     override val layoutId = R.layout.fragment_friend_requests
 
     lateinit var friendsViewModel: FriendsViewModel
@@ -51,11 +50,6 @@ class FriendRequestsFragment : BaseListFragment() {
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        showProgress()
         friendsViewModel.getFriendRequests()
     }
 

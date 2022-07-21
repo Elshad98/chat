@@ -102,7 +102,7 @@ class HomeActivity : BaseActivity() {
             .commit()
 
         navigation_btn_requests.setOnClickListener {
-            friendsViewModel.getFriendRequests()
+            friendsViewModel.getFriendRequests(true)
 
             navigation_request_container.toggleVisibility()
         }

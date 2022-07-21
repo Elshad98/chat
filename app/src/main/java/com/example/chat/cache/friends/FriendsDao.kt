@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.example.chat.data.friends.FriendsCache
 import com.example.chat.domain.friends.FriendEntity
@@ -17,6 +18,7 @@ interface FriendsDao : FriendsCache {
     @Update
     fun update(friend: FriendEntity)
 
+    @Transaction
     override fun saveFriend(friend: FriendEntity) {
         if (insert(friend) == -1L) {
             update(friend)

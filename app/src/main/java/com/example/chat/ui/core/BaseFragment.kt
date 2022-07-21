@@ -47,6 +47,18 @@ abstract class BaseFragment : Fragment() {
 
     open fun onBackPressed() = Unit
 
+    open fun updateProgress(status: Boolean) {
+        if (status) {
+            showProgress()
+        } else {
+            hideProgress()
+        }
+    }
+
+    inline fun base(block: BaseActivity.() -> Unit) {
+        activity.base(block)
+    }
+
     fun showProgress() = base { showProgress() }
 
     fun hideProgress() = base { hideProgress() }
@@ -54,10 +66,6 @@ abstract class BaseFragment : Fragment() {
     fun hideSoftKeyboard() = base { hideSoftKeyboard() }
 
     fun handleFailure(failure: Failure?) = base { handleFailure(failure) }
-
-    inline fun base(block: BaseActivity.() -> Unit) {
-        activity.base(block)
-    }
 
     fun <T : ViewModel> viewModel(viewModelClass: Class<T>): T {
         return ViewModelProviders

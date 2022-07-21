@@ -7,7 +7,7 @@ import com.example.chat.domain.type.HandleOnce
 
 abstract class BaseViewModel : ViewModel() {
 
-    val progressData: MutableLiveData<Boolean> = MutableLiveData()
+    val progressData: MutableLiveData<Boolean> = MutableLiveData(false)
     val failureData: MutableLiveData<HandleOnce<Failure>> = MutableLiveData()
 
     protected fun handleFailure(failure: Failure) {
