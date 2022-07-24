@@ -18,9 +18,9 @@ class AccountViewModel @Inject constructor(
     private val editAccountUseCase: EditAccount
 ) : BaseViewModel() {
 
+    val logoutData: MutableLiveData<None> = MutableLiveData()
     val registerData: MutableLiveData<None> = MutableLiveData()
     val accountData: MutableLiveData<AccountEntity> = MutableLiveData()
-    val logoutData: MutableLiveData<None> = MutableLiveData()
     val editAccountData: MutableLiveData<AccountEntity> = MutableLiveData()
 
     fun register(email: String, name: String, password: String) {

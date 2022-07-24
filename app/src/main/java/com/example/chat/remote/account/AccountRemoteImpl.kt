@@ -30,15 +30,13 @@ class AccountRemoteImpl @Inject constructor(
         password: String,
         token: String
     ): Either<Failure, AccountEntity> {
-        return request.make(service.login(createLoginMap(email, password, token))) { it.user }
+        val loginMap = createLoginMap(email, password, token)
+        return request.make(service.login(loginMap)) { it.user }
     }
 
     override fun updateToken(userId: Long, token: String, oldToken: String): Either<Failure, None> {
-        return request.make(
-            service.updateToken(
-                createUpdateToken(userId, token, oldToken)
-            )
-        ) { None() }
+        val updateTokenMap = createUpdateTokenMap(userId, token, oldToken)
+        return request.make(service.updateToken(updateTokenMap)) { None() }
     }
 
     override fun editUser(
@@ -50,9 +48,6 @@ class AccountRemoteImpl @Inject constructor(
         token: String,
         image: String
     ): Either<Failure, AccountEntity> {
-        hashMapOf(
-            ApiService.PARAM_USER_ID to userId.toString()
-        )
         val userEditMap = createUserEditMap(
             userId,
             email,
@@ -75,12 +70,12 @@ class AccountRemoteImpl @Inject constructor(
         image: String
     ): Map<String, String> {
         val map = HashMap<String, String>()
-        map[ApiService.PARAM_USER_ID] = userId.toString()
-        map[ApiService.PARAM_EMAIL] = email
         map[ApiService.PARAM_NAME] = name
-        map[ApiService.PARAM_PASSWORD] = password
-        map[ApiService.PARAM_STATUS] = status
+        map[ApiService.PARAM_EMAIL] = email
         map[ApiService.PARAM_TOKEN] = token
+        map[ApiService.PARAM_STATUS] = status
+        map[ApiService.PARAM_PASSWORD] = password
+        map[ApiService.PARAM_USER_ID] = userId.toString()
         if (image.startsWith("../")) {
             map[ApiService.PARAM_IMAGE_UPLOADED] = image
         } else {
@@ -98,20 +93,20 @@ class AccountRemoteImpl @Inject constructor(
     ): Map<String, String> {
         val map = HashMap<String, String>()
         map[ApiService.PARAM_EMAIL] = email
-        map[ApiService.PARAM_PASSWORD] = password
         map[ApiService.PARAM_TOKEN] = token
+        map[ApiService.PARAM_PASSWORD] = password
         return map
     }
 
-    private fun createUpdateToken(
+    private fun createUpdateTokenMap(
         userId: Long,
         token: String,
         oldToken: String
     ): Map<String, String> {
         val map = HashMap<String, String>()
-        map[ApiService.PARAM_USER_ID] = userId.toString()
         map[ApiService.PARAM_TOKEN] = token
         map[ApiService.PARAM_OLD_TOKEN] = oldToken
+        map[ApiService.PARAM_USER_ID] = userId.toString()
         return map
     }
 
@@ -123,10 +118,10 @@ class AccountRemoteImpl @Inject constructor(
         userDate: Long
     ): Map<String, String> {
         val map = HashMap<String, String>()
-        map[ApiService.PARAM_EMAIL] = email
         map[ApiService.PARAM_NAME] = name
-        map[ApiService.PARAM_PASSWORD] = password
+        map[ApiService.PARAM_EMAIL] = email
         map[ApiService.PARAM_TOKEN] = token
+        map[ApiService.PARAM_PASSWORD] = password
         map[ApiService.PARAM_USER_DATE] = userDate.toString()
         return map
     }

@@ -76,18 +76,17 @@ class Navigator @Inject constructor(
     }
 
     fun showEmailInvite(context: Context, email: String) {
-        val appPackageName = context.packageName
         val emailIntent = Intent().apply {
             action = Intent.ACTION_SENDTO
             data = Uri.fromParts("mailto", email, null)
             putExtra(
                 Intent.EXTRA_SUBJECT,
-                context.resources.getString(R.string.message_subject_promt_app)
+                context.getString(R.string.message_subject_promt_app)
             )
             putExtra(
                 Intent.EXTRA_TEXT,
-                context.resources.getString(R.string.message_text_promt_app) +
-                    " " + context.resources.getString(R.string.url_google_play) + appPackageName
+                context.getString(R.string.message_text_promt_app) +
+                    " " + context.getString(R.string.url_google_play) + context.packageName
             )
         }
         context.startActivity(Intent.createChooser(emailIntent, "Отправить"))

@@ -33,9 +33,9 @@ class FriendsRepositoryImpl(
             .getCurrentAccount()
             .flatMap { account ->
                 if (needFetch) {
-                    friendsRemote.getFriends(account.id, account.token)
+                    friendsRemote.getFriendRequests(account.id, account.token)
                 } else {
-                    Either.Right(friendsCache.getFriends())
+                    Either.Right(friendsCache.getFriendRequests())
                 }
             }
             .onNext { friends ->

@@ -7,6 +7,8 @@ import com.example.chat.domain.type.None
 
 interface FriendsRemote {
 
+    fun addFriend(email: String, userId: Long, token: String): Either<Failure, None>
+
     fun getFriends(userId: Long, token: String): Either<Failure, List<FriendEntity>>
 
     fun getFriendRequests(userId: Long, token: String): Either<Failure, List<FriendEntity>>
@@ -24,8 +26,6 @@ interface FriendsRemote {
         friendsId: Long,
         token: String
     ): Either<Failure, None>
-
-    fun addFriend(email: String, userId: Long, token: String): Either<Failure, None>
 
     fun deleteFriend(
         userId: Long,

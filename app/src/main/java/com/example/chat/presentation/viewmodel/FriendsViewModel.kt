@@ -12,20 +12,20 @@ import com.example.chat.domain.type.None
 import javax.inject.Inject
 
 class FriendsViewModel @Inject constructor(
+    private val addFriendUseCase: AddFriend,
     private val getFriendsUseCase: GetFriends,
     private val deleteFriendUseCase: DeleteFriend,
-    private val addFriendUseCase: AddFriend,
     private val getFriendRequestsUseCase: GetFriendRequests,
-    private val approveFriendRequestUseCase: ApproveFriendRequest,
-    private val cancelFriendRequestUseCase: CancelFriendRequest
+    private val cancelFriendRequestUseCase: CancelFriendRequest,
+    private val approveFriendRequestUseCase: ApproveFriendRequest
 ) : BaseViewModel() {
 
+    val addFriendData: MutableLiveData<None> = MutableLiveData()
+    val deleteFriendData: MutableLiveData<None> = MutableLiveData()
+    val cancelFriendData: MutableLiveData<None> = MutableLiveData()
+    val approveFriendData: MutableLiveData<None> = MutableLiveData()
     val friendsData: MutableLiveData<List<FriendEntity>> = MutableLiveData()
     val friendRequestsData: MutableLiveData<List<FriendEntity>> = MutableLiveData()
-    val deleteFriendData: MutableLiveData<None> = MutableLiveData()
-    val addFriendData: MutableLiveData<None> = MutableLiveData()
-    val approveFriendData: MutableLiveData<None> = MutableLiveData()
-    val cancelFriendData: MutableLiveData<None> = MutableLiveData()
 
     fun getFriends(needFetch: Boolean = false) {
         getFriendsUseCase(needFetch) { either ->
@@ -101,11 +101,11 @@ class FriendsViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        getFriendsUseCase.unsubscribe()
-        getFriendRequestsUseCase.unsubscribe()
-        deleteFriendUseCase.unsubscribe()
         addFriendUseCase.unsubscribe()
-        approveFriendRequestUseCase.unsubscribe()
+        getFriendsUseCase.unsubscribe()
+        deleteFriendUseCase.unsubscribe()
+        getFriendRequestsUseCase.unsubscribe()
         cancelFriendRequestUseCase.unsubscribe()
+        approveFriendRequestUseCase.unsubscribe()
     }
 }

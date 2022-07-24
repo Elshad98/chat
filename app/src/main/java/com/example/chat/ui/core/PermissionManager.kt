@@ -45,7 +45,6 @@ fun PermissionUtil.PermissionRequestObject.ask(
     granted: () -> Unit
 ): PermissionUtil.PermissionRequestObject? {
     return onAllGranted(object : Func() {
-
         override fun call() {
             granted()
         }

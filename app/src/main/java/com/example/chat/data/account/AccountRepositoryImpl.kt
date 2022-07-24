@@ -10,12 +10,13 @@ import com.example.chat.domain.type.onNext
 import java.util.Calendar
 
 class AccountRepositoryImpl(
-    private val accountRemote: AccountRemote,
-    private val accountCache: AccountCache
+    private val accountCache: AccountCache,
+    private val accountRemote: AccountRemote
 ) : AccountRepository {
 
     override fun login(email: String, password: String): Either<Failure, AccountEntity> {
-        return accountCache.getToken()
+        return accountCache
+            .getToken()
             .flatMap { token -> accountRemote.login(email, password, token) }
             .onNext { account ->
                 account.password = password

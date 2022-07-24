@@ -55,9 +55,9 @@ class FriendRequestsFragment : BaseListFragment() {
 
     private fun handleFriendRequests(requests: List<FriendEntity>?) {
         hideProgress()
-        requests?.let {
+        if (requests != null) {
             viewAdapter.clear()
-            viewAdapter.addItems(it)
+            viewAdapter.addItems(requests)
             viewAdapter.notifyDataSetChanged()
         }
     }

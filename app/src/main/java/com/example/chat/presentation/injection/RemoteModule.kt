@@ -17,7 +17,9 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideAppService(): ApiService = ServiceFactory.makeService(BuildConfig.DEBUG)
+    fun provideAppService(): ApiService {
+        return ServiceFactory.makeService(BuildConfig.DEBUG)
+    }
 
     @Provides
     @Singleton

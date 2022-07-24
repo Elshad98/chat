@@ -16,19 +16,25 @@ class CacheModule {
 
     @Provides
     @Singleton
-    fun provideSharedPreferences(context: Context): SharedPreferences =
-        context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
+    fun provideChatDatabase(context: Context): ChatDatabase {
+        return ChatDatabase.getInstance(context)
+    }
 
     @Provides
     @Singleton
-    fun provideAccountCache(prefsManager: SharedPrefsManager): AccountCache =
-        AccountCacheImpl(prefsManager)
+    fun provideFriendsCache(chatDatabase: ChatDatabase): FriendsCache {
+        return chatDatabase.friendsDao
+    }
 
     @Provides
     @Singleton
-    fun provideChatDatabase(context: Context): ChatDatabase = ChatDatabase.getInstance(context)
+    fun provideAccountCache(prefsManager: SharedPrefsManager): AccountCache {
+        return AccountCacheImpl(prefsManager)
+    }
 
     @Provides
     @Singleton
-    fun provideFriendsCache(chatDatabase: ChatDatabase): FriendsCache = chatDatabase.friendsDao
+    fun provideSharedPreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
+    }
 }

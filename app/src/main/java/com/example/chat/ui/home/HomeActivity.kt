@@ -19,6 +19,7 @@ import com.example.chat.presentation.viewmodel.FriendsViewModel
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseActivity
 import com.example.chat.ui.core.BaseFragment
+import com.example.chat.ui.core.GlideHelper
 import com.example.chat.ui.firebase.NotificationHelper
 import com.example.chat.ui.friends.FriendRequestsFragment
 import com.example.chat.ui.friends.FriendsFragment
@@ -36,6 +37,7 @@ import kotlinx.android.synthetic.main.navigation.navigation_label_user_name
 import kotlinx.android.synthetic.main.navigation.navigation_label_user_status
 import kotlinx.android.synthetic.main.navigation.navigation_profile_container
 import kotlinx.android.synthetic.main.navigation.navigation_request_container
+import kotlinx.android.synthetic.main.navigation.navigation_user_image
 import kotlinx.android.synthetic.main.navigation.navigation_view
 
 class HomeActivity : BaseActivity() {
@@ -172,6 +174,7 @@ class HomeActivity : BaseActivity() {
 
     private fun handleAccount(accountEntity: AccountEntity?) {
         accountEntity?.let {
+            GlideHelper.loadImage(this, it.image, navigation_user_image)
             navigation_label_user_name.text = it.name
             navigation_label_user_email.text = it.email
             navigation_label_user_status.text = it.status

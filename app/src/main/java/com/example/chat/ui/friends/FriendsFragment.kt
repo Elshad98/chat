@@ -14,7 +14,6 @@ import com.example.chat.ui.core.BaseListFragment
 class FriendsFragment : BaseListFragment() {
 
     override val titleToolbar = R.string.screen_friends
-
     override val viewAdapter = FriendsAdapter()
 
     lateinit var viewModel: FriendsViewModel
@@ -66,9 +65,9 @@ class FriendsFragment : BaseListFragment() {
 
     private fun handleFriends(friends: List<FriendEntity>?) {
         hideProgress()
-        friends?.let {
+        if (friends != null) {
             viewAdapter.clear()
-            viewAdapter.addItems(it)
+            viewAdapter.addItems(friends)
             viewAdapter.notifyDataSetChanged()
         }
     }

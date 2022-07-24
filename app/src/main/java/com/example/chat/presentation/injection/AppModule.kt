@@ -32,8 +32,11 @@ class AppModule(
 
     @Provides
     @Singleton
-    fun provideAccountRepository(remote: AccountRemote, cache: AccountCache): AccountRepository {
-        return AccountRepositoryImpl(remote, cache)
+    fun provideAccountRepository(
+        accountRemote: AccountRemote,
+        accountCache: AccountCache
+    ): AccountRepository {
+        return AccountRepositoryImpl(accountCache, accountRemote)
     }
 
     @Provides

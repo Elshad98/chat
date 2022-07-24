@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.chat.domain.media.CreateImageFile
 import com.example.chat.domain.media.EncodeImageBitmap
@@ -42,7 +41,6 @@ class MediaViewModel @Inject constructor(
     }
 
     fun onPickImageResult(requestCode: Int, resultCode: Int, intent: Intent?) {
-        Log.d("MediaViewModel", "requestCode: $requestCode | resultCode: $resultCode | data: ${intent?.data}")
         if (resultCode == Activity.RESULT_OK) {
             val uri = when (requestCode) {
                 PICK_IMAGE_REQUEST_CODE -> intent?.data
