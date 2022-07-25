@@ -2,7 +2,7 @@ package com.example.chat.domain.account
 
 import com.google.gson.annotations.SerializedName
 
-class AccountEntity(
+data class AccountEntity(
     @SerializedName("user_id")
     var id: Long,
     var name: String,
