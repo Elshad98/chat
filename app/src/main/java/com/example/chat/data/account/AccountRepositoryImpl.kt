@@ -28,6 +28,10 @@ class AccountRepositoryImpl(
         return accountCache.logout()
     }
 
+    override fun checkAuth(): Either<Failure, Boolean> {
+        return accountCache.checkAuth()
+    }
+
     override fun register(email: String, name: String, password: String): Either<Failure, None> {
         return accountCache
             .getToken()

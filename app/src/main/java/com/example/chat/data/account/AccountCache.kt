@@ -11,6 +11,8 @@ interface AccountCache {
 
     fun getToken(): Either<Failure, String>
 
+    fun checkAuth(): Either<Failure, Boolean>
+
     fun saveToken(token: String): Either<Failure, None>
 
     fun getCurrentAccount(): Either<Failure, AccountEntity>
