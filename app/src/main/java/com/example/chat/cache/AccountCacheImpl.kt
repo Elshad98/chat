@@ -30,4 +30,8 @@ class AccountCacheImpl @Inject constructor(
     override fun saveAccount(account: AccountEntity): Either<Failure, None> {
         return prefsManager.saveAccount(account)
     }
+
+    override fun checkAuth(): Either<Failure, Boolean> {
+        return prefsManager.containsAnyAccount()
+    }
 }

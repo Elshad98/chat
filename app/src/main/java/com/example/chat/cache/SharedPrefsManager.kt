@@ -85,8 +85,9 @@ class SharedPrefsManager @Inject constructor(
         return Either.Right(None())
     }
 
-    fun containsAnyAccount(): Boolean {
-        return preferences.getLong(PREF_ACCOUNT_ID, 0) != 0L
+    fun containsAnyAccount(): Either<Failure, Boolean> {
+        val id = preferences.getLong(PREF_ACCOUNT_ID, 0)
+        return Either.Right(id != 0L)
     }
 }
 
@@ -97,7 +98,7 @@ private fun SharedPreferences.Editor.putSafely(key: String, value: Long?) {
 }
 
 private fun SharedPreferences.Editor.putSafely(key: String, value: String?) {
-    if (value?.isNotEmpty() == true) {
+    if (!value.isNullOrEmpty()) {
         putString(key, value)
     }
 }
