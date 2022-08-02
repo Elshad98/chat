@@ -28,10 +28,12 @@ class Navigator @Inject constructor(
 ) {
 
     fun showMain(context: Context) {
-        if (authenticator.userLoggedIn()) {
-            showHome(context, false)
-        } else {
-            showLogin(context, false)
+        authenticator.userLoggedIn {
+            if (it) {
+                showHome(context, false)
+            } else {
+                showLogin(context, false)
+            }
         }
     }
 

@@ -38,7 +38,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(contentId)
+        setupContent()
 
         setSupportActionBar(toolbar)
         addFragment(savedInstanceState)
@@ -61,6 +61,10 @@ abstract class BaseActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         permissionManager.requestObject?.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    open fun setupContent() {
+        setContentView(contentId)
     }
 
     open fun handleFailure(failure: Failure?) {

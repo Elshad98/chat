@@ -1,39 +1,33 @@
 package com.example.chat.ui.friends
 
-import android.view.View
+import android.view.ViewGroup
 import com.example.chat.R
+import com.example.chat.databinding.ItemFriendBinding
 import com.example.chat.domain.friends.FriendEntity
-import com.example.chat.extensions.toggleVisibility
+import com.example.chat.extensions.inflater
 import com.example.chat.ui.core.BaseAdapter
-import com.example.chat.ui.core.GlideHelper
-import kotlinx.android.synthetic.main.item_friend.view.friend_btn_remove
-import kotlinx.android.synthetic.main.item_friend.view.friend_label_name
-import kotlinx.android.synthetic.main.item_friend.view.friend_label_status
-import kotlinx.android.synthetic.main.item_friend_request.view.friend_img_photo
 
 class FriendsAdapter : BaseAdapter<FriendsAdapter.FriendViewHolder>() {
 
     override val layoutRes = R.layout.item_friend
 
-    override fun createHolder(view: View, viewType: Int): FriendViewHolder {
-        return FriendViewHolder(view)
+    override fun createHolder(parent: ViewGroup): FriendViewHolder {
+        val binding = ItemFriendBinding.inflate(parent.inflater)
+        return FriendViewHolder(binding)
     }
 
-    class FriendViewHolder(view: View) : BaseViewHolder(view) {
+    class FriendViewHolder(
+        private val binding: ItemFriendBinding
+    ) : BaseViewHolder(binding.root) {
 
         init {
-            view.friend_btn_remove.setOnClickListener {
+            binding.friendBtnRemove.setOnClickListener {
                 onClick?.onClick(item, it)
             }
         }
-        override fun onBind(item: Any) {
-            (item as? FriendEntity)?.let { friend ->
-                GlideHelper.loadImage(view.context, friend.image, view.friend_img_photo, R.drawable.ic_account_circle)
-                view.friend_label_name.text = friend.name
-                view.friend_label_status.text = friend.status
 
-                view.friend_label_status.toggleVisibility(friend.status.isNotEmpty())
-            }
+        override fun onBind(item: Any) {
+            (item as? FriendEntity)?.let(binding::setFriend)
         }
     }
 }

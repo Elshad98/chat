@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <com.andreabaccega.widget.FormEditText
-                android:id="@+id/navigation_input_email"
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -39,10 +39,10 @@
                 whatever:testType="email" />
 
             <RelativeLayout
-                android:id="@+id/navigation_rl_actions"
+                android:id="@+id/rl_actions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/navigation_input_email"
+                android:layout_below="@+id/input_email"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginTop="@dimen/small_margin"
@@ -50,19 +50,19 @@
                 android:layout_marginBottom="@dimen/small_margin">
 
                 <Button
-                    android:id="@+id/navigation_btn_add"
+                    android:id="@+id/button_add"
                     style="@style/Button.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:shadowColor="#E3BFE3"
+                    android:shadowColor="@color/light_magenta"
                     android:shadowDx="0"
                     android:shadowDy="0"
                     android:shadowRadius="5"
                     android:text="@string/send_request"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@android:color/white"
                     android:textSize="@dimen/medium_text_size" />
 
             </RelativeLayout>

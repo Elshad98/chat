@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.chat.extensions.getDrawableCompat
 
@@ -26,5 +27,11 @@ object GlideHelper {
 
     fun loadImage(context: Context, path: String?, view: ImageView, @DrawableRes placeholder: Int) {
         loadImage(context, path, view, context.getDrawableCompat(placeholder))
+    }
+
+    @JvmStatic
+    @BindingAdapter("profileImage")
+    fun ImageView.loadImage(image: String?) {
+        loadImage(context, image, this)
     }
 }

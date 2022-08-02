@@ -1,95 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/friend_rl_main"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="false"
-    android:divider="@drawable/contact_divider"
-    android:focusable="false"
-    android:paddingStart="@dimen/extra_small_padding"
-    android:paddingTop="@dimen/small_padding"
-    android:paddingEnd="@dimen/small_padding"
-    android:paddingBottom="@dimen/small_padding">
+<layout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/friend_img_photo"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_account_circle" />
+    <data>
 
-    <LinearLayout
-        android:id="@+id/friend_contact_name_and_status"
-        android:layout_width="wrap_content"
+        <variable
+            name="friend"
+            type="com.example.chat.domain.friends.FriendEntity" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/friend_rl_main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/friend_button_container"
-        android:layout_toEndOf="@+id/friend_img_photo"
-        android:orientation="vertical"
-        android:padding="@dimen/small_padding">
+        android:clickable="false"
+        android:divider="@drawable/contact_divider"
+        android:focusable="false"
+        android:paddingStart="@dimen/extra_small_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingEnd="@dimen/small_padding"
+        android:paddingBottom="@dimen/small_padding">
 
-        <TextView
-            android:id="@+id/friend_label_name"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/friend_img_photo"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_account_circle"
+            app:profileImage="@{friend.image}" />
+
+        <LinearLayout
+            android:id="@+id/friend_contact_name_and_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textSize="@dimen/medium_text_size"
-            android:textStyle="bold"
-            tools:text="@string/name" />
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/friend_button_container"
+            android:layout_toEndOf="@+id/friend_img_photo"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/friend_button_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/extra_small_margin"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:id="@+id/friend_btn_approve"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="@dimen/small_margin"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
+            <TextView
+                android:id="@+id/friend_label_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button"
-                android:padding="@dimen/small_padding"
-                android:src="@drawable/ic_done_black_24dp"
-                app:tint="@android:color/white" />
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@{friend.name}"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold"
+                tools:text="@string/name" />
 
-        </FrameLayout>
+        </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/friend_btn_cancel"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true">
+        <LinearLayout
+            android:id="@+id/friend_button_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/extra_small_margin"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button"
-                android:backgroundTint="@color/dark_grey"
-                android:padding="@dimen/small_padding"
-                android:src="@drawable/ic_close_black_24dp"
-                app:tint="@android:color/white" />
+            <FrameLayout
+                android:id="@+id/friend_btn_approve"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true">
 
-        </FrameLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button"
+                    android:padding="@dimen/small_padding"
+                    android:src="@drawable/ic_done_black_24dp"
+                    app:tint="@android:color/white" />
 
-    </LinearLayout>
+            </FrameLayout>
 
-</RelativeLayout>
+            <FrameLayout
+                android:id="@+id/friend_btn_cancel"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="@color/dark_grey"
+                    android:padding="@dimen/small_padding"
+                    android:src="@drawable/ic_close_black_24dp"
+                    app:tint="@android:color/white" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

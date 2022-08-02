@@ -1,87 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/friend_rl_main"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:divider="@drawable/contact_divider"
-    android:focusable="true"
-    android:paddingStart="@dimen/large_padding"
-    android:paddingTop="@dimen/small_padding"
-    android:paddingEnd="@dimen/large_padding"
-    android:paddingBottom="@dimen/small_padding">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/friend_img_photo"
-        android:layout_width="@dimen/account_photo_dim"
-        android:layout_height="@dimen/account_photo_dim"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_account_circle" />
+    <data>
 
-    <LinearLayout
-        android:id="@+id/friend_contact_name_and_status"
-        android:layout_width="wrap_content"
+        <import type="android.view.View" />
+
+        <variable
+            name="friend"
+            type="com.example.chat.domain.friends.FriendEntity" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/friend_rl_main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginLeft="@dimen/small_margin"
-        android:layout_toEndOf="@+id/friend_img_photo"
-        android:layout_toRightOf="@+id/friend_img_photo"
-        android:orientation="vertical"
-        android:padding="@dimen/small_padding">
+        android:clickable="true"
+        android:divider="@drawable/contact_divider"
+        android:focusable="true"
+        android:paddingStart="@dimen/large_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingEnd="@dimen/large_padding"
+        android:paddingBottom="@dimen/small_padding">
 
-        <TextView
-            android:id="@+id/friend_label_name"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/friend_img_photo"
+            android:layout_width="@dimen/account_photo_dim"
+            android:layout_height="@dimen/account_photo_dim"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_account_circle"
+            app:profileImage="@{friend.image}" />
+
+        <LinearLayout
+            android:id="@+id/friend_contact_name_and_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textColor="@color/translucent"
-            android:textSize="@dimen/medium_text_size"
-            android:textStyle="bold"
-            tools:text="@string/name" />
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_toEndOf="@+id/friend_img_photo"
+            android:layout_toRightOf="@+id/friend_img_photo"
+            android:orientation="vertical"
+            android:padding="@dimen/small_padding">
 
-        <TextView
-            android:id="@+id/friend_label_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textSize="@dimen/normal_text_size"
-            tools:text="@string/status" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerInParent="true">
-
-        <FrameLayout
-            android:id="@+id/friend_btn_remove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true">
-
-            <ImageView
+            <TextView
+                android:id="@+id/friend_label_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button"
-                android:backgroundTint="@color/dark_grey"
-                android:padding="@dimen/small_padding"
-                android:src="@drawable/ic_close_black_24dp"
-                app:tint="@android:color/white" />
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@{friend.name}"
+                android:textColor="@color/translucent"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold"
+                tools:text="@string/name" />
 
-        </FrameLayout>
+            <TextView
+                android:id="@+id/friend_label_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{friend.status}"
+                android:textSize="@dimen/normal_text_size"
+                android:visibility="@{friend.status.empty ? View.GONE : View.VISIBLE}"
+                tools:text="@string/status" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true">
+
+            <FrameLayout
+                android:id="@+id/friend_btn_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="@color/dark_grey"
+                    android:padding="@dimen/small_padding"
+                    android:src="@drawable/ic_close_black_24dp"
+                    app:tint="@android:color/white" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

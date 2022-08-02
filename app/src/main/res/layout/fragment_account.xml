@@ -209,7 +209,7 @@
                 android:layout_centerInParent="true"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:shadowColor="#E3BFE3"
+                android:shadowColor="@color/light_magenta"
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="5"
