@@ -13,15 +13,16 @@ class ContactConverter {
         }
     }
 
+    @TypeConverter
     fun toContact(string: String?): ContactEntity? {
         return if (string == null) {
             return null
         } else {
-            val arr = string.split("||")
+            val array = string.split("||")
             ContactEntity(
-                id = arr[0].toLong(),
-                name = arr[1],
-                image = arr[2]
+                id = array[0].toLong(),
+                name = array[1],
+                image = array[2]
             )
         }
     }
