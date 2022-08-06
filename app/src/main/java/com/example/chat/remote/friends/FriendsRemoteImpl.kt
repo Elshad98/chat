@@ -15,18 +15,16 @@ class FriendsRemoteImpl @Inject constructor(
 ) : FriendsRemote {
 
     override fun getFriends(userId: Long, token: String): Either<Failure, List<FriendEntity>> {
-        return request.make(service.getFriends(createGetFriendsMap(userId, token))) { it.friends }
+        val params = createGetFriendsMap(userId, token)
+        return request.make(service.getFriends(params)) { it.friends }
     }
 
     override fun getFriendRequests(
         userId: Long,
         token: String
     ): Either<Failure, List<FriendEntity>> {
-        return request.make(
-            service.getFriendRequests(
-                createGetFriendRequestsMap(userId, token)
-            )
-        ) { it.friendsRequests }
+        val params = createGetFriendRequestsMap(userId, token)
+        return request.make(service.getFriendRequests(params)) { it.friendsRequests }
     }
 
     override fun approveFriendRequest(
@@ -35,11 +33,8 @@ class FriendsRemoteImpl @Inject constructor(
         friendsId: Long,
         token: String
     ): Either<Failure, None> {
-        return request.make(
-            service.approveFriendRequest(
-                createApproveFriendRequestMap(userId, requestUserId, friendsId, token)
-            )
-        ) { None() }
+        val params = createApproveFriendRequestMap(userId, requestUserId, friendsId, token)
+        return request.make(service.approveFriendRequest(params)) { None() }
     }
 
     override fun cancelFriendRequest(
@@ -48,15 +43,13 @@ class FriendsRemoteImpl @Inject constructor(
         friendsId: Long,
         token: String
     ): Either<Failure, None> {
-        return request.make(
-            service.cancelFriendRequest(
-                createCancelFriendRequestMap(userId, requestUserId, friendsId, token)
-            )
-        ) { None() }
+        val params = createCancelFriendRequestMap(userId, requestUserId, friendsId, token)
+        return request.make(service.cancelFriendRequest(params)) { None() }
     }
 
     override fun addFriend(email: String, userId: Long, token: String): Either<Failure, None> {
-        return request.make(service.addFriend(createAddFriendMap(email, userId, token))) { None() }
+        val params = createAddFriendMap(email, userId, token)
+        return request.make(service.addFriend(params)) { None() }
     }
 
     override fun deleteFriend(
@@ -65,11 +58,8 @@ class FriendsRemoteImpl @Inject constructor(
         friendsId: Long,
         token: String
     ): Either<Failure, None> {
-        return request.make(
-            service.deleteFriend(
-                createDeleteFriendMap(userId, requestUserId, friendsId, token)
-            )
-        ) { None() }
+        val params = createDeleteFriendMap(userId, requestUserId, friendsId, token)
+        return request.make(service.deleteFriend(params)) { None() }
     }
 
     private fun createGetFriendsMap(userId: Long, token: String): Map<String, String> {

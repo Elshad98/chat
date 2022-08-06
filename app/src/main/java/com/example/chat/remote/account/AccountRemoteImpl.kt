@@ -21,8 +21,8 @@ class AccountRemoteImpl @Inject constructor(
         token: String,
         userDate: Long
     ): Either<Failure, None> {
-        val registerMap = createRegisterMap(email, name, password, token, userDate)
-        return request.make(service.register(registerMap)) { None() }
+        val params = createRegisterMap(email, name, password, token, userDate)
+        return request.make(service.register(params)) { None() }
     }
 
     override fun login(
@@ -30,13 +30,13 @@ class AccountRemoteImpl @Inject constructor(
         password: String,
         token: String
     ): Either<Failure, AccountEntity> {
-        val loginMap = createLoginMap(email, password, token)
-        return request.make(service.login(loginMap)) { it.user }
+        val params = createLoginMap(email, password, token)
+        return request.make(service.login(params)) { it.user }
     }
 
     override fun updateToken(userId: Long, token: String, oldToken: String): Either<Failure, None> {
-        val updateTokenMap = createUpdateTokenMap(userId, token, oldToken)
-        return request.make(service.updateToken(updateTokenMap)) { None() }
+        val params = createUpdateTokenMap(userId, token, oldToken)
+        return request.make(service.updateToken(params)) { None() }
     }
 
     override fun editUser(
@@ -48,16 +48,8 @@ class AccountRemoteImpl @Inject constructor(
         token: String,
         image: String
     ): Either<Failure, AccountEntity> {
-        val userEditMap = createUserEditMap(
-            userId,
-            email,
-            name,
-            password,
-            status,
-            token,
-            image
-        )
-        return request.make(service.editUser(userEditMap)) { it.user }
+        val params = createUserEditMap(userId, email, name, password, status, token, image)
+        return request.make(service.editUser(params)) { it.user }
     }
 
     private fun createUserEditMap(

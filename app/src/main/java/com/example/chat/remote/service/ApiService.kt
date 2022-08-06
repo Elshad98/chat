@@ -4,6 +4,7 @@ import com.example.chat.remote.account.AuthResponse
 import com.example.chat.remote.core.BaseResponse
 import com.example.chat.remote.friends.GetFriendRequestsResponse
 import com.example.chat.remote.friends.GetFriendsResponse
+import com.example.chat.remote.messages.GetMessagesResponse
 import retrofit2.Call
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
@@ -13,19 +14,20 @@ interface ApiService {
 
     companion object {
 
-        // Methods
-        private const val REGISTER = "register.php"
         private const val LOGIN = "login.php"
-        private const val UPDATE_TOKEN = "updateUserToken.php"
-        private const val ADD_FRIEND = "addFriend.php"
-        private const val APPROVE_FRIEND_REQUEST = "approveFriendRequest.php"
-        private const val CANCEL_FRIEND_REQUEST = "cancelFriendRequest.php"
-        private const val DELETE_FRIEND = "deleteFriend.php"
-        private const val GET_FRIENDS = "getContactsByUser.php"
-        private const val GET_FRIEND_REQUESTS = "getFriendRequestsByUser.php"
+        private const val REGISTER = "register.php"
         private const val EDIT_USER = "editUser.php"
+        private const val ADD_FRIEND = "addFriend.php"
+        private const val SEND_MESSAGE = "sendMessage.php"
+        private const val DELETE_FRIEND = "deleteFriend.php"
+        private const val UPDATE_TOKEN = "updateUserToken.php"
+        private const val GET_FRIENDS = "getContactsByUser.php"
+        private const val GET_LAST_MESSAGES = "getLastMessagesByUser.php"
+        private const val CANCEL_FRIEND_REQUEST = "cancelFriendRequest.php"
+        private const val GET_FRIEND_REQUESTS = "getFriendRequestsByUser.php"
+        private const val APPROVE_FRIEND_REQUEST = "approveFriendRequest.php"
+        private const val GET_MESSAGES_WITH_CONTACT = "getMessagesByUserWithContact.php"
 
-        // Params
         const val PARAM_EMAIL = "email"
         const val PARAM_PASSWORD = "password"
         const val PARAM_NAME = "name"
@@ -42,6 +44,18 @@ interface ApiService {
         const val PARAM_IMAGE_NEW_NAME = "image_new_name"
         const val PARAM_IMAGE_UPLOADED = "image_uploaded"
         const val PARAM_IMAGE = "image"
+
+        const val PARAM_SENDER_ID = "sender_id"
+        const val PARAM_RECEIVER_ID = "receiver_id"
+        const val PARAM_MESSAGE = "message"
+        const val PARAM_MESSAGE_TYPE = "message_type_id"
+        const val PARAM_MESSAGE_DATE = "message_date"
+        const val PARAM_CONTACT_ID = "contact_id"
+
+        const val PARAM_SENDER_USER = "senderUser"
+        const val PARAM_SENDER_USER_ID = "senderUserId"
+        const val PARAM_RECEIVED_USER_ID = "receivedUserId"
+        const val PARAM_MESSAGE_ID = "message_id"
     }
 
     @FormUrlEncoded
@@ -83,4 +97,16 @@ interface ApiService {
     @FormUrlEncoded
     @POST(EDIT_USER)
     fun editUser(@FieldMap params: Map<String, String>): Call<AuthResponse>
+
+    @FormUrlEncoded
+    @POST(SEND_MESSAGE)
+    fun sendMessages(@FieldMap params: Map<String, String>): Call<BaseResponse>
+
+    @FormUrlEncoded
+    @POST(GET_LAST_MESSAGES)
+    fun getLastMessages(@FieldMap params: Map<String, String>): Call<GetMessagesResponse>
+
+    @FormUrlEncoded
+    @POST(GET_MESSAGES_WITH_CONTACT)
+    fun getMessagesWithContact(@FieldMap params: Map<String, String>): Call<GetMessagesResponse>
 }
