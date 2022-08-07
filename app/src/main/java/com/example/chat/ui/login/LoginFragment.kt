@@ -5,6 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.domain.account.AccountEntity
+import com.example.chat.extensions.hideKeyboard
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseFragment
@@ -40,7 +41,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun validateFields() {
-        hideSoftKeyboard()
+        requireActivity().hideKeyboard()
         val allFields = arrayOf(login_input_email, login_input_password)
         var allValid = true
         for (field in allFields) {

@@ -63,8 +63,6 @@ abstract class BaseFragment : Fragment() {
 
     fun hideProgress() = base { hideProgress() }
 
-    fun hideSoftKeyboard() = base { hideSoftKeyboard() }
-
     fun handleFailure(failure: Failure?) = base { handleFailure(failure) }
 
     fun <T : ViewModel> viewModel(viewModelClass: Class<T>): T {

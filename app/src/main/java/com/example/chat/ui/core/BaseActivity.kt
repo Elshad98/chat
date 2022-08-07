@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.chat.R
 import com.example.chat.domain.type.Failure
-import com.example.chat.extensions.getInputMethodManager
 import com.example.chat.extensions.gone
 import com.example.chat.extensions.inTransaction
 import com.example.chat.extensions.longToast
@@ -92,12 +91,6 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showProgress() = toolbar_progress_bar.visible()
 
     fun hideProgress() = toolbar_progress_bar.gone()
-
-    fun hideSoftKeyboard() {
-        currentFocus?.let { view ->
-            getInputMethodManager().hideSoftInputFromWindow(view.windowToken, 0)
-        }
-    }
 
     fun <T : ViewModel> viewModel(viewModelClass: Class<T>): T {
         return ViewModelProviders

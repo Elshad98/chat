@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.chat.R
 import com.example.chat.domain.account.AccountEntity
+import com.example.chat.extensions.hideKeyboard
 import com.example.chat.extensions.longToast
 import com.example.chat.extensions.toggleVisibility
 import com.example.chat.presentation.viewmodel.AccountViewModel
@@ -129,7 +130,7 @@ class AccountFragment : BaseFragment() {
     }
 
     private fun validateFields(): Boolean {
-        hideSoftKeyboard()
+        requireActivity().hideKeyboard()
         val allFields = arrayOf(account_input_email, account_input_name)
         var allValid = true
         for (field in allFields) {

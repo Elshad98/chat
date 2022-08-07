@@ -12,6 +12,7 @@ import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
 import com.example.chat.extensions.gone
+import com.example.chat.extensions.hideKeyboard
 import com.example.chat.extensions.longToast
 import com.example.chat.extensions.toggleVisibility
 import com.example.chat.extensions.visible
@@ -74,7 +75,7 @@ class HomeActivity : BaseActivity() {
         }
 
         binding.navigation.buttonAdd.setOnClickListener {
-            hideSoftKeyboard()
+            hideKeyboard()
             showProgress()
             friendsViewModel.addFriend(binding.navigation.inputEmail.text.toString())
         }
@@ -130,7 +131,7 @@ class HomeActivity : BaseActivity() {
 
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(binding.navigation.navigationView)) {
-            hideSoftKeyboard()
+            hideKeyboard()
             binding.drawerLayout.closeDrawer(binding.navigation.navigationView)
         } else {
             super.onBackPressed()
@@ -153,12 +154,12 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun openDrawer() {
-        hideSoftKeyboard()
+        hideKeyboard()
         binding.drawerLayout.openDrawer(binding.navigation.navigationView)
     }
 
     private fun closeDrawer() {
-        hideSoftKeyboard()
+        hideKeyboard()
         binding.drawerLayout.closeDrawer(binding.navigation.navigationView)
     }
 
