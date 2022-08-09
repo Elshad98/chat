@@ -7,6 +7,7 @@ import com.example.chat.cache.ChatDatabase
 import com.example.chat.cache.SharedPrefsManager
 import com.example.chat.data.account.AccountCache
 import com.example.chat.data.friends.FriendsCache
+import com.example.chat.data.messages.MessagesCache
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -18,6 +19,12 @@ class CacheModule {
     @Singleton
     fun provideChatDatabase(context: Context): ChatDatabase {
         return ChatDatabase.getInstance(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMessagesCache(chatDatabase: ChatDatabase): MessagesCache {
+        return chatDatabase.messagesDao
     }
 
     @Provides

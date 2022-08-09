@@ -34,7 +34,9 @@ class LoginFragment : BaseFragment() {
             viewLifecycleOwner,
             Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
         )
-        login_btn_login.setOnClickListener { validateFields() }
+        login_btn_login.setOnClickListener {
+            validateFields()
+        }
         login_btn_register.setOnClickListener {
             activity?.let(navigator::showSignUp)
         }

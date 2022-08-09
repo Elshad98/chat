@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.viewmodel.FriendsViewModel
 import com.example.chat.presentation.viewmodel.MediaViewModel
+import com.example.chat.presentation.viewmodel.MessagesViewModel
 import com.example.chat.presentation.viewmodel.ViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -14,7 +15,7 @@ import dagger.multibindings.IntoMap
 abstract class ViewModelModule {
 
     @Binds
-    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
     @Binds
     @IntoMap
@@ -30,4 +31,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(FriendsViewModel::class)
     abstract fun bindFriendsViewModel(friendsViewModel: FriendsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MessagesViewModel::class)
+    abstract fun bindMessagesViewModel(messagesViewModel: MessagesViewModel): ViewModel
 }
