@@ -69,5 +69,7 @@
     <string name="gallery">Галерея</string>
     <string name="camera">Камера</string>
 
+    <string name="send">Отправить</string>
+
     <string name="success_edit_user">Данные обновлены</string>
 </resources>

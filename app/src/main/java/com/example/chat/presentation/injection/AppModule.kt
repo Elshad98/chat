@@ -59,7 +59,7 @@ class AppModule(
         messagesRemote: MessagesRemote,
         messagesCache: MessagesCache,
         accountCache: AccountCache
-    ) : MessagesRepository {
+    ): MessagesRepository {
         return MessagesRepositoryImpl(messagesRemote, messagesCache, accountCache)
     }
 }

@@ -91,7 +91,7 @@ class Navigator @Inject constructor(
                     " " + context.getString(R.string.url_google_play) + context.packageName
             )
         }
-        context.startActivity(Intent.createChooser(emailIntent, "Отправить"))
+        context.startActivity(Intent.createChooser(emailIntent, context.getString(R.string.send)))
     }
 
     fun showPickFromDialog(activity: AppCompatActivity, onPick: (fromCamera: Boolean) -> Unit) {
