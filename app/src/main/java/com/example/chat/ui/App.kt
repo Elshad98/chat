@@ -3,6 +3,7 @@ package com.example.chat.ui
 import android.app.Application
 import com.example.chat.presentation.injection.AppModule
 import com.example.chat.presentation.injection.CacheModule
+import com.example.chat.presentation.injection.DomainModule
 import com.example.chat.presentation.injection.RemoteModule
 import com.example.chat.presentation.injection.ViewModelModule
 import com.example.chat.ui.account.AccountActivity
@@ -33,26 +34,22 @@ class App : Application() {
 
     private fun initAppComponent() {
         appComponent = DaggerAppComponent.builder()
-            .appModule(AppModule(this))
+            .appModule(AppModule(context = this))
             .build()
     }
 }
 
 @Singleton
-@Component(modules = [AppModule::class, CacheModule::class, RemoteModule::class, ViewModelModule::class])
+@Component(modules = [AppModule::class, DomainModule::class, CacheModule::class, RemoteModule::class, ViewModelModule::class])
 interface AppComponent {
 
-    // Activities
     fun inject(activity: RegisterActivity)
+
+    fun inject(activity: AccountActivity)
 
     fun inject(activity: RouterActivity)
 
     fun inject(activity: HomeActivity)
-
-    fun inject(activity: AccountActivity)
-
-    // Fragments
-    fun inject(fragment: RegisterFragment)
 
     fun inject(fragment: LoginFragment)
 
@@ -60,10 +57,11 @@ interface AppComponent {
 
     fun inject(fragment: FriendsFragment)
 
-    fun inject(fragment: FriendRequestsFragment)
-
     fun inject(fragment: AccountFragment)
 
-    // Services
+    fun inject(fragment: RegisterFragment)
+
+    fun inject(fragment: FriendRequestsFragment)
+
     fun inject(service: FirebaseService)
 }

@@ -8,8 +8,9 @@ import com.example.chat.domain.type.None
 import com.example.chat.domain.type.flatMap
 import com.example.chat.domain.type.onNext
 import java.util.Calendar
+import javax.inject.Inject
 
-class AccountRepositoryImpl(
+class AccountRepositoryImpl @Inject constructor(
     private val accountCache: AccountCache,
     private val accountRemote: AccountRemote
 ) : AccountRepository {

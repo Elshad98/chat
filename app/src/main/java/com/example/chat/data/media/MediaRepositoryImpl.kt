@@ -7,8 +7,9 @@ import com.example.chat.domain.media.MediaRepository
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.Failure
 import java.io.File
+import javax.inject.Inject
 
-class MediaRepositoryImpl(
+class MediaRepositoryImpl @Inject constructor(
     private val context: Context
 ) : MediaRepository {
 

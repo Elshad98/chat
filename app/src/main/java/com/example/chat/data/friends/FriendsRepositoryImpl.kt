@@ -8,8 +8,9 @@ import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
 import com.example.chat.domain.type.flatMap
 import com.example.chat.domain.type.onNext
+import javax.inject.Inject
 
-class FriendsRepositoryImpl(
+class FriendsRepositoryImpl @Inject constructor(
     private val friendsCache: FriendsCache,
     private val accountCache: AccountCache,
     private val friendsRemote: FriendsRemote

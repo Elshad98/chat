@@ -9,8 +9,9 @@ import com.example.chat.domain.type.None
 import com.example.chat.domain.type.flatMap
 import com.example.chat.domain.type.map
 import com.example.chat.domain.type.onNext
+import javax.inject.Inject
 
-class MessagesRepositoryImpl(
+class MessagesRepositoryImpl @Inject constructor(
     private val messagesRemote: MessagesRemote,
     private val messagesCache: MessagesCache,
     private val accountCache: AccountCache
