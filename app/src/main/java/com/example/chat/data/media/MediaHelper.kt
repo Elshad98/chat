@@ -56,7 +56,7 @@ object MediaHelper {
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
                 DocumentsContract.isDocumentUri(context, uri)
             ) {
-                if (isExternalStorageDocument(uri)) {
+                if (uri.isExternalStorageDocument) {
                     val docId = DocumentsContract.getDocumentId(uri)
                     val split =
                         docId.split(":".toRegex()).dropLastWhile(String::isEmpty).toTypedArray()
@@ -65,14 +65,14 @@ object MediaHelper {
                     if ("primary".equals(type, ignoreCase = true)) {
                         return "${Environment.getExternalStorageDirectory()}/${split[1]}"
                     }
-                } else if (isDownloadsDocument(uri)) {
+                } else if (uri.isDownloadsDocument) {
                     val id = DocumentsContract.getDocumentId(uri)
                     val contentUri = ContentUris.withAppendedId(
                         Uri.parse("content://downloads/public_downloads"),
                         java.lang.Long.valueOf(id)
                     )
                     return getAbsolutePath(context, contentUri)
-                } else if (isMediaDocument(uri)) {
+                } else if (uri.isMediaDocument) {
                     val docId = DocumentsContract.getDocumentId(uri)
                     val split =
                         docId.split(":".toRegex()).dropLastWhile(String::isEmpty).toTypedArray()
@@ -90,7 +90,7 @@ object MediaHelper {
                     )
                 }
             } else if ("content".equals(uri.scheme!!, ignoreCase = true)) {
-                return if (isGooglePhotosUri(uri)) {
+                return if (uri.isGooglePhotosUri) {
                     uri.lastPathSegment
                 } else {
                     getAbsolutePath(context, uri)
@@ -149,22 +149,6 @@ object MediaHelper {
         return Uri.parse(path)
     }
 
-    private fun isExternalStorageDocument(uri: Uri): Boolean {
-        return "com.android.externalstorage.documents" == uri.authority
-    }
-
-    private fun isDownloadsDocument(uri: Uri): Boolean {
-        return "com.android.providers.downloads.documents" == uri.authority
-    }
-
-    private fun isMediaDocument(uri: Uri): Boolean {
-        return "com.android.providers.media.documents" == uri.authority
-    }
-
-    private fun isGooglePhotosUri(uri: Uri): Boolean {
-        return "com.google.android.apps.photos.content" == uri.authority
-    }
-
     private fun getAbsolutePath(
         context: Context,
         uri: Uri?,
@@ -175,15 +159,28 @@ object MediaHelper {
             return null
         }
 
-        var path: String? = null
-
         val projection = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = context.contentResolver.query(uri, projection, selection, selectionArgs, null)
-        if (cursor != null && cursor.moveToFirst()) {
-            val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            path = cursor.getString(columnIndex)
-        }
-        cursor?.close()
-        return path
+        return context.contentResolver
+            .query(uri, projection, selection, selectionArgs, null)
+            ?.use { cursor ->
+                if (cursor.moveToFirst()) {
+                    val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                    cursor.getString(columnIndex)
+                } else {
+                    null
+                }
+            }
     }
 }
+
+private val Uri.isExternalStorageDocument: Boolean
+    get() = authority == "com.android.externalstorage.documents"
+
+private val Uri.isMediaDocument: Boolean
+    get() = authority == "com.android.providers.media.documents"
+
+private val Uri.isGooglePhotosUri: Boolean
+    get() = authority == "com.google.android.apps.photos.content"
+
+private val Uri.isDownloadsDocument: Boolean
+    get() = authority == "com.android.providers.downloads.documents"
