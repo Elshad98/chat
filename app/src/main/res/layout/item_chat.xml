@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="message"
+            type="com.example.chat.domain.messages.MessageEntity" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:divider="@drawable/contact_divider"
+        android:focusable="true"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_photo"
+            android:layout_width="@dimen/account_photo_dim"
+            android:layout_height="@dimen/account_photo_dim"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_account_circle"
+            app:profileImage="@{message.contact.image}" />
+
+        <LinearLayout
+            android:id="@+id/contact_name_and_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:layout_toEndOf="@+id/image_photo"
+            android:layout_toStartOf="@+id/label_date"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/label_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@{message.contact.name}"
+                android:textColor="#191919"
+                android:textSize="18sp"
+                tools:text="@string/name" />
+
+            <TextView
+                android:id="@+id/label_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{message.message}"
+                android:textSize="14sp"
+                tools:text="Текст" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/label_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:textSize="14sp"
+            app:date="@{message.date}"
+            tools:text="Дата" />
+
+    </RelativeLayout>
+</layout>

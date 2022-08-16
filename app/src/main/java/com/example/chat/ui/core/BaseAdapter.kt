@@ -1,7 +1,6 @@
 package com.example.chat.ui.core
 
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseAdapter<ViewHolderT : BaseAdapter.BaseViewHolder> : RecyclerView.Adapter<ViewHolderT>() {
@@ -9,19 +8,11 @@ abstract class BaseAdapter<ViewHolderT : BaseAdapter.BaseViewHolder> : RecyclerV
     var items: ArrayList<Any> = ArrayList()
     var onClick: OnClick? = null
 
-    abstract val layoutRes: Int
-
-    abstract fun createHolder(parent: ViewGroup): ViewHolderT
-
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolderT, position: Int) {
         holder.bind(getItem(position))
         holder.onClick = onClick
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderT {
-        return createHolder(parent)
     }
 
     fun getItem(position: Int): Any = items[position]

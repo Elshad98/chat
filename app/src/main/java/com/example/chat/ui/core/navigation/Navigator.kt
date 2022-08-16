@@ -16,6 +16,7 @@ import com.example.chat.ui.account.AccountActivity
 import com.example.chat.ui.core.PermissionManager
 import com.example.chat.ui.home.HomeActivity
 import com.example.chat.ui.login.LoginActivity
+import com.example.chat.ui.messages.MessagesActivity
 import com.example.chat.ui.register.RegisterActivity
 import com.example.chat.ui.user.UserActivity
 import javax.inject.Inject
@@ -127,6 +128,14 @@ class Navigator @Inject constructor(
             .setNegativeButton(android.R.string.cancel, null)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .show()
+    }
+
+    fun showChatWithContact(context: Context, contactId: Long, contactName: String) {
+        val bundle = Bundle().apply {
+            putString(ApiService.PARAM_NAME, contactName)
+            putLong(ApiService.PARAM_CONTACT_ID, contactId)
+        }
+        context.startActivity<MessagesActivity>(args = bundle)
     }
 }
 

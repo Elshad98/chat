@@ -38,9 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:layout_toStartOf="@+id/friend_remove_container"
             android:layout_toEndOf="@+id/friend_img_photo"
-            android:layout_toRightOf="@+id/friend_img_photo"
             android:orientation="vertical"
             android:padding="@dimen/small_padding">
 
@@ -72,6 +72,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/friend_remove_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

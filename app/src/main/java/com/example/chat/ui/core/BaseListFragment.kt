@@ -9,7 +9,6 @@ import com.example.chat.R
 abstract class BaseListFragment : BaseFragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var layoutManager: RecyclerView.LayoutManager
 
     protected abstract val viewAdapter: BaseAdapter<*>
 
@@ -17,12 +16,11 @@ abstract class BaseListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        layoutManager = LinearLayoutManager(context)
 
         recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
             setHasFixedSize(true)
             adapter = viewAdapter
-            layoutManager = this@BaseListFragment.layoutManager
+            layoutManager = LinearLayoutManager(context)
         }
     }
 

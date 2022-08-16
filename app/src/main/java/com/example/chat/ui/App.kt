@@ -15,6 +15,7 @@ import com.example.chat.ui.friends.FriendsFragment
 import com.example.chat.ui.home.ChatsFragment
 import com.example.chat.ui.home.HomeActivity
 import com.example.chat.ui.login.LoginFragment
+import com.example.chat.ui.messages.MessagesFragment
 import com.example.chat.ui.register.RegisterActivity
 import com.example.chat.ui.register.RegisterFragment
 import dagger.Component
@@ -60,6 +61,8 @@ interface AppComponent {
     fun inject(fragment: AccountFragment)
 
     fun inject(fragment: RegisterFragment)
+
+    fun inject(fragment: MessagesFragment)
 
     fun inject(fragment: FriendRequestsFragment)
 

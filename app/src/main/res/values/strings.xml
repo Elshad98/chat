@@ -30,6 +30,7 @@
     <string name="forget_password">Забыли пароль?</string>
     <string name="login">Вход</string>
     <string name="chats">Чаты</string>
+    <string name="message">Сообщение</string>
     <string name="friends">Друзья</string>
     <string name="add_friend">Пригласить друга</string>
     <string name="profile">Аккаунт</string>
@@ -70,6 +71,6 @@
     <string name="camera">Камера</string>
 
     <string name="send">Отправить</string>
-
+    <string name="send_message">Отправляет вам сообщение</string>
     <string name="success_edit_user">Данные обновлены</string>
 </resources>
