@@ -11,6 +11,7 @@ import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Base64
 import androidx.core.content.FileProvider
+import androidx.core.net.toUri
 import com.example.chat.BuildConfig
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -38,7 +39,7 @@ object MediaHelper {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", file)
         } else {
-            Uri.fromFile(file)
+            file.toUri()
         }
     }
 
@@ -68,8 +69,8 @@ object MediaHelper {
                 } else if (uri.isDownloadsDocument) {
                     val id = DocumentsContract.getDocumentId(uri)
                     val contentUri = ContentUris.withAppendedId(
-                        Uri.parse("content://downloads/public_downloads"),
-                        java.lang.Long.valueOf(id)
+                        "content://downloads/public_downloads".toUri(),
+                        id.toLong()
                     )
                     return getAbsolutePath(context, contentUri)
                 } else if (uri.isMediaDocument) {
@@ -108,9 +109,9 @@ object MediaHelper {
         o.inJustDecodeBounds = true
         o.inSampleSize = 6
 
-        var inputStream = FileInputStream(file)
-        BitmapFactory.decodeStream(inputStream, null, o)
-        inputStream.close()
+        FileInputStream(file).use { input ->
+            BitmapFactory.decodeStream(input, null, o)
+        }
 
         // The new size we want to scale to
         val requiredSize = 75
@@ -123,10 +124,10 @@ object MediaHelper {
 
         val o2 = BitmapFactory.Options()
         o2.inSampleSize = scale
-        inputStream = FileInputStream(file)
 
-        val selectedBitmap = BitmapFactory.decodeStream(inputStream, null, o2)
-        inputStream.close()
+        val selectedBitmap = FileInputStream(file).use { input ->
+            BitmapFactory.decodeStream(input, null, o2)
+        }
 
         // Overriding the original image file
         file.createNewFile()
@@ -146,7 +147,7 @@ object MediaHelper {
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path =
             MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
-        return Uri.parse(path)
+        return path.toUri()
     }
 
     private fun getAbsolutePath(
