@@ -53,6 +53,14 @@ class AccountViewModel @Inject constructor(
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        registerUseCase.unsubscribe()
+        loginUseCase.unsubscribe()
+        getAccountUseCase.unsubscribe()
+        logoutUseCase.unsubscribe()
+    }
+
     private fun handleRegister(none: None) {
         registerData.value = none
     }
@@ -67,13 +75,5 @@ class AccountViewModel @Inject constructor(
 
     private fun handleEditAccount(account: AccountEntity) {
         editAccountData.value = account
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        registerUseCase.unsubscribe()
-        loginUseCase.unsubscribe()
-        getAccountUseCase.unsubscribe()
-        logoutUseCase.unsubscribe()
     }
 }

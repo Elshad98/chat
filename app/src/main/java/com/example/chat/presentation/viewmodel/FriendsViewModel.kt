@@ -63,6 +63,16 @@ class FriendsViewModel @Inject constructor(
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        addFriendUseCase.unsubscribe()
+        getFriendsUseCase.unsubscribe()
+        deleteFriendUseCase.unsubscribe()
+        getFriendRequestsUseCase.unsubscribe()
+        cancelFriendRequestUseCase.unsubscribe()
+        approveFriendRequestUseCase.unsubscribe()
+    }
+
     private fun handleFriends(friends: List<FriendEntity>, fromCache: Boolean) {
         friendsData.value = friends
         updateProgress(false)
@@ -97,15 +107,5 @@ class FriendsViewModel @Inject constructor(
 
     private fun handleCancelFriend(none: None?) {
         cancelFriendData.value = none
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        addFriendUseCase.unsubscribe()
-        getFriendsUseCase.unsubscribe()
-        deleteFriendUseCase.unsubscribe()
-        getFriendRequestsUseCase.unsubscribe()
-        cancelFriendRequestUseCase.unsubscribe()
-        approveFriendRequestUseCase.unsubscribe()
     }
 }

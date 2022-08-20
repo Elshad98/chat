@@ -131,15 +131,14 @@ object MediaHelper {
 
         // Overriding the original image file
         file.createNewFile()
-        val outputStream = FileOutputStream(file)
+        FileOutputStream(file).use { output ->
+            if (selectedBitmap == null) {
+                return null
+            }
 
-        if (selectedBitmap == null) {
-            return null
+            selectedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, output)
+            return selectedBitmap
         }
-
-        selectedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-
-        return selectedBitmap
     }
 
     fun getImageUri(inContext: Context, inImage: Bitmap): Uri {

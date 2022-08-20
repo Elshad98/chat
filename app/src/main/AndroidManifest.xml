@@ -17,15 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name=".ui.core.navigation.RouterActivity"
             android:noHistory="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity android:name=".ui.login.LoginActivity" />
@@ -33,6 +36,8 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity android:name=".ui.messages.MessagesActivity" />
 
         <activity android:name=".ui.register.RegisterActivity" />
 
@@ -51,10 +56,13 @@
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
+
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
+
         </provider>
+
     </application>
 
 </manifest>

@@ -18,13 +18,6 @@ class MessagesViewModel @Inject constructor(
     val getChatsData: MutableLiveData<List<MessageEntity>> = MutableLiveData()
     val getMessagesData: MutableLiveData<List<MessageEntity>> = MutableLiveData()
 
-    override fun onCleared() {
-        super.onCleared()
-        getChatsUseCase.unsubscribe()
-        getMessagesUseCase.unsubscribe()
-        sendMessageUseCase.unsubscribe()
-    }
-
     fun getChats(needFetch: Boolean = false) {
         getChatsUseCase(GetChats.Params(needFetch)) { either ->
             either.fold(::handleFailure) { handleGetChats(it, !needFetch) }
@@ -51,6 +44,13 @@ class MessagesViewModel @Inject constructor(
             updateProgress(true)
             getChats(true)
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        getChatsUseCase.unsubscribe()
+        getMessagesUseCase.unsubscribe()
+        sendMessageUseCase.unsubscribe()
     }
 
     private fun handleGetMessages(

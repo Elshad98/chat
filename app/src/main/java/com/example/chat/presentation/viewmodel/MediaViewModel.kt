@@ -27,13 +27,6 @@ class MediaViewModel @Inject constructor(
     val pickedImageData: MutableLiveData<PickedImage> = MutableLiveData()
     private val imageBitmapData: MutableLiveData<Bitmap> = MutableLiveData()
 
-    override fun onCleared() {
-        super.onCleared()
-        getPickedImageUseCase.unsubscribe()
-        createImageFileUseCase.unsubscribe()
-        encodeImageBitmapUseCase.unsubscribe()
-    }
-
     fun createCameraFile() {
         createImageFileUseCase(None()) { either ->
             either.fold(::handleFailure, ::handleCameraFileCreated)
@@ -50,6 +43,13 @@ class MediaViewModel @Inject constructor(
 
             getPickedImage(uri)
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        getPickedImageUseCase.unsubscribe()
+        createImageFileUseCase.unsubscribe()
+        encodeImageBitmapUseCase.unsubscribe()
     }
 
     private fun handleCameraFileCreated(uri: Uri) {
