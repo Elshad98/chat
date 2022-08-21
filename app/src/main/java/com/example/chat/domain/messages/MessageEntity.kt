@@ -25,6 +25,12 @@ data class MessageEntity(
     @SerializedName("message_type_id")
     @ColumnInfo(name = "message_type_id")
     var type: Int,
+    @SerializedName("deleted_by_sender_id")
+    @ColumnInfo(name = "deleted_by_sender_id")
+    var deletedBySender: Int = 0,
+    @SerializedName("deleted_by_receiver_id")
+    @ColumnInfo(name = "deleted_by_receiver_id")
+    var deletedByReceiver: Int = 0,
     var message: String,
     var contact: ContactEntity? = null,
     var fromMe: Boolean = false
@@ -36,6 +42,8 @@ data class MessageEntity(
         receiverId = 0L,
         date = 0L,
         type = 0,
+        deletedBySender = 0,
+        deletedByReceiver = 0,
         message = "",
         contact = null,
         fromMe = false

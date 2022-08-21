@@ -9,7 +9,7 @@ class ContactConverter {
         return if (contact == null) {
             null
         } else {
-            "${contact.id}||${contact.name}||${contact.image}"
+            "${contact.id}||${contact.name}||${contact.image}||${contact.lastSeen}"
         }
     }
 
@@ -22,7 +22,8 @@ class ContactConverter {
             ContactEntity(
                 id = array[0].toLong(),
                 name = array[1],
-                image = array[2]
+                image = array[2],
+                lastSeen = array[3].toLong()
             )
         }
     }

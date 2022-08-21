@@ -6,5 +6,7 @@ data class ContactEntity(
     @SerializedName("user_id")
     var id: Long,
     var name: String,
-    var image: String
+    var image: String,
+    @SerializedName("last_seen")
+    var lastSeen: Long
 )

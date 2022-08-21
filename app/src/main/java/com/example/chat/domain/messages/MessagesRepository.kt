@@ -6,6 +6,8 @@ import com.example.chat.domain.type.None
 
 interface MessagesRepository {
 
+    fun deleteMessagesByUser(messageId: Long): Either<Failure, None>
+
     fun getChats(needFetch: Boolean): Either<Failure, List<MessageEntity>>
 
     fun getMessagesWithContact(
