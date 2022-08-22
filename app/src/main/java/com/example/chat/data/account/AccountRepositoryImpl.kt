@@ -7,7 +7,6 @@ import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
 import com.example.chat.domain.type.flatMap
 import com.example.chat.domain.type.onNext
-import java.util.Calendar
 import javax.inject.Inject
 
 class AccountRepositoryImpl @Inject constructor(
@@ -42,7 +41,7 @@ class AccountRepositoryImpl @Inject constructor(
                     name,
                     password,
                     token,
-                    userDate = Calendar.getInstance().timeInMillis
+                    userDate = System.currentTimeMillis()
                 )
             }
     }
@@ -64,7 +63,15 @@ class AccountRepositoryImpl @Inject constructor(
     }
 
     override fun updateAccountLastSeen(): Either<Failure, None> {
-        throw UnsupportedOperationException("Updating last seen is not supported")
+        return accountCache
+            .getCurrentAccount()
+            .flatMap { account ->
+                accountRemote.updateAccountLastSeen(
+                    account.id,
+                    account.token,
+                    System.currentTimeMillis()
+                )
+            }
     }
 
     override fun editAccount(entity: AccountEntity): Either<Failure, AccountEntity> {

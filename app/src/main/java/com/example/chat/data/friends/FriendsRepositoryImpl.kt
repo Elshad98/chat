@@ -7,6 +7,7 @@ import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
 import com.example.chat.domain.type.flatMap
+import com.example.chat.domain.type.map
 import com.example.chat.domain.type.onNext
 import javax.inject.Inject
 
@@ -26,6 +27,7 @@ class FriendsRepositoryImpl @Inject constructor(
                     Either.Right(friendsCache.getFriends())
                 }
             }
+            .map { friends -> friends.sortedBy { friend -> friend.name } }
             .onNext { friends -> friends.map(friendsCache::saveFriend) }
     }
 
@@ -39,6 +41,7 @@ class FriendsRepositoryImpl @Inject constructor(
                     Either.Right(friendsCache.getFriendRequests())
                 }
             }
+            .map { friends -> friends.sortedBy { friend -> friend.name } }
             .onNext { friends ->
                 friends.map { friend ->
                     friend.isRequest = 1

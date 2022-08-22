@@ -29,8 +29,8 @@ class MessagesRepositoryImpl @Inject constructor(
                                 if (message.senderId == account.id) {
                                     message.fromMe = true
                                 }
-                                messagesCache.saveMessage(message)
                             }
+                            messagesCache.saveMessages(messages)
                         }
                 } else {
                     Either.Right(messagesCache.getChats())
@@ -60,10 +60,10 @@ class MessagesRepositoryImpl @Inject constructor(
                                 }
                                 message.contact = messagesCache
                                     .getChats()
-                                    .first { it.contact?.id == contactId }
-                                    .contact
-                                messagesCache.saveMessage(message)
+                                    .firstOrNull { it.contact?.id == contactId }
+                                    ?.contact
                             }
+                            messagesCache.saveMessages(messages)
                         }
                 } else {
                     Either.Right(messagesCache.getMessagesWithContact(contactId))
@@ -76,6 +76,15 @@ class MessagesRepositoryImpl @Inject constructor(
             .getCurrentAccount()
             .flatMap { account ->
                 messagesRemote.sendMessage(account.id, toId, account.token, message, image)
+            }
+    }
+
+    override fun deleteMessagesByUser(messageId: Long): Either<Failure, None> {
+        return accountCache
+            .getCurrentAccount()
+            .flatMap { account ->
+                messagesCache.deleteMessagesByUser(messageId)
+                messagesRemote.deleteMessagesByUser(account.id, messageId, account.token)
             }
     }
 }

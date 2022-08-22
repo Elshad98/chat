@@ -11,6 +11,8 @@ interface AccountRemote {
 
     fun login(email: String, password: String, token: String): Either<Failure, AccountEntity>
 
+    fun updateAccountLastSeen(userId: Long, token: String, lastSeen: Long): Either<Failure, None>
+
     fun register(
         email: String,
         name: String,

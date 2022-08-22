@@ -9,6 +9,8 @@ interface MessagesRemote {
 
     fun getChats(userId: Long, token: String): Either<Failure, List<MessageEntity>>
 
+    fun deleteMessagesByUser(userId: Long, messageId: Long, token: String): Either<Failure, None>
+
     fun sendMessage(
         fromId: Long,
         toId: Long,

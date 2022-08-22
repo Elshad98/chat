@@ -8,5 +8,9 @@ interface MessagesCache {
 
     fun saveMessage(message: MessageEntity)
 
+    fun deleteMessagesByUser(messageId: Long)
+
+    fun saveMessages(messages: List<MessageEntity>)
+
     fun getMessagesWithContact(contactId: Long): List<MessageEntity>
 }
