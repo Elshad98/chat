@@ -8,6 +8,7 @@ import com.example.chat.domain.type.None
 import javax.inject.Inject
 
 class AccountCacheImpl @Inject constructor(
+    private val chatDatabase: ChatDatabase,
     private val prefsManager: SharedPrefsManager
 ) : AccountCache {
 
@@ -20,6 +21,7 @@ class AccountCacheImpl @Inject constructor(
     }
 
     override fun logout(): Either<Failure, None> {
+        chatDatabase.clearAllTables()
         return prefsManager.removeAccount()
     }
 
