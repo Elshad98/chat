@@ -52,6 +52,15 @@ class AccountRemoteImpl @Inject constructor(
         return request.make(service.editUser(params)) { it.user }
     }
 
+    override fun updateAccountLastSeen(
+        userId: Long,
+        token: String,
+        lastSeen: Long
+    ): Either<Failure, None> {
+        val params = createUpdateLastSeenMap(userId, token, lastSeen)
+        return request.make(service.updateUserLastSeen(params)) { None() }
+    }
+
     private fun createUserEditMap(
         userId: Long,
         email: String,
@@ -115,6 +124,18 @@ class AccountRemoteImpl @Inject constructor(
         map[ApiService.PARAM_TOKEN] = token
         map[ApiService.PARAM_PASSWORD] = password
         map[ApiService.PARAM_USER_DATE] = userDate.toString()
+        return map
+    }
+
+    private fun createUpdateLastSeenMap(
+        userId: Long,
+        token: String,
+        lastSeen: Long
+    ): Map<String, String> {
+        val map = HashMap<String, String>()
+        map[ApiService.PARAM_TOKEN] = token
+        map[ApiService.PARAM_USER_ID] = userId.toString()
+        map[ApiService.PARAM_LAST_SEEN] = lastSeen.toString()
         return map
     }
 }

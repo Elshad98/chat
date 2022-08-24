@@ -8,6 +8,8 @@ import com.example.chat.domain.type.None
 import com.example.chat.remote.core.Request
 import com.example.chat.remote.service.ApiService
 import javax.inject.Inject
+import org.json.JSONArray
+import org.json.JSONObject
 
 class MessagesRemoteImpl @Inject constructor(
     private val request: Request,
@@ -37,6 +39,15 @@ class MessagesRemoteImpl @Inject constructor(
     ): Either<Failure, List<MessageEntity>> {
         val params = createGetMessagesWithContactMap(contactId, userId, token)
         return request.make(service.getMessagesWithContact(params)) { it.messages }
+    }
+
+    override fun deleteMessagesByUser(
+        userId: Long,
+        messageId: Long,
+        token: String
+    ): Either<Failure, None> {
+        val params = createDeleteMessagesMap(userId, messageId, token)
+        return request.make(service.deleteMessagesByUser(params)) { None() }
     }
 
     private fun createGetLastMessagesMap(
@@ -83,6 +94,26 @@ class MessagesRemoteImpl @Inject constructor(
         map[ApiService.PARAM_RECEIVER_ID] = toId.toString()
         map[ApiService.PARAM_MESSAGE_TYPE] = type.toString()
         map[ApiService.PARAM_MESSAGE_DATE] = time.toString()
+        return map
+    }
+
+    private fun createDeleteMessagesMap(
+        userId: Long,
+        messageId: Long,
+        token: String
+    ): Map<String, String> {
+        val itemsArrayObject = JSONObject()
+        val itemsArray = JSONArray()
+        val itemObject = JSONObject()
+
+        itemObject.put("message_id", messageId)
+        itemsArray.put(itemObject)
+        itemsArrayObject.put("messages", itemsArray)
+
+        val map = HashMap<String, String>()
+        map[ApiService.PARAM_TOKEN] = token
+        map[ApiService.PARAM_USER_ID] = userId.toString()
+        map[ApiService.PARAM_MESSAGES_IDS] = itemsArrayObject.toString()
         return map
     }
 }

@@ -23,9 +23,11 @@ interface ApiService {
         private const val UPDATE_TOKEN = "updateUserToken.php"
         private const val GET_FRIENDS = "getContactsByUser.php"
         private const val GET_LAST_MESSAGES = "getLastMessagesByUser.php"
+        private const val UPDATE_USER_LAST_SEEN = "updateUserLastSeen.php"
         private const val CANCEL_FRIEND_REQUEST = "cancelFriendRequest.php"
         private const val GET_FRIEND_REQUESTS = "getFriendRequestsByUser.php"
         private const val APPROVE_FRIEND_REQUEST = "approveFriendRequest.php"
+        private const val DELETE_MESSAGES_BY_USER = "deleteMessagesByUser.php"
         private const val GET_MESSAGES_WITH_CONTACT = "getMessagesByUserWithContact.php"
 
         const val PARAM_EMAIL = "email"
@@ -56,6 +58,9 @@ interface ApiService {
         const val PARAM_SENDER_USER_ID = "senderUserId"
         const val PARAM_RECEIVED_USER_ID = "receivedUserId"
         const val PARAM_MESSAGE_ID = "message_id"
+        const val PARAM_MESSAGES_IDS = "messages_ids"
+
+        const val PARAM_LAST_SEEN = "last_seen"
     }
 
     @FormUrlEncoded
@@ -109,4 +114,12 @@ interface ApiService {
     @FormUrlEncoded
     @POST(GET_MESSAGES_WITH_CONTACT)
     fun getMessagesWithContact(@FieldMap params: Map<String, String>): Call<GetMessagesResponse>
+
+    @FormUrlEncoded
+    @POST(DELETE_MESSAGES_BY_USER)
+    fun deleteMessagesByUser(@FieldMap params: Map<String, String>): Call<BaseResponse>
+
+    @FormUrlEncoded
+    @POST(UPDATE_USER_LAST_SEEN)
+    fun updateUserLastSeen(@FieldMap params: Map<String, String>): Call<BaseResponse>
 }
