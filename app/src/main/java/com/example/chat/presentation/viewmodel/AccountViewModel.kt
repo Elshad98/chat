@@ -7,6 +7,7 @@ import com.example.chat.domain.account.GetAccount
 import com.example.chat.domain.account.Login
 import com.example.chat.domain.account.Logout
 import com.example.chat.domain.account.Register
+import com.example.chat.domain.account.UpdateLastSeen
 import com.example.chat.domain.type.None
 import javax.inject.Inject
 
@@ -15,7 +16,8 @@ class AccountViewModel @Inject constructor(
     private val logoutUseCase: Logout,
     private val registerUseCase: Register,
     private val getAccountUseCase: GetAccount,
-    private val editAccountUseCase: EditAccount
+    private val editAccountUseCase: EditAccount,
+    private val updateLastSeenUseCase: UpdateLastSeen
 ) : BaseViewModel() {
 
     val logoutData: MutableLiveData<None> = MutableLiveData()
@@ -53,12 +55,19 @@ class AccountViewModel @Inject constructor(
         }
     }
 
+    fun updateLastSeen() {
+        updateLastSeenUseCase(None()) { either ->
+            either.fold(::handleFailure) {}
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
-        registerUseCase.unsubscribe()
         loginUseCase.unsubscribe()
-        getAccountUseCase.unsubscribe()
         logoutUseCase.unsubscribe()
+        registerUseCase.unsubscribe()
+        getAccountUseCase.unsubscribe()
+        updateLastSeenUseCase.unsubscribe()
     }
 
     private fun handleRegister(none: None) {

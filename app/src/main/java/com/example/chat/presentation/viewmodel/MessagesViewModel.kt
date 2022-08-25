@@ -1,6 +1,7 @@
 package com.example.chat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.example.chat.domain.messages.DeleteMessage
 import com.example.chat.domain.messages.GetChats
 import com.example.chat.domain.messages.GetMessagesWithContact
 import com.example.chat.domain.messages.MessageEntity
@@ -11,10 +12,12 @@ import javax.inject.Inject
 class MessagesViewModel @Inject constructor(
     private val getChatsUseCase: GetChats,
     private val sendMessageUseCase: SendMessage,
+    private val deleteMessageUseCase: DeleteMessage,
     private val getMessagesUseCase: GetMessagesWithContact
 ) : BaseViewModel() {
 
     val sendMessageData: MutableLiveData<None> = MutableLiveData()
+    val deleteMessageData: MutableLiveData<None> = MutableLiveData()
     val getChatsData: MutableLiveData<List<MessageEntity>> = MutableLiveData()
     val getMessagesData: MutableLiveData<List<MessageEntity>> = MutableLiveData()
 
@@ -33,6 +36,12 @@ class MessagesViewModel @Inject constructor(
     fun sendMessage(toId: Long, message: String, image: String) {
         sendMessageUseCase(SendMessage.Params(toId, message, image)) { either ->
             either.fold(::handleFailure) { handleSendMessage(it, toId) }
+        }
+    }
+
+    fun deleteMessage(contactId: Long, messageId: Long) {
+        deleteMessageUseCase(DeleteMessage.Params(messageId)) { either ->
+            either.fold(::handleFailure) { }
         }
     }
 
@@ -69,6 +78,11 @@ class MessagesViewModel @Inject constructor(
 
     private fun handleSendMessage(none: None, contactId: Long) {
         sendMessageData.value = none
+        getMessages(contactId, true)
+    }
+
+    private fun handleDeleteMessage(contactId: Long, none: None) {
+        deleteMessageData.value = none
         getMessages(contactId, true)
     }
 }
