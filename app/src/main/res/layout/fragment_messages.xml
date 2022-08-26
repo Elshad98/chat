@@ -9,7 +9,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/messagePanel"
+        android:layout_above="@+id/message_panel"
         android:clipToPadding="false"
         android:paddingTop="16dp"
         android:paddingBottom="12dp"
@@ -18,7 +18,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_above="@+id/messagePanel"
+        android:layout_above="@+id/message_panel"
         android:background="@color/background" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,6 @@
             android:id="@+id/messages_btn_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"

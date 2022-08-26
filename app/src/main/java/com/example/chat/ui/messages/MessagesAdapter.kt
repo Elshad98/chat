@@ -1,25 +1,22 @@
 package com.example.chat.ui.messages
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import com.example.chat.databinding.ItemMessageMeBinding
 import com.example.chat.databinding.ItemMessageOtherBinding
 import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.extensions.inflater
 import com.example.chat.ui.core.BaseAdapter
 
-class MessagesAdapter : ListAdapter<MessageEntity, BaseAdapter.BaseViewHolder>(MessageDiffCallback()) {
+open class MessagesAdapter : BaseAdapter<MessageEntity, BaseAdapter.BaseViewHolder>(
+    MessageDiffCallback()
+) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseAdapter.BaseViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return if (viewType == 0) {
             MessageMeViewHolder(ItemMessageMeBinding.inflate(parent.inflater, parent, false))
         } else {
             MessageOtherViewHolder(ItemMessageOtherBinding.inflate(parent.inflater, parent, false))
         }
-    }
-
-    override fun onBindViewHolder(holder: BaseAdapter.BaseViewHolder, position: Int) {
-        holder.bind(getItem(position))
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -29,11 +26,15 @@ class MessagesAdapter : ListAdapter<MessageEntity, BaseAdapter.BaseViewHolder>(M
 
     class MessageMeViewHolder(
         private val binding: ItemMessageMeBinding
-    ) : BaseAdapter.BaseViewHolder(binding.root) {
+    ) : BaseViewHolder(binding.root) {
 
         init {
-            view.setOnClickListener {
-                onClick?.onClick(item, it)
+            itemView.setOnLongClickListener { view ->
+                onClick?.onLongClick(item, view)
+                true
+            }
+            binding.imagePhoto.setOnClickListener { view ->
+                onClick?.onClick(item, view)
             }
         }
 
@@ -49,8 +50,12 @@ class MessagesAdapter : ListAdapter<MessageEntity, BaseAdapter.BaseViewHolder>(M
     ) : BaseAdapter.BaseViewHolder(binding.root) {
 
         init {
-            view.setOnClickListener {
-                onClick?.onClick(item, it)
+            itemView.setOnLongClickListener { view ->
+                onClick?.onLongClick(item, view)
+                true
+            }
+            binding.imagePhoto.setOnClickListener { view ->
+                onClick?.onClick(item, view)
             }
         }
 

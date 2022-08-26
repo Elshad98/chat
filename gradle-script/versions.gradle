@@ -35,4 +35,5 @@ ext {
     vCircleImageView = '3.1.0'
     vPermissionUtils = '1.0.9'
     vGlide = '4.9.0'
+    vPhotoView = '2.3.0'
 }

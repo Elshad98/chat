@@ -1,10 +1,13 @@
 package com.example.chat.ui.core.navigation
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.chat.R
@@ -21,6 +24,7 @@ import com.example.chat.ui.register.RegisterActivity
 import com.example.chat.ui.user.UserActivity
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.android.synthetic.main.dialog_image.view.image_view
 
 @Singleton
 class Navigator @Inject constructor(
@@ -59,6 +63,7 @@ class Navigator @Inject constructor(
             putString(ApiService.PARAM_NAME, friendEntity.name)
             putString(ApiService.PARAM_EMAIL, friendEntity.email)
             putString(ApiService.PARAM_IMAGE, friendEntity.image)
+            putLong(ApiService.PARAM_CONTACT_ID, friendEntity.id)
             putString(ApiService.PARAM_STATUS, friendEntity.status)
         }
         context.startActivity<UserActivity>(args = bundle)
@@ -136,6 +141,34 @@ class Navigator @Inject constructor(
             putLong(ApiService.PARAM_CONTACT_ID, contactId)
         }
         context.startActivity<MessagesActivity>(args = bundle)
+    }
+
+    fun showDeleteMessageDialog(context: Context, onPositive: () -> Unit) {
+        AlertDialog.Builder(context)
+            .setMessage(context.getString(R.string.remove_message))
+            .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                onPositive()
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show()
+    }
+
+    fun showImageDialog(context: Context, image: Drawable) {
+        val view = LayoutInflater.from(context).inflate(
+            R.layout.dialog_image,
+            null
+        )
+
+        val dialog = Dialog(context, R.style.DialogFullscreen)
+
+        view.image_view.setImageDrawable(image)
+        dialog.setContentView(view)
+
+        view.image_view.setOnClickListener { dialog.dismiss() }
+
+        dialog.show()
     }
 }
 

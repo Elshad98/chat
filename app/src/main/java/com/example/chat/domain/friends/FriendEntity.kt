@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "friends_table")
-class FriendEntity(
+data class FriendEntity(
     @PrimaryKey
     @SerializedName("user_id")
     var id: Long,

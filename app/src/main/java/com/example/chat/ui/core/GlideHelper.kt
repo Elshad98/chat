@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.example.chat.R
 import com.example.chat.extensions.getDrawableCompat
 
 object GlideHelper {
@@ -33,5 +34,12 @@ object GlideHelper {
     @BindingAdapter("profileImage")
     fun ImageView.loadImage(image: String?) {
         loadImage(context, image, this)
+    }
+
+    @JvmStatic
+    @BindingAdapter("messageImage")
+    fun ImageView.loadMessageImage(message: String?) {
+        if (message.isNullOrBlank()) return
+        loadImage(context, message, this, R.drawable.placeholder)
     }
 }

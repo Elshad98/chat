@@ -1,32 +1,19 @@
 package com.example.chat.ui.core
 
 import android.view.View
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<ViewHolderT : BaseAdapter.BaseViewHolder> : RecyclerView.Adapter<ViewHolderT>() {
+abstract class BaseAdapter<ItemT : Any, ViewHolderT : BaseAdapter.BaseViewHolder>(
+    diffCallback: DiffUtil.ItemCallback<ItemT>
+) : ListAdapter<ItemT, ViewHolderT>(diffCallback) {
 
-    var items: ArrayList<Any> = ArrayList()
     var onClick: OnClick? = null
-
-    override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolderT, position: Int) {
         holder.bind(getItem(position))
         holder.onClick = onClick
-    }
-
-    fun getItem(position: Int): Any = items[position]
-
-    fun addItem(newItem: Any) {
-        items.add(newItem)
-    }
-
-    fun addItems(newItems: List<Any>) {
-        items.addAll(newItems)
-    }
-
-    fun clear() {
-        items.clear()
     }
 
     fun setOnClick(click: (Any?, View) -> Unit, longClick: (Any?, View) -> Unit = { _, _ -> }) {

@@ -18,7 +18,6 @@ import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.extensions.getNotificationManager
 import com.example.chat.remote.service.ApiService
 import com.example.chat.ui.home.HomeActivity
-import com.example.chat.ui.messages.MessagesActivity
 import com.google.firebase.messaging.RemoteMessage
 import javax.inject.Inject
 import org.json.JSONObject
@@ -31,12 +30,12 @@ class NotificationHelper @Inject constructor(
     companion object {
 
         const val TYPE_ADD_FRIEND = "addFriend"
+        const val TYPE_SEND_MESSAGE = "sendMessage"
 
         private const val MESSAGE = "message"
-        private const val JSON_MESSAGE = "firebase_json_message"
 
+        private const val JSON_MESSAGE = "firebase_json_message"
         private const val TYPE = "type"
-        private const val TYPE_SEND_MESSAGE = "sendMessage"
         private const val TYPE_APPROVED_FRIEND = "approveFriendRequest"
         private const val TYPE_CANCELLED_FRIEND_REQUEST = "cancelFriendRequest"
 
@@ -147,15 +146,17 @@ class NotificationHelper @Inject constructor(
 
         getMessagesWithContact(GetMessagesWithContact.Params(message.senderId, needFetch = true))
 
-        val intent = Intent(context, MessagesActivity::class.java).apply {
+        val intent = Intent(context, HomeActivity::class.java).apply {
             putExtra(ApiService.PARAM_CONTACT_ID, message.contact?.id)
             putExtra(ApiService.PARAM_NAME, message.contact?.name)
             putExtra("type", TYPE_SEND_MESSAGE)
         }
 
+        val text = if (message.type == 1) message.message else context.getString(R.string.photo)
+
         createNotification(
             "${message.contact?.name} ${context.getString(R.string.send_message)}",
-            message.message,
+            text,
             intent
         )
     }
@@ -166,7 +167,8 @@ class NotificationHelper @Inject constructor(
         val contactEntity = ContactEntity(
             id = senderId,
             name = senderUser.getString(ApiService.PARAM_NAME),
-            image = senderUser.getString(ApiService.PARAM_IMAGE)
+            image = senderUser.getString(ApiService.PARAM_IMAGE),
+            lastSeen = senderUser.getLong(ApiService.PARAM_LAST_SEEN)
         )
         return MessageEntity(
             id = jsonMessage.getLong(ApiService.PARAM_MESSAGE),

@@ -6,7 +6,9 @@ import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.extensions.inflater
 import com.example.chat.ui.core.BaseAdapter
 
-class FriendsAdapter : BaseAdapter<FriendsAdapter.FriendViewHolder>() {
+class FriendsAdapter : BaseAdapter<FriendEntity, FriendsAdapter.FriendViewHolder>(
+    FriendsDiffCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {
         val binding = ItemFriendBinding.inflate(parent.inflater, parent, false)

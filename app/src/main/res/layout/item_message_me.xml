@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="message"
             type="com.example.chat.domain.messages.MessageEntity" />
@@ -49,7 +51,18 @@
                 android:text="@{message.message}"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
+                android:visibility="@{message.type == 2 ? View.GONE : View.VISIBLE}"
                 tools:text="Привет" />
+
+            <ImageView
+                android:id="@+id/image_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:visibility="@{message.type == 1 ? View.GONE : View.VISIBLE}"
+                app:messageImage="@{message.type == 1 ? null : message.message}" />
 
         </LinearLayout>
 

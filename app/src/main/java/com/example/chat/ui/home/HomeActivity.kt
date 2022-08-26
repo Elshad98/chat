@@ -18,6 +18,7 @@ import com.example.chat.extensions.toggleVisibility
 import com.example.chat.extensions.visible
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.viewmodel.FriendsViewModel
+import com.example.chat.remote.service.ApiService
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseActivity
 import com.example.chat.ui.core.BaseFragment
@@ -102,6 +103,11 @@ class HomeActivity : BaseActivity() {
                 friendsViewModel.getFriendRequests()
                 binding.navigation.containerRequest.visible()
             }
+            NotificationHelper.TYPE_SEND_MESSAGE -> {
+                val contactId = intent.getLongExtra(ApiService.PARAM_CONTACT_ID, 0)
+                val contactName = intent.getStringExtra(ApiService.PARAM_NAME).orEmpty()
+                navigator.showChatWithContact(this, contactId, contactName)
+            }
         }
 
         binding.navigation.containerProfile.setOnClickListener {
@@ -113,6 +119,7 @@ class HomeActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         accountViewModel.getAccount()
+        accountViewModel.updateLastSeen()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

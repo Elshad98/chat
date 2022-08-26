@@ -1,7 +1,9 @@
 package com.example.chat.ui.core
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.example.chat.extensions.toggleVisibility
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -9,10 +11,19 @@ import java.util.Locale
 
 object DateUtil {
 
+    private const val TIME_TO_AFK = 180000
+
     @JvmStatic
     @BindingAdapter("date")
     fun TextView.setDate(date: Long) {
         text = date.parseDate()
+    }
+
+    @JvmStatic
+    @BindingAdapter("lastSeen")
+    fun ImageView.lastSeen(lastSeen: Long) {
+        val isOnline = (lastSeen + TIME_TO_AFK - System.currentTimeMillis()) > 0
+        toggleVisibility(isOnline)
     }
 }
 

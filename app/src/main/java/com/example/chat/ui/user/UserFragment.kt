@@ -7,6 +7,7 @@ import com.example.chat.extensions.gone
 import com.example.chat.remote.service.ApiService
 import com.example.chat.ui.core.BaseFragment
 import com.example.chat.ui.core.GlideHelper
+import kotlinx.android.synthetic.main.fragment_user.user_btn_send_message
 import kotlinx.android.synthetic.main.fragment_user.user_img_photo
 import kotlinx.android.synthetic.main.fragment_user.user_label_email
 import kotlinx.android.synthetic.main.fragment_user.user_label_hint_status
@@ -24,8 +25,9 @@ class UserFragment : BaseFragment() {
         base {
             val args = intent.getBundleExtra("args")
             if (args != null) {
-                val image = args.getString(ApiService.PARAM_IMAGE)
                 val name = args.getString(ApiService.PARAM_NAME)
+                val image = args.getString(ApiService.PARAM_IMAGE)
+                val id = args.getLong(ApiService.PARAM_CONTACT_ID)
                 val email = args.getString(ApiService.PARAM_EMAIL)
                 val status = args.getString(ApiService.PARAM_STATUS)
 
@@ -43,6 +45,14 @@ class UserFragment : BaseFragment() {
                 if (status.isNullOrEmpty()) {
                     user_label_status.gone()
                     user_label_hint_status.gone()
+                }
+
+                user_img_photo.setOnClickListener {
+                    navigator.showImageDialog(requireContext(), user_img_photo.drawable)
+                }
+
+                user_btn_send_message.setOnClickListener {
+                    navigator.showChatWithContact(requireContext(), id, name.orEmpty())
                 }
             }
         }

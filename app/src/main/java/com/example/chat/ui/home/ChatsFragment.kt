@@ -32,14 +32,16 @@ class ChatsFragment : BaseListFragment() {
             Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
         )
 
-        setOnItemClickListener { message, _ ->
-            (message as? MessageEntity)?.let {
-                val contact = it.contact
-                if (contact != null) {
-                    navigator.showChatWithContact(requireActivity(), contact.id, contact.name)
+        viewAdapter.setOnClick(
+            { message, _ ->
+                (message as? MessageEntity)?.let {
+                    val contact = it.contact
+                    if (contact != null) {
+                        navigator.showChatWithContact(requireActivity(), contact.id, contact.name)
+                    }
                 }
             }
-        }
+        )
 
         ChatDatabase.getInstance(requireContext()).messagesDao.getLiveChats().observe(
             viewLifecycleOwner,
@@ -56,10 +58,8 @@ class ChatsFragment : BaseListFragment() {
     }
 
     private fun handleChats(messages: List<MessageEntity>?) {
-        if (messages != null) {
-            viewAdapter.clear()
-            viewAdapter.addItems(messages)
-            viewAdapter.notifyDataSetChanged()
+        if (messages != null && messages.isNotEmpty()) {
+            viewAdapter.submitList(messages)
         }
     }
 }

@@ -8,9 +8,9 @@ import com.example.chat.R
 
 abstract class BaseListFragment : BaseFragment() {
 
-    private lateinit var recyclerView: RecyclerView
+    protected lateinit var recyclerView: RecyclerView
 
-    protected abstract val viewAdapter: BaseAdapter<*>
+    protected abstract val viewAdapter: BaseAdapter<*, *>
 
     override val layoutId = R.layout.fragment_list
 
