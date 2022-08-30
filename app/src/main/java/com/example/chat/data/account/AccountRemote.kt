@@ -7,6 +7,8 @@ import com.example.chat.domain.type.None
 
 interface AccountRemote {
 
+    fun forgetPassword(email: String): Either<Failure, None>
+
     fun updateToken(userId: Long, token: String, oldToken: String): Either<Failure, None>
 
     fun login(email: String, password: String, token: String): Either<Failure, AccountEntity>

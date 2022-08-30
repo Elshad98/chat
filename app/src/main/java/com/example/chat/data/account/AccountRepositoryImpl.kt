@@ -47,7 +47,7 @@ class AccountRepositoryImpl @Inject constructor(
     }
 
     override fun forgetPassword(email: String): Either<Failure, None> {
-        throw UnsupportedOperationException("Password recovery is not supported")
+        return accountRemote.forgetPassword(email)
     }
 
     override fun getCurrentAccount(): Either<Failure, AccountEntity> {
