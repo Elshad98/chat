@@ -43,14 +43,16 @@ private fun <T : BaseResponse> Response<T>.isSucceed(): Boolean {
 
 private fun <T : BaseResponse> Response<T>.parseError(): Failure {
     return when ((body() as BaseResponse).message) {
-        "there is a user has this email",
-        "email already exists" -> Failure.EmailAlreadyExistError
-        "error in email or password" -> Failure.AuthError
+        "There is a user has this email",
+        "Email already exists" -> Failure.EmailAlreadyExistError
+        "Error in email or password" -> Failure.AuthError
         "Token is invalid" -> Failure.TokenError
-        "this contact is already in your friends list" -> Failure.AlreadyFriendError
-        "already found in your friend requests",
-        "you requested adding this friend before" -> Failure.AlreadyRequestedFriendError
+        "This contact is already in your friends list" -> Failure.AlreadyFriendError
+        "Already found in your friend requests",
+        "You requested adding this friend before" -> Failure.AlreadyRequestedFriendError
         "No Contact has this email" -> Failure.ContactNotFoundError
+        "This email is not registered before" -> Failure.EmailNotRegisteredError
+        "Can't send email to you" -> Failure.CantSendEmailError
         else -> Failure.ServerError
     }
 }

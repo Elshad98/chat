@@ -22,6 +22,7 @@ interface ApiService {
         private const val DELETE_FRIEND = "deleteFriend.php"
         private const val UPDATE_TOKEN = "updateUserToken.php"
         private const val GET_FRIENDS = "getContactsByUser.php"
+        private const val FORGET_PASSWORD = "forget_password.php"
         private const val GET_LAST_MESSAGES = "getLastMessagesByUser.php"
         private const val UPDATE_USER_LAST_SEEN = "updateUserLastSeen.php"
         private const val CANCEL_FRIEND_REQUEST = "cancelFriendRequest.php"
@@ -122,4 +123,8 @@ interface ApiService {
     @FormUrlEncoded
     @POST(UPDATE_USER_LAST_SEEN)
     fun updateUserLastSeen(@FieldMap params: Map<String, String>): Call<BaseResponse>
+
+    @FormUrlEncoded
+    @POST(FORGET_PASSWORD)
+    fun forgetPassword(@FieldMap params: Map<String, String>): Call<BaseResponse>
 }

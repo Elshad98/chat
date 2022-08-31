@@ -39,6 +39,11 @@ class AccountRemoteImpl @Inject constructor(
         return request.make(service.updateToken(params)) { None() }
     }
 
+    override fun forgetPassword(email: String): Either<Failure, None> {
+        val params = createForgetPasswordMap(email)
+        return request.make(service.forgetPassword(params)) { None() }
+    }
+
     override fun editUser(
         userId: Long,
         email: String,
@@ -59,6 +64,12 @@ class AccountRemoteImpl @Inject constructor(
     ): Either<Failure, None> {
         val params = createUpdateLastSeenMap(userId, token, lastSeen)
         return request.make(service.updateUserLastSeen(params)) { None() }
+    }
+
+    private fun createForgetPasswordMap(email: String): Map<String, String> {
+        val map = HashMap<String, String>()
+        map[ApiService.PARAM_EMAIL] = email
+        return map
     }
 
     private fun createUserEditMap(
