@@ -3,6 +3,7 @@ package com.example.chat.presentation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.account.EditAccount
+import com.example.chat.domain.account.ForgetPassword
 import com.example.chat.domain.account.GetAccount
 import com.example.chat.domain.account.Login
 import com.example.chat.domain.account.Logout
@@ -17,11 +18,13 @@ class AccountViewModel @Inject constructor(
     private val registerUseCase: Register,
     private val getAccountUseCase: GetAccount,
     private val editAccountUseCase: EditAccount,
-    private val updateLastSeenUseCase: UpdateLastSeen
+    private val updateLastSeenUseCase: UpdateLastSeen,
+    private val forgetPasswordUseCase: ForgetPassword
 ) : BaseViewModel() {
 
     val logoutData: MutableLiveData<None> = MutableLiveData()
     val registerData: MutableLiveData<None> = MutableLiveData()
+    val forgetPasswordData: MutableLiveData<None> = MutableLiveData()
     val accountData: MutableLiveData<AccountEntity> = MutableLiveData()
     val editAccountData: MutableLiveData<AccountEntity> = MutableLiveData()
 
@@ -34,6 +37,12 @@ class AccountViewModel @Inject constructor(
     fun login(email: String, password: String) {
         loginUseCase(Login.Params(email, password)) { either ->
             either.fold(::handleFailure, ::handleAccount)
+        }
+    }
+
+    fun forgetPassword(email: String) {
+        forgetPasswordUseCase(ForgetPassword.Params(email)) { either ->
+            either.fold(::handleFailure, ::handleForgetPassword)
         }
     }
 
@@ -68,6 +77,11 @@ class AccountViewModel @Inject constructor(
         registerUseCase.unsubscribe()
         getAccountUseCase.unsubscribe()
         updateLastSeenUseCase.unsubscribe()
+        forgetPasswordUseCase.unsubscribe()
+    }
+
+    private fun handleForgetPassword(none: None) {
+        forgetPasswordData.value = none
     }
 
     private fun handleRegister(none: None) {
