@@ -9,6 +9,7 @@ import com.example.chat.extensions.hideKeyboard
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseFragment
+import kotlinx.android.synthetic.main.fragment_login.login_btn_forget_password
 import kotlinx.android.synthetic.main.fragment_login.login_btn_login
 import kotlinx.android.synthetic.main.fragment_login.login_btn_register
 import kotlinx.android.synthetic.main.fragment_login.login_input_email
@@ -38,7 +39,10 @@ class LoginFragment : BaseFragment() {
             validateFields()
         }
         login_btn_register.setOnClickListener {
-            activity?.let(navigator::showSignUp)
+            navigator.showSignUp(requireActivity())
+        }
+        login_btn_forget_password.setOnClickListener {
+            navigator.showForgetPassword(requireActivity())
         }
     }
 

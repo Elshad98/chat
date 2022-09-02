@@ -18,6 +18,7 @@ import com.example.chat.remote.service.ApiService
 import com.example.chat.ui.account.AccountActivity
 import com.example.chat.ui.core.PermissionManager
 import com.example.chat.ui.home.HomeActivity
+import com.example.chat.ui.login.ForgetPasswordActivity
 import com.example.chat.ui.login.LoginActivity
 import com.example.chat.ui.messages.MessagesActivity
 import com.example.chat.ui.register.RegisterActivity
@@ -40,6 +41,10 @@ class Navigator @Inject constructor(
                 showLogin(context, false)
             }
         }
+    }
+
+    fun showForgetPassword(context: Context) {
+        context.startActivity<ForgetPasswordActivity>()
     }
 
     fun showLogin(context: Context, newTask: Boolean = true) {

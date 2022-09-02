@@ -14,6 +14,7 @@ import com.example.chat.ui.friends.FriendRequestsFragment
 import com.example.chat.ui.friends.FriendsFragment
 import com.example.chat.ui.home.ChatsFragment
 import com.example.chat.ui.home.HomeActivity
+import com.example.chat.ui.login.ForgetPasswordFragment
 import com.example.chat.ui.login.LoginFragment
 import com.example.chat.ui.messages.MessagesActivity
 import com.example.chat.ui.messages.MessagesFragment
@@ -74,6 +75,8 @@ interface AppComponent {
     fun inject(fragment: MessagesFragment)
 
     fun inject(fragment: FriendRequestsFragment)
+
+    fun inject(fragment: ForgetPasswordFragment)
 
     fun inject(service: FirebaseService)
 }
