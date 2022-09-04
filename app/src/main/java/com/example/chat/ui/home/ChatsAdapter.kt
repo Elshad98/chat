@@ -4,19 +4,18 @@ import android.view.ViewGroup
 import com.example.chat.databinding.ItemChatBinding
 import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.extensions.inflater
-import com.example.chat.ui.core.BaseAdapter
 import com.example.chat.ui.messages.MessagesAdapter
 
 class ChatsAdapter : MessagesAdapter() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseAdapter.BaseViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding = ItemChatBinding.inflate(parent.inflater, parent, false)
         return ChatViewHolder(binding)
     }
 
     class ChatViewHolder(
         private val binding: ItemChatBinding
-    ) : BaseAdapter.BaseViewHolder(binding.root) {
+    ) : BaseViewHolder(binding.root) {
 
         init {
             view.setOnClickListener {

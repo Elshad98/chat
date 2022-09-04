@@ -18,10 +18,10 @@
         android:clickable="true"
         android:divider="@drawable/contact_divider"
         android:focusable="true"
-        android:paddingStart="16dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="8dp">
+        android:paddingStart="@dimen/large_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingEnd="@dimen/large_padding"
+        android:paddingBottom="@dimen/small_padding">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_photo"
@@ -38,21 +38,21 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginEnd="@dimen/small_margin"
-            android:layout_toEndOf="@+id/image_photo"
             android:layout_toStartOf="@+id/label_date"
+            android:layout_toEndOf="@+id/image_photo"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="@dimen/small_padding">
 
             <TextView
                 android:id="@+id/label_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="@dimen/extra_small_margin"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="@{message.contact.name}"
                 android:textColor="#191919"
-                android:textSize="18sp"
+                android:textSize="@dimen/medium_text_size"
                 tools:text="@string/name" />
 
             <TextView
@@ -63,8 +63,9 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@{message.message}"
-                android:textSize="14sp"
+                android:textSize="@dimen/small_text_size"
                 tools:text="Текст" />
+
         </LinearLayout>
 
         <TextView
@@ -73,9 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:textSize="14sp"
+            android:textSize="@dimen/small_text_size"
             app:date="@{message.date}"
             tools:text="Дата" />
 
     </RelativeLayout>
+
 </layout>

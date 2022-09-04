@@ -171,7 +171,7 @@ class NotificationHelper @Inject constructor(
             lastSeen = senderUser.getLong(ApiService.PARAM_LAST_SEEN)
         )
         return MessageEntity(
-            id = jsonMessage.getLong(ApiService.PARAM_MESSAGE),
+            id = jsonMessage.getLong(ApiService.PARAM_MESSAGE_ID),
             senderId = senderId,
             receiverId = jsonMessage.getLong(ApiService.PARAM_RECEIVED_USER_ID),
             message = jsonMessage.getString(ApiService.PARAM_MESSAGE),

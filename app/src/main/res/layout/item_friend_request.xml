@@ -44,7 +44,7 @@
                 android:id="@+id/friend_label_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="@dimen/extra_small_margin"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="@{friend.name}"
@@ -104,4 +104,5 @@
         </LinearLayout>
 
     </RelativeLayout>
+
 </layout>
