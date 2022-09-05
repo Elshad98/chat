@@ -30,11 +30,10 @@ class LoginFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         accountViewModel.accountData.observe(viewLifecycleOwner, Observer(::renderAccount))
-        accountViewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        accountViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
+
         login_btn_login.setOnClickListener {
             validateFields()
         }
@@ -65,7 +64,7 @@ class LoginFragment : BaseFragment() {
 
     private fun renderAccount(accountEntity: AccountEntity?) {
         hideProgress()
-        activity?.let {
+        requireActivity().let {
             navigator.showHome(it)
             it.finish()
         }

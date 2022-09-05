@@ -15,7 +15,7 @@ class FriendRequestsFragment : BaseListFragment() {
     override val viewAdapter = FriendRequestsAdapter()
     override val layoutId = R.layout.fragment_friend_requests
 
-    lateinit var friendsViewModel: FriendsViewModel
+    private lateinit var friendsViewModel: FriendsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +25,11 @@ class FriendRequestsFragment : BaseListFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         friendsViewModel.friendRequestsData.observe(viewLifecycleOwner, Observer(::handleFriendRequests))
         friendsViewModel.approveFriendData.observe(viewLifecycleOwner, Observer(::handleFriendRequestAction))
         friendsViewModel.cancelFriendData.observe(viewLifecycleOwner, Observer(::handleFriendRequestAction))
-        friendsViewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        friendsViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         setOnItemClickListener { item, view ->
             (item as? FriendEntity)?.let { friend ->
@@ -44,9 +42,7 @@ class FriendRequestsFragment : BaseListFragment() {
                         showProgress()
                         friendsViewModel.cancelFriend(friend)
                     }
-                    else -> activity?.let {
-                        navigator.showUser(it, friend)
-                    }
+                    else -> navigator.showUser(requireActivity(), friend)
                 }
             }
         }

@@ -47,17 +47,11 @@ class HomeActivity : BaseActivity() {
 
         accountViewModel.accountData.observe(this, Observer(::handleAccount))
         accountViewModel.logoutData.observe(this, Observer(::handleLogout))
-        accountViewModel.failureData.observe(
-            this,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        accountViewModel.failureData.observe(this, Observer(::handleFailure))
 
         friendsViewModel.addFriendData.observe(this, Observer(::handleAddFriend))
         friendsViewModel.friendRequestsData.observe(this, Observer(::handleFriendRequests))
-        friendsViewModel.failureData.observe(
-            this,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        friendsViewModel.failureData.observe(this, Observer(::handleFailure))
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

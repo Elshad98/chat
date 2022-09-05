@@ -16,22 +16,19 @@ class FriendsFragment : BaseListFragment() {
     override val titleToolbar = R.string.screen_friends
     override val viewAdapter = FriendsAdapter()
 
-    lateinit var viewModel: FriendsViewModel
+    private lateinit var friendsViewModel: FriendsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
+        friendsViewModel = viewModel(FriendsViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = viewModel(FriendsViewModel::class.java)
-        viewModel.friendsData.observe(viewLifecycleOwner, Observer(::handleFriends))
-        viewModel.deleteFriendData.observe(viewLifecycleOwner, Observer(::handleDeleteFriend))
-        viewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        friendsViewModel.friendsData.observe(viewLifecycleOwner, Observer(::handleFriends))
+        friendsViewModel.deleteFriendData.observe(viewLifecycleOwner, Observer(::handleDeleteFriend))
+        friendsViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         setOnItemClickListener { item, view ->
             (item as? FriendEntity)?.let { friend ->
@@ -47,20 +44,18 @@ class FriendsFragment : BaseListFragment() {
     override fun onResume() {
         super.onResume()
         showProgress()
-        viewModel.getFriends()
+        friendsViewModel.getFriends()
     }
 
     private fun showDeleteFriendDialog(friend: FriendEntity) {
-        activity?.let {
-            AlertDialog.Builder(it)
-                .setMessage(getString(R.string.delete_friend))
-                .setPositiveButton(android.R.string.yes) { _, _ ->
-                    viewModel.deleteFriend(friend)
-                }
-                .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show()
-        }
+        AlertDialog.Builder(requireActivity())
+            .setMessage(getString(R.string.delete_friend))
+            .setPositiveButton(android.R.string.yes) { _, _ ->
+                friendsViewModel.deleteFriend(friend)
+            }
+            .setNegativeButton(android.R.string.no, null)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show()
     }
 
     private fun handleFriends(friends: List<FriendEntity>?) {
@@ -71,6 +66,6 @@ class FriendsFragment : BaseListFragment() {
     }
 
     private fun handleDeleteFriend(none: None?) {
-        viewModel.getFriends()
+        friendsViewModel.getFriends()
     }
 }

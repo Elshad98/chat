@@ -20,17 +20,14 @@ class ChatsFragment : BaseListFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
+        messagesViewModel = viewModel(MessagesViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        messagesViewModel = viewModel(MessagesViewModel::class.java)
 
         messagesViewModel.progressData.observe(viewLifecycleOwner, Observer(::updateProgress))
-        messagesViewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        messagesViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         viewAdapter.setOnClick(
             { message, _ ->

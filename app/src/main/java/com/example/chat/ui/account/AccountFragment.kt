@@ -23,10 +23,10 @@ class AccountFragment : BaseFragment() {
     override val layoutId = R.layout.fragment_account
     override val titleToolbar = R.string.screen_account
 
-    lateinit var mediaViewModel: MediaViewModel
-    lateinit var accountViewModel: AccountViewModel
+    private lateinit var mediaViewModel: MediaViewModel
+    private lateinit var accountViewModel: AccountViewModel
 
-    var accountEntity: AccountEntity? = null
+    private var accountEntity: AccountEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +42,7 @@ class AccountFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         accountViewModel.accountData.observe(viewLifecycleOwner, Observer(::handleAccount))
         accountViewModel.editAccountData.observe(
             viewLifecycleOwner,
@@ -53,14 +54,8 @@ class AccountFragment : BaseFragment() {
         )
         mediaViewModel.pickedImageData.observe(viewLifecycleOwner, Observer(::onImagePicked))
         mediaViewModel.progressData.observe(viewLifecycleOwner, Observer(::updateProgress))
-        accountViewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
-        mediaViewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        accountViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
+        mediaViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         showProgress()
         accountViewModel.getAccount()

@@ -33,17 +33,16 @@ class RegisterFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         accountViewModel.registerData.observe(viewLifecycleOwner, Observer(::handleRegister))
         accountViewModel.accountData.observe(viewLifecycleOwner, Observer(::handleLogin))
-        accountViewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        accountViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
+
         register_btn_new_membership.setOnClickListener {
             register()
         }
         register_btn_already_have_account.setOnClickListener {
-            activity?.finish()
+            requireActivity().finish()
         }
     }
 
@@ -87,7 +86,7 @@ class RegisterFragment : BaseFragment() {
 
     private fun handleLogin(accountEntity: AccountEntity) {
         hideProgress()
-        activity?.let {
+        requireActivity().let {
             navigator.showHome(it)
             it.finish()
         }

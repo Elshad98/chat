@@ -26,8 +26,8 @@ class MessagesFragment : BaseListFragment() {
     override val titleToolbar = R.string.chats
     override val layoutId = R.layout.fragment_messages
 
-    lateinit var mediaViewModel: MediaViewModel
-    lateinit var messagesViewModel: MessagesViewModel
+    private lateinit var mediaViewModel: MediaViewModel
+    private lateinit var messagesViewModel: MessagesViewModel
 
     private var contactName = ""
     private var contactId = 0L
@@ -35,26 +35,19 @@ class MessagesFragment : BaseListFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
+        mediaViewModel = viewModel(MediaViewModel::class.java)
+        messagesViewModel = viewModel(MessagesViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mediaViewModel = viewModel(MediaViewModel::class.java)
-        messagesViewModel = viewModel(MessagesViewModel::class.java)
-
         mediaViewModel.progressData.observe(viewLifecycleOwner, Observer(::updateProgress))
         mediaViewModel.pickedImageData.observe(viewLifecycleOwner, Observer(::onImagePicked))
         mediaViewModel.cameraFileCreatedData.observe(viewLifecycleOwner, Observer(::onCameraFileCreated))
         messagesViewModel.progressData.observe(viewLifecycleOwner, Observer(::updateProgress))
-        mediaViewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
-        messagesViewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        mediaViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
+        messagesViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         base {
             val args = intent.getBundleExtra("args")

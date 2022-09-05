@@ -41,7 +41,7 @@ class MessagesViewModel @Inject constructor(
 
     fun deleteMessage(contactId: Long, messageId: Long) {
         deleteMessageUseCase(DeleteMessage.Params(messageId)) { either ->
-            either.fold(::handleFailure) { }
+            either.fold(::handleFailure) { handleDeleteMessage(contactId, it) }
         }
     }
 

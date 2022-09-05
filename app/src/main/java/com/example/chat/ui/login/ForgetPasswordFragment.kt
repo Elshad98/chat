@@ -22,17 +22,14 @@ class ForgetPasswordFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
+        accountViewModel = viewModel(AccountViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        accountViewModel = viewModel(AccountViewModel::class.java)
         accountViewModel.forgetPasswordData.observe(viewLifecycleOwner, Observer(::onPasswordSent))
-        accountViewModel.failureData.observe(
-            viewLifecycleOwner,
-            Observer { it.getContentIfNotHandled()?.let(::handleFailure) }
-        )
+        accountViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         forget_password_btn_send_password.setOnClickListener {
             sendPassword()
