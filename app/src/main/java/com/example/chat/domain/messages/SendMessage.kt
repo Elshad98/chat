@@ -11,11 +11,11 @@ class SendMessage @Inject constructor(
 ) : UseCase<None, SendMessage.Params>() {
 
     override suspend fun run(params: Params): Either<Failure, None> {
-        return messagesRepository.sendMessage(params.toId, params.message, params.image)
+        return messagesRepository.sendMessage(params.receiverId, params.message, params.image)
     }
 
     data class Params(
-        val toId: Long,
+        val receiverId: Long,
         val message: String,
         val image: String
     )

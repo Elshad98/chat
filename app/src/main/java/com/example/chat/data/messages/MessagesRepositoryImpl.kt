@@ -71,11 +71,15 @@ class MessagesRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun sendMessage(toId: Long, message: String, image: String): Either<Failure, None> {
+    override fun sendMessage(
+        receiverId: Long,
+        message: String,
+        image: String
+    ): Either<Failure, None> {
         return accountCache
             .getCurrentAccount()
             .flatMap { account ->
-                messagesRemote.sendMessage(account.id, toId, account.token, message, image)
+                messagesRemote.sendMessage(account.id, receiverId, account.token, message, image)
             }
     }
 

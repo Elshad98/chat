@@ -12,8 +12,8 @@ interface MessagesRemote {
     fun deleteMessagesByUser(userId: Long, messageId: Long, token: String): Either<Failure, None>
 
     fun sendMessage(
-        fromId: Long,
-        toId: Long,
+        senderId: Long,
+        receiverId: Long,
         token: String,
         message: String,
         image: String

@@ -22,6 +22,7 @@ class NetworkHandler @Inject constructor(
                 .getNetworkCapabilities(connectivityManager.activeNetwork)
                 ?.let { capabilities ->
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN) ||
                         capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
                         capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ||
                         capabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH)

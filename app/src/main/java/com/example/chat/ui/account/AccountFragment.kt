@@ -16,7 +16,14 @@ import com.example.chat.presentation.viewmodel.MediaViewModel
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseFragment
 import com.example.chat.ui.core.GlideHelper
-import kotlinx.android.synthetic.main.fragment_account.*
+import kotlinx.android.synthetic.main.fragment_account.account_btn_edit
+import kotlinx.android.synthetic.main.fragment_account.account_group_progress
+import kotlinx.android.synthetic.main.fragment_account.account_input_current_password
+import kotlinx.android.synthetic.main.fragment_account.account_input_email
+import kotlinx.android.synthetic.main.fragment_account.account_input_name
+import kotlinx.android.synthetic.main.fragment_account.account_input_new_password
+import kotlinx.android.synthetic.main.fragment_account.account_input_status
+import kotlinx.android.synthetic.main.fragment_account.user_img_photo
 
 class AccountFragment : BaseFragment() {
 

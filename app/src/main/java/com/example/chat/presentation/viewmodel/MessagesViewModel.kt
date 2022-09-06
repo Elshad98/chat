@@ -33,9 +33,9 @@ class MessagesViewModel @Inject constructor(
         }
     }
 
-    fun sendMessage(toId: Long, message: String, image: String) {
-        sendMessageUseCase(SendMessage.Params(toId, message, image)) { either ->
-            either.fold(::handleFailure) { handleSendMessage(it, toId) }
+    fun sendMessage(receiverId: Long, message: String, image: String) {
+        sendMessageUseCase(SendMessage.Params(receiverId, message, image)) { either ->
+            either.fold(::handleFailure) { handleSendMessage(it, receiverId) }
         }
     }
 

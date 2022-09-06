@@ -5,6 +5,7 @@ import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
+import com.example.chat.remote.core.ApiParamBuilder
 import com.example.chat.remote.core.Request
 import com.example.chat.remote.service.ApiService
 import javax.inject.Inject
@@ -17,18 +18,21 @@ class MessagesRemoteImpl @Inject constructor(
 ) : MessagesRemote {
 
     override fun getChats(userId: Long, token: String): Either<Failure, List<MessageEntity>> {
-        val params = createGetLastMessagesMap(userId, token)
+        val params = ApiParamBuilder()
+            .userId(userId)
+            .token(token)
+            .build()
         return request.make(service.getLastMessages(params)) { it.messages }
     }
 
     override fun sendMessage(
-        fromId: Long,
-        toId: Long,
+        senderId: Long,
+        receiverId: Long,
         token: String,
         message: String,
         image: String
     ): Either<Failure, None> {
-        val params = createSendMessageMap(fromId, toId, token, message, image)
+        val params = createSendMessageMap(senderId, receiverId, token, message, image)
         return request.make(service.sendMessages(params)) { None() }
     }
 
@@ -37,7 +41,11 @@ class MessagesRemoteImpl @Inject constructor(
         userId: Long,
         token: String
     ): Either<Failure, List<MessageEntity>> {
-        val params = createGetMessagesWithContactMap(contactId, userId, token)
+        val params = ApiParamBuilder()
+            .contactId(contactId)
+            .userId(userId)
+            .token(token)
+            .build()
         return request.make(service.getMessagesWithContact(params)) { it.messages }
     }
 
@@ -48,28 +56,6 @@ class MessagesRemoteImpl @Inject constructor(
     ): Either<Failure, None> {
         val params = createDeleteMessagesMap(userId, messageId, token)
         return request.make(service.deleteMessagesByUser(params)) { None() }
-    }
-
-    private fun createGetLastMessagesMap(
-        userId: Long,
-        token: String
-    ): Map<String, String> {
-        val map = HashMap<String, String>()
-        map[ApiService.PARAM_TOKEN] = token
-        map[ApiService.PARAM_USER_ID] = userId.toString()
-        return map
-    }
-
-    private fun createGetMessagesWithContactMap(
-        contactId: Long,
-        userId: Long,
-        token: String
-    ): Map<String, String> {
-        val map = HashMap<String, String>()
-        map[ApiService.PARAM_TOKEN] = token
-        map[ApiService.PARAM_USER_ID] = userId.toString()
-        map[ApiService.PARAM_CONTACT_ID] = contactId.toString()
-        return map
     }
 
     private fun createSendMessageMap(

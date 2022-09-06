@@ -16,7 +16,7 @@ interface MessagesRepository {
     ): Either<Failure, List<MessageEntity>>
 
     fun sendMessage(
-        toId: Long,
+        receiverId: Long,
         message: String,
         image: String
     ): Either<Failure, None>

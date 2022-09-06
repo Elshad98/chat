@@ -7,9 +7,9 @@ import com.example.chat.domain.type.None
 
 interface FriendsRemote {
 
-    fun addFriend(email: String, userId: Long, token: String): Either<Failure, None>
-
     fun getFriends(userId: Long, token: String): Either<Failure, List<FriendEntity>>
+
+    fun addFriend(email: String, requestUserId: Long, token: String): Either<Failure, None>
 
     fun getFriendRequests(userId: Long, token: String): Either<Failure, List<FriendEntity>>
 
