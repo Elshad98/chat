@@ -185,7 +185,7 @@ class HomeActivity : BaseActivity() {
         if (requests?.isEmpty() == true) {
             binding.navigation.containerRequest.gone()
             if (binding.drawerLayout.isDrawerOpen(binding.navigation.navigationView)) {
-                longToast(R.string.no_incoming_invitations)
+                longToast(R.string.no_incoming_invites)
             }
         }
     }

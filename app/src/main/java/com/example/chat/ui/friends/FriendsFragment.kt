@@ -49,7 +49,7 @@ class FriendsFragment : BaseListFragment() {
 
     private fun showDeleteFriendDialog(friend: FriendEntity) {
         AlertDialog.Builder(requireActivity())
-            .setMessage(getString(R.string.delete_friend))
+            .setMessage(getString(R.string.delete_friend_text, friend.name))
             .setPositiveButton(android.R.string.yes) { _, _ ->
                 friendsViewModel.deleteFriend(friend)
             }

@@ -77,7 +77,7 @@ abstract class BaseActivity : AppCompatActivity() {
             is Failure.EmailAlreadyExistError -> longToast(R.string.error_email_already_exist)
             is Failure.AlreadyRequestedFriendError -> longToast(R.string.error_already_requested_friend)
             is Failure.FilePickError -> longToast(getString(R.string.error_picking_file))
-            is Failure.CantSendEmailError -> longToast(getString(R.string.error_cant_send_email))
+            is Failure.CantSendEmailError -> longToast(getString(R.string.error_cannot_send_email))
             is Failure.EmailNotRegisteredError -> longToast(getString(R.string.email_not_registered))
             else -> Unit
         }

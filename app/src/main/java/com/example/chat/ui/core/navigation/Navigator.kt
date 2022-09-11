@@ -94,11 +94,11 @@ class Navigator @Inject constructor(
             data = Uri.fromParts("mailto", email, null)
             putExtra(
                 Intent.EXTRA_SUBJECT,
-                context.getString(R.string.message_subject_promt_app)
+                context.getString(R.string.message_subject_prompt_app)
             )
             putExtra(
                 Intent.EXTRA_TEXT,
-                context.getString(R.string.message_text_promt_app) +
+                context.getString(R.string.message_text_prompt_app) +
                     " " + context.getString(R.string.url_google_play) + context.packageName
             )
         }
@@ -131,7 +131,7 @@ class Navigator @Inject constructor(
 
     fun showEmailNotFoundDialog(context: Context, email: String) {
         AlertDialog.Builder(context)
-            .setMessage(context.getString(R.string.message_promt_app))
+            .setMessage(context.getString(R.string.message_prompt_app))
             .setPositiveButton(android.R.string.ok) { _, _ ->
                 showEmailInvite(context, email)
             }
@@ -150,7 +150,7 @@ class Navigator @Inject constructor(
 
     fun showDeleteMessageDialog(context: Context, onPositive: () -> Unit) {
         AlertDialog.Builder(context)
-            .setMessage(context.getString(R.string.remove_message))
+            .setMessage(context.getString(R.string.delete_message_text))
             .setPositiveButton(android.R.string.ok) { dialog, _ ->
                 onPositive()
                 dialog.dismiss()
