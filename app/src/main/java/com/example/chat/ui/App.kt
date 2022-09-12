@@ -29,6 +29,7 @@ class App : Application() {
 
     companion object {
 
+        private const val APP_PREFERENCES = "AppPreferences"
         private const val BASE_URL = "http://n964182b.bget.ru/rest_api/"
 
         lateinit var appComponent: AppComponent
@@ -43,6 +44,7 @@ class App : Application() {
         appComponent = DaggerAppComponent.builder()
             .appModule(AppModule(context = this))
             .remoteModule(RemoteModule(BASE_URL))
+            .cacheModule(CacheModule(APP_PREFERENCES))
             .build()
     }
 }
