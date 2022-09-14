@@ -7,12 +7,12 @@ import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
 import com.example.chat.remote.core.ApiParamBuilder
 import com.example.chat.remote.core.Request
-import com.example.chat.remote.service.ApiService
+import com.example.chat.remote.service.AccountService
 import javax.inject.Inject
 
 class AccountRemoteImpl @Inject constructor(
     private val request: Request,
-    private val service: ApiService
+    private val service: AccountService
 ) : AccountRemote {
 
     override fun register(
@@ -97,17 +97,17 @@ class AccountRemoteImpl @Inject constructor(
         image: String
     ): Map<String, String> {
         val map = HashMap<String, String>()
-        map[ApiService.PARAM_NAME] = name
-        map[ApiService.PARAM_EMAIL] = email
-        map[ApiService.PARAM_TOKEN] = token
-        map[ApiService.PARAM_STATUS] = status
-        map[ApiService.PARAM_PASSWORD] = password
-        map[ApiService.PARAM_USER_ID] = userId.toString()
+        map[AccountService.PARAM_NAME] = name
+        map[AccountService.PARAM_EMAIL] = email
+        map[AccountService.PARAM_TOKEN] = token
+        map[AccountService.PARAM_STATUS] = status
+        map[AccountService.PARAM_PASSWORD] = password
+        map[AccountService.PARAM_USER_ID] = userId.toString()
         if (image.startsWith("../")) {
-            map[ApiService.PARAM_IMAGE_UPLOADED] = image
+            map[AccountService.PARAM_IMAGE_UPLOADED] = image
         } else {
-            map[ApiService.PARAM_IMAGE_NEW] = image
-            map[ApiService.PARAM_IMAGE_NEW_NAME] =
+            map[AccountService.PARAM_IMAGE_NEW] = image
+            map[AccountService.PARAM_IMAGE_NEW_NAME] =
                 "user_${userId}_${System.currentTimeMillis()}_photo"
         }
         return map

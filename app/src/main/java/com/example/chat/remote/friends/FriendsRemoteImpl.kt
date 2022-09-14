@@ -7,12 +7,12 @@ import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
 import com.example.chat.remote.core.ApiParamBuilder
 import com.example.chat.remote.core.Request
-import com.example.chat.remote.service.ApiService
+import com.example.chat.remote.service.FriendsService
 import javax.inject.Inject
 
 class FriendsRemoteImpl @Inject constructor(
     private val request: Request,
-    private val service: ApiService
+    private val service: FriendsService
 ) : FriendsRemote {
 
     override fun getFriends(userId: Long, token: String): Either<Failure, List<FriendEntity>> {
@@ -64,7 +64,11 @@ class FriendsRemoteImpl @Inject constructor(
         return request.make(service.cancelFriendRequest(params)) { None() }
     }
 
-    override fun addFriend(email: String, requestUserId: Long, token: String): Either<Failure, None> {
+    override fun addFriend(
+        email: String,
+        requestUserId: Long,
+        token: String
+    ): Either<Failure, None> {
         val params = ApiParamBuilder()
             .requestUserId(requestUserId)
             .email(email)

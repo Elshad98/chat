@@ -14,7 +14,7 @@ import com.example.chat.R
 import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.presentation.Authenticator
 import com.example.chat.presentation.viewmodel.MediaViewModel
-import com.example.chat.remote.service.ApiService
+import com.example.chat.remote.service.AccountService
 import com.example.chat.ui.account.AccountActivity
 import com.example.chat.ui.core.PermissionManager
 import com.example.chat.ui.home.HomeActivity
@@ -65,11 +65,11 @@ class Navigator @Inject constructor(
 
     fun showUser(context: Context, friendEntity: FriendEntity) {
         val bundle = Bundle().apply {
-            putString(ApiService.PARAM_NAME, friendEntity.name)
-            putString(ApiService.PARAM_EMAIL, friendEntity.email)
-            putString(ApiService.PARAM_IMAGE, friendEntity.image)
-            putLong(ApiService.PARAM_CONTACT_ID, friendEntity.id)
-            putString(ApiService.PARAM_STATUS, friendEntity.status)
+            putString(AccountService.PARAM_NAME, friendEntity.name)
+            putString(AccountService.PARAM_EMAIL, friendEntity.email)
+            putString(AccountService.PARAM_IMAGE, friendEntity.image)
+            putLong(AccountService.PARAM_CONTACT_ID, friendEntity.id)
+            putString(AccountService.PARAM_STATUS, friendEntity.status)
         }
         context.startActivity<UserActivity>(args = bundle)
     }
@@ -142,8 +142,8 @@ class Navigator @Inject constructor(
 
     fun showChatWithContact(context: Context, contactId: Long, contactName: String) {
         val bundle = Bundle().apply {
-            putString(ApiService.PARAM_NAME, contactName)
-            putLong(ApiService.PARAM_CONTACT_ID, contactId)
+            putString(AccountService.PARAM_NAME, contactName)
+            putLong(AccountService.PARAM_CONTACT_ID, contactId)
         }
         context.startActivity<MessagesActivity>(args = bundle)
     }

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.chat.R
 import com.example.chat.extensions.gone
-import com.example.chat.remote.service.ApiService
+import com.example.chat.remote.service.AccountService
 import com.example.chat.ui.core.BaseFragment
 import com.example.chat.ui.core.GlideHelper
 import kotlinx.android.synthetic.main.fragment_user.user_btn_send_message
@@ -25,11 +25,11 @@ class UserFragment : BaseFragment() {
         base {
             val args = intent.getBundleExtra("args")
             if (args != null) {
-                val name = args.getString(ApiService.PARAM_NAME)
-                val image = args.getString(ApiService.PARAM_IMAGE)
-                val id = args.getLong(ApiService.PARAM_CONTACT_ID)
-                val email = args.getString(ApiService.PARAM_EMAIL)
-                val status = args.getString(ApiService.PARAM_STATUS)
+                val name = args.getString(AccountService.PARAM_NAME)
+                val image = args.getString(AccountService.PARAM_IMAGE)
+                val id = args.getLong(AccountService.PARAM_CONTACT_ID)
+                val email = args.getString(AccountService.PARAM_EMAIL)
+                val status = args.getString(AccountService.PARAM_STATUS)
 
                 GlideHelper.loadImage(
                     requireContext(),

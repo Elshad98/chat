@@ -18,7 +18,7 @@ import com.example.chat.extensions.toggleVisibility
 import com.example.chat.extensions.visible
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.viewmodel.FriendsViewModel
-import com.example.chat.remote.service.ApiService
+import com.example.chat.remote.service.AccountService
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseActivity
 import com.example.chat.ui.core.BaseFragment
@@ -98,8 +98,8 @@ class HomeActivity : BaseActivity() {
                 binding.navigation.containerRequest.visible()
             }
             NotificationHelper.TYPE_SEND_MESSAGE -> {
-                val contactId = intent.getLongExtra(ApiService.PARAM_CONTACT_ID, 0)
-                val contactName = intent.getStringExtra(ApiService.PARAM_NAME).orEmpty()
+                val contactId = intent.getLongExtra(AccountService.PARAM_CONTACT_ID, 0)
+                val contactName = intent.getStringExtra(AccountService.PARAM_NAME).orEmpty()
                 navigator.showChatWithContact(this, contactId, contactName)
             }
         }

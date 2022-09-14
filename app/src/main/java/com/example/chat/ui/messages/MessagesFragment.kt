@@ -13,7 +13,7 @@ import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.extensions.longToast
 import com.example.chat.presentation.viewmodel.MediaViewModel
 import com.example.chat.presentation.viewmodel.MessagesViewModel
-import com.example.chat.remote.service.ApiService
+import com.example.chat.remote.service.AccountService
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseListFragment
 import kotlinx.android.synthetic.main.fragment_messages.messages_btn_photo
@@ -52,11 +52,11 @@ class MessagesFragment : BaseListFragment() {
         base {
             val args = intent.getBundleExtra("args")
             if (args == null) {
-                contactId = intent.getLongExtra(ApiService.PARAM_CONTACT_ID, 0L)
-                contactName = intent.getStringExtra(ApiService.PARAM_NAME) ?: ""
+                contactId = intent.getLongExtra(AccountService.PARAM_CONTACT_ID, 0L)
+                contactName = intent.getStringExtra(AccountService.PARAM_NAME) ?: ""
             } else {
-                contactId = args.getLong(ApiService.PARAM_CONTACT_ID)
-                contactName = args.getString(ApiService.PARAM_NAME, "")
+                contactId = args.getLong(AccountService.PARAM_CONTACT_ID)
+                contactName = args.getString(AccountService.PARAM_NAME, "")
             }
         }
 

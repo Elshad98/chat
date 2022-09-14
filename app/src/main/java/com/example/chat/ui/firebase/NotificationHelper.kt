@@ -16,7 +16,7 @@ import com.example.chat.domain.messages.ContactEntity
 import com.example.chat.domain.messages.GetMessagesWithContact
 import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.extensions.getNotificationManager
-import com.example.chat.remote.service.ApiService
+import com.example.chat.remote.service.AccountService
 import com.example.chat.ui.home.HomeActivity
 import com.google.firebase.messaging.RemoteMessage
 import javax.inject.Inject
@@ -104,19 +104,19 @@ class NotificationHelper @Inject constructor(
     }
 
     private fun parseFriend(jsonMessage: JSONObject): FriendEntity {
-        val requestUser = if (jsonMessage.has(ApiService.PARAM_REQUEST_USER)) {
-            jsonMessage.getJSONObject(ApiService.PARAM_REQUEST_USER)
+        val requestUser = if (jsonMessage.has(AccountService.PARAM_REQUEST_USER)) {
+            jsonMessage.getJSONObject(AccountService.PARAM_REQUEST_USER)
         } else {
-            jsonMessage.getJSONObject(ApiService.PARAM_APPROVED_USER)
+            jsonMessage.getJSONObject(AccountService.PARAM_APPROVED_USER)
         }
 
         return FriendEntity(
-            id = requestUser.getLong(ApiService.PARAM_USER_ID),
-            name = requestUser.getString(ApiService.PARAM_NAME),
-            email = requestUser.getString(ApiService.PARAM_EMAIL),
-            image = requestUser.getString(ApiService.PARAM_USER_ID),
-            status = requestUser.getString(ApiService.PARAM_STATUS),
-            friendsId = jsonMessage.getLong(ApiService.PARAM_FRIENDS_ID)
+            id = requestUser.getLong(AccountService.PARAM_USER_ID),
+            name = requestUser.getString(AccountService.PARAM_NAME),
+            email = requestUser.getString(AccountService.PARAM_EMAIL),
+            image = requestUser.getString(AccountService.PARAM_USER_ID),
+            status = requestUser.getString(AccountService.PARAM_STATUS),
+            friendsId = jsonMessage.getLong(AccountService.PARAM_FRIENDS_ID)
         )
     }
 
@@ -147,8 +147,8 @@ class NotificationHelper @Inject constructor(
         getMessagesWithContact(GetMessagesWithContact.Params(message.senderId, needFetch = true))
 
         val intent = Intent(context, HomeActivity::class.java).apply {
-            putExtra(ApiService.PARAM_CONTACT_ID, message.contact?.id)
-            putExtra(ApiService.PARAM_NAME, message.contact?.name)
+            putExtra(AccountService.PARAM_CONTACT_ID, message.contact?.id)
+            putExtra(AccountService.PARAM_NAME, message.contact?.name)
             putExtra("type", TYPE_SEND_MESSAGE)
         }
 
@@ -162,21 +162,21 @@ class NotificationHelper @Inject constructor(
     }
 
     private fun parseMessage(jsonMessage: JSONObject): MessageEntity {
-        val senderUser = jsonMessage.getJSONObject(ApiService.PARAM_SENDER_USER)
-        val senderId = jsonMessage.getLong(ApiService.PARAM_SENDER_USER_ID)
+        val senderUser = jsonMessage.getJSONObject(AccountService.PARAM_SENDER_USER)
+        val senderId = jsonMessage.getLong(AccountService.PARAM_SENDER_USER_ID)
         val contactEntity = ContactEntity(
             id = senderId,
-            name = senderUser.getString(ApiService.PARAM_NAME),
-            image = senderUser.getString(ApiService.PARAM_IMAGE),
-            lastSeen = senderUser.getLong(ApiService.PARAM_LAST_SEEN)
+            name = senderUser.getString(AccountService.PARAM_NAME),
+            image = senderUser.getString(AccountService.PARAM_IMAGE),
+            lastSeen = senderUser.getLong(AccountService.PARAM_LAST_SEEN)
         )
         return MessageEntity(
-            id = jsonMessage.getLong(ApiService.PARAM_MESSAGE_ID),
+            id = jsonMessage.getLong(AccountService.PARAM_MESSAGE_ID),
             senderId = senderId,
-            receiverId = jsonMessage.getLong(ApiService.PARAM_RECEIVED_USER_ID),
-            message = jsonMessage.getString(ApiService.PARAM_MESSAGE),
+            receiverId = jsonMessage.getLong(AccountService.PARAM_RECEIVED_USER_ID),
+            message = jsonMessage.getString(AccountService.PARAM_MESSAGE),
             date = 0,
-            type = jsonMessage.getInt(ApiService.PARAM_MESSAGE_TYPE),
+            type = jsonMessage.getInt(AccountService.PARAM_MESSAGE_TYPE),
             contact = contactEntity
         )
     }

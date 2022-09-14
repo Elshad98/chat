@@ -8,7 +8,9 @@ import com.example.chat.remote.account.AccountRemoteImpl
 import com.example.chat.remote.core.Request
 import com.example.chat.remote.friends.FriendsRemoteImpl
 import com.example.chat.remote.messages.MessagesRemoteImpl
-import com.example.chat.remote.service.ApiService
+import com.example.chat.remote.service.AccountService
+import com.example.chat.remote.service.FriendsService
+import com.example.chat.remote.service.MessageService
 import dagger.Module
 import dagger.Provides
 import java.util.concurrent.TimeUnit
@@ -32,26 +34,38 @@ class RemoteModule(
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
+    fun provideAccountService(retrofit: Retrofit): AccountService {
+        return retrofit.create(AccountService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideAccountRemote(request: Request, apiService: ApiService): AccountRemote {
-        return AccountRemoteImpl(request, apiService)
+    fun provideMessageService(retrofit: Retrofit): MessageService {
+        return retrofit.create(MessageService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideFriendsRemote(request: Request, apiService: ApiService): FriendsRemote {
-        return FriendsRemoteImpl(request, apiService)
+    fun provideFriendsService(retrofit: Retrofit): FriendsService {
+        return retrofit.create(FriendsService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideMessagesRemote(request: Request, apiService: ApiService): MessagesRemote {
-        return MessagesRemoteImpl(request, apiService)
+    fun provideAccountRemote(request: Request, accountService: AccountService): AccountRemote {
+        return AccountRemoteImpl(request, accountService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFriendsRemote(request: Request, friendsService: FriendsService): FriendsRemote {
+        return FriendsRemoteImpl(request, friendsService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMessagesRemote(request: Request, messageService: MessageService): MessagesRemote {
+        return MessagesRemoteImpl(request, messageService)
     }
 
     @Provides

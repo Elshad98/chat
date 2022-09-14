@@ -7,14 +7,15 @@ import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
 import com.example.chat.remote.core.ApiParamBuilder
 import com.example.chat.remote.core.Request
-import com.example.chat.remote.service.ApiService
+import com.example.chat.remote.service.AccountService
+import com.example.chat.remote.service.MessageService
 import javax.inject.Inject
 import org.json.JSONArray
 import org.json.JSONObject
 
 class MessagesRemoteImpl @Inject constructor(
     private val request: Request,
-    private val service: ApiService
+    private val service: MessageService
 ) : MessagesRemote {
 
     override fun getChats(userId: Long, token: String): Either<Failure, List<MessageEntity>> {
@@ -33,7 +34,7 @@ class MessagesRemoteImpl @Inject constructor(
         image: String
     ): Either<Failure, None> {
         val params = createSendMessageMap(senderId, receiverId, token, message, image)
-        return request.make(service.sendMessages(params)) { None() }
+        return request.make(service.sendMessage(params)) { None() }
     }
 
     override fun getMessagesWithContact(
@@ -71,15 +72,15 @@ class MessagesRemoteImpl @Inject constructor(
 
         if (image.isNotBlank()) {
             type = 2
-            map[ApiService.PARAM_IMAGE_NEW] = image
-            map[ApiService.PARAM_IMAGE_NEW_NAME] = "user_${fromId}_${time}_photo"
+            map[AccountService.PARAM_IMAGE_NEW] = image
+            map[AccountService.PARAM_IMAGE_NEW_NAME] = "user_${fromId}_${time}_photo"
         }
-        map[ApiService.PARAM_TOKEN] = token
-        map[ApiService.PARAM_MESSAGE] = message
-        map[ApiService.PARAM_SENDER_ID] = fromId.toString()
-        map[ApiService.PARAM_RECEIVER_ID] = toId.toString()
-        map[ApiService.PARAM_MESSAGE_TYPE] = type.toString()
-        map[ApiService.PARAM_MESSAGE_DATE] = time.toString()
+        map[AccountService.PARAM_TOKEN] = token
+        map[AccountService.PARAM_MESSAGE] = message
+        map[AccountService.PARAM_SENDER_ID] = fromId.toString()
+        map[AccountService.PARAM_RECEIVER_ID] = toId.toString()
+        map[AccountService.PARAM_MESSAGE_TYPE] = type.toString()
+        map[AccountService.PARAM_MESSAGE_DATE] = time.toString()
         return map
     }
 
@@ -97,9 +98,9 @@ class MessagesRemoteImpl @Inject constructor(
         itemsArrayObject.put("messages", itemsArray)
 
         val map = HashMap<String, String>()
-        map[ApiService.PARAM_TOKEN] = token
-        map[ApiService.PARAM_USER_ID] = userId.toString()
-        map[ApiService.PARAM_MESSAGES_IDS] = itemsArrayObject.toString()
+        map[AccountService.PARAM_TOKEN] = token
+        map[AccountService.PARAM_USER_ID] = userId.toString()
+        map[AccountService.PARAM_MESSAGES_IDS] = itemsArrayObject.toString()
         return map
     }
 }
