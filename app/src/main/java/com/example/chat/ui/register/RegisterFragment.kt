@@ -7,7 +7,7 @@ import com.example.chat.R
 import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.type.None
 import com.example.chat.extensions.hideKeyboard
-import com.example.chat.extensions.longToast
+import com.example.chat.extensions.showToast
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseFragment
@@ -63,7 +63,7 @@ class RegisterFragment : BaseFragment() {
     private fun validatePasswords(): Boolean {
         val valid = register_input_password.text.toString() == register_input_confirm_password.text.toString()
         if (!valid) {
-            requireContext().longToast(R.string.error_password_mismatch)
+            showToast(R.string.error_password_mismatch)
         }
         return valid
     }

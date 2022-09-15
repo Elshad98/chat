@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.domain.type.None
-import com.example.chat.extensions.longToast
+import com.example.chat.extensions.showToast
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.ui.App
 import com.example.chat.ui.core.BaseFragment
@@ -44,7 +44,7 @@ class ForgetPasswordFragment : BaseFragment() {
     }
 
     private fun onPasswordSent(none: None?) {
-        requireContext().longToast(R.string.email_sent)
+        showToast(R.string.email_sent)
         requireActivity().finish()
     }
 }

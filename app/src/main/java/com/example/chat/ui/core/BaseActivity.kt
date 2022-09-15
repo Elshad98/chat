@@ -12,7 +12,7 @@ import com.example.chat.R
 import com.example.chat.domain.type.Failure
 import com.example.chat.extensions.gone
 import com.example.chat.extensions.inTransaction
-import com.example.chat.extensions.longToast
+import com.example.chat.extensions.showToast
 import com.example.chat.extensions.visible
 import com.example.chat.ui.core.navigation.Navigator
 import javax.inject.Inject
@@ -69,16 +69,16 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun handleFailure(failure: Failure?) {
         hideProgress()
         when (failure) {
-            is Failure.AuthError -> longToast(R.string.error_auth)
-            is Failure.ServerError -> longToast(R.string.error_server)
+            is Failure.AuthError -> showToast(R.string.error_auth)
+            is Failure.ServerError -> showToast(R.string.error_server)
             is Failure.TokenError -> navigator.showLogin(context = this)
-            is Failure.NetworkConnectionError -> longToast(R.string.error_network)
-            is Failure.AlreadyFriendError -> longToast(R.string.error_already_friend)
-            is Failure.EmailAlreadyExistError -> longToast(R.string.error_email_already_exist)
-            is Failure.AlreadyRequestedFriendError -> longToast(R.string.error_already_requested_friend)
-            is Failure.FilePickError -> longToast(getString(R.string.error_picking_file))
-            is Failure.CantSendEmailError -> longToast(getString(R.string.error_cannot_send_email))
-            is Failure.EmailNotRegisteredError -> longToast(getString(R.string.email_not_registered))
+            is Failure.NetworkConnectionError -> showToast(R.string.error_network)
+            is Failure.AlreadyFriendError -> showToast(R.string.error_already_friend)
+            is Failure.EmailAlreadyExistError -> showToast(R.string.error_email_already_exist)
+            is Failure.AlreadyRequestedFriendError -> showToast(R.string.error_already_requested_friend)
+            is Failure.FilePickError -> showToast(getString(R.string.error_picking_file))
+            is Failure.CantSendEmailError -> showToast(getString(R.string.error_cannot_send_email))
+            is Failure.EmailNotRegisteredError -> showToast(getString(R.string.email_not_registered))
             else -> Unit
         }
     }

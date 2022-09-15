@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.chat.R
 import com.example.chat.domain.account.AccountEntity
 import com.example.chat.extensions.hideKeyboard
-import com.example.chat.extensions.longToast
+import com.example.chat.extensions.showToast
 import com.example.chat.extensions.toggleVisibility
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.viewmodel.MediaViewModel
@@ -119,13 +119,13 @@ class AccountFragment : BaseFragment() {
                 if (currentPassword == accountEntity?.password) {
                     true
                 } else {
-                    requireContext().longToast(getString(R.string.error_wrong_password))
+                    showToast(getString(R.string.error_wrong_password))
                     false
                 }
             }
             currentPassword.isEmpty() && newPassword.isEmpty() -> true
             else -> {
-                requireContext().longToast(getString(R.string.error_empty_password))
+                showToast(getString(R.string.error_empty_password))
                 false
             }
         }
@@ -177,7 +177,7 @@ class AccountFragment : BaseFragment() {
     }
 
     private fun handleEditingAccount(account: AccountEntity?) {
-        requireContext().longToast(getString(R.string.success_edit_user))
+        showToast(getString(R.string.success_edit_user))
         accountViewModel.getAccount()
     }
 }

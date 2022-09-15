@@ -13,7 +13,7 @@ import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
 import com.example.chat.extensions.gone
 import com.example.chat.extensions.hideKeyboard
-import com.example.chat.extensions.longToast
+import com.example.chat.extensions.showToast
 import com.example.chat.extensions.toggleVisibility
 import com.example.chat.extensions.visible
 import com.example.chat.presentation.viewmodel.AccountViewModel
@@ -178,14 +178,14 @@ class HomeActivity : BaseActivity() {
         binding.navigation.containerAddFriend.gone()
 
         hideProgress()
-        longToast(R.string.request_has_been_sent)
+        showToast(R.string.request_has_been_sent)
     }
 
     private fun handleFriendRequests(requests: List<FriendEntity>?) {
         if (requests?.isEmpty() == true) {
             binding.navigation.containerRequest.gone()
             if (binding.drawerLayout.isDrawerOpen(binding.navigation.navigationView)) {
-                longToast(R.string.no_incoming_invites)
+                showToast(R.string.no_incoming_invites)
             }
         }
     }
