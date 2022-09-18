@@ -48,6 +48,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="@{friend.name}"
+                android:textColor="@color/woodsmoke"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold"
                 tools:text="@string/name" />
@@ -78,7 +79,7 @@
                     android:background="@drawable/rounded_button"
                     android:padding="@dimen/small_padding"
                     android:src="@drawable/ic_done_black_24dp"
-                    app:tint="@android:color/white" />
+                    app:tint="@color/white" />
 
             </FrameLayout>
 
@@ -97,7 +98,7 @@
                     android:backgroundTint="@color/dark_grey"
                     android:padding="@dimen/small_padding"
                     android:src="@drawable/ic_close_black_24dp"
-                    app:tint="@android:color/white" />
+                    app:tint="@color/white" />
 
             </FrameLayout>
 

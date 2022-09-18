@@ -4,7 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/white"
     android:padding="@dimen/large_padding">
 
     <ScrollView
@@ -56,13 +56,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/large_padding"
                     android:paddingRight="@dimen/large_padding"
-                    android:shadowColor="@color/light_magenta"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowRadius="5"
                     android:text="@string/send_request"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
                     android:textSize="@dimen/medium_text_size" />
 
             </RelativeLayout>

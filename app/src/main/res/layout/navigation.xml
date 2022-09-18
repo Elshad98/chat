@@ -66,7 +66,9 @@
                         android:layout_marginStart="@dimen/medium_margin"
                         android:lines="1"
                         android:text="@{account.name}"
+                        android:textStyle="bold"
                         android:textSize="@dimen/medium_text_size"
+                        android:textColor="@color/woodsmoke"
                         tools:text="@string/name" />
 
                     <TextView
@@ -75,6 +77,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/medium_margin"
                         android:layout_marginTop="@dimen/extra_small_margin"
+                        android:textColor="@color/dark_grey"
                         android:lines="1"
                         android:text="@{account.email}"
                         tools:text="@string/email" />
@@ -86,6 +89,7 @@
                         android:layout_marginStart="@dimen/medium_margin"
                         android:layout_marginTop="@dimen/extra_small_margin"
                         android:lines="1"
+                        android:textColor="@color/dark_grey"
                         android:text="@{account.status}"
                         android:visibility="@{account.status.empty ? View.GONE : View.VISIBLE}"
                         tools:text="@string/status" />
@@ -124,7 +128,7 @@
                         android:layout_gravity="center"
                         android:contentDescription="@string/profile"
                         android:src="@drawable/ic_chat"
-                        app:tint="@color/colorPrimary" />
+                        app:tint="@color/eastern_blue" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -161,7 +165,7 @@
                         android:layout_gravity="center"
                         android:contentDescription="@string/profile"
                         android:src="@drawable/ic_group"
-                        app:tint="@color/colorPrimary" />
+                        app:tint="@color/eastern_blue" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -198,7 +202,7 @@
                         android:layout_gravity="center"
                         android:contentDescription="@string/add_friend"
                         android:src="@drawable/ic_person_add"
-                        app:tint="@color/colorPrimary" />
+                        app:tint="@color/eastern_blue" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -262,7 +266,7 @@
                                 android:shadowRadius="5"
                                 android:text="@string/send_request"
                                 android:textAllCaps="false"
-                                android:textColor="@android:color/white"
+                                android:textColor="@color/white"
                                 android:textSize="@dimen/normal_text_size" />
 
                         </RelativeLayout>
@@ -296,7 +300,7 @@
                         android:layout_gravity="center"
                         android:contentDescription="@string/profile"
                         android:src="@drawable/ic_group_add"
-                        app:tint="@color/colorPrimary" />
+                        app:tint="@color/eastern_blue" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -344,7 +348,7 @@
                     android:layout_margin="@dimen/extra_small_margin"
                     android:contentDescription="@string/logout"
                     android:src="@drawable/login_out"
-                    app:tint="@color/colorPrimary" />
+                    app:tint="@color/eastern_blue" />
 
                 <TextView
                     android:id="@+id/label_login_out"

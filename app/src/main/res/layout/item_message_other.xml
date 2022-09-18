@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:text="@{message.message}"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white"
                 android:textSize="@dimen/normal_text_size"
                 android:visibility="@{message.type == 2 ? View.GONE : View.VISIBLE}"
                 tools:text="Привет" />

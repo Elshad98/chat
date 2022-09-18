@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#268AB5</color>
 
     <color name="grey">#898989</color>
-    <color name="dark_grey">#454E4F</color>
+    <color name="dark_grey">#4F5660</color>
     <color name="light_grey">#E0E0E0</color>
+    <color name="athens_gray">#F2F3F5</color>
     <color name="light_magenta">#E3BFE3</color>
     <color name="translucent">#191919</color>
+    <color name="eastern_blue">#268AB5</color>
+    <color name="woodsmoke">#060607</color>
+    <color name="blueberry">#5865F2</color>
+    <color name="pale_sky">#6A7480</color>
+    <color name="white">#FFFFFF</color>
 
-    <color name="background">@android:color/white</color>
+    <color name="background">@color/white</color>
 
-    <color name="toolbarTextPrimary">@android:color/white</color>
-    <color name="toolbarTextSecondary">@android:color/white</color>
-
-    <color name="progressBarTint">@android:color/white</color>
-
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="progressBarTint">@color/white</color>
 </resources>

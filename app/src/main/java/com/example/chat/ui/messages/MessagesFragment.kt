@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.cache.ChatDatabase
 import com.example.chat.domain.messages.MessageEntity
-import com.example.chat.extensions.showToast
 import com.example.chat.presentation.viewmodel.MediaViewModel
 import com.example.chat.presentation.viewmodel.MessagesViewModel
 import com.example.chat.remote.service.AccountService
@@ -133,7 +132,6 @@ class MessagesFragment : BaseListFragment() {
         val text = messages_input_text.text.toString()
 
         if (text.isBlank() && image.isBlank()) {
-            showToast("Введите текст")
             return
         }
 

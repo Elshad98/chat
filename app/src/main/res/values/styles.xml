@@ -1,25 +1,20 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/athens_gray</item>
+        <item name="colorPrimaryDark">@color/pale_sky</item>
+        <item name="tint">@color/woodsmoke</item>
+        <item name="toolbarStyle">@style/ToolBarStyle</item>
     </style>
 
-    <style name="BaseToolbarStyle">
+    <style name="ToolBarStyle" parent="Widget.AppCompat.Toolbar">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="android:theme">@style/BaseToolbarTheme</item>
-        <item name="titleTextAppearance">@style/CustomTitleTextAppearance</item>
+        <item name="titleTextAppearance">@style/TitleTextAppearance</item>
     </style>
 
-    <style name="BaseToolbarTheme">
-        <item name="android:textColorPrimary">@color/toolbarTextPrimary</item>
-        <item name="android:textColorSecondary">@color/toolbarTextSecondary</item>
-    </style>
-
-    <style name="CustomTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:fontFamily">sans-serif-light</item>
+    <style name="TitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/toolbarTextPrimary</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/woodsmoke</item>
     </style>
 
     <style name="Button.Primary" parent="Base.Widget.AppCompat.Button">
@@ -27,8 +22,14 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:background">@drawable/rounded_button</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAppearance">@style/ButtonTextAppearance</item>
+    </style>
+
+    <style name="ButtonTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/medium_text_size</item>
     </style>
 
     <style name="DialogFullscreen" parent="android:Theme.Dialog">
@@ -38,5 +39,38 @@
         <item name="android:windowBackground">@color/translucent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="TextView">
+        <item name="android:textAppearance">@style/Text</item>
+    </style>
+
+    <style name="TextView.Primary">
+        <item name="android:textAppearance">@style/Text.Primary</item>
+    </style>
+
+    <style name="TextView.Secondary">
+        <item name="android:textAppearance">@style/Text.Secondary</item>
+    </style>
+
+    <style name="TextView.Primary.Bold">
+        <item name="android:textAppearance">@style/Text.Primary.Bold</item>
+    </style>
+
+    <style name="Text" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
+
+    <style name="Text.Primary">
+        <item name="android:textColor">@color/woodsmoke</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="Text.Secondary">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="Text.Primary.Bold">
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

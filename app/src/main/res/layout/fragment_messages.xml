@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/white">
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/messages_btn_photo"
@@ -41,7 +41,7 @@
             android:src="@drawable/ic_camera"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/colorPrimary" />
+            app:tint="@color/eastern_blue" />
 
         <EditText
             android:id="@+id/messages_input_text"
@@ -65,7 +65,7 @@
             android:focusable="true"
             android:padding="@dimen/small_padding"
             android:src="@drawable/ic_send"
-            android:tint="@color/colorPrimary"
+            android:tint="@color/eastern_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

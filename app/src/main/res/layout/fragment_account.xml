@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:whatever="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -208,14 +207,7 @@
                 android:layout_centerInParent="true"
                 android:paddingLeft="@dimen/large_padding"
                 android:paddingRight="@dimen/large_padding"
-                android:shadowColor="@color/light_magenta"
-                android:shadowDx="0"
-                android:shadowDy="0"
-                android:shadowRadius="5"
-                android:text="@string/update_account"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/medium_text_size" />
+                android:text="@string/update_account" />
 
         </RelativeLayout>
 

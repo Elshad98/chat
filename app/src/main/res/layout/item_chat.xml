@@ -51,8 +51,9 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="@{message.contact.name}"
-                android:textColor="#191919"
+                android:textColor="@color/woodsmoke"
                 android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold"
                 tools:text="@string/name" />
 
             <TextView
@@ -63,7 +64,8 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@{message.message}"
-                android:textSize="@dimen/small_text_size"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/normal_text_size"
                 tools:text="Текст" />
 
         </LinearLayout>
@@ -74,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
+            android:textColor="@color/grey"
             android:textSize="@dimen/small_text_size"
             app:date="@{message.date}"
             tools:text="Дата" />
