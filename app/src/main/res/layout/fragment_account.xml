@@ -15,14 +15,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/large_padding">
+            android:padding="@dimen/spacing_large">
 
             <FrameLayout
                 android:id="@+id/account_frame_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/extra_small_margin"
+                android:layout_marginTop="@dimen/spacing_tiny"
                 android:background="@drawable/circle_circle">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -63,8 +63,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/extra_small_margin"
-                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="@string/email_colon"
                 android:textColor="@android:color/secondary_text_light"
                 android:textSize="@dimen/normal_text_size"
@@ -77,8 +77,8 @@
                 android:hint="@string/email"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
-                android:paddingTop="@dimen/large_padding"
-                android:paddingBottom="@dimen/large_padding"
+                android:paddingTop="@dimen/spacing_large"
+                android:paddingBottom="@dimen/spacing_large"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
                 android:textSize="@dimen/normal_text_size"
@@ -89,8 +89,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/extra_small_margin"
-                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="@string/name_colon"
                 android:textColor="@android:color/secondary_text_light"
                 android:textSize="@dimen/normal_text_size"
@@ -103,8 +103,8 @@
                 android:hint="@string/name"
                 android:imeOptions="actionNext"
                 android:inputType="text"
-                android:paddingTop="@dimen/large_padding"
-                android:paddingBottom="@dimen/large_padding"
+                android:paddingTop="@dimen/spacing_large"
+                android:paddingBottom="@dimen/spacing_large"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
                 android:textSize="@dimen/normal_text_size"
@@ -113,8 +113,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/extra_small_margin"
-                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="@string/status_colon"
                 android:textColor="@android:color/secondary_text_light"
                 android:textSize="@dimen/normal_text_size"
@@ -127,8 +127,8 @@
                 android:hint="@string/status"
                 android:inputType="textMultiLine"
                 android:maxLength="200"
-                android:paddingTop="@dimen/large_padding"
-                android:paddingBottom="@dimen/large_padding"
+                android:paddingTop="@dimen/spacing_large"
+                android:paddingBottom="@dimen/spacing_large"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
                 android:textSize="@dimen/normal_text_size"
@@ -137,8 +137,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/extra_small_margin"
-                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="@string/current_password_colon"
                 android:textColor="@android:color/secondary_text_light"
                 android:textSize="@dimen/normal_text_size"
@@ -151,8 +151,8 @@
                 android:hint="@string/current_password"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
-                android:paddingTop="@dimen/large_padding"
-                android:paddingBottom="@dimen/large_padding"
+                android:paddingTop="@dimen/spacing_large"
+                android:paddingBottom="@dimen/spacing_large"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
                 android:textSize="@dimen/normal_text_size" />
@@ -160,8 +160,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/extra_small_margin"
-                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="@string/new_password_colon"
                 android:textColor="@android:color/secondary_text_light"
                 android:textSize="@dimen/normal_text_size"
@@ -174,8 +174,8 @@
                 android:hint="@string/new_password"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
-                android:paddingTop="@dimen/large_padding"
-                android:paddingBottom="@dimen/large_padding"
+                android:paddingTop="@dimen/spacing_large"
+                android:paddingBottom="@dimen/spacing_large"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/grey"
                 android:textSize="@dimen/normal_text_size" />
@@ -190,9 +190,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/large_margin"
-        android:layout_marginRight="@dimen/large_margin"
-        android:layout_marginBottom="@dimen/large_margin">
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_large">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -205,8 +205,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:paddingLeft="@dimen/large_padding"
-                android:paddingRight="@dimen/large_padding"
                 android:text="@string/update_account" />
 
         </RelativeLayout>

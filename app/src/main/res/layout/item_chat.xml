@@ -18,10 +18,7 @@
         android:clickable="true"
         android:divider="@drawable/contact_divider"
         android:focusable="true"
-        android:paddingStart="@dimen/large_padding"
-        android:paddingTop="@dimen/small_padding"
-        android:paddingEnd="@dimen/large_padding"
-        android:paddingBottom="@dimen/small_padding">
+        android:padding="@dimen/spacing_small">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_photo"
@@ -36,18 +33,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/small_margin"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
             android:layout_toStartOf="@+id/label_date"
             android:layout_toEndOf="@+id/image_photo"
             android:orientation="vertical"
-            android:padding="@dimen/small_padding">
+            android:padding="@dimen/spacing_small">
 
             <TextView
                 android:id="@+id/label_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/extra_small_margin"
+                android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="@{message.contact.name}"

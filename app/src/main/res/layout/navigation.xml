@@ -31,8 +31,8 @@
                 android:id="@+id/container_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/large_margin"
-                android:paddingBottom="@dimen/large_padding"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:paddingBottom="@dimen/spacing_large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -41,8 +41,8 @@
                     android:id="@+id/image_user"
                     android:layout_width="@dimen/account_photo_width"
                     android:layout_height="@dimen/account_photo_width"
-                    android:layout_marginStart="@dimen/medium_margin"
-                    android:layout_marginTop="@dimen/large_margin"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_large"
                     android:background="@drawable/circle_circle"
                     android:src="@drawable/contact_photo_sample"
                     app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +52,8 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/large_margin"
-                    android:layout_marginEnd="@dimen/medium_margin"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_marginEnd="@dimen/spacing_normal"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/image_user"
@@ -63,7 +63,7 @@
                         android:id="@+id/label_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/medium_margin"
+                        android:layout_marginStart="@dimen/spacing_normal"
                         android:lines="1"
                         android:text="@{account.name}"
                         android:textStyle="bold"
@@ -75,8 +75,8 @@
                         android:id="@+id/label_user_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/medium_margin"
-                        android:layout_marginTop="@dimen/extra_small_margin"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_tiny"
                         android:textColor="@color/dark_grey"
                         android:lines="1"
                         android:text="@{account.email}"
@@ -86,8 +86,8 @@
                         android:id="@+id/label_user_status"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/medium_margin"
-                        android:layout_marginTop="@dimen/extra_small_margin"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_tiny"
                         android:lines="1"
                         android:textColor="@color/dark_grey"
                         android:text="@{account.status}"
@@ -112,7 +112,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/large_padding">
+                android:padding="@dimen/spacing_large">
 
                 <LinearLayout
                     android:id="@+id/ll_chats"
@@ -133,7 +133,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/medium_margin"
+                        android:layout_marginStart="@dimen/spacing_normal"
                         android:gravity="start|center_vertical"
                         android:text="@string/chats"
                         android:textSize="@dimen/medium_text_size" />
@@ -149,7 +149,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/large_padding">
+                android:padding="@dimen/spacing_large">
 
                 <LinearLayout
                     android:id="@+id/ll_friends_list"
@@ -170,7 +170,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/medium_margin"
+                        android:layout_marginStart="@dimen/spacing_normal"
                         android:gravity="start|center_vertical"
                         android:text="@string/friends"
                         android:textSize="@dimen/normal_text_size" />
@@ -186,7 +186,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/large_padding">
+                android:padding="@dimen/spacing_large">
 
                 <LinearLayout
                     android:id="@+id/ll_add_friend"
@@ -207,7 +207,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/medium_margin"
+                        android:layout_marginStart="@dimen/spacing_normal"
                         android:gravity="start|center_vertical"
                         android:text="@string/add_friend"
                         android:textSize="@dimen/normal_text_size" />
@@ -219,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll_add_friend"
-                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/spacing_small"
                     android:visibility="gone">
 
                     <com.andreabaccega.widget.FormEditText
@@ -231,7 +231,7 @@
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:maxLines="2"
-                        android:padding="@dimen/medium_padding"
+                        android:padding="@dimen/spacing_normal"
                         android:scrollbars="vertical"
                         android:textColor="@color/dark_grey"
                         android:textColorHint="@android:color/darker_gray"
@@ -246,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/input_email"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/small_margin">
+                        android:layout_marginTop="@dimen/spacing_small">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -258,8 +258,8 @@
                                 style="@style/Button.Primary"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="@dimen/large_padding"
-                                android:paddingRight="@dimen/large_padding"
+                                android:paddingLeft="@dimen/spacing_large"
+                                android:paddingRight="@dimen/spacing_large"
                                 android:shadowColor="@color/light_magenta"
                                 android:shadowDx="0"
                                 android:shadowDy="0"
@@ -284,7 +284,7 @@
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/large_padding">
+                android:padding="@dimen/spacing_large">
 
                 <LinearLayout
                     android:id="@+id/ll_requests"
@@ -305,7 +305,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/medium_margin"
+                        android:layout_marginStart="@dimen/spacing_normal"
                         android:gravity="start|center_vertical"
                         android:text="@string/friend_requests"
                         android:textSize="@dimen/normal_text_size" />
@@ -331,13 +331,13 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
-            android:padding="@dimen/medium_padding">
+            android:padding="@dimen/spacing_normal">
 
             <LinearLayout
                 android:id="@+id/ll_login_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/spacing_normal"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -345,7 +345,7 @@
                     android:layout_width="33dp"
                     android:layout_height="33dp"
                     android:layout_gravity="center"
-                    android:layout_margin="@dimen/extra_small_margin"
+                    android:layout_margin="@dimen/spacing_tiny"
                     android:contentDescription="@string/logout"
                     android:src="@drawable/login_out"
                     app:tint="@color/eastern_blue" />
@@ -355,8 +355,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/medium_margin"
-                    android:layout_marginEnd="@dimen/extra_small_margin"
+                    android:layout_marginStart="@dimen/spacing_normal"
+                    android:layout_marginEnd="@dimen/spacing_tiny"
                     android:gravity="start|center_vertical"
                     android:text="@string/logout"
                     android:textSize="@dimen/normal_text_size" />
