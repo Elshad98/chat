@@ -10,16 +10,16 @@ import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.domain.messages.MessageEntity
 
 @Database(entities = [FriendEntity::class, MessageEntity::class], version = 1, exportSchema = false)
-abstract class ChatDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     companion object {
 
         private const val DB_NAME = "chat_database"
 
-        private var INSTANCE: ChatDatabase? = null
+        private var INSTANCE: AppDatabase? = null
         private var LOCK = Any()
 
-        fun getInstance(context: Context): ChatDatabase {
+        fun getInstance(context: Context): AppDatabase {
             INSTANCE?.let {
                 return it
             }
@@ -29,7 +29,7 @@ abstract class ChatDatabase : RoomDatabase() {
                     return it
                 }
                 val db = Room
-                    .databaseBuilder(context, ChatDatabase::class.java, DB_NAME)
+                    .databaseBuilder(context, AppDatabase::class.java, DB_NAME)
                     .build()
                 INSTANCE = db
                 return db
@@ -37,6 +37,7 @@ abstract class ChatDatabase : RoomDatabase() {
         }
     }
 
-    abstract val friendsDao: FriendsDao
-    abstract val messagesDao: MessagesDao
+    abstract fun friendsDao(): FriendsDao
+
+    abstract fun messagesDao(): MessagesDao
 }

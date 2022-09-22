@@ -1,30 +1,27 @@
 package com.example.chat.domain.messages
 
 import androidx.room.TypeConverter
+import com.google.gson.Gson
 
 class ContactConverter {
 
     @TypeConverter
-    fun toString(contact: ContactEntity?): String? {
+    fun contactToString(contact: ContactEntity?): String? {
         return if (contact == null) {
             null
         } else {
-            "${contact.id}||${contact.name}||${contact.image}||${contact.lastSeen}"
+            val gson = Gson()
+            gson.toJson(contact)
         }
     }
 
     @TypeConverter
-    fun toContact(string: String?): ContactEntity? {
-        return if (string == null) {
+    fun stringToContact(value: String?): ContactEntity? {
+        return if (value == null) {
             return null
         } else {
-            val array = string.split("||")
-            ContactEntity(
-                id = array[0].toLong(),
-                name = array[1],
-                image = array[2],
-                lastSeen = array[3].toLong()
-            )
+            val gson = Gson()
+            gson.fromJson(value, ContactEntity::class.java)
         }
     }
 }

@@ -3,7 +3,7 @@ package com.example.chat.presentation.injection
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.chat.cache.AccountCacheImpl
-import com.example.chat.cache.ChatDatabase
+import com.example.chat.cache.AppDatabase
 import com.example.chat.cache.SharedPrefsManager
 import com.example.chat.data.account.AccountCache
 import com.example.chat.data.friends.FriendsCache
@@ -19,20 +19,20 @@ class CacheModule(
 
     @Provides
     @Singleton
-    fun provideChatDatabase(context: Context): ChatDatabase {
-        return ChatDatabase.getInstance(context)
+    fun provideAppDatabase(context: Context): AppDatabase {
+        return AppDatabase.getInstance(context)
     }
 
     @Provides
     @Singleton
-    fun provideMessagesCache(chatDatabase: ChatDatabase): MessagesCache {
-        return chatDatabase.messagesDao
+    fun provideMessagesCache(chatDatabase: AppDatabase): MessagesCache {
+        return chatDatabase.messagesDao()
     }
 
     @Provides
     @Singleton
-    fun provideFriendsCache(chatDatabase: ChatDatabase): FriendsCache {
-        return chatDatabase.friendsDao
+    fun provideFriendsCache(appDatabase: AppDatabase): FriendsCache {
+        return appDatabase.friendsDao()
     }
 
     @Provides
@@ -45,8 +45,8 @@ class CacheModule(
     @Singleton
     fun provideAccountCache(
         prefsManager: SharedPrefsManager,
-        chatDatabase: ChatDatabase
+        appDatabase: AppDatabase
     ): AccountCache {
-        return AccountCacheImpl(chatDatabase, prefsManager)
+        return AccountCacheImpl(appDatabase, prefsManager)
     }
 }

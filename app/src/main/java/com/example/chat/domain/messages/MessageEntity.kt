@@ -7,7 +7,6 @@ import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "messages_table")
-@TypeConverters(ContactConverter::class)
 data class MessageEntity(
     @PrimaryKey
     @SerializedName("message_id")
@@ -32,6 +31,7 @@ data class MessageEntity(
     @ColumnInfo(name = "deleted_by_receiver_id")
     var deletedByReceiver: Int = 0,
     var message: String,
+    @TypeConverters(ContactConverter::class)
     var contact: ContactEntity? = null,
     var fromMe: Boolean = false
 ) {

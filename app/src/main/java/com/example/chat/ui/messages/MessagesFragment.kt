@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.cache.ChatDatabase
+import com.example.chat.cache.AppDatabase
 import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.presentation.viewmodel.MediaViewModel
 import com.example.chat.presentation.viewmodel.MessagesViewModel
@@ -75,8 +75,8 @@ class MessagesFragment : BaseListFragment() {
             }
         }
 
-        ChatDatabase.getInstance(requireContext())
-            .messagesDao
+        AppDatabase.getInstance(requireContext())
+            .messagesDao()
             .getLiveMessagesWithContact(contactId)
             .observe(viewLifecycleOwner, Observer(::handleMessages))
 

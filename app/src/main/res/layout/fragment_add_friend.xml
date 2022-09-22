@@ -56,8 +56,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/spacing_large"
                     android:paddingRight="@dimen/spacing_large"
-                    android:text="@string/send_request"
-                    android:textSize="@dimen/medium_text_size" />
+                    android:text="@string/send_request" />
 
             </RelativeLayout>
 
