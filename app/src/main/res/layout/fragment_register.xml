@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".ui.register.RegisterFragment">
+    tools:context=".presentation.register.RegisterFragment">
 
     <com.andreabaccega.widget.FormEditText
         android:id="@+id/register_input_username"
