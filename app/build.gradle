@@ -22,6 +22,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "String", "BASE_URL", "\"http://n964182b.bget.ru/rest_api/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

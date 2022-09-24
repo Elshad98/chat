@@ -13,7 +13,6 @@ import com.example.chat.remote.service.FriendsService
 import com.example.chat.remote.service.MessageService
 import dagger.Module
 import dagger.Provides
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,16 +20,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-class RemoteModule(
-    private val baseUrl: String
-) {
-
-    companion object {
-
-        private const val READ_TIMEOUT_SECONDS = 10L
-        private const val WRITE_TIMEOUT_SECONDS = 10L
-        private const val CONNECT_TIMEOUT_SECONDS = 10L
-    }
+class RemoteModule {
 
     @Provides
     @Singleton
@@ -85,9 +75,6 @@ class RemoteModule(
     fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .writeTimeout(WRITE_TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .readTimeout(READ_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .build()
     }
 
@@ -95,7 +82,7 @@ class RemoteModule(
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
