@@ -13,9 +13,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class CacheModule(
-    private val prefName: String
-) {
+class CacheModule {
 
     @Provides
     @Singleton
@@ -38,7 +36,7 @@ class CacheModule(
     @Provides
     @Singleton
     fun provideSharedPreferences(context: Context): SharedPreferences {
-        return context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+        return context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
     }
 
     @Provides
