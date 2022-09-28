@@ -20,7 +20,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, DomainModule::class, CacheModule::class, RemoteModule::class, ViewModelModule::class])
+@Component(modules = [AppModule::class, DomainModule::class, DataModule::class, ViewModelModule::class])
 interface AppComponent {
 
     fun inject(activity: RegisterActivity)

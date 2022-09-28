@@ -1,9 +1,9 @@
 package com.example.chat.di
 
-import com.example.chat.data.account.AccountRepositoryImpl
-import com.example.chat.data.friends.FriendsRepositoryImpl
-import com.example.chat.data.media.MediaRepositoryImpl
-import com.example.chat.data.messages.MessagesRepositoryImpl
+import com.example.chat.data.repository.account.AccountRepositoryImpl
+import com.example.chat.data.repository.friends.FriendsRepositoryImpl
+import com.example.chat.data.repository.media.MediaRepositoryImpl
+import com.example.chat.data.repository.messages.MessagesRepositoryImpl
 import com.example.chat.domain.account.AccountRepository
 import com.example.chat.domain.friends.FriendsRepository
 import com.example.chat.domain.media.MediaRepository

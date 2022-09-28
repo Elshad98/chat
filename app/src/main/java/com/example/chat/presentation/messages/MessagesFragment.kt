@@ -8,11 +8,11 @@ import android.view.View
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.cache.AppDatabase
+import com.example.chat.data.cache.AppDatabase
 import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.presentation.viewmodel.MediaViewModel
 import com.example.chat.presentation.viewmodel.MessagesViewModel
-import com.example.chat.remote.service.AccountService
+import com.example.chat.data.remote.service.AccountService
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseListFragment
 import kotlinx.android.synthetic.main.fragment_messages.messages_btn_photo

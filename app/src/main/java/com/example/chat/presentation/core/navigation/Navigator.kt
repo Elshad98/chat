@@ -14,7 +14,7 @@ import com.example.chat.R
 import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.presentation.Authenticator
 import com.example.chat.presentation.viewmodel.MediaViewModel
-import com.example.chat.remote.service.AccountService
+import com.example.chat.data.remote.service.AccountService
 import com.example.chat.presentation.account.AccountActivity
 import com.example.chat.presentation.core.PermissionManager
 import com.example.chat.presentation.home.HomeActivity

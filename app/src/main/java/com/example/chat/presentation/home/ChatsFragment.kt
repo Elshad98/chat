@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.cache.AppDatabase
+import com.example.chat.data.cache.AppDatabase
 import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.presentation.viewmodel.MessagesViewModel
 import com.example.chat.presentation.App

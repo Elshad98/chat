@@ -18,7 +18,7 @@ import com.example.chat.extensions.toggleVisibility
 import com.example.chat.extensions.visible
 import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.viewmodel.FriendsViewModel
-import com.example.chat.remote.service.AccountService
+import com.example.chat.data.remote.service.AccountService
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseActivity
 import com.example.chat.presentation.core.BaseFragment

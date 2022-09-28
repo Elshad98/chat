@@ -58,7 +58,9 @@ fun <LeftT, RightT> Either<LeftT, RightT>.onNext(func: (RightT) -> Unit): Either
     return this
 }
 
-inline fun <T, LeftT, RightT> Either<LeftT, RightT>.flatMap(func: (RightT) -> Either<LeftT, T>): Either<LeftT, T> {
+inline fun <T, LeftT, RightT> Either<LeftT, RightT>.flatMap(
+    func: (RightT) -> Either<LeftT, T>
+): Either<LeftT, T> {
     return when (this) {
         is Either.Left -> Either.Left(value)
         is Either.Right -> func(value)
