@@ -1,14 +1,14 @@
 package com.example.chat.data.remote.messages
 
+import com.example.chat.data.remote.core.ApiParamBuilder
+import com.example.chat.data.remote.core.Request
+import com.example.chat.data.remote.service.AccountService
+import com.example.chat.data.remote.service.MessageService
 import com.example.chat.data.repository.messages.MessagesRemote
 import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
-import com.example.chat.data.remote.core.ApiParamBuilder
-import com.example.chat.data.remote.core.Request
-import com.example.chat.data.remote.service.AccountService
-import com.example.chat.data.remote.service.MessageService
 import javax.inject.Inject
 import org.json.JSONArray
 import org.json.JSONObject

@@ -6,9 +6,9 @@ import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.domain.type.None
 import com.example.chat.extensions.showToast
-import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseFragment
+import com.example.chat.presentation.viewmodel.AccountViewModel
 import kotlinx.android.synthetic.main.fragment_forget_password.forget_password_btn_send_password
 import kotlinx.android.synthetic.main.fragment_forget_password.forget_password_input_email
 

@@ -1,13 +1,13 @@
 package com.example.chat.data.remote.friends
 
+import com.example.chat.data.remote.core.ApiParamBuilder
+import com.example.chat.data.remote.core.Request
+import com.example.chat.data.remote.service.FriendsService
 import com.example.chat.data.repository.friends.FriendsRemote
 import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
-import com.example.chat.data.remote.core.ApiParamBuilder
-import com.example.chat.data.remote.core.Request
-import com.example.chat.data.remote.service.FriendsService
 import javax.inject.Inject
 
 class FriendsRemoteImpl @Inject constructor(

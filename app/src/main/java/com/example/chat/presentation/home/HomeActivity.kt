@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import com.example.chat.R
+import com.example.chat.data.remote.service.AccountService
 import com.example.chat.databinding.ActivityNavigationBinding
 import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.friends.FriendEntity
@@ -16,15 +17,14 @@ import com.example.chat.extensions.hideKeyboard
 import com.example.chat.extensions.showToast
 import com.example.chat.extensions.toggleVisibility
 import com.example.chat.extensions.visible
-import com.example.chat.presentation.viewmodel.AccountViewModel
-import com.example.chat.presentation.viewmodel.FriendsViewModel
-import com.example.chat.data.remote.service.AccountService
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseActivity
 import com.example.chat.presentation.core.BaseFragment
 import com.example.chat.presentation.firebase.NotificationHelper
 import com.example.chat.presentation.friends.FriendRequestsFragment
 import com.example.chat.presentation.friends.FriendsFragment
+import com.example.chat.presentation.viewmodel.AccountViewModel
+import com.example.chat.presentation.viewmodel.FriendsViewModel
 
 class HomeActivity : BaseActivity() {
 

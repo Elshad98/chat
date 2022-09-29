@@ -6,9 +6,9 @@ import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.domain.account.AccountEntity
 import com.example.chat.extensions.hideKeyboard
-import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseFragment
+import com.example.chat.presentation.viewmodel.AccountViewModel
 import kotlinx.android.synthetic.main.fragment_login.login_btn_forget_password
 import kotlinx.android.synthetic.main.fragment_login.login_btn_login
 import kotlinx.android.synthetic.main.fragment_login.login_btn_register

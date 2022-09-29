@@ -11,10 +11,9 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.chat.R
+import com.example.chat.data.remote.service.AccountService
 import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.presentation.Authenticator
-import com.example.chat.presentation.viewmodel.MediaViewModel
-import com.example.chat.data.remote.service.AccountService
 import com.example.chat.presentation.account.AccountActivity
 import com.example.chat.presentation.core.PermissionManager
 import com.example.chat.presentation.home.HomeActivity
@@ -23,6 +22,7 @@ import com.example.chat.presentation.login.LoginActivity
 import com.example.chat.presentation.messages.MessagesActivity
 import com.example.chat.presentation.register.RegisterActivity
 import com.example.chat.presentation.user.UserActivity
+import com.example.chat.presentation.viewmodel.MediaViewModel
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.android.synthetic.main.dialog_image.view.image_view

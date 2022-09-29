@@ -1,13 +1,13 @@
 package com.example.chat.data.remote.account
 
+import com.example.chat.data.remote.core.ApiParamBuilder
+import com.example.chat.data.remote.core.Request
+import com.example.chat.data.remote.service.AccountService
 import com.example.chat.data.repository.account.AccountRemote
 import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
-import com.example.chat.data.remote.core.ApiParamBuilder
-import com.example.chat.data.remote.core.Request
-import com.example.chat.data.remote.service.AccountService
 import javax.inject.Inject
 
 class AccountRemoteImpl @Inject constructor(

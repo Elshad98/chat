@@ -7,9 +7,9 @@ import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.domain.type.None
-import com.example.chat.presentation.viewmodel.FriendsViewModel
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseListFragment
+import com.example.chat.presentation.viewmodel.FriendsViewModel
 
 class FriendsFragment : BaseListFragment() {
 

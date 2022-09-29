@@ -8,9 +8,9 @@ import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.type.None
 import com.example.chat.extensions.hideKeyboard
 import com.example.chat.extensions.showToast
-import com.example.chat.presentation.viewmodel.AccountViewModel
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseFragment
+import com.example.chat.presentation.viewmodel.AccountViewModel
 import kotlinx.android.synthetic.main.fragment_register.register_btn_already_have_account
 import kotlinx.android.synthetic.main.fragment_register.register_btn_new_membership
 import kotlinx.android.synthetic.main.fragment_register.register_input_confirm_password

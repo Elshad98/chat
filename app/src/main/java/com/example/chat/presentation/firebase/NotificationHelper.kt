@@ -11,12 +11,12 @@ import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.chat.R
+import com.example.chat.data.remote.service.AccountService
 import com.example.chat.domain.friends.FriendEntity
 import com.example.chat.domain.messages.ContactEntity
 import com.example.chat.domain.messages.GetMessagesWithContact
 import com.example.chat.domain.messages.MessageEntity
 import com.example.chat.extensions.getNotificationManager
-import com.example.chat.data.remote.service.AccountService
 import com.example.chat.presentation.home.HomeActivity
 import com.google.firebase.messaging.RemoteMessage
 import javax.inject.Inject

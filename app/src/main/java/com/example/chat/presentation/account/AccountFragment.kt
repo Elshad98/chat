@@ -11,11 +11,11 @@ import com.example.chat.domain.account.AccountEntity
 import com.example.chat.extensions.hideKeyboard
 import com.example.chat.extensions.showToast
 import com.example.chat.extensions.toggleVisibility
-import com.example.chat.presentation.viewmodel.AccountViewModel
-import com.example.chat.presentation.viewmodel.MediaViewModel
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseFragment
 import com.example.chat.presentation.core.GlideHelper
+import com.example.chat.presentation.viewmodel.AccountViewModel
+import com.example.chat.presentation.viewmodel.MediaViewModel
 import kotlinx.android.synthetic.main.fragment_account.account_btn_edit
 import kotlinx.android.synthetic.main.fragment_account.account_group_progress
 import kotlinx.android.synthetic.main.fragment_account.account_input_current_password

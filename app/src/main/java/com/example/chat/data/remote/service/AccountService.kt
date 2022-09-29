@@ -61,7 +61,7 @@ interface AccountService {
     fun updateToken(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
     @FormUrlEncoded
-    @POST("forget_password.php")
+    @POST("forgetPassword.php")
     fun forgetPassword(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
     @FormUrlEncoded
