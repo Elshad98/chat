@@ -6,12 +6,12 @@ import android.os.Looper
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.data.remote.service.AccountService
+import com.example.chat.data.remote.service.UserService
 import com.example.chat.databinding.ActivityNavigationBinding
-import com.example.chat.domain.account.AccountEntity
-import com.example.chat.domain.friends.FriendEntity
+import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
+import com.example.chat.domain.user.User
 import com.example.chat.extensions.gone
 import com.example.chat.extensions.hideKeyboard
 import com.example.chat.extensions.showToast
@@ -45,7 +45,7 @@ class HomeActivity : BaseActivity() {
         accountViewModel = viewModel(AccountViewModel::class.java)
         friendsViewModel = viewModel(FriendsViewModel::class.java)
 
-        accountViewModel.accountData.observe(this, Observer(::handleAccount))
+        accountViewModel.userData.observe(this, Observer(::handleUser))
         accountViewModel.logoutData.observe(this, Observer(::handleLogout))
         accountViewModel.failureData.observe(this, Observer(::handleFailure))
 
@@ -98,8 +98,8 @@ class HomeActivity : BaseActivity() {
                 binding.navigation.containerRequest.visible()
             }
             NotificationHelper.TYPE_SEND_MESSAGE -> {
-                val contactId = intent.getLongExtra(AccountService.PARAM_CONTACT_ID, 0)
-                val contactName = intent.getStringExtra(AccountService.PARAM_NAME).orEmpty()
+                val contactId = intent.getLongExtra(UserService.PARAM_CONTACT_ID, 0)
+                val contactName = intent.getStringExtra(UserService.PARAM_NAME).orEmpty()
                 navigator.showChatWithContact(this, contactId, contactName)
             }
         }
@@ -112,7 +112,7 @@ class HomeActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        accountViewModel.getAccount()
+        accountViewModel.getUser()
         accountViewModel.updateLastSeen()
     }
 
@@ -164,8 +164,8 @@ class HomeActivity : BaseActivity() {
         binding.drawerLayout.closeDrawer(binding.navigation.navigationView)
     }
 
-    private fun handleAccount(accountEntity: AccountEntity?) {
-        accountEntity?.let(binding.navigation::setAccount)
+    private fun handleUser(user: User?) {
+        user?.let(binding.navigation::setUser)
     }
 
     private fun handleLogout(none: None?) {
@@ -181,7 +181,7 @@ class HomeActivity : BaseActivity() {
         showToast(R.string.request_has_been_sent)
     }
 
-    private fun handleFriendRequests(requests: List<FriendEntity>?) {
+    private fun handleFriendRequests(requests: List<Friend>?) {
         if (requests?.isEmpty() == true) {
             binding.navigation.containerRequest.gone()
             if (binding.drawerLayout.isDrawerOpen(binding.navigation.navigationView)) {

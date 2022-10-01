@@ -7,7 +7,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.chat.R
-import com.example.chat.domain.account.AccountEntity
+import com.example.chat.domain.user.User
 import com.example.chat.extensions.hideKeyboard
 import com.example.chat.extensions.showToast
 import com.example.chat.extensions.toggleVisibility
@@ -33,7 +33,7 @@ class AccountFragment : BaseFragment() {
     private lateinit var mediaViewModel: MediaViewModel
     private lateinit var accountViewModel: AccountViewModel
 
-    private var accountEntity: AccountEntity? = null
+    private var user: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +50,8 @@ class AccountFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        accountViewModel.accountData.observe(viewLifecycleOwner, Observer(::handleAccount))
-        accountViewModel.editAccountData.observe(
+        accountViewModel.userData.observe(viewLifecycleOwner, Observer(::handleUser))
+        accountViewModel.editUserData.observe(
             viewLifecycleOwner,
             Observer(::handleEditingAccount)
         )
@@ -65,7 +65,7 @@ class AccountFragment : BaseFragment() {
         mediaViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         showProgress()
-        accountViewModel.getAccount()
+        accountViewModel.getUser()
         account_btn_edit.setOnClickListener {
             view.clearFocus()
             val fieldsValid = validateFields()
@@ -80,7 +80,7 @@ class AccountFragment : BaseFragment() {
 
             showProgress()
 
-            accountEntity?.run {
+            user?.run {
                 name = account_input_name.text.toString()
                 email = account_input_email.text.toString()
                 status = account_input_status.text.toString()
@@ -90,7 +90,7 @@ class AccountFragment : BaseFragment() {
                     password = newPassword
                 }
 
-                accountViewModel.editAccount(this)
+                accountViewModel.editUser(this)
             }
         }
         user_img_photo.setOnClickListener {
@@ -116,7 +116,7 @@ class AccountFragment : BaseFragment() {
 
         return when {
             currentPassword.isNotEmpty() && newPassword.isNotEmpty() -> {
-                if (currentPassword == accountEntity?.password) {
+                if (currentPassword == user?.password) {
                     true
                 } else {
                     showToast(getString(R.string.error_wrong_password))
@@ -141,10 +141,10 @@ class AccountFragment : BaseFragment() {
         return allValid
     }
 
-    private fun handleAccount(account: AccountEntity?) {
+    private fun handleUser(user: User?) {
         hideProgress()
-        accountEntity = account
-        account?.let {
+        this.user = user
+        user?.let {
             GlideHelper.loadImage(requireActivity(), it.image, user_img_photo)
             account_input_email.setText(it.email)
             account_input_name.setText(it.name)
@@ -165,7 +165,7 @@ class AccountFragment : BaseFragment() {
 
     private fun onImagePicked(pickedImage: MediaViewModel.PickedImage?) {
         if (pickedImage != null) {
-            accountEntity?.image = pickedImage.string
+            user?.image = pickedImage.string
 
             val placeholder = user_img_photo.drawable
             Glide.with(this)
@@ -176,8 +176,8 @@ class AccountFragment : BaseFragment() {
         }
     }
 
-    private fun handleEditingAccount(account: AccountEntity?) {
+    private fun handleEditingAccount(account: User?) {
         showToast(getString(R.string.success_edit_user))
-        accountViewModel.getAccount()
+        accountViewModel.getUser()
     }
 }

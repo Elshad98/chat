@@ -9,7 +9,7 @@
 
         <variable
             name="message"
-            type="com.example.chat.domain.messages.MessageEntity" />
+            type="com.example.chat.domain.message.Message" />
     </data>
 
     <RelativeLayout

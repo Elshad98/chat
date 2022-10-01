@@ -2,12 +2,12 @@ package com.example.chat.presentation.friends
 
 import android.view.ViewGroup
 import com.example.chat.databinding.ItemFriendRequestBinding
-import com.example.chat.domain.friends.FriendEntity
+import com.example.chat.domain.friend.Friend
 import com.example.chat.extensions.inflater
 import com.example.chat.presentation.core.BaseAdapter
 
-class FriendRequestsAdapter : BaseAdapter<FriendEntity, FriendRequestsAdapter.FriendRequestViewHolder>(
-    FriendsDiffCallback()
+class FriendRequestsAdapter : BaseAdapter<Friend, FriendRequestsAdapter.FriendRequestViewHolder>(
+    FriendDiffCallback()
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendRequestViewHolder {
@@ -29,7 +29,7 @@ class FriendRequestsAdapter : BaseAdapter<FriendEntity, FriendRequestsAdapter.Fr
         }
 
         override fun onBind(item: Any) {
-            (item as? FriendEntity)?.let(binding::setFriend)
+            (item as? Friend)?.let(binding::setFriend)
         }
     }
 }

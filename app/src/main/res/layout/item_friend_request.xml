@@ -5,7 +5,7 @@
 
         <variable
             name="friend"
-            type="com.example.chat.domain.friends.FriendEntity" />
+            type="com.example.chat.domain.friend.Friend" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

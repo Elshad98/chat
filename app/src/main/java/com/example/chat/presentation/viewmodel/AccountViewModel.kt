@@ -1,23 +1,23 @@
 package com.example.chat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.chat.domain.account.AccountEntity
-import com.example.chat.domain.account.EditAccount
-import com.example.chat.domain.account.ForgetPassword
-import com.example.chat.domain.account.GetAccount
-import com.example.chat.domain.account.Login
-import com.example.chat.domain.account.Logout
-import com.example.chat.domain.account.Register
-import com.example.chat.domain.account.UpdateLastSeen
 import com.example.chat.domain.type.None
+import com.example.chat.domain.user.EditUser
+import com.example.chat.domain.user.ForgetPassword
+import com.example.chat.domain.user.GetUser
+import com.example.chat.domain.user.Login
+import com.example.chat.domain.user.Logout
+import com.example.chat.domain.user.Register
+import com.example.chat.domain.user.UpdateLastSeen
+import com.example.chat.domain.user.User
 import javax.inject.Inject
 
 class AccountViewModel @Inject constructor(
     private val loginUseCase: Login,
     private val logoutUseCase: Logout,
     private val registerUseCase: Register,
-    private val getAccountUseCase: GetAccount,
-    private val editAccountUseCase: EditAccount,
+    private val getUserUseCase: GetUser,
+    private val editUserUseCase: EditUser,
     private val updateLastSeenUseCase: UpdateLastSeen,
     private val forgetPasswordUseCase: ForgetPassword
 ) : BaseViewModel() {
@@ -25,8 +25,8 @@ class AccountViewModel @Inject constructor(
     val logoutData: MutableLiveData<None> = MutableLiveData()
     val registerData: MutableLiveData<None> = MutableLiveData()
     val forgetPasswordData: MutableLiveData<None> = MutableLiveData()
-    val accountData: MutableLiveData<AccountEntity> = MutableLiveData()
-    val editAccountData: MutableLiveData<AccountEntity> = MutableLiveData()
+    val userData: MutableLiveData<User> = MutableLiveData()
+    val editUserData: MutableLiveData<User> = MutableLiveData()
 
     fun register(email: String, name: String, password: String) {
         registerUseCase(Register.Params(email, name, password)) { either ->
@@ -36,7 +36,7 @@ class AccountViewModel @Inject constructor(
 
     fun login(email: String, password: String) {
         loginUseCase(Login.Params(email, password)) { either ->
-            either.fold(::handleFailure, ::handleAccount)
+            either.fold(::handleFailure, ::handleUser)
         }
     }
 
@@ -46,9 +46,9 @@ class AccountViewModel @Inject constructor(
         }
     }
 
-    fun getAccount() {
-        getAccountUseCase(None()) { either ->
-            either.fold(::handleFailure, ::handleAccount)
+    fun getUser() {
+        getUserUseCase(None()) { either ->
+            either.fold(::handleFailure, ::handleUser)
         }
     }
 
@@ -58,9 +58,9 @@ class AccountViewModel @Inject constructor(
         }
     }
 
-    fun editAccount(account: AccountEntity) {
-        editAccountUseCase(account) { either ->
-            either.fold(::handleFailure, ::handleEditAccount)
+    fun editUser(user: User) {
+        editUserUseCase(user) { either ->
+            either.fold(::handleFailure, ::handleEditUser)
         }
     }
 
@@ -75,7 +75,7 @@ class AccountViewModel @Inject constructor(
         loginUseCase.unsubscribe()
         logoutUseCase.unsubscribe()
         registerUseCase.unsubscribe()
-        getAccountUseCase.unsubscribe()
+        getUserUseCase.unsubscribe()
         updateLastSeenUseCase.unsubscribe()
         forgetPasswordUseCase.unsubscribe()
     }
@@ -88,15 +88,15 @@ class AccountViewModel @Inject constructor(
         registerData.value = none
     }
 
-    private fun handleAccount(account: AccountEntity) {
-        accountData.value = account
+    private fun handleUser(user: User) {
+        userData.value = user
     }
 
     private fun handleLogout(none: None) {
         logoutData.value = none
     }
 
-    private fun handleEditAccount(account: AccountEntity) {
-        editAccountData.value = account
+    private fun handleEditUser(user: User) {
+        editUserData.value = user
     }
 }

@@ -9,8 +9,8 @@ import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.data.cache.AppDatabase
-import com.example.chat.data.remote.service.AccountService
-import com.example.chat.domain.messages.MessageEntity
+import com.example.chat.data.remote.service.UserService
+import com.example.chat.domain.message.Message
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseListFragment
 import com.example.chat.presentation.viewmodel.MediaViewModel
@@ -51,11 +51,11 @@ class MessagesFragment : BaseListFragment() {
         base {
             val args = intent.getBundleExtra("args")
             if (args == null) {
-                contactId = intent.getLongExtra(AccountService.PARAM_CONTACT_ID, 0L)
-                contactName = intent.getStringExtra(AccountService.PARAM_NAME) ?: ""
+                contactId = intent.getLongExtra(UserService.PARAM_CONTACT_ID, 0L)
+                contactName = intent.getStringExtra(UserService.PARAM_NAME) ?: ""
             } else {
-                contactId = args.getLong(AccountService.PARAM_CONTACT_ID)
-                contactName = args.getString(AccountService.PARAM_NAME, "")
+                contactId = args.getLong(UserService.PARAM_CONTACT_ID)
+                contactName = args.getString(UserService.PARAM_NAME, "")
             }
         }
 
@@ -76,7 +76,7 @@ class MessagesFragment : BaseListFragment() {
         }
 
         AppDatabase.getInstance(requireContext())
-            .messagesDao()
+            .messageDao()
             .getLiveMessagesWithContact(contactId)
             .observe(viewLifecycleOwner, Observer(::handleMessages))
 
@@ -92,7 +92,7 @@ class MessagesFragment : BaseListFragment() {
             },
             longClick = { message, _ ->
                 navigator.showDeleteMessageDialog(requireContext()) {
-                    (message as? MessageEntity)?.let {
+                    (message as? Message)?.let {
                         messagesViewModel.deleteMessage(contactId, it.id)
                     }
                 }
@@ -114,7 +114,7 @@ class MessagesFragment : BaseListFragment() {
         mediaViewModel.onPickImageResult(requestCode, resultCode, data)
     }
 
-    private fun handleMessages(messages: List<MessageEntity>?) {
+    private fun handleMessages(messages: List<Message>?) {
         if (messages != null && messages.isNotEmpty()) {
             viewAdapter.submitList(messages)
             Handler().postDelayed(

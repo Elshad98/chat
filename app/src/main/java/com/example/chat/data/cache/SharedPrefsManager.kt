@@ -2,10 +2,10 @@ package com.example.chat.data.cache
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.type.Either
 import com.example.chat.domain.type.Failure
 import com.example.chat.domain.type.None
+import com.example.chat.domain.user.User
 import javax.inject.Inject
 
 class SharedPrefsManager @Inject constructor(
@@ -14,79 +14,79 @@ class SharedPrefsManager @Inject constructor(
 
     companion object {
 
-        private const val PREF_ACCOUNT_ID = "account_id"
-        private const val PREF_ACCOUNT_NAME = "account_name"
-        private const val PREF_ACCOUNT_DATA = "account_data"
-        private const val PREF_ACCOUNT_EMAIL = "account_email"
-        private const val PREF_ACCOUNT_IMAGE = "account_image"
-        private const val PREF_ACCOUNT_TOKEN = "account_token"
-        private const val PREF_ACCOUNT_STATUS = "account_status"
-        private const val PREF_ACCOUNT_PASSWORD = "account_password"
+        private const val PREF_USER_ID = "user_id"
+        private const val PREF_USER_NAME = "user_name"
+        private const val PREF_USER_DATA = "user_data"
+        private const val PREF_USER_EMAIL = "user_email"
+        private const val PREF_USER_IMAGE = "user_image"
+        private const val PREF_USER_TOKEN = "user_token"
+        private const val PREF_USER_STATUS = "user_status"
+        private const val PREF_USER_PASSWORD = "user_password"
     }
 
     fun getToken(): Either<Failure, String> {
-        return Either.Right(preferences.getString(PREF_ACCOUNT_TOKEN, "")!!)
+        return Either.Right(preferences.getString(PREF_USER_TOKEN, "")!!)
     }
 
     fun saveToken(token: String): Either<Failure, None> {
         preferences.edit {
-            putString(PREF_ACCOUNT_TOKEN, token)
+            putString(PREF_USER_TOKEN, token)
         }
 
         return Either.Right(None())
     }
 
-    fun saveAccount(account: AccountEntity): Either<Failure, None> {
+    fun saveUser(user: User): Either<Failure, None> {
         preferences.edit {
-            putSafely(PREF_ACCOUNT_ID, account.id)
-            putSafely(PREF_ACCOUNT_NAME, account.name)
-            putSafely(PREF_ACCOUNT_EMAIL, account.email)
-            putSafely(PREF_ACCOUNT_TOKEN, account.token)
-            putSafely(PREF_ACCOUNT_IMAGE, account.image)
-            putString(PREF_ACCOUNT_STATUS, account.status)
-            putSafely(PREF_ACCOUNT_DATA, account.userData)
-            putSafely(PREF_ACCOUNT_PASSWORD, account.password)
+            putSafely(PREF_USER_ID, user.id)
+            putSafely(PREF_USER_NAME, user.name)
+            putSafely(PREF_USER_EMAIL, user.email)
+            putSafely(PREF_USER_TOKEN, user.token)
+            putSafely(PREF_USER_IMAGE, user.image)
+            putString(PREF_USER_STATUS, user.status)
+            putSafely(PREF_USER_DATA, user.userData)
+            putSafely(PREF_USER_PASSWORD, user.password)
         }
 
         return Either.Right(None())
     }
 
-    fun getAccount(): Either<Failure, AccountEntity> {
-        val id = preferences.getLong(PREF_ACCOUNT_ID, 0)
+    fun getUser(): Either<Failure, User> {
+        val id = preferences.getLong(PREF_USER_ID, 0)
 
         if (id == 0L) {
             return Either.Left(Failure.NoSavedAccountsError)
         }
 
-        val account = AccountEntity(
+        val user = User(
             id = id,
-            userData = preferences.getLong(PREF_ACCOUNT_DATA, 0),
-            name = preferences.getString(PREF_ACCOUNT_NAME, "")!!,
-            email = preferences.getString(PREF_ACCOUNT_EMAIL, "")!!,
-            image = preferences.getString(PREF_ACCOUNT_IMAGE, "")!!,
-            token = preferences.getString(PREF_ACCOUNT_TOKEN, "")!!,
-            status = preferences.getString(PREF_ACCOUNT_STATUS, "")!!,
-            password = preferences.getString(PREF_ACCOUNT_PASSWORD, "")!!
+            userData = preferences.getLong(PREF_USER_DATA, 0),
+            name = preferences.getString(PREF_USER_NAME, "")!!,
+            email = preferences.getString(PREF_USER_EMAIL, "")!!,
+            image = preferences.getString(PREF_USER_IMAGE, "")!!,
+            token = preferences.getString(PREF_USER_TOKEN, "")!!,
+            status = preferences.getString(PREF_USER_STATUS, "")!!,
+            password = preferences.getString(PREF_USER_PASSWORD, "")!!
         )
-        return Either.Right(account)
+        return Either.Right(user)
     }
 
-    fun removeAccount(): Either<Failure, None> {
+    fun deleteUser(): Either<Failure, None> {
         preferences.edit {
-            remove(PREF_ACCOUNT_ID)
-            remove(PREF_ACCOUNT_NAME)
-            remove(PREF_ACCOUNT_DATA)
-            remove(PREF_ACCOUNT_EMAIL)
-            remove(PREF_ACCOUNT_IMAGE)
-            remove(PREF_ACCOUNT_STATUS)
-            remove(PREF_ACCOUNT_PASSWORD)
+            remove(PREF_USER_ID)
+            remove(PREF_USER_NAME)
+            remove(PREF_USER_DATA)
+            remove(PREF_USER_EMAIL)
+            remove(PREF_USER_IMAGE)
+            remove(PREF_USER_STATUS)
+            remove(PREF_USER_PASSWORD)
         }
 
         return Either.Right(None())
     }
 
-    fun containsAnyAccount(): Either<Failure, Boolean> {
-        val id = preferences.getLong(PREF_ACCOUNT_ID, 0)
+    fun containsAnyUser(): Either<Failure, Boolean> {
+        val id = preferences.getLong(PREF_USER_ID, 0)
         return Either.Right(id != 0L)
     }
 }

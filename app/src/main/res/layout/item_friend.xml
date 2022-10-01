@@ -9,7 +9,7 @@
 
         <variable
             name="friend"
-            type="com.example.chat.domain.friends.FriendEntity" />
+            type="com.example.chat.domain.friend.Friend" />
     </data>
 
     <RelativeLayout

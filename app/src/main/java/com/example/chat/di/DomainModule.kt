@@ -1,13 +1,13 @@
 package com.example.chat.di
 
-import com.example.chat.data.repository.account.AccountRepositoryImpl
-import com.example.chat.data.repository.friends.FriendsRepositoryImpl
+import com.example.chat.data.repository.friend.FriendRepositoryImpl
 import com.example.chat.data.repository.media.MediaRepositoryImpl
-import com.example.chat.data.repository.messages.MessagesRepositoryImpl
-import com.example.chat.domain.account.AccountRepository
-import com.example.chat.domain.friends.FriendsRepository
+import com.example.chat.data.repository.message.MessageRepositoryImpl
+import com.example.chat.data.repository.user.UserRepositoryImpl
+import com.example.chat.domain.friend.FriendRepository
 import com.example.chat.domain.media.MediaRepository
-import com.example.chat.domain.messages.MessagesRepository
+import com.example.chat.domain.message.MessageRepository
+import com.example.chat.domain.user.UserRepository
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
@@ -17,15 +17,15 @@ interface DomainModule {
 
     @Binds
     @Singleton
-    fun bindMessagesRepository(impl: MessagesRepositoryImpl): MessagesRepository
+    fun bindMessageRepository(impl: MessageRepositoryImpl): MessageRepository
 
     @Binds
     @Singleton
-    fun bindAccountRepository(impl: AccountRepositoryImpl): AccountRepository
+    fun bindFriendRepository(impl: FriendRepositoryImpl): FriendRepository
 
     @Binds
     @Singleton
-    fun bindFriendsRepository(impl: FriendsRepositoryImpl): FriendsRepository
+    fun bindUserRepository(impl: UserRepositoryImpl): UserRepository
 
     @Binds
     @Singleton

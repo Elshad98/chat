@@ -2,7 +2,7 @@ package com.example.chat.presentation.home
 
 import android.view.ViewGroup
 import com.example.chat.databinding.ItemChatBinding
-import com.example.chat.domain.messages.MessageEntity
+import com.example.chat.domain.message.Message
 import com.example.chat.extensions.inflater
 import com.example.chat.presentation.messages.MessagesAdapter
 
@@ -24,7 +24,7 @@ class ChatsAdapter : MessagesAdapter() {
         }
 
         override fun onBind(item: Any) {
-            (item as? MessageEntity)?.let {
+            (item as? Message)?.let {
                 binding.message = it
             }
         }

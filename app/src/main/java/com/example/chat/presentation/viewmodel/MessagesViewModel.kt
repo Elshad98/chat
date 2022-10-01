@@ -1,11 +1,11 @@
 package com.example.chat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.chat.domain.messages.DeleteMessage
-import com.example.chat.domain.messages.GetChats
-import com.example.chat.domain.messages.GetMessagesWithContact
-import com.example.chat.domain.messages.MessageEntity
-import com.example.chat.domain.messages.SendMessage
+import com.example.chat.domain.message.DeleteMessage
+import com.example.chat.domain.message.GetChats
+import com.example.chat.domain.message.GetMessagesWithContact
+import com.example.chat.domain.message.Message
+import com.example.chat.domain.message.SendMessage
 import com.example.chat.domain.type.None
 import javax.inject.Inject
 
@@ -18,8 +18,8 @@ class MessagesViewModel @Inject constructor(
 
     val sendMessageData: MutableLiveData<None> = MutableLiveData()
     val deleteMessageData: MutableLiveData<None> = MutableLiveData()
-    val getChatsData: MutableLiveData<List<MessageEntity>> = MutableLiveData()
-    val getMessagesData: MutableLiveData<List<MessageEntity>> = MutableLiveData()
+    val getChatsData: MutableLiveData<List<Message>> = MutableLiveData()
+    val getMessagesData: MutableLiveData<List<Message>> = MutableLiveData()
 
     fun getChats(needFetch: Boolean = false) {
         getChatsUseCase(GetChats.Params(needFetch)) { either ->
@@ -45,7 +45,7 @@ class MessagesViewModel @Inject constructor(
         }
     }
 
-    private fun handleGetChats(messages: List<MessageEntity>, fromCache: Boolean) {
+    private fun handleGetChats(messages: List<Message>, fromCache: Boolean) {
         getChatsData.value = messages
         updateProgress(false)
 
@@ -63,7 +63,7 @@ class MessagesViewModel @Inject constructor(
     }
 
     private fun handleGetMessages(
-        messages: List<MessageEntity>,
+        messages: List<Message>,
         contactId: Long,
         fromCache: Boolean
     ) {

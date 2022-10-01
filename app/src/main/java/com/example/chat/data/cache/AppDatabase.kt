@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.chat.data.cache.friends.FriendsDao
-import com.example.chat.data.cache.messages.MessagesDao
-import com.example.chat.domain.friends.FriendEntity
-import com.example.chat.domain.messages.MessageEntity
+import com.example.chat.data.cache.friend.FriendDao
+import com.example.chat.data.cache.message.MessageDao
+import com.example.chat.domain.friend.Friend
+import com.example.chat.domain.message.Message
 
-@Database(entities = [FriendEntity::class, MessageEntity::class], version = 1, exportSchema = false)
+@Database(entities = [Friend::class, Message::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {
@@ -37,7 +37,7 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 
-    abstract fun friendsDao(): FriendsDao
+    abstract fun friendDao(): FriendDao
 
-    abstract fun messagesDao(): MessagesDao
+    abstract fun messageDao(): MessageDao
 }

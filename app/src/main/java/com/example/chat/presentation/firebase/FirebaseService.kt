@@ -2,7 +2,7 @@ package com.example.chat.presentation.firebase
 
 import android.os.Handler
 import android.os.Looper
-import com.example.chat.domain.account.UpdateToken
+import com.example.chat.domain.user.UpdateToken
 import com.example.chat.presentation.App
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

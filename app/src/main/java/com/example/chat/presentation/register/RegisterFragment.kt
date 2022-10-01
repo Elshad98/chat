@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.domain.account.AccountEntity
 import com.example.chat.domain.type.None
+import com.example.chat.domain.user.User
 import com.example.chat.extensions.hideKeyboard
 import com.example.chat.extensions.showToast
 import com.example.chat.presentation.App
@@ -35,7 +35,7 @@ class RegisterFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         accountViewModel.registerData.observe(viewLifecycleOwner, Observer(::handleRegister))
-        accountViewModel.accountData.observe(viewLifecycleOwner, Observer(::handleLogin))
+        accountViewModel.userData.observe(viewLifecycleOwner, Observer(::handleLogin))
         accountViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         register_btn_new_membership.setOnClickListener {
@@ -84,7 +84,7 @@ class RegisterFragment : BaseFragment() {
         }
     }
 
-    private fun handleLogin(accountEntity: AccountEntity) {
+    private fun handleLogin(user: User) {
         hideProgress()
         requireActivity().let {
             navigator.showHome(it)

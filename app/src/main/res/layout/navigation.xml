@@ -9,8 +9,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="account"
-            type="com.example.chat.domain.account.AccountEntity" />
+            name="user"
+            type="com.example.chat.domain.user.User" />
     </data>
 
     <com.google.android.material.navigation.NavigationView
@@ -47,7 +47,7 @@
                     android:src="@drawable/contact_photo_sample"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:profileImage="@{account.image}" />
+                    app:profileImage="@{user.image}" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_normal"
                         android:lines="1"
-                        android:text="@{account.name}"
+                        android:text="@{user.name}"
                         android:textStyle="bold"
                         android:textSize="@dimen/medium_text_size"
                         android:textColor="@color/woodsmoke"
@@ -79,7 +79,7 @@
                         android:layout_marginTop="@dimen/spacing_tiny"
                         android:textColor="@color/dark_grey"
                         android:lines="1"
-                        android:text="@{account.email}"
+                        android:text="@{user.email}"
                         tools:text="@string/email" />
 
                     <TextView
@@ -90,8 +90,8 @@
                         android:layout_marginTop="@dimen/spacing_tiny"
                         android:lines="1"
                         android:textColor="@color/dark_grey"
-                        android:text="@{account.status}"
-                        android:visibility="@{account.status.empty ? View.GONE : View.VISIBLE}"
+                        android:text="@{user.status}"
+                        android:visibility="@{user.status.empty ? View.GONE : View.VISIBLE}"
                         tools:text="@string/status" />
 
                 </LinearLayout>

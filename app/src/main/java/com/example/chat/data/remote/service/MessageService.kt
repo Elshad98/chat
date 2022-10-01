@@ -1,7 +1,7 @@
 package com.example.chat.data.remote.service
 
 import com.example.chat.data.remote.core.BaseResponse
-import com.example.chat.data.remote.messages.GetMessagesResponse
+import com.example.chat.data.remote.message.GetMessagesResponse
 import retrofit2.Call
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded

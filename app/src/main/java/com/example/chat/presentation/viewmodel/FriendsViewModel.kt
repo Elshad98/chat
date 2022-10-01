@@ -1,13 +1,13 @@
 package com.example.chat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.chat.domain.friends.AddFriend
-import com.example.chat.domain.friends.ApproveFriendRequest
-import com.example.chat.domain.friends.CancelFriendRequest
-import com.example.chat.domain.friends.DeleteFriend
-import com.example.chat.domain.friends.FriendEntity
-import com.example.chat.domain.friends.GetFriendRequests
-import com.example.chat.domain.friends.GetFriends
+import com.example.chat.domain.friend.AddFriend
+import com.example.chat.domain.friend.ApproveFriendRequest
+import com.example.chat.domain.friend.CancelFriendRequest
+import com.example.chat.domain.friend.DeleteFriend
+import com.example.chat.domain.friend.Friend
+import com.example.chat.domain.friend.GetFriendRequests
+import com.example.chat.domain.friend.GetFriends
 import com.example.chat.domain.type.None
 import javax.inject.Inject
 
@@ -24,8 +24,8 @@ class FriendsViewModel @Inject constructor(
     val deleteFriendData: MutableLiveData<None> = MutableLiveData()
     val cancelFriendData: MutableLiveData<None> = MutableLiveData()
     val approveFriendData: MutableLiveData<None> = MutableLiveData()
-    val friendsData: MutableLiveData<List<FriendEntity>> = MutableLiveData()
-    val friendRequestsData: MutableLiveData<List<FriendEntity>> = MutableLiveData()
+    val friendsData: MutableLiveData<List<Friend>> = MutableLiveData()
+    val friendRequestsData: MutableLiveData<List<Friend>> = MutableLiveData()
 
     fun getFriends(needFetch: Boolean = false) {
         getFriendsUseCase(needFetch) { either ->
@@ -39,8 +39,8 @@ class FriendsViewModel @Inject constructor(
         }
     }
 
-    fun deleteFriend(friendEntity: FriendEntity) {
-        deleteFriendUseCase(friendEntity) { either ->
+    fun deleteFriend(friend: Friend) {
+        deleteFriendUseCase(friend) { either ->
             either.fold(::handleFailure, ::handleDeleteFriend)
         }
     }
@@ -51,14 +51,14 @@ class FriendsViewModel @Inject constructor(
         }
     }
 
-    fun approveFriend(friendEntity: FriendEntity) {
-        approveFriendRequestUseCase(friendEntity) { either ->
+    fun approveFriend(friend: Friend) {
+        approveFriendRequestUseCase(friend) { either ->
             either.fold(::handleFailure, ::handleApproveFriend)
         }
     }
 
-    fun cancelFriend(friendEntity: FriendEntity) {
-        cancelFriendRequestUseCase(friendEntity) { either ->
+    fun cancelFriend(friend: Friend) {
+        cancelFriendRequestUseCase(friend) { either ->
             either.fold(::handleFailure, ::handleCancelFriend)
         }
     }
@@ -73,7 +73,7 @@ class FriendsViewModel @Inject constructor(
         approveFriendRequestUseCase.unsubscribe()
     }
 
-    private fun handleFriends(friends: List<FriendEntity>, fromCache: Boolean) {
+    private fun handleFriends(friends: List<Friend>, fromCache: Boolean) {
         friendsData.value = friends
         updateProgress(false)
 
@@ -83,7 +83,7 @@ class FriendsViewModel @Inject constructor(
         }
     }
 
-    private fun handleFriendRequests(friends: List<FriendEntity>, fromCache: Boolean) {
+    private fun handleFriendRequests(friends: List<Friend>, fromCache: Boolean) {
         friendRequestsData.value = friends
         updateProgress(false)
 

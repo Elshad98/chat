@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.data.cache.AppDatabase
-import com.example.chat.domain.messages.MessageEntity
+import com.example.chat.domain.message.Message
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseListFragment
 import com.example.chat.presentation.viewmodel.MessagesViewModel
@@ -31,7 +31,7 @@ class ChatsFragment : BaseListFragment() {
 
         viewAdapter.setOnClick(
             { message, _ ->
-                (message as? MessageEntity)?.let {
+                (message as? Message)?.let {
                     val contact = it.contact
                     if (contact != null) {
                         navigator.showChatWithContact(requireActivity(), contact.id, contact.name)
@@ -40,7 +40,7 @@ class ChatsFragment : BaseListFragment() {
             }
         )
 
-        AppDatabase.getInstance(requireContext()).messagesDao().getLiveChats().observe(
+        AppDatabase.getInstance(requireContext()).messageDao().getLiveChats().observe(
             viewLifecycleOwner,
             Observer { messages ->
                 val list = messages.distinctBy { it.contact?.id }.toList()
@@ -54,7 +54,7 @@ class ChatsFragment : BaseListFragment() {
         messagesViewModel.getChats()
     }
 
-    private fun handleChats(messages: List<MessageEntity>?) {
+    private fun handleChats(messages: List<Message>?) {
         if (messages != null && messages.isNotEmpty()) {
             viewAdapter.submitList(messages)
         }

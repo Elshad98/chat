@@ -3,11 +3,11 @@ package com.example.chat.presentation.messages
 import android.view.ViewGroup
 import com.example.chat.databinding.ItemMessageMeBinding
 import com.example.chat.databinding.ItemMessageOtherBinding
-import com.example.chat.domain.messages.MessageEntity
+import com.example.chat.domain.message.Message
 import com.example.chat.extensions.inflater
 import com.example.chat.presentation.core.BaseAdapter
 
-open class MessagesAdapter : BaseAdapter<MessageEntity, BaseAdapter.BaseViewHolder>(
+open class MessagesAdapter : BaseAdapter<Message, BaseAdapter.BaseViewHolder>(
     MessageDiffCallback()
 ) {
 
@@ -39,7 +39,7 @@ open class MessagesAdapter : BaseAdapter<MessageEntity, BaseAdapter.BaseViewHold
         }
 
         override fun onBind(item: Any) {
-            (item as? MessageEntity)?.let {
+            (item as? Message)?.let {
                 binding.message = it
             }
         }
@@ -60,7 +60,7 @@ open class MessagesAdapter : BaseAdapter<MessageEntity, BaseAdapter.BaseViewHold
         }
 
         override fun onBind(item: Any) {
-            (item as? MessageEntity)?.let {
+            (item as? Message)?.let {
                 binding.message = it
             }
         }

@@ -3,7 +3,7 @@ package com.example.chat.presentation.user
 import android.os.Bundle
 import android.view.View
 import com.example.chat.R
-import com.example.chat.data.remote.service.AccountService
+import com.example.chat.data.remote.service.UserService
 import com.example.chat.extensions.gone
 import com.example.chat.presentation.core.BaseFragment
 import com.example.chat.presentation.core.GlideHelper
@@ -25,11 +25,11 @@ class UserFragment : BaseFragment() {
         base {
             val args = intent.getBundleExtra("args")
             if (args != null) {
-                val name = args.getString(AccountService.PARAM_NAME)
-                val image = args.getString(AccountService.PARAM_IMAGE)
-                val id = args.getLong(AccountService.PARAM_CONTACT_ID)
-                val email = args.getString(AccountService.PARAM_EMAIL)
-                val status = args.getString(AccountService.PARAM_STATUS)
+                val name = args.getString(UserService.PARAM_NAME)
+                val image = args.getString(UserService.PARAM_IMAGE)
+                val id = args.getLong(UserService.PARAM_CONTACT_ID)
+                val email = args.getString(UserService.PARAM_EMAIL)
+                val status = args.getString(UserService.PARAM_STATUS)
 
                 GlideHelper.loadImage(
                     requireContext(),

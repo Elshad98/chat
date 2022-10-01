@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.domain.account.AccountEntity
+import com.example.chat.domain.user.User
 import com.example.chat.extensions.hideKeyboard
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseFragment
@@ -31,7 +31,7 @@ class LoginFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        accountViewModel.accountData.observe(viewLifecycleOwner, Observer(::renderAccount))
+        accountViewModel.userData.observe(viewLifecycleOwner, Observer(::renderAccount))
         accountViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         login_btn_login.setOnClickListener {
@@ -62,7 +62,7 @@ class LoginFragment : BaseFragment() {
         accountViewModel.login(email, password)
     }
 
-    private fun renderAccount(accountEntity: AccountEntity?) {
+    private fun renderAccount(user: User?) {
         hideProgress()
         requireActivity().let {
             navigator.showHome(it)

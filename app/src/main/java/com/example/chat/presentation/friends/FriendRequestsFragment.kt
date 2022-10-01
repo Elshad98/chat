@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.domain.friends.FriendEntity
+import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.type.None
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseListFragment
@@ -32,7 +32,7 @@ class FriendRequestsFragment : BaseListFragment() {
         friendsViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         setOnItemClickListener { item, view ->
-            (item as? FriendEntity)?.let { friend ->
+            (item as? Friend)?.let { friend ->
                 when (view.id) {
                     R.id.friend_btn_approve -> {
                         showProgress()
@@ -49,7 +49,7 @@ class FriendRequestsFragment : BaseListFragment() {
         friendsViewModel.getFriendRequests()
     }
 
-    private fun handleFriendRequests(requests: List<FriendEntity>?) {
+    private fun handleFriendRequests(requests: List<Friend>?) {
         hideProgress()
         if (requests != null && requests.isNotEmpty()) {
             viewAdapter.submitList(requests)

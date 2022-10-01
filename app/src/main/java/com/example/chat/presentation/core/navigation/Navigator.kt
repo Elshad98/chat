@@ -11,8 +11,8 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.chat.R
-import com.example.chat.data.remote.service.AccountService
-import com.example.chat.domain.friends.FriendEntity
+import com.example.chat.data.remote.service.UserService
+import com.example.chat.domain.friend.Friend
 import com.example.chat.presentation.Authenticator
 import com.example.chat.presentation.account.AccountActivity
 import com.example.chat.presentation.core.PermissionManager
@@ -63,13 +63,13 @@ class Navigator @Inject constructor(
         context.startActivity<AccountActivity>()
     }
 
-    fun showUser(context: Context, friendEntity: FriendEntity) {
+    fun showUser(context: Context, friend: Friend) {
         val bundle = Bundle().apply {
-            putString(AccountService.PARAM_NAME, friendEntity.name)
-            putString(AccountService.PARAM_EMAIL, friendEntity.email)
-            putString(AccountService.PARAM_IMAGE, friendEntity.image)
-            putLong(AccountService.PARAM_CONTACT_ID, friendEntity.id)
-            putString(AccountService.PARAM_STATUS, friendEntity.status)
+            putString(UserService.PARAM_NAME, friend.name)
+            putString(UserService.PARAM_EMAIL, friend.email)
+            putString(UserService.PARAM_IMAGE, friend.image)
+            putLong(UserService.PARAM_CONTACT_ID, friend.id)
+            putString(UserService.PARAM_STATUS, friend.status)
         }
         context.startActivity<UserActivity>(args = bundle)
     }
@@ -142,8 +142,8 @@ class Navigator @Inject constructor(
 
     fun showChatWithContact(context: Context, contactId: Long, contactName: String) {
         val bundle = Bundle().apply {
-            putString(AccountService.PARAM_NAME, contactName)
-            putLong(AccountService.PARAM_CONTACT_ID, contactId)
+            putString(UserService.PARAM_NAME, contactName)
+            putLong(UserService.PARAM_CONTACT_ID, contactId)
         }
         context.startActivity<MessagesActivity>(args = bundle)
     }
