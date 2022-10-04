@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.chat.R
-import com.example.chat.domain.type.Failure
+import com.example.chat.core.exception.Failure
 import com.example.chat.presentation.core.navigation.Navigator
 import javax.inject.Inject
 

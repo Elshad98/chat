@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.domain.type.None
-import com.example.chat.extensions.showToast
+import com.example.chat.core.None
+import com.example.chat.core.extension.showToast
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseFragment
 import com.example.chat.presentation.viewmodel.AccountViewModel

@@ -1,4 +1,4 @@
-package com.example.chat.extensions
+package com.example.chat.core.extension
 
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment

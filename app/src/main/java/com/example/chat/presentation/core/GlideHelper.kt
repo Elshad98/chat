@@ -7,7 +7,7 @@ import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.chat.R
-import com.example.chat.extensions.getDrawableCompat
+import com.example.chat.core.extension.getDrawableCompat
 
 object GlideHelper {
 

@@ -6,7 +6,7 @@ import com.example.chat.domain.message.GetChats
 import com.example.chat.domain.message.GetMessagesWithContact
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.SendMessage
-import com.example.chat.domain.type.None
+import com.example.chat.core.None
 import javax.inject.Inject
 
 class MessagesViewModel @Inject constructor(

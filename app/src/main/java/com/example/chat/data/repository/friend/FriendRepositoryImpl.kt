@@ -3,12 +3,12 @@ package com.example.chat.data.repository.friend
 import com.example.chat.data.repository.user.UserCache
 import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.friend.FriendRepository
-import com.example.chat.domain.type.Either
-import com.example.chat.domain.type.Failure
-import com.example.chat.domain.type.None
-import com.example.chat.domain.type.flatMap
-import com.example.chat.domain.type.map
-import com.example.chat.domain.type.onNext
+import com.example.chat.core.functional.Either
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.None
+import com.example.chat.core.functional.flatMap
+import com.example.chat.core.functional.map
+import com.example.chat.core.functional.onNext
 import javax.inject.Inject
 
 class FriendRepositoryImpl @Inject constructor(

@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.chat.data.cache.friend.FriendDao
-import com.example.chat.data.cache.message.MessageDao
+import com.example.chat.data.cache.dao.FriendDao
+import com.example.chat.data.cache.dao.MessageDao
 import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.message.Message
 

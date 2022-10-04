@@ -6,9 +6,9 @@ import com.example.chat.data.remote.service.MessageService
 import com.example.chat.data.remote.service.UserService
 import com.example.chat.data.repository.message.MessageRemote
 import com.example.chat.domain.message.Message
-import com.example.chat.domain.type.Either
-import com.example.chat.domain.type.Failure
-import com.example.chat.domain.type.None
+import com.example.chat.core.functional.Either
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.None
 import javax.inject.Inject
 import org.json.JSONArray
 import org.json.JSONObject

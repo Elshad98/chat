@@ -3,7 +3,7 @@ package com.example.chat.presentation.core
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.chat.extensions.toggleVisibility
+import com.example.chat.core.extension.toggleVisibility
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date

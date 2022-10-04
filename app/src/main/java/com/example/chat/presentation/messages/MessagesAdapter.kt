@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import com.example.chat.databinding.ItemMessageMeBinding
 import com.example.chat.databinding.ItemMessageOtherBinding
 import com.example.chat.domain.message.Message
-import com.example.chat.extensions.inflater
+import com.example.chat.core.extension.inflater
 import com.example.chat.presentation.core.BaseAdapter
 
 open class MessagesAdapter : BaseAdapter<Message, BaseAdapter.BaseViewHolder>(

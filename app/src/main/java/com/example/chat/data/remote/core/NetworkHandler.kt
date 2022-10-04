@@ -3,7 +3,7 @@ package com.example.chat.data.remote.core
 import android.content.Context
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.example.chat.extensions.getConnectivityManager
+import com.example.chat.core.extension.getConnectivityManager
 import javax.inject.Inject
 import javax.inject.Singleton
 

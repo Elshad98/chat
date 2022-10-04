@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.chat.R
 import com.example.chat.data.remote.service.UserService
-import com.example.chat.extensions.gone
+import com.example.chat.core.extension.gone
 import com.example.chat.presentation.core.BaseFragment
 import com.example.chat.presentation.core.GlideHelper
 import kotlinx.android.synthetic.main.fragment_user.user_btn_send_message

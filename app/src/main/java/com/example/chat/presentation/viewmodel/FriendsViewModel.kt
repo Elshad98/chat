@@ -8,7 +8,7 @@ import com.example.chat.domain.friend.DeleteFriend
 import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.friend.GetFriendRequests
 import com.example.chat.domain.friend.GetFriends
-import com.example.chat.domain.type.None
+import com.example.chat.core.None
 import javax.inject.Inject
 
 class FriendsViewModel @Inject constructor(

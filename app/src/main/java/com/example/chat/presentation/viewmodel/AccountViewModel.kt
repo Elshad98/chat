@@ -1,7 +1,7 @@
 package com.example.chat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.chat.domain.type.None
+import com.example.chat.core.None
 import com.example.chat.domain.user.EditUser
 import com.example.chat.domain.user.ForgetPassword
 import com.example.chat.domain.user.GetUser

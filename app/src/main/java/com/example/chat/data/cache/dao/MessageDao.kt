@@ -1,4 +1,4 @@
-package com.example.chat.data.cache.message
+package com.example.chat.data.cache.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

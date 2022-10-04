@@ -16,7 +16,7 @@ import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.message.Contact
 import com.example.chat.domain.message.GetMessagesWithContact
 import com.example.chat.domain.message.Message
-import com.example.chat.extensions.getNotificationManager
+import com.example.chat.core.extension.getNotificationManager
 import com.example.chat.presentation.home.HomeActivity
 import com.google.firebase.messaging.RemoteMessage
 import javax.inject.Inject

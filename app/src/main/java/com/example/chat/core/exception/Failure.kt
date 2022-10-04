@@ -1,4 +1,4 @@
-package com.example.chat.domain.type
+package com.example.chat.core.exception
 
 /**
  * Base Class for handling errors/failures/exceptions.

@@ -1,9 +1,9 @@
 package com.example.chat.data.cache
 
 import com.example.chat.data.repository.user.UserCache
-import com.example.chat.domain.type.Either
-import com.example.chat.domain.type.Failure
-import com.example.chat.domain.type.None
+import com.example.chat.core.functional.Either
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.None
 import com.example.chat.domain.user.User
 import javax.inject.Inject
 

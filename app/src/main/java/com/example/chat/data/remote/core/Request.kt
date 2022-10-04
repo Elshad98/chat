@@ -1,7 +1,7 @@
 package com.example.chat.data.remote.core
 
-import com.example.chat.domain.type.Either
-import com.example.chat.domain.type.Failure
+import com.example.chat.core.functional.Either
+import com.example.chat.core.exception.Failure
 import javax.inject.Inject
 import javax.inject.Singleton
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.example.chat.data.cache.friend
+package com.example.chat.data.cache.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

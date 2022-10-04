@@ -1,4 +1,4 @@
-package com.example.chat.domain.type
+package com.example.chat.core.functional
 
 /**
  * Represents a value of one of two possible types (a disjoint union).
@@ -14,12 +14,16 @@ sealed class Either<out LeftT, out RightT> {
     /**
      * Represents the left side of [Either] class which by convention is a "Failure".
      */
-    data class Left<out LeftT>(val value: LeftT) : Either<LeftT, Nothing>()
+    data class Left<out LeftT>(
+        val value: LeftT
+    ) : Either<LeftT, Nothing>()
 
     /**
      * Represents the right side of [Either] class which by convention is a "Success".
      */
-    data class Right<out RightT>(val value: RightT) : Either<Nothing, RightT>()
+    data class Right<out RightT>(
+        val value: RightT
+    ) : Either<Nothing, RightT>()
 
     val isRight: Boolean
         get() = this is Right<RightT>

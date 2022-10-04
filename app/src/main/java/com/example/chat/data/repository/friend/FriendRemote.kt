@@ -1,9 +1,9 @@
 package com.example.chat.data.repository.friend
 
 import com.example.chat.domain.friend.Friend
-import com.example.chat.domain.type.Either
-import com.example.chat.domain.type.Failure
-import com.example.chat.domain.type.None
+import com.example.chat.core.functional.Either
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.None
 
 interface FriendRemote {
 

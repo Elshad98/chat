@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.chat.domain.media.CreateImageFile
 import com.example.chat.domain.media.EncodeImageBitmap
 import com.example.chat.domain.media.GetPickedImage
-import com.example.chat.domain.type.None
+import com.example.chat.core.None
 import javax.inject.Inject
 
 class MediaViewModel @Inject constructor(

@@ -2,7 +2,7 @@ package com.example.chat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.chat.domain.type.Failure
+import com.example.chat.core.exception.Failure
 
 abstract class BaseViewModel : ViewModel() {
 

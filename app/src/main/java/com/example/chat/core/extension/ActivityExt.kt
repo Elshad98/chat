@@ -1,4 +1,4 @@
-package com.example.chat.extensions
+package com.example.chat.core.extension
 
 import android.app.Activity
 

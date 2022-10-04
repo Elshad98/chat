@@ -1,6 +1,6 @@
 package com.example.chat.presentation
 
-import com.example.chat.domain.type.None
+import com.example.chat.core.None
 import com.example.chat.domain.user.CheckAuth
 import javax.inject.Inject
 import javax.inject.Singleton

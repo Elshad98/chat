@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.chat.R
-import com.example.chat.domain.type.Failure
-import com.example.chat.extensions.gone
-import com.example.chat.extensions.inTransaction
-import com.example.chat.extensions.showToast
-import com.example.chat.extensions.visible
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.extension.gone
+import com.example.chat.core.extension.inTransaction
+import com.example.chat.core.extension.showToast
+import com.example.chat.core.extension.visible
 import com.example.chat.presentation.core.navigation.Navigator
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.toolbar.toolbar
