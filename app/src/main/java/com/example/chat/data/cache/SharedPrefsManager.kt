@@ -5,7 +5,7 @@ import androidx.core.content.edit
 import com.example.chat.core.functional.Either
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.None
-import com.example.chat.domain.user.User
+import com.example.chat.data.cache.model.UserModel
 import javax.inject.Inject
 
 class SharedPrefsManager @Inject constructor(
@@ -36,7 +36,7 @@ class SharedPrefsManager @Inject constructor(
         return Either.Right(None())
     }
 
-    fun saveUser(user: User): Either<Failure, None> {
+    fun saveUser(user: UserModel): Either<Failure, None> {
         preferences.edit {
             putSafely(PREF_USER_ID, user.id)
             putSafely(PREF_USER_NAME, user.name)
@@ -51,14 +51,14 @@ class SharedPrefsManager @Inject constructor(
         return Either.Right(None())
     }
 
-    fun getUser(): Either<Failure, User> {
+    fun getUser(): Either<Failure, UserModel> {
         val id = preferences.getLong(PREF_USER_ID, 0)
 
         if (id == 0L) {
             return Either.Left(Failure.NoSavedAccountsError)
         }
 
-        val user = User(
+        val user = UserModel(
             id = id,
             userData = preferences.getLong(PREF_USER_DATA, 0),
             name = preferences.getString(PREF_USER_NAME, "")!!,

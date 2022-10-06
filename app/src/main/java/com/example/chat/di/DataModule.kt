@@ -60,7 +60,7 @@ class DataModule {
         prefsManager: SharedPrefsManager,
         appDatabase: AppDatabase
     ): UserCache {
-        return UserCacheImpl(appDatabase, prefsManager)
+        return UserCacheImpl(prefsManager, appDatabase)
     }
 
     @Provides
