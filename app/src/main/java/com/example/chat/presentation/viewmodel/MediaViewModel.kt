@@ -5,10 +5,10 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.MutableLiveData
+import com.example.chat.core.None
 import com.example.chat.domain.media.CreateImageFile
 import com.example.chat.domain.media.EncodeImageBitmap
 import com.example.chat.domain.media.GetPickedImage
-import com.example.chat.core.None
 import javax.inject.Inject
 
 class MediaViewModel @Inject constructor(

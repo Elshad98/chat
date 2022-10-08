@@ -1,9 +1,9 @@
 package com.example.chat.presentation.home
 
 import android.view.ViewGroup
+import com.example.chat.core.extension.inflater
 import com.example.chat.databinding.ItemChatBinding
 import com.example.chat.domain.message.Message
-import com.example.chat.core.extension.inflater
 import com.example.chat.presentation.messages.MessagesAdapter
 
 class ChatsAdapter : MessagesAdapter() {

@@ -1,7 +1,8 @@
 package com.example.chat.data.remote.core
 
-import com.example.chat.core.functional.Either
 import com.example.chat.core.exception.Failure
+import com.example.chat.core.functional.Either
+import com.example.chat.data.remote.model.response.BaseResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 import retrofit2.Call
@@ -12,22 +13,19 @@ class Request @Inject constructor(
     private val networkHandler: NetworkHandler
 ) {
 
-    fun <T : BaseResponse, R> make(call: Call<T>, transform: (T) -> R): Either<Failure, R> {
+    fun <T : BaseResponse> make(call: Call<T>): Either<Failure, T> {
         return if (networkHandler.isNetworkAvailable()) {
-            execute(call, transform)
+            execute(call)
         } else {
             Either.Left(Failure.NetworkConnectionError)
         }
     }
 
-    private fun <T : BaseResponse, R> execute(
-        call: Call<T>,
-        transform: (T) -> R
-    ): Either<Failure, R> {
+    private fun <T : BaseResponse> execute(call: Call<T>): Either<Failure, T> {
         return try {
             val response = call.execute()
             if (response.isSucceed()) {
-                Either.Right(transform(response.body()!!))
+                Either.Right(response.body()!!)
             } else {
                 Either.Left(response.parseError())
             }

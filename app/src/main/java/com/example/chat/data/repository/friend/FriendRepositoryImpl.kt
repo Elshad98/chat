@@ -1,20 +1,23 @@
 package com.example.chat.data.repository.friend
 
-import com.example.chat.data.repository.user.UserCache
-import com.example.chat.domain.friend.Friend
-import com.example.chat.domain.friend.FriendRepository
-import com.example.chat.core.functional.Either
-import com.example.chat.core.exception.Failure
 import com.example.chat.core.None
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
 import com.example.chat.core.functional.onNext
+import com.example.chat.data.remote.FriendRemoteDataSource
+import com.example.chat.data.remote.model.dto.FriendDto
+import com.example.chat.data.remote.model.dto.toFriend
+import com.example.chat.data.repository.user.UserCache
+import com.example.chat.domain.friend.Friend
+import com.example.chat.domain.friend.FriendRepository
 import javax.inject.Inject
 
 class FriendRepositoryImpl @Inject constructor(
     private val friendCache: FriendCache,
     private val userCache: UserCache,
-    private val friendRemote: FriendRemote
+    private val friendRemoteDataSource: FriendRemoteDataSource
 ) : FriendRepository {
 
     override fun getFriends(needFetch: Boolean): Either<Failure, List<Friend>> {
@@ -22,7 +25,9 @@ class FriendRepositoryImpl @Inject constructor(
             .getUser()
             .flatMap { user ->
                 if (needFetch) {
-                    friendRemote.getFriends(user.id, user.token)
+                    friendRemoteDataSource
+                        .getFriends(user.id, user.token)
+                        .map { response -> response.friends.map(FriendDto::toFriend) }
                 } else {
                     Either.Right(friendCache.getFriends())
                 }
@@ -36,7 +41,9 @@ class FriendRepositoryImpl @Inject constructor(
             .getUser()
             .flatMap { user ->
                 if (needFetch) {
-                    friendRemote.getFriendRequests(user.id, user.token)
+                    friendRemoteDataSource
+                        .getFriendRequests(user.id, user.token)
+                        .map { response -> response.friendsRequests.map(FriendDto::toFriend) }
                 } else {
                     Either.Right(friendCache.getFriendRequests())
                 }
@@ -54,12 +61,9 @@ class FriendRepositoryImpl @Inject constructor(
         return userCache
             .getUser()
             .flatMap { user ->
-                friendRemote.approveFriendRequest(
-                    user.id,
-                    friend.id,
-                    friend.friendsId,
-                    user.token
-                )
+                friendRemoteDataSource
+                    .approveFriendRequest(user.id, friend.id, friend.friendsId, user.token)
+                    .map { None() }
             }
             .onNext {
                 friend.isRequest = 0
@@ -71,12 +75,14 @@ class FriendRepositoryImpl @Inject constructor(
         return userCache
             .getUser()
             .flatMap { user ->
-                friendRemote.cancelFriendRequest(
-                    user.id,
-                    friend.id,
-                    friend.friendsId,
-                    user.token
-                )
+                friendRemoteDataSource
+                    .cancelFriendRequest(
+                        user.id,
+                        friend.id,
+                        friend.friendsId,
+                        user.token
+                    )
+                    .map { None() }
             }
             .onNext { friendCache.deleteFriend(friend.id) }
     }
@@ -85,7 +91,9 @@ class FriendRepositoryImpl @Inject constructor(
         return userCache
             .getUser()
             .flatMap { user ->
-                friendRemote.addFriend(email, user.id, user.token)
+                friendRemoteDataSource
+                    .addFriend(email, user.id, user.token)
+                    .map { None() }
             }
     }
 
@@ -93,12 +101,14 @@ class FriendRepositoryImpl @Inject constructor(
         return userCache
             .getUser()
             .flatMap { user ->
-                friendRemote.deleteFriend(
-                    user.id,
-                    friend.id,
-                    friend.friendsId,
-                    user.token
-                )
+                friendRemoteDataSource
+                    .deleteFriend(
+                        user.id,
+                        friend.id,
+                        friend.friendsId,
+                        user.token
+                    )
+                    .map { None() }
             }
             .onNext { friendCache.deleteFriend(friend.id) }
     }

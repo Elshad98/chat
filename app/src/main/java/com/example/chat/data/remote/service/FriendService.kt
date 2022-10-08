@@ -1,8 +1,8 @@
 package com.example.chat.data.remote.service
 
-import com.example.chat.data.remote.core.BaseResponse
-import com.example.chat.data.remote.friend.GetFriendRequestsResponse
-import com.example.chat.data.remote.friend.GetFriendsResponse
+import com.example.chat.data.remote.model.response.BaseResponse
+import com.example.chat.data.remote.model.response.FriendRequestsResponse
+import com.example.chat.data.remote.model.response.FriendsResponse
 import retrofit2.Call
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
@@ -20,7 +20,7 @@ interface FriendService {
 
     @FormUrlEncoded
     @POST("getContactsByUser.php")
-    fun getFriends(@FieldMap params: Map<String, String>): Call<GetFriendsResponse>
+    fun getFriends(@FieldMap params: Map<String, String>): Call<FriendsResponse>
 
     @FormUrlEncoded
     @POST("cancelFriendRequest.php")
@@ -32,5 +32,5 @@ interface FriendService {
 
     @FormUrlEncoded
     @POST("getFriendRequestsByUser.php")
-    fun getFriendRequests(@FieldMap params: Map<String, String>): Call<GetFriendRequestsResponse>
+    fun getFriendRequests(@FieldMap params: Map<String, String>): Call<FriendRequestsResponse>
 }

@@ -1,11 +1,11 @@
-package com.example.chat.data.cache
+package com.example.chat.data.local
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.example.chat.core.functional.Either
-import com.example.chat.core.exception.Failure
 import com.example.chat.core.None
-import com.example.chat.data.cache.model.UserModel
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.functional.Either
+import com.example.chat.data.local.model.UserModel
 import javax.inject.Inject
 
 class SharedPrefsManager @Inject constructor(

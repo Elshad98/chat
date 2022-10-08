@@ -1,7 +1,7 @@
 package com.example.chat.domain.interactor
 
-import com.example.chat.core.functional.Either
 import com.example.chat.core.exception.Failure
+import com.example.chat.core.functional.Either
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

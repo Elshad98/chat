@@ -1,27 +1,64 @@
-package com.example.chat.data.remote.user
+package com.example.chat.data.remote
 
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.functional.Either
 import com.example.chat.data.remote.core.ApiParamBuilder
 import com.example.chat.data.remote.core.Request
+import com.example.chat.data.remote.model.response.BaseResponse
+import com.example.chat.data.remote.model.response.UserResponse
 import com.example.chat.data.remote.service.UserService
-import com.example.chat.data.repository.user.UserRemote
-import com.example.chat.core.functional.Either
-import com.example.chat.core.exception.Failure
-import com.example.chat.core.None
-import com.example.chat.domain.user.User
 import javax.inject.Inject
 
-class UserRemoteImpl @Inject constructor(
+class UserRemoteDataSource @Inject constructor(
     private val request: Request,
     private val service: UserService
-) : UserRemote {
+) {
 
-    override fun register(
+    fun forgetPassword(email: String): Either<Failure, BaseResponse> {
+        val params = ApiParamBuilder()
+            .email(email)
+            .build()
+        return request.make(service.forgetPassword(params))
+    }
+
+    fun login(email: String, password: String, token: String): Either<Failure, UserResponse> {
+        val params = ApiParamBuilder()
+            .password(password)
+            .email(email)
+            .token(token)
+            .build()
+        return request.make(service.login(params))
+    }
+
+    fun updateToken(userId: Long, token: String, oldToken: String): Either<Failure, BaseResponse> {
+        val params = ApiParamBuilder()
+            .oldToken(oldToken)
+            .userId(userId)
+            .token(token)
+            .build()
+        return request.make(service.updateToken(params))
+    }
+
+    fun updateUserLastSeen(
+        userId: Long,
+        token: String,
+        lastSeen: Long
+    ): Either<Failure, BaseResponse> {
+        val params = ApiParamBuilder()
+            .lastSeen(lastSeen)
+            .userId(userId)
+            .token(token)
+            .build()
+        return request.make(service.updateUserLastSeen(params))
+    }
+
+    fun register(
         email: String,
         name: String,
         password: String,
         token: String,
         userDate: Long
-    ): Either<Failure, None> {
+    ): Either<Failure, BaseResponse> {
         val params = ApiParamBuilder()
             .password(password)
             .userDate(userDate)
@@ -29,35 +66,10 @@ class UserRemoteImpl @Inject constructor(
             .token(token)
             .name(name)
             .build()
-        return request.make(service.register(params)) { None() }
+        return request.make(service.register(params))
     }
 
-    override fun login(email: String, password: String, token: String): Either<Failure, User> {
-        val params = ApiParamBuilder()
-            .password(password)
-            .email(email)
-            .token(token)
-            .build()
-        return request.make(service.login(params)) { it.user }
-    }
-
-    override fun updateToken(userId: Long, token: String, oldToken: String): Either<Failure, None> {
-        val params = ApiParamBuilder()
-            .userId(userId)
-            .oldToken(oldToken)
-            .token(token)
-            .build()
-        return request.make(service.updateToken(params)) { None() }
-    }
-
-    override fun forgetPassword(email: String): Either<Failure, None> {
-        val params = ApiParamBuilder()
-            .email(email)
-            .build()
-        return request.make(service.forgetPassword(params)) { None() }
-    }
-
-    override fun editUser(
+    fun editUser(
         userId: Long,
         email: String,
         name: String,
@@ -65,22 +77,9 @@ class UserRemoteImpl @Inject constructor(
         status: String,
         token: String,
         image: String
-    ): Either<Failure, User> {
+    ): Either<Failure, UserResponse> {
         val params = createUserEditMap(userId, email, name, password, status, token, image)
-        return request.make(service.editUser(params)) { it.user }
-    }
-
-    override fun updateUserLastSeen(
-        userId: Long,
-        token: String,
-        lastSeen: Long
-    ): Either<Failure, None> {
-        val params = ApiParamBuilder()
-            .userId(userId)
-            .lastSeen(lastSeen)
-            .token(token)
-            .build()
-        return request.make(service.updateUserLastSeen(params)) { None() }
+        return request.make(service.editUser(params))
     }
 
     private fun createUserEditMap(

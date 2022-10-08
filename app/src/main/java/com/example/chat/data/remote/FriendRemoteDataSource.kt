@@ -1,94 +1,91 @@
-package com.example.chat.data.remote.friend
+package com.example.chat.data.remote
 
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.functional.Either
 import com.example.chat.data.remote.core.ApiParamBuilder
 import com.example.chat.data.remote.core.Request
+import com.example.chat.data.remote.model.response.BaseResponse
+import com.example.chat.data.remote.model.response.FriendRequestsResponse
+import com.example.chat.data.remote.model.response.FriendsResponse
 import com.example.chat.data.remote.service.FriendService
-import com.example.chat.data.repository.friend.FriendRemote
-import com.example.chat.domain.friend.Friend
-import com.example.chat.core.functional.Either
-import com.example.chat.core.exception.Failure
-import com.example.chat.core.None
 import javax.inject.Inject
 
-class FriendRemoteImpl @Inject constructor(
+class FriendRemoteDataSource @Inject constructor(
     private val request: Request,
     private val service: FriendService
-) : FriendRemote {
+) {
 
-    override fun getFriends(userId: Long, token: String): Either<Failure, List<Friend>> {
+    fun getFriends(userId: Long, token: String): Either<Failure, FriendsResponse> {
         val params = ApiParamBuilder()
             .userId(userId)
             .token(token)
             .build()
-        return request.make(service.getFriends(params)) { it.friends }
+        return request.make(service.getFriends(params))
     }
 
-    override fun getFriendRequests(
-        userId: Long,
-        token: String
-    ): Either<Failure, List<Friend>> {
+    fun getFriendRequests(userId: Long, token: String): Either<Failure, FriendRequestsResponse> {
         val params = ApiParamBuilder()
             .userId(userId)
             .token(token)
             .build()
-        return request.make(service.getFriendRequests(params)) { it.friendsRequests }
+        return request.make(service.getFriendRequests(params))
     }
 
-    override fun approveFriendRequest(
-        userId: Long,
-        requestUserId: Long,
-        friendsId: Long,
-        token: String
-    ): Either<Failure, None> {
-        val params = ApiParamBuilder()
-            .requestUserId(requestUserId)
-            .friendsId(friendsId)
-            .userId(userId)
-            .token(token)
-            .build()
-        return request.make(service.approveFriendRequest(params)) { None() }
-    }
-
-    override fun cancelFriendRequest(
-        userId: Long,
-        requestUserId: Long,
-        friendsId: Long,
-        token: String
-    ): Either<Failure, None> {
-        val params = ApiParamBuilder()
-            .requestUserId(requestUserId)
-            .friendsId(friendsId)
-            .userId(userId)
-            .token(token)
-            .build()
-        return request.make(service.cancelFriendRequest(params)) { None() }
-    }
-
-    override fun addFriend(
+    fun addFriend(
         email: String,
         requestUserId: Long,
         token: String
-    ): Either<Failure, None> {
+    ): Either<Failure, BaseResponse> {
         val params = ApiParamBuilder()
             .requestUserId(requestUserId)
             .email(email)
             .token(token)
             .build()
-        return request.make(service.addFriend(params)) { None() }
+        return request.make(service.addFriend(params))
     }
 
-    override fun deleteFriend(
+    fun approveFriendRequest(
         userId: Long,
         requestUserId: Long,
         friendsId: Long,
         token: String
-    ): Either<Failure, None> {
+    ): Either<Failure, BaseResponse> {
         val params = ApiParamBuilder()
             .requestUserId(requestUserId)
             .friendsId(friendsId)
             .userId(userId)
             .token(token)
             .build()
-        return request.make(service.deleteFriend(params)) { None() }
+        return request.make(service.approveFriendRequest(params))
+    }
+
+    fun cancelFriendRequest(
+        userId: Long,
+        requestUserId: Long,
+        friendsId: Long,
+        token: String
+    ): Either<Failure, BaseResponse> {
+        val params = ApiParamBuilder()
+            .requestUserId(requestUserId)
+            .friendsId(friendsId)
+            .userId(userId)
+            .token(token)
+            .build()
+        return request.make(service.cancelFriendRequest(params))
+    }
+
+    fun deleteFriend(
+        userId: Long,
+        requestUserId: Long,
+        friendsId: Long,
+        token: String
+    ): Either<Failure, BaseResponse> {
+        val params = ApiParamBuilder()
+            .requestUserId(requestUserId)
+            .friendsId(friendsId)
+            .userId(userId)
+            .token(token)
+            .build()
+        return request.make(service.deleteFriend(params))
     }
 }

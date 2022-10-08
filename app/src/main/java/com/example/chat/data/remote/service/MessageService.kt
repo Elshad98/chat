@@ -1,7 +1,7 @@
 package com.example.chat.data.remote.service
 
-import com.example.chat.data.remote.core.BaseResponse
-import com.example.chat.data.remote.message.GetMessagesResponse
+import com.example.chat.data.remote.model.response.BaseResponse
+import com.example.chat.data.remote.model.response.MessagesResponse
 import retrofit2.Call
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
@@ -19,9 +19,9 @@ interface MessageService {
 
     @FormUrlEncoded
     @POST("getLastMessagesByUser.php")
-    fun getLastMessages(@FieldMap params: Map<String, String>): Call<GetMessagesResponse>
+    fun getLastMessages(@FieldMap params: Map<String, String>): Call<MessagesResponse>
 
     @FormUrlEncoded
     @POST("getMessagesByUserWithContact.php")
-    fun getMessagesWithContact(@FieldMap params: Map<String, String>): Call<GetMessagesResponse>
+    fun getMessagesWithContact(@FieldMap params: Map<String, String>): Call<MessagesResponse>
 }

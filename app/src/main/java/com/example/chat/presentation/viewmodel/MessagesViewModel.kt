@@ -1,12 +1,12 @@
 package com.example.chat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.example.chat.core.None
 import com.example.chat.domain.message.DeleteMessage
 import com.example.chat.domain.message.GetChats
 import com.example.chat.domain.message.GetMessagesWithContact
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.SendMessage
-import com.example.chat.core.None
 import javax.inject.Inject
 
 class MessagesViewModel @Inject constructor(

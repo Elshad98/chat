@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.data.cache.AppDatabase
+import com.example.chat.data.local.AppDatabase
 import com.example.chat.data.remote.service.UserService
 import com.example.chat.domain.message.Message
 import com.example.chat.presentation.App

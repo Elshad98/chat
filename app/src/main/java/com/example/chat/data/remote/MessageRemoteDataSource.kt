@@ -1,62 +1,61 @@
-package com.example.chat.data.remote.message
+package com.example.chat.data.remote
 
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.functional.Either
 import com.example.chat.data.remote.core.ApiParamBuilder
 import com.example.chat.data.remote.core.Request
+import com.example.chat.data.remote.model.response.BaseResponse
+import com.example.chat.data.remote.model.response.MessagesResponse
 import com.example.chat.data.remote.service.MessageService
 import com.example.chat.data.remote.service.UserService
-import com.example.chat.data.repository.message.MessageRemote
-import com.example.chat.domain.message.Message
-import com.example.chat.core.functional.Either
-import com.example.chat.core.exception.Failure
-import com.example.chat.core.None
 import javax.inject.Inject
 import org.json.JSONArray
 import org.json.JSONObject
 
-class MessageRemoteImpl @Inject constructor(
+class MessageRemoteDataSource @Inject constructor(
     private val request: Request,
     private val service: MessageService
-) : MessageRemote {
+) {
 
-    override fun getChats(userId: Long, token: String): Either<Failure, List<Message>> {
+    fun getChats(userId: Long, token: String): Either<Failure, MessagesResponse> {
         val params = ApiParamBuilder()
             .userId(userId)
             .token(token)
             .build()
-        return request.make(service.getLastMessages(params)) { it.messages }
+        return request.make(service.getLastMessages(params))
     }
 
-    override fun sendMessage(
+    fun sendMessage(
         senderId: Long,
         receiverId: Long,
         token: String,
         message: String,
         image: String
-    ): Either<Failure, None> {
+    ): Either<Failure, BaseResponse> {
         val params = createSendMessageMap(senderId, receiverId, token, message, image)
-        return request.make(service.sendMessage(params)) { None() }
+        return request.make(service.sendMessage(params))
     }
 
-    override fun getMessagesWithContact(
+    fun getMessagesWithContact(
         contactId: Long,
         userId: Long,
         token: String
-    ): Either<Failure, List<Message>> {
+    ): Either<Failure, MessagesResponse> {
         val params = ApiParamBuilder()
             .contactId(contactId)
             .userId(userId)
             .token(token)
             .build()
-        return request.make(service.getMessagesWithContact(params)) { it.messages }
+        return request.make(service.getMessagesWithContact(params))
     }
 
-    override fun deleteMessagesByUser(
+    fun deleteMessagesByUser(
         userId: Long,
         messageId: Long,
         token: String
-    ): Either<Failure, None> {
+    ): Either<Failure, BaseResponse> {
         val params = createDeleteMessagesMap(userId, messageId, token)
-        return request.make(service.deleteMessagesByUser(params)) { None() }
+        return request.make(service.deleteMessagesByUser(params))
     }
 
     private fun createSendMessageMap(

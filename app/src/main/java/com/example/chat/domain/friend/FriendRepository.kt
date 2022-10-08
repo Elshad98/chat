@@ -1,8 +1,8 @@
 package com.example.chat.domain.friend
 
-import com.example.chat.core.functional.Either
-import com.example.chat.core.exception.Failure
 import com.example.chat.core.None
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.functional.Either
 
 interface FriendRepository {
 

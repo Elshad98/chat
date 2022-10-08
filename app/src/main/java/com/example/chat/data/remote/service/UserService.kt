@@ -1,7 +1,7 @@
 package com.example.chat.data.remote.service
 
-import com.example.chat.data.remote.core.BaseResponse
-import com.example.chat.data.remote.user.AuthResponse
+import com.example.chat.data.remote.model.response.BaseResponse
+import com.example.chat.data.remote.model.response.UserResponse
 import retrofit2.Call
 import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
@@ -46,7 +46,7 @@ interface UserService {
 
     @FormUrlEncoded
     @POST("login.php")
-    fun login(@FieldMap params: Map<String, String>): Call<AuthResponse>
+    fun login(@FieldMap params: Map<String, String>): Call<UserResponse>
 
     @FormUrlEncoded
     @POST("register.php")
@@ -54,7 +54,7 @@ interface UserService {
 
     @FormUrlEncoded
     @POST("editUser.php")
-    fun editUser(@FieldMap params: Map<String, String>): Call<AuthResponse>
+    fun editUser(@FieldMap params: Map<String, String>): Call<UserResponse>
 
     @FormUrlEncoded
     @POST("updateUserToken.php")

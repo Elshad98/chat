@@ -5,8 +5,8 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.domain.friend.Friend
 import com.example.chat.core.None
+import com.example.chat.domain.friend.Friend
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseListFragment
 import com.example.chat.presentation.viewmodel.FriendsViewModel

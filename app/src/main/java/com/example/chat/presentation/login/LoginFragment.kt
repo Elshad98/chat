@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.domain.user.User
 import com.example.chat.core.extension.hideKeyboard
+import com.example.chat.domain.user.User
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseFragment
 import com.example.chat.presentation.viewmodel.AccountViewModel

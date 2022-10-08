@@ -1,4 +1,4 @@
-package com.example.chat.data.remote.core
+package com.example.chat.data.remote.model.response
 
 open class BaseResponse(
     val success: Int,

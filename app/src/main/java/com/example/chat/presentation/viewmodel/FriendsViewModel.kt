@@ -1,6 +1,7 @@
 package com.example.chat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.example.chat.core.None
 import com.example.chat.domain.friend.AddFriend
 import com.example.chat.domain.friend.ApproveFriendRequest
 import com.example.chat.domain.friend.CancelFriendRequest
@@ -8,7 +9,6 @@ import com.example.chat.domain.friend.DeleteFriend
 import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.friend.GetFriendRequests
 import com.example.chat.domain.friend.GetFriends
-import com.example.chat.core.None
 import javax.inject.Inject
 
 class FriendsViewModel @Inject constructor(

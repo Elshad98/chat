@@ -1,4 +1,4 @@
-package com.example.chat.data.cache.dao
+package com.example.chat.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

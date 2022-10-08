@@ -1,9 +1,9 @@
 package com.example.chat.presentation.friends
 
 import android.view.ViewGroup
+import com.example.chat.core.extension.inflater
 import com.example.chat.databinding.ItemFriendRequestBinding
 import com.example.chat.domain.friend.Friend
-import com.example.chat.core.extension.inflater
 import com.example.chat.presentation.core.BaseAdapter
 
 class FriendRequestsAdapter : BaseAdapter<Friend, FriendRequestsAdapter.FriendRequestViewHolder>(

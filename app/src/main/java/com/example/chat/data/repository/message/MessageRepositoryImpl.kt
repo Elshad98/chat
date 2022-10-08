@@ -1,18 +1,21 @@
 package com.example.chat.data.repository.message
 
-import com.example.chat.data.repository.user.UserCache
-import com.example.chat.domain.message.Message
-import com.example.chat.domain.message.MessageRepository
-import com.example.chat.core.functional.Either
-import com.example.chat.core.exception.Failure
 import com.example.chat.core.None
+import com.example.chat.core.exception.Failure
+import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
 import com.example.chat.core.functional.onNext
+import com.example.chat.data.remote.MessageRemoteDataSource
+import com.example.chat.data.remote.model.dto.MessageDto
+import com.example.chat.data.remote.model.dto.toMessage
+import com.example.chat.data.repository.user.UserCache
+import com.example.chat.domain.message.Message
+import com.example.chat.domain.message.MessageRepository
 import javax.inject.Inject
 
 class MessageRepositoryImpl @Inject constructor(
-    private val messageRemote: MessageRemote,
+    private val messageRemoteDataSource: MessageRemoteDataSource,
     private val messageCache: MessageCache,
     private val userCache: UserCache
 ) : MessageRepository {
@@ -22,8 +25,9 @@ class MessageRepositoryImpl @Inject constructor(
             .getUser()
             .flatMap { user ->
                 if (needFetch) {
-                    messageRemote
+                    messageRemoteDataSource
                         .getChats(user.id, user.token)
+                        .map { response -> response.messages.map(MessageDto::toMessage) }
                         .onNext { messages ->
                             messages.map { message ->
                                 if (message.senderId == user.id) {
@@ -51,8 +55,9 @@ class MessageRepositoryImpl @Inject constructor(
             .getUser()
             .flatMap { user ->
                 if (needFetch) {
-                    messageRemote
+                    messageRemoteDataSource
                         .getMessagesWithContact(contactId, user.id, user.token)
+                        .map { response -> response.messages.map(MessageDto::toMessage) }
                         .onNext { messages ->
                             messages.map { message ->
                                 if (message.senderId == user.id) {
@@ -79,7 +84,9 @@ class MessageRepositoryImpl @Inject constructor(
         return userCache
             .getUser()
             .flatMap { user ->
-                messageRemote.sendMessage(user.id, receiverId, user.token, message, image)
+                messageRemoteDataSource
+                    .sendMessage(user.id, receiverId, user.token, message, image)
+                    .map { None() }
             }
     }
 
@@ -88,7 +95,9 @@ class MessageRepositoryImpl @Inject constructor(
             .getUser()
             .flatMap { user ->
                 messageCache.deleteMessagesByUser(messageId)
-                messageRemote.deleteMessagesByUser(user.id, messageId, user.token)
+                messageRemoteDataSource
+                    .deleteMessagesByUser(user.id, messageId, user.token)
+                    .map { None() }
             }
     }
 }

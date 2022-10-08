@@ -1,4 +1,4 @@
-package com.example.chat.data.cache.model
+package com.example.chat.data.local.model
 
 import com.example.chat.domain.user.User
 
