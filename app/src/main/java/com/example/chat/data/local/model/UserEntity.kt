@@ -2,7 +2,7 @@ package com.example.chat.data.local.model
 
 import com.example.chat.domain.user.User
 
-data class UserModel(
+data class UserEntity(
     val id: Long,
     val name: String,
     val email: String,
@@ -13,7 +13,7 @@ data class UserModel(
     val password: String
 )
 
-fun UserModel.toUser() = User(
+fun User.toEntity() = UserEntity(
     id = id,
     name = name,
     email = email,
@@ -24,7 +24,7 @@ fun UserModel.toUser() = User(
     password = password
 )
 
-fun User.toUserModel() = UserModel(
+fun UserEntity.toDomain() = User(
     id = id,
     name = name,
     email = email,

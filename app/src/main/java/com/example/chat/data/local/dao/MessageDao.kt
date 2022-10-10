@@ -7,45 +7,44 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import com.example.chat.data.repository.message.MessageCache
-import com.example.chat.domain.message.Message
+import com.example.chat.data.local.model.MessageEntity
 
 @Dao
-interface MessageDao : MessageCache {
+interface MessageDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(message: Message): Long
+    fun insert(message: MessageEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(messages: List<Message>): List<Long>
+    fun insert(messages: List<MessageEntity>): List<Long>
 
     @Update
-    fun update(message: Message)
+    fun update(message: MessageEntity)
 
     @Transaction
-    override fun saveMessage(message: Message) {
+    fun saveMessage(message: MessageEntity) {
         if (insert(message) == -1L) {
             update(message)
         }
     }
 
     @Transaction
-    override fun saveMessages(messages: List<Message>) {
+    fun saveMessages(messages: List<MessageEntity>) {
         insert(messages)
     }
 
-    @Query("SELECT * from messages_table ORDER BY message_date DESC")
-    override fun getChats(): List<Message>
+    @Query("SELECT * from messages ORDER BY message_date DESC")
+    fun getChats(): List<MessageEntity>
 
-    @Query("SELECT * from messages_table WHERE (deleted_by_receiver_id = 0 AND deleted_by_sender_id = 0) AND (sender_id = :contactId OR receiver_id = :contactId) ORDER BY message_date ASC")
-    override fun getMessagesWithContact(contactId: Long): List<Message>
+    @Query("SELECT * from messages WHERE (deleted_by_receiver_id = 0 AND deleted_by_sender_id = 0) AND (sender_id = :contactId OR receiver_id = :contactId) ORDER BY message_date ASC")
+    fun getMessagesWithContact(contactId: Long): List<MessageEntity>
 
-    @Query("SELECT * from messages_table ORDER BY message_date DESC")
-    fun getLiveChats(): LiveData<List<Message>>
+    @Query("SELECT * from messages ORDER BY message_date DESC")
+    fun getLiveChats(): LiveData<List<MessageEntity>>
 
-    @Query("SELECT * from messages_table WHERE (deleted_by_receiver_id = 0 AND deleted_by_sender_id = 0) AND (sender_id = :contactId OR receiver_id = :contactId) ORDER BY message_date ASC")
-    fun getLiveMessagesWithContact(contactId: Long): LiveData<List<Message>>
+    @Query("SELECT * from messages WHERE (deleted_by_receiver_id = 0 AND deleted_by_sender_id = 0) AND (sender_id = :contactId OR receiver_id = :contactId) ORDER BY message_date ASC")
+    fun getLiveMessagesWithContact(contactId: Long): LiveData<List<MessageEntity>>
 
-    @Query("DELETE from messages_table WHERE message_id = :messageId")
-    override fun deleteMessagesByUser(messageId: Long)
+    @Query("DELETE from messages WHERE message_id = :messageId")
+    fun deleteMessagesByUser(messageId: Long)
 }

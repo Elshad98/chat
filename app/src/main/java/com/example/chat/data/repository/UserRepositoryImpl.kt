@@ -1,4 +1,4 @@
-package com.example.chat.data.repository.user
+package com.example.chat.data.repository
 
 import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
@@ -6,41 +6,44 @@ import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
 import com.example.chat.core.functional.onNext
+import com.example.chat.data.local.UserLocalDataSource
+import com.example.chat.data.local.model.UserEntity
+import com.example.chat.data.local.model.toDomain
+import com.example.chat.data.local.model.toEntity
 import com.example.chat.data.remote.UserRemoteDataSource
-import com.example.chat.data.remote.model.dto.toUser
+import com.example.chat.data.remote.model.dto.toDomain
 import com.example.chat.domain.user.User
 import com.example.chat.domain.user.UserRepository
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
-    private val userCache: UserCache,
+    private val userLocalDataSource: UserLocalDataSource,
     private val userRemoteDataSource: UserRemoteDataSource
 ) : UserRepository {
 
     override fun login(email: String, password: String): Either<Failure, User> {
-        return userCache
+        return userLocalDataSource
             .getToken()
             .flatMap { token ->
                 userRemoteDataSource
                     .login(email, password, token)
-                    .map { response -> response.user.toUser() }
+                    .map { response -> response.user.toDomain() }
             }
             .onNext { user ->
-                user.password = password
-                userCache.saveUser(user)
+                userLocalDataSource.saveUser(user.copy(password = password).toEntity())
             }
     }
 
     override fun logout(): Either<Failure, None> {
-        return userCache.logout()
+        return userLocalDataSource.logout()
     }
 
     override fun checkAuth(): Either<Failure, Boolean> {
-        return userCache.checkAuth()
+        return userLocalDataSource.checkAuth()
     }
 
     override fun register(email: String, name: String, password: String): Either<Failure, None> {
-        return userCache
+        return userLocalDataSource
             .getToken()
             .flatMap { token ->
                 userRemoteDataSource
@@ -62,22 +65,24 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override fun getUser(): Either<Failure, User> {
-        return userCache.getUser()
+        return userLocalDataSource
+            .getUser()
+            .map(UserEntity::toDomain)
     }
 
     override fun updateToken(token: String): Either<Failure, None> {
-        return userCache
+        return userLocalDataSource
             .getUser()
             .flatMap { user ->
                 userRemoteDataSource
                     .updateToken(user.id, token, user.token)
                     .map { None() }
-                    .onNext { userCache.saveToken(token) }
+                    .onNext { userLocalDataSource.saveToken(token) }
             }
     }
 
     override fun updateUserLastSeen(): Either<Failure, None> {
-        return userCache
+        return userLocalDataSource
             .getUser()
             .flatMap { user ->
                 userRemoteDataSource
@@ -91,7 +96,7 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override fun editUser(user: User): Either<Failure, User> {
-        return userCache
+        return userLocalDataSource
             .getUser()
             .flatMap {
                 userRemoteDataSource
@@ -104,11 +109,11 @@ class UserRepositoryImpl @Inject constructor(
                         user.token,
                         user.image
                     )
-                    .map { response -> response.user.toUser() }
+                    .map { response -> response.user.toDomain() }
             }
             .onNext {
                 user.image = it.image
-                userCache.saveUser(user)
+                userLocalDataSource.saveUser(user.copy(image = it.image).toEntity())
             }
     }
 }

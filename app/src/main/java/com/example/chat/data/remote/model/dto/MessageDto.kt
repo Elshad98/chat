@@ -23,7 +23,7 @@ data class MessageDto(
     val deletedByReceiver: Int
 )
 
-fun MessageDto.toMessage() = Message(
+fun MessageDto.toDomain() = Message(
     id = id,
     date = date,
     type = type,
@@ -31,7 +31,7 @@ fun MessageDto.toMessage() = Message(
     message = message,
     senderId = senderId,
     receiverId = receiverId,
-    contact = contact?.toContact(),
+    contact = contact?.toDomain(),
     deletedBySender = deletedBySender,
     deletedByReceiver = deletedByReceiver
 )

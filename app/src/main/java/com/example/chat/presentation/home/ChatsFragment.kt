@@ -5,6 +5,8 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.data.local.AppDatabase
+import com.example.chat.data.local.model.MessageEntity
+import com.example.chat.data.local.model.toDomain
 import com.example.chat.domain.message.Message
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseListFragment
@@ -44,7 +46,7 @@ class ChatsFragment : BaseListFragment() {
             viewLifecycleOwner,
             Observer { messages ->
                 val list = messages.distinctBy { it.contact?.id }.toList()
-                handleChats(list)
+                handleChats(list.map(MessageEntity::toDomain))
             }
         )
     }

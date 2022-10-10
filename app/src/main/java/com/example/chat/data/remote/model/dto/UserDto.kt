@@ -16,7 +16,7 @@ data class UserDto(
     val password: String?
 )
 
-fun UserDto.toUser() = User(
+fun UserDto.toDomain() = User(
     id = id,
     name = name,
     email = email,

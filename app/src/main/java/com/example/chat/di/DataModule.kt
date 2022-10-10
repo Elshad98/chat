@@ -4,14 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.chat.BuildConfig
 import com.example.chat.data.local.AppDatabase
-import com.example.chat.data.local.SharedPrefsManager
-import com.example.chat.data.local.UserCacheImpl
+import com.example.chat.data.local.dao.FriendDao
+import com.example.chat.data.local.dao.MessageDao
 import com.example.chat.data.remote.service.FriendService
 import com.example.chat.data.remote.service.MessageService
 import com.example.chat.data.remote.service.UserService
-import com.example.chat.data.repository.friend.FriendCache
-import com.example.chat.data.repository.message.MessageCache
-import com.example.chat.data.repository.user.UserCache
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -31,29 +28,20 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideMessageCache(chatDatabase: AppDatabase): MessageCache {
-        return chatDatabase.messageDao()
+    fun provideFriendCache(appDatabase: AppDatabase): FriendDao {
+        return appDatabase.friendDao()
     }
 
     @Provides
     @Singleton
-    fun provideFriendCache(appDatabase: AppDatabase): FriendCache {
-        return appDatabase.friendDao()
+    fun provideMessageCache(chatDatabase: AppDatabase): MessageDao {
+        return chatDatabase.messageDao()
     }
 
     @Provides
     @Singleton
     fun provideSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
-    }
-
-    @Provides
-    @Singleton
-    fun provideUserCache(
-        prefsManager: SharedPrefsManager,
-        appDatabase: AppDatabase
-    ): UserCache {
-        return UserCacheImpl(prefsManager, appDatabase)
     }
 
     @Provides

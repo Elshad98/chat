@@ -12,7 +12,7 @@ data class ContactDto(
     val lastSeen: Long
 )
 
-fun ContactDto.toContact() = Contact(
+fun ContactDto.toDomain() = Contact(
     id = id,
     name = name,
     image = image,

@@ -17,7 +17,7 @@ data class FriendDto(
     val friendsId: Long
 )
 
-fun FriendDto.toFriend() = Friend(
+fun FriendDto.toDomain() = Friend(
     id = id,
     name = name,
     email = email,

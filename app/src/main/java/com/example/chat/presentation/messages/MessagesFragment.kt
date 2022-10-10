@@ -9,6 +9,8 @@ import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.example.chat.R
 import com.example.chat.data.local.AppDatabase
+import com.example.chat.data.local.model.MessageEntity
+import com.example.chat.data.local.model.toDomain
 import com.example.chat.data.remote.service.UserService
 import com.example.chat.domain.message.Message
 import com.example.chat.presentation.App
@@ -78,7 +80,10 @@ class MessagesFragment : BaseListFragment() {
         AppDatabase.getInstance(requireContext())
             .messageDao()
             .getLiveMessagesWithContact(contactId)
-            .observe(viewLifecycleOwner, Observer(::handleMessages))
+            .observe(
+                viewLifecycleOwner,
+                Observer { messages -> handleMessages(messages.map(MessageEntity::toDomain)) }
+            )
 
         viewAdapter.setOnClick(
             click = { _, view ->
