@@ -11,7 +11,7 @@ class DeleteMessage @Inject constructor(
 ) : UseCase<None, DeleteMessage.Params>() {
 
     override suspend fun run(params: Params): Either<Failure, None> {
-        return messageRepository.deleteMessagesByUser(params.messageId)
+        return messageRepository.deleteMessageByUser(params.messageId)
     }
 
     data class Params(val messageId: Long)

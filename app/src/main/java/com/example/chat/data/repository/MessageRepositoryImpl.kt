@@ -101,14 +101,14 @@ class MessageRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun deleteMessagesByUser(messageId: Long): Either<Failure, None> {
+    override fun deleteMessageByUser(messageId: Long): Either<Failure, None> {
         return userLocalDataSource
             .getUser()
             .flatMap { user ->
-                messageLocalDataSource.deleteMessagesByUser(messageId)
                 messageRemoteDataSource
-                    .deleteMessagesByUser(user.id, messageId, user.token)
+                    .deleteMessageByUser(user.id, messageId, user.token)
                     .map { None() }
+                    .onNext { messageLocalDataSource.deleteMessageByUser(messageId) }
             }
     }
 }

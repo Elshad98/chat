@@ -6,18 +6,11 @@ import com.example.chat.core.functional.Either
 
 interface MessageRepository {
 
-    fun deleteMessagesByUser(messageId: Long): Either<Failure, None>
+    fun deleteMessageByUser(messageId: Long): Either<Failure, None>
 
     fun getChats(needFetch: Boolean): Either<Failure, List<Message>>
 
-    fun getMessagesWithContact(
-        contactId: Long,
-        needFetch: Boolean
-    ): Either<Failure, List<Message>>
+    fun sendMessage(receiverId: Long, message: String, image: String): Either<Failure, None>
 
-    fun sendMessage(
-        receiverId: Long,
-        message: String,
-        image: String
-    ): Either<Failure, None>
+    fun getMessagesWithContact(contactId: Long, needFetch: Boolean): Either<Failure, List<Message>>
 }

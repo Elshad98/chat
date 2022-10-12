@@ -9,8 +9,6 @@ import com.example.chat.data.remote.model.response.MessagesResponse
 import com.example.chat.data.remote.service.MessageService
 import com.example.chat.data.remote.service.UserService
 import javax.inject.Inject
-import org.json.JSONArray
-import org.json.JSONObject
 
 class MessageRemoteDataSource @Inject constructor(
     private val request: Request,
@@ -49,13 +47,17 @@ class MessageRemoteDataSource @Inject constructor(
         return request.make(service.getMessagesWithContact(params))
     }
 
-    fun deleteMessagesByUser(
+    fun deleteMessageByUser(
         userId: Long,
         messageId: Long,
         token: String
     ): Either<Failure, BaseResponse> {
-        val params = createDeleteMessagesMap(userId, messageId, token)
-        return request.make(service.deleteMessagesByUser(params))
+        val params = ApiParamBuilder()
+            .messageId(messageId)
+            .userId(userId)
+            .token(token)
+            .build()
+        return request.make(service.deleteMessageByUser(params))
     }
 
     private fun createSendMessageMap(
@@ -80,26 +82,6 @@ class MessageRemoteDataSource @Inject constructor(
         map[UserService.PARAM_RECEIVER_ID] = toId.toString()
         map[UserService.PARAM_MESSAGE_TYPE] = type.toString()
         map[UserService.PARAM_MESSAGE_DATE] = time.toString()
-        return map
-    }
-
-    private fun createDeleteMessagesMap(
-        userId: Long,
-        messageId: Long,
-        token: String
-    ): Map<String, String> {
-        val itemsArrayObject = JSONObject()
-        val itemsArray = JSONArray()
-        val itemObject = JSONObject()
-
-        itemObject.put("message_id", messageId)
-        itemsArray.put(itemObject)
-        itemsArrayObject.put("messages", itemsArray)
-
-        val map = HashMap<String, String>()
-        map[UserService.PARAM_TOKEN] = token
-        map[UserService.PARAM_USER_ID] = userId.toString()
-        map[UserService.PARAM_MESSAGES_IDS] = itemsArrayObject.toString()
         return map
     }
 }

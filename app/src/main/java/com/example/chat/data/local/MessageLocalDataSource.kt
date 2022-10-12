@@ -16,8 +16,8 @@ class MessageLocalDataSource @Inject constructor(
         messageDao.saveMessage(message)
     }
 
-    fun deleteMessagesByUser(messageId: Long) {
-        messageDao.deleteMessagesByUser(messageId)
+    fun deleteMessageByUser(messageId: Long) {
+        messageDao.deleteMessageByUser(messageId)
     }
 
     fun saveMessages(messages: List<MessageEntity>) {

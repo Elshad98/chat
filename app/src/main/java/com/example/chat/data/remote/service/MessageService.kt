@@ -14,12 +14,12 @@ interface MessageService {
     fun sendMessage(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
     @FormUrlEncoded
-    @POST("deleteMessagesByUser.php")
-    fun deleteMessagesByUser(@FieldMap params: Map<String, String>): Call<BaseResponse>
-
-    @FormUrlEncoded
     @POST("getLastMessagesByUser.php")
     fun getLastMessages(@FieldMap params: Map<String, String>): Call<MessagesResponse>
+
+    @FormUrlEncoded
+    @POST("deleteMessageByUser.php")
+    fun deleteMessageByUser(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
     @FormUrlEncoded
     @POST("getMessagesByUserWithContact.php")

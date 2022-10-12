@@ -46,5 +46,5 @@ interface MessageDao {
     fun getLiveMessagesWithContact(contactId: Long): LiveData<List<MessageEntity>>
 
     @Query("DELETE from messages WHERE message_id = :messageId")
-    fun deleteMessagesByUser(messageId: Long)
+    fun deleteMessageByUser(messageId: Long)
 }
