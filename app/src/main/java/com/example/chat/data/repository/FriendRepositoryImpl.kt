@@ -5,7 +5,7 @@ import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
-import com.example.chat.core.functional.onNext
+import com.example.chat.core.functional.onSuccess
 import com.example.chat.data.local.FriendLocalDataSource
 import com.example.chat.data.local.UserLocalDataSource
 import com.example.chat.data.local.model.FriendEntity
@@ -37,7 +37,7 @@ class FriendRepositoryImpl @Inject constructor(
                 }
             }
             .map { friends -> friends.sortedBy { friend -> friend.name } }
-            .onNext { friends ->
+            .onSuccess { friends ->
                 friends.forEach {
                     friendLocalDataSource.saveFriend(it.toEntity())
                 }
@@ -60,7 +60,7 @@ class FriendRepositoryImpl @Inject constructor(
                 }
             }
             .map { friends -> friends.sortedBy { friend -> friend.name } }
-            .onNext { friends ->
+            .onSuccess { friends ->
                 friends.forEach { friend ->
                     friendLocalDataSource.saveFriend(friend.copy(isRequest = 1).toEntity())
                 }
@@ -75,7 +75,7 @@ class FriendRepositoryImpl @Inject constructor(
                     .approveFriendRequest(user.id, friend.id, friend.friendsId, user.token)
                     .map { None() }
             }
-            .onNext {
+            .onSuccess {
                 friendLocalDataSource.saveFriend(friend.copy(isRequest = 0).toEntity())
             }
     }
@@ -93,7 +93,7 @@ class FriendRepositoryImpl @Inject constructor(
                     )
                     .map { None() }
             }
-            .onNext { friendLocalDataSource.deleteFriend(friend.id) }
+            .onSuccess { friendLocalDataSource.deleteFriend(friend.id) }
     }
 
     override fun addFriend(email: String): Either<Failure, None> {
@@ -119,6 +119,6 @@ class FriendRepositoryImpl @Inject constructor(
                     )
                     .map { None() }
             }
-            .onNext { friendLocalDataSource.deleteFriend(friend.id) }
+            .onSuccess { friendLocalDataSource.deleteFriend(friend.id) }
     }
 }

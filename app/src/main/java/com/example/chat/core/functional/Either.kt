@@ -67,22 +67,10 @@ sealed class Either<out LeftT, out RightT> {
 }
 
 /**
- * Composes 2 functions
- */
-fun <A, B, C> ((A) -> B).compose(func: (B) -> C): (A) -> C = {
-    func(this(it))
-}
-
-/**
  * Map, or transform, the right value [RightT] of this [Either] to a new value [T].
  */
 inline fun <Left, RightT, T> Either<Left, RightT>.map(func: (RightT) -> T): Either<Left, T> {
     return flatMap { Either.Right(func(it)) }
-}
-
-fun <LeftT, RightT> Either<LeftT, RightT>.onNext(func: (RightT) -> Unit): Either<LeftT, RightT> {
-    flatMap(func.compose(::right))
-    return this
 }
 
 /**

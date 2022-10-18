@@ -5,7 +5,7 @@ import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
-import com.example.chat.core.functional.onNext
+import com.example.chat.core.functional.onSuccess
 import com.example.chat.data.local.UserLocalDataSource
 import com.example.chat.data.local.model.UserEntity
 import com.example.chat.data.local.model.toDomain
@@ -29,7 +29,7 @@ class UserRepositoryImpl @Inject constructor(
                     .login(email, password, token)
                     .map { response -> response.user.toDomain() }
             }
-            .onNext { user ->
+            .onSuccess { user ->
                 userLocalDataSource.saveUser(user.copy(password = password).toEntity())
             }
     }
@@ -77,7 +77,7 @@ class UserRepositoryImpl @Inject constructor(
                 userRemoteDataSource
                     .updateToken(user.id, token, user.token)
                     .map { None() }
-                    .onNext { userLocalDataSource.saveToken(token) }
+                    .onSuccess { userLocalDataSource.saveToken(token) }
             }
     }
 
@@ -111,7 +111,7 @@ class UserRepositoryImpl @Inject constructor(
                     )
                     .map { response -> response.user.toDomain() }
             }
-            .onNext {
+            .onSuccess {
                 user.image = it.image
                 userLocalDataSource.saveUser(user.copy(image = it.image).toEntity())
             }

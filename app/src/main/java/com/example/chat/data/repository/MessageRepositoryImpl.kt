@@ -5,7 +5,7 @@ import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
-import com.example.chat.core.functional.onNext
+import com.example.chat.core.functional.onSuccess
 import com.example.chat.data.local.MessageLocalDataSource
 import com.example.chat.data.local.UserLocalDataSource
 import com.example.chat.data.local.model.MessageEntity
@@ -32,7 +32,7 @@ class MessageRepositoryImpl @Inject constructor(
                     messageRemoteDataSource
                         .getChats(user.id, user.token)
                         .map { response -> response.messages.map(MessageDto::toDomain) }
-                        .onNext { messages ->
+                        .onSuccess { messages ->
                             messages.map { message ->
                                 if (message.senderId == user.id) {
                                     message.fromMe = true
@@ -65,7 +65,7 @@ class MessageRepositoryImpl @Inject constructor(
                     messageRemoteDataSource
                         .getMessagesWithContact(contactId, user.id, user.token)
                         .map { response -> response.messages.map(MessageDto::toDomain) }
-                        .onNext { messages ->
+                        .onSuccess { messages ->
                             messages.map { message ->
                                 if (message.senderId == user.id) {
                                     message.fromMe = true
@@ -108,7 +108,7 @@ class MessageRepositoryImpl @Inject constructor(
                 messageRemoteDataSource
                     .deleteMessageByUser(user.id, messageId, user.token)
                     .map { None() }
-                    .onNext { messageLocalDataSource.deleteMessageByUser(messageId) }
+                    .onSuccess { messageLocalDataSource.deleteMessageByUser(messageId) }
             }
     }
 }
