@@ -71,13 +71,13 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override fun updateToken(token: String): Either<Failure, None> {
+        userLocalDataSource.saveToken(token)
         return userLocalDataSource
             .getUser()
             .flatMap { user ->
                 userRemoteDataSource
                     .updateToken(user.id, token, user.token)
                     .map { None() }
-                    .onSuccess { userLocalDataSource.saveToken(token) }
             }
     }
 

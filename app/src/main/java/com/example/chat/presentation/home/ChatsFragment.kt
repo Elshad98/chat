@@ -35,9 +35,7 @@ class ChatsFragment : BaseListFragment() {
             { message, _ ->
                 (message as? Message)?.let {
                     val contact = it.contact
-                    if (contact != null) {
-                        navigator.showChatWithContact(requireActivity(), contact.id, contact.name)
-                    }
+                    navigator.showChatWithContact(requireActivity(), contact.id, contact.name)
                 }
             }
         )
@@ -45,7 +43,7 @@ class ChatsFragment : BaseListFragment() {
         AppDatabase.getInstance(requireContext()).messageDao().getLiveChats().observe(
             viewLifecycleOwner,
             Observer { messages ->
-                val list = messages.distinctBy { it.contact?.id }.toList()
+                val list = messages.distinctBy { it.contact.id }.toList()
                 handleChats(list.map(MessageEntity::toDomain))
             }
         )

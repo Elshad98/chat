@@ -147,15 +147,15 @@ class NotificationHelper @Inject constructor(
         getMessagesWithContact(GetMessagesWithContact.Params(message.senderId, needFetch = true))
 
         val intent = Intent(context, HomeActivity::class.java).apply {
-            putExtra(UserService.PARAM_CONTACT_ID, message.contact?.id)
-            putExtra(UserService.PARAM_NAME, message.contact?.name)
+            putExtra(UserService.PARAM_CONTACT_ID, message.contact.id)
+            putExtra(UserService.PARAM_NAME, message.contact.name)
             putExtra("type", TYPE_SEND_MESSAGE)
         }
 
         val text = if (message.type == 1) message.message else context.getString(R.string.photo)
 
         createNotification(
-            "${message.contact?.name} ${context.getString(R.string.send_message)}",
+            "${message.contact.name} ${context.getString(R.string.send_message)}",
             text,
             intent
         )

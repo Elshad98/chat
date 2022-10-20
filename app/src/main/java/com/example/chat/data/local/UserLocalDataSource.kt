@@ -19,12 +19,10 @@ class UserLocalDataSource @Inject constructor(
 
     fun saveToken(token: String): Either<Failure, None> = prefsManager.saveToken(token)
 
+    fun saveUser(user: UserEntity): Either<Failure, None> = prefsManager.saveUser(user)
+
     fun logout(): Either<Failure, None> {
         appDatabase.clearAllTables()
         return prefsManager.deleteUser()
-    }
-
-    fun saveUser(user: UserEntity): Either<Failure, None> {
-        return prefsManager.saveUser(user)
     }
 }

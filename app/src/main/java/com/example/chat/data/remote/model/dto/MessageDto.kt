@@ -10,13 +10,14 @@ data class MessageDto(
     val date: Long,
     @SerializedName("message_type_id")
     val type: Int,
+    @SerializedName("from_me")
     val fromMe: Boolean,
     val message: String,
     @SerializedName("sender_id")
     val senderId: Long,
     @SerializedName("receiver_id")
     val receiverId: Long,
-    val contact: ContactDto?,
+    val contact: ContactDto,
     @SerializedName("deleted_by_sender_id")
     val deletedBySender: Int,
     @SerializedName("deleted_by_receiver_id")
@@ -31,7 +32,7 @@ fun MessageDto.toDomain() = Message(
     message = message,
     senderId = senderId,
     receiverId = receiverId,
-    contact = contact?.toDomain(),
+    contact = contact.toDomain(),
     deletedBySender = deletedBySender,
     deletedByReceiver = deletedByReceiver
 )

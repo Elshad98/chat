@@ -32,7 +32,7 @@ data class Message(
     @ColumnInfo(name = "deleted_by_receiver_id")
     var deletedByReceiver: Int = 0,
     var message: String,
-    var contact: Contact? = null,
+    var contact: Contact,
     var fromMe: Boolean = false
 ) {
 
@@ -45,7 +45,12 @@ data class Message(
         deletedBySender = 0,
         deletedByReceiver = 0,
         message = "",
-        contact = null,
+        contact = Contact(
+            id = 0,
+            name = "",
+            image = "",
+            lastSeen = 0L
+        ),
         fromMe = false
     )
 }

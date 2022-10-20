@@ -33,11 +33,6 @@ class MessageRepositoryImpl @Inject constructor(
                         .getChats(user.id, user.token)
                         .map { response -> response.messages.map(MessageDto::toDomain) }
                         .onSuccess { messages ->
-                            messages.map { message ->
-                                if (message.senderId == user.id) {
-                                    message.fromMe = true
-                                }
-                            }
                             messageLocalDataSource.saveMessages(messages.map(Message::toEntity))
                         }
                 } else {
@@ -49,7 +44,7 @@ class MessageRepositoryImpl @Inject constructor(
             }
             .map { messages ->
                 messages.distinctBy { message ->
-                    message.contact?.id
+                    message.contact.id
                 }
             }
     }
@@ -66,16 +61,6 @@ class MessageRepositoryImpl @Inject constructor(
                         .getMessagesWithContact(contactId, user.id, user.token)
                         .map { response -> response.messages.map(MessageDto::toDomain) }
                         .onSuccess { messages ->
-                            messages.map { message ->
-                                if (message.senderId == user.id) {
-                                    message.fromMe = true
-                                }
-                                message.contact = messageLocalDataSource
-                                    .getChats()
-                                    .map(MessageEntity::toDomain)
-                                    .firstOrNull { it.contact?.id == contactId }
-                                    ?.contact
-                            }
                             messageLocalDataSource.saveMessages(messages.map(Message::toEntity))
                         }
                 } else {
