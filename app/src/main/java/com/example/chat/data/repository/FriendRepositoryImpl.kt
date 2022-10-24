@@ -33,14 +33,15 @@ class FriendRepositoryImpl @Inject constructor(
                         .getFriends(user.id, user.token)
                         .map { response -> response.friends.map(FriendDto::toDomain) }
                 } else {
-                    Either.Right(friendLocalDataSource.getFriends().map(FriendEntity::toDomain))
+                    val friends = friendLocalDataSource
+                        .getFriends()
+                        .map(FriendEntity::toDomain)
+                    Either.Right(friends)
                 }
             }
             .map { friends -> friends.sortedBy { friend -> friend.name } }
             .onSuccess { friends ->
-                friends.forEach {
-                    friendLocalDataSource.saveFriend(it.toEntity())
-                }
+                friends.forEach { friendLocalDataSource.saveFriend(it.toEntity()) }
             }
     }
 
@@ -85,12 +86,7 @@ class FriendRepositoryImpl @Inject constructor(
             .getUser()
             .flatMap { user ->
                 friendRemoteDataSource
-                    .cancelFriendRequest(
-                        user.id,
-                        friend.id,
-                        friend.friendsId,
-                        user.token
-                    )
+                    .cancelFriendRequest(user.id, friend.id, friend.friendsId, user.token)
                     .map { None() }
             }
             .onSuccess { friendLocalDataSource.deleteFriend(friend.id) }
@@ -111,12 +107,7 @@ class FriendRepositoryImpl @Inject constructor(
             .getUser()
             .flatMap { user ->
                 friendRemoteDataSource
-                    .deleteFriend(
-                        user.id,
-                        friend.id,
-                        friend.friendsId,
-                        user.token
-                    )
+                    .deleteFriend(user.id, friend.id, friend.friendsId, user.token)
                     .map { None() }
             }
             .onSuccess { friendLocalDataSource.deleteFriend(friend.id) }

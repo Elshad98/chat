@@ -33,7 +33,9 @@ class MessageRepositoryImpl @Inject constructor(
                         .getChats(user.id, user.token)
                         .map { response -> response.messages.map(MessageDto::toDomain) }
                         .onSuccess { messages ->
-                            messageLocalDataSource.saveMessages(messages.map(Message::toEntity))
+                            messages
+                                .map(Message::toEntity)
+                                .let(messageLocalDataSource::saveMessages)
                         }
                 } else {
                     val messages = messageLocalDataSource
@@ -42,11 +44,7 @@ class MessageRepositoryImpl @Inject constructor(
                     Either.Right(messages)
                 }
             }
-            .map { messages ->
-                messages.distinctBy { message ->
-                    message.contact.id
-                }
-            }
+            .map { messages -> messages.distinctBy { message -> message.contact.id } }
     }
 
     override fun getMessagesWithContact(
@@ -61,7 +59,9 @@ class MessageRepositoryImpl @Inject constructor(
                         .getMessagesWithContact(contactId, user.id, user.token)
                         .map { response -> response.messages.map(MessageDto::toDomain) }
                         .onSuccess { messages ->
-                            messageLocalDataSource.saveMessages(messages.map(Message::toEntity))
+                            messages
+                                .map(Message::toEntity)
+                                .let(messageLocalDataSource::saveMessages)
                         }
                 } else {
                     val messages = messageLocalDataSource

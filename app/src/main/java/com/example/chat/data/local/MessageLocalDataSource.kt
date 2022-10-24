@@ -8,20 +8,16 @@ class MessageLocalDataSource @Inject constructor(
     private val messageDao: MessageDao
 ) {
 
-    fun getChats(): List<MessageEntity> {
-        return messageDao.getChats()
-    }
-
-    fun saveMessage(message: MessageEntity) {
-        messageDao.saveMessage(message)
-    }
-
     fun deleteMessageByUser(messageId: Long) {
         messageDao.deleteMessageByUser(messageId)
     }
 
     fun saveMessages(messages: List<MessageEntity>) {
         messageDao.saveMessages(messages)
+    }
+
+    fun getChats(): List<MessageEntity> {
+        return messageDao.getChats()
     }
 
     fun getMessagesWithContact(contactId: Long): List<MessageEntity> {

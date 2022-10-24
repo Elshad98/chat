@@ -41,16 +41,6 @@ sealed class Either<out LeftT, out RightT> {
         get() = this is Left<LeftT>
 
     /**
-     * Creates a Left type.
-     */
-    fun <LeftT> left(value: LeftT) = Left(value)
-
-    /**
-     * Creates a Right type.
-     */
-    fun <RightT> right(value: RightT) = Right(value)
-
-    /**
      * Transform an [Either] into a value of [T].
      * Alternative to using `when` to fold an [Either] into a value [T].
      *

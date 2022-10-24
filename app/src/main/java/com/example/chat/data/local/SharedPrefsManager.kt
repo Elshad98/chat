@@ -24,11 +24,11 @@ class SharedPrefsManager @Inject constructor(
         private const val PREF_USER_PASSWORD = "user_password"
     }
 
-    fun getToken(): Either<Failure, String> {
+    fun getToken(): Either.Right<String> {
         return Either.Right(preferences.getString(PREF_USER_TOKEN, "")!!)
     }
 
-    fun saveToken(token: String): Either<Failure, None> {
+    fun saveToken(token: String): Either.Right<None> {
         preferences.edit {
             putString(PREF_USER_TOKEN, token)
         }
@@ -36,7 +36,7 @@ class SharedPrefsManager @Inject constructor(
         return Either.Right(None())
     }
 
-    fun saveUser(user: UserEntity): Either<Failure, None> {
+    fun saveUser(user: UserEntity): Either.Right<None> {
         preferences.edit {
             putSafely(PREF_USER_ID, user.id)
             putSafely(PREF_USER_NAME, user.name)
@@ -71,7 +71,7 @@ class SharedPrefsManager @Inject constructor(
         return Either.Right(user)
     }
 
-    fun deleteUser(): Either<Failure, None> {
+    fun deleteUser(): Either.Right<None> {
         preferences.edit {
             remove(PREF_USER_ID)
             remove(PREF_USER_NAME)
@@ -85,7 +85,7 @@ class SharedPrefsManager @Inject constructor(
         return Either.Right(None())
     }
 
-    fun containsAnyUser(): Either<Failure, Boolean> {
+    fun containsAnyUser(): Either.Right<Boolean> {
         val id = preferences.getLong(PREF_USER_ID, 0)
         return Either.Right(id != 0L)
     }

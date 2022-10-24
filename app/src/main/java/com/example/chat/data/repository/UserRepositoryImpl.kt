@@ -89,7 +89,7 @@ class UserRepositoryImpl @Inject constructor(
                     .updateUserLastSeen(
                         user.id,
                         user.token,
-                        System.currentTimeMillis()
+                        lastSeen = System.currentTimeMillis()
                     )
                     .map { None() }
             }

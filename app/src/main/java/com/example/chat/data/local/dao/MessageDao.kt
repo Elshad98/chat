@@ -22,13 +22,6 @@ interface MessageDao {
     fun update(message: MessageEntity)
 
     @Transaction
-    fun saveMessage(message: MessageEntity) {
-        if (insert(message) == -1L) {
-            update(message)
-        }
-    }
-
-    @Transaction
     fun saveMessages(messages: List<MessageEntity>) {
         insert(messages)
     }
