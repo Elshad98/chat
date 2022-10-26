@@ -16,6 +16,10 @@ class FriendLocalDataSource @Inject constructor(
         friendDao.saveFriend(friend)
     }
 
+    fun saveFriends(friends: List<FriendEntity>) {
+        friendDao.saveFriends(friends)
+    }
+
     fun getFriends(): List<FriendEntity> {
         return friendDao.getFriends()
     }

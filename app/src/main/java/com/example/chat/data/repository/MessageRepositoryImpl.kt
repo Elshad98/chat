@@ -3,6 +3,7 @@ package com.example.chat.data.repository
 import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
+import com.example.chat.core.functional.Either.Right
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
 import com.example.chat.core.functional.onSuccess
@@ -38,10 +39,10 @@ class MessageRepositoryImpl @Inject constructor(
                                 .let(messageLocalDataSource::saveMessages)
                         }
                 } else {
-                    val messages = messageLocalDataSource
+                    messageLocalDataSource
                         .getChats()
                         .map(MessageEntity::toDomain)
-                    Either.Right(messages)
+                        .let(::Right)
                 }
             }
             .map { messages -> messages.distinctBy { message -> message.contact.id } }
@@ -64,10 +65,10 @@ class MessageRepositoryImpl @Inject constructor(
                                 .let(messageLocalDataSource::saveMessages)
                         }
                 } else {
-                    val messages = messageLocalDataSource
+                    messageLocalDataSource
                         .getMessagesWithContact(contactId)
                         .map(MessageEntity::toDomain)
-                    Either.Right(messages)
+                        .let(::Right)
                 }
             }
     }

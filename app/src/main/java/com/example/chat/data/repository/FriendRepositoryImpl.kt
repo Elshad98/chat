@@ -3,6 +3,7 @@ package com.example.chat.data.repository
 import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
+import com.example.chat.core.functional.Either.Right
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
 import com.example.chat.core.functional.onSuccess
@@ -33,15 +34,17 @@ class FriendRepositoryImpl @Inject constructor(
                         .getFriends(user.id, user.token)
                         .map { response -> response.friends.map(FriendDto::toDomain) }
                 } else {
-                    val friends = friendLocalDataSource
+                    friendLocalDataSource
                         .getFriends()
                         .map(FriendEntity::toDomain)
-                    Either.Right(friends)
+                        .let(::Right)
                 }
             }
             .map { friends -> friends.sortedBy { friend -> friend.name } }
             .onSuccess { friends ->
-                friends.forEach { friendLocalDataSource.saveFriend(it.toEntity()) }
+                friends
+                    .map(Friend::toEntity)
+                    .let(friendLocalDataSource::saveFriends)
             }
     }
 
@@ -54,10 +57,10 @@ class FriendRepositoryImpl @Inject constructor(
                         .getFriendRequests(user.id, user.token)
                         .map { response -> response.friendsRequests.map(FriendDto::toDomain) }
                 } else {
-                    val friendRequests = friendLocalDataSource
+                    friendLocalDataSource
                         .getFriendRequests()
                         .map(FriendEntity::toDomain)
-                    Either.Right(friendRequests)
+                        .let(::Right)
                 }
             }
             .map { friends -> friends.sortedBy { friend -> friend.name } }

@@ -4,25 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
-import androidx.room.Update
 import com.example.chat.data.local.model.FriendEntity
 
 @Dao
 interface FriendDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(friend: FriendEntity): Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveFriend(friend: FriendEntity)
 
-    @Update
-    fun update(friend: FriendEntity)
-
-    @Transaction
-    fun saveFriend(friend: FriendEntity) {
-        if (insert(friend) == -1L) {
-            update(friend)
-        }
-    }
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveFriends(friends: List<FriendEntity>)
 
     @Query("SELECT * from friends WHERE id = :id")
     fun getFriend(id: Long): FriendEntity?
