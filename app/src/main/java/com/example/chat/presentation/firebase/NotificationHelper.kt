@@ -177,7 +177,10 @@ class NotificationHelper @Inject constructor(
             message = jsonMessage.getString(UserService.PARAM_MESSAGE),
             date = 0,
             type = jsonMessage.getInt(UserService.PARAM_MESSAGE_TYPE),
-            contact = contact
+            contact = contact,
+            deletedBySender = 0,
+            deletedByReceiver = 0,
+            fromMe = false
         )
     }
 
