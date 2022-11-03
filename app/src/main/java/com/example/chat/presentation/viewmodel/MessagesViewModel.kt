@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.chat.core.None
 import com.example.chat.domain.message.DeleteMessage
 import com.example.chat.domain.message.GetChats
+import com.example.chat.domain.message.GetLiveChats
 import com.example.chat.domain.message.GetLiveMessagesWithContact
 import com.example.chat.domain.message.GetMessagesWithContact
 import com.example.chat.domain.message.Message
@@ -14,11 +15,13 @@ import javax.inject.Inject
 class MessagesViewModel @Inject constructor(
     private val getChatsUseCase: GetChats,
     private val sendMessageUseCase: SendMessage,
+    private val getLiveChatsUseCase: GetLiveChats,
     private val deleteMessageUseCase: DeleteMessage,
     private val getMessagesUseCase: GetMessagesWithContact,
     private val getLiveMessagesUseCase: GetLiveMessagesWithContact
 ) : BaseViewModel() {
 
+    val chatList = getLiveChatsUseCase()
     val sendMessageData: MutableLiveData<None> = MutableLiveData()
     val deleteMessageData: MutableLiveData<None> = MutableLiveData()
     val getChatsData: MutableLiveData<List<Message>> = MutableLiveData()

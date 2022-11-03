@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.data.local.AppDatabase
-import com.example.chat.data.local.model.MessageEntity
-import com.example.chat.data.local.model.toDomain
 import com.example.chat.domain.message.Message
 import com.example.chat.presentation.App
 import com.example.chat.presentation.core.BaseListFragment
@@ -29,6 +26,7 @@ class ChatsFragment : BaseListFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         messagesViewModel.progressData.observe(viewLifecycleOwner, Observer(::updateProgress))
+        messagesViewModel.chatList.observe(viewLifecycleOwner, Observer(::handleChats))
         messagesViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
 
         viewAdapter.setOnClick(
@@ -37,14 +35,6 @@ class ChatsFragment : BaseListFragment() {
                     val contact = it.contact
                     navigator.showChatWithContact(requireActivity(), contact.id, contact.name)
                 }
-            }
-        )
-
-        AppDatabase.getInstance(requireContext()).messageDao().getLiveChats().observe(
-            viewLifecycleOwner,
-            Observer { messages ->
-                val list = messages.distinctBy { it.contact.id }.toList()
-                handleChats(list.map(MessageEntity::toDomain))
             }
         )
     }

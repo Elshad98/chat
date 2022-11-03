@@ -7,6 +7,8 @@ import com.example.chat.core.functional.Either
 
 interface MessageRepository {
 
+    fun getLiveChats(): LiveData<List<Message>>
+
     fun deleteMessageByUser(messageId: Long): Either<Failure, None>
 
     fun getChats(needFetch: Boolean): Either<Failure, List<Message>>

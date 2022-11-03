@@ -95,6 +95,16 @@ class MessageRepositoryImpl @Inject constructor(
             }
     }
 
+    override fun getLiveChats(): LiveData<List<Message>> {
+        return messageLocalDataSource
+            .getLiveChats()
+            .map { messages ->
+                messages
+                    .distinctBy { it.contact.id }
+                    .map(MessageEntity::toDomain)
+            }
+    }
+
     override fun deleteMessageByUser(messageId: Long): Either<Failure, None> {
         return userLocalDataSource
             .getUser()
