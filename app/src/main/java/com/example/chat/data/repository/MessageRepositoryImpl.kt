@@ -1,7 +1,9 @@
 package com.example.chat.data.repository
 
+import androidx.lifecycle.LiveData
 import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
+import com.example.chat.core.extension.map
 import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.Either.Right
 import com.example.chat.core.functional.flatMap
@@ -46,6 +48,12 @@ class MessageRepositoryImpl @Inject constructor(
                 }
             }
             .map { messages -> messages.distinctBy { message -> message.contact.id } }
+    }
+
+    override fun getLiveMessagesWithContact(contactId: Long): LiveData<List<Message>> {
+        return messageLocalDataSource
+            .getLiveMessagesWithContact(contactId)
+            .map { messages -> messages.map(MessageEntity::toDomain) }
     }
 
     override fun getMessagesWithContact(

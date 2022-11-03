@@ -59,8 +59,8 @@ sealed class Either<out LeftT, out RightT> {
 /**
  * Map, or transform, the right value [RightT] of this [Either] to a new value [T].
  */
-inline fun <Left, RightT, T> Either<Left, RightT>.map(func: (RightT) -> T): Either<Left, T> {
-    return flatMap { Either.Right(func(it)) }
+inline fun <Left, RightT, T> Either<Left, RightT>.map(mapper: (RightT) -> T): Either<Left, T> {
+    return flatMap { Either.Right(mapper(it)) }
 }
 
 /**
@@ -87,13 +87,13 @@ inline fun <LeftT, RightT> Either<LeftT, RightT>.onSuccess(
  * Map, or transform, the right value [RightT] of this [Either] into a new [Either] with a right value of type [T].
  * Returns a new [Either] with either the original left value of type [LeftT] or the newly transformed right value of type [T].
  *
- * @param func The function to bind across [Either.Right].
+ * @param mapper The function to bind across [Either.Right].
  */
 inline fun <LeftT, RightT, T> Either<LeftT, RightT>.flatMap(
-    func: (RightT) -> Either<LeftT, T>
+    mapper: (RightT) -> Either<LeftT, T>
 ): Either<LeftT, T> {
     return when (this) {
         is Either.Left -> this
-        is Either.Right -> func(value)
+        is Either.Right -> mapper(value)
     }
 }

@@ -1,9 +1,11 @@
 package com.example.chat.presentation.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.chat.core.None
 import com.example.chat.domain.message.DeleteMessage
 import com.example.chat.domain.message.GetChats
+import com.example.chat.domain.message.GetLiveMessagesWithContact
 import com.example.chat.domain.message.GetMessagesWithContact
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.SendMessage
@@ -13,7 +15,8 @@ class MessagesViewModel @Inject constructor(
     private val getChatsUseCase: GetChats,
     private val sendMessageUseCase: SendMessage,
     private val deleteMessageUseCase: DeleteMessage,
-    private val getMessagesUseCase: GetMessagesWithContact
+    private val getMessagesUseCase: GetMessagesWithContact,
+    private val getLiveMessagesUseCase: GetLiveMessagesWithContact
 ) : BaseViewModel() {
 
     val sendMessageData: MutableLiveData<None> = MutableLiveData()
@@ -25,6 +28,10 @@ class MessagesViewModel @Inject constructor(
         getChatsUseCase(GetChats.Params(needFetch)) { either ->
             either.fold(::handleFailure) { handleGetChats(it, !needFetch) }
         }
+    }
+
+    fun getMessagesData(contactId: Long): LiveData<List<Message>> {
+        return getLiveMessagesUseCase(contactId)
     }
 
     fun getMessages(contactId: Long, needFetch: Boolean = false) {

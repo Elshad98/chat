@@ -8,9 +8,6 @@ import android.view.View
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import com.example.chat.R
-import com.example.chat.data.local.AppDatabase
-import com.example.chat.data.local.model.MessageEntity
-import com.example.chat.data.local.model.toDomain
 import com.example.chat.data.remote.service.UserService
 import com.example.chat.domain.message.Message
 import com.example.chat.presentation.App
@@ -43,13 +40,6 @@ class MessagesFragment : BaseListFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mediaViewModel.progressData.observe(viewLifecycleOwner, Observer(::updateProgress))
-        mediaViewModel.pickedImageData.observe(viewLifecycleOwner, Observer(::onImagePicked))
-        mediaViewModel.cameraFileCreatedData.observe(viewLifecycleOwner, Observer(::onCameraFileCreated))
-        messagesViewModel.progressData.observe(viewLifecycleOwner, Observer(::updateProgress))
-        mediaViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
-        messagesViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
-
         base {
             val args = intent.getBundleExtra("args")
             if (args == null) {
@@ -60,6 +50,19 @@ class MessagesFragment : BaseListFragment() {
                 contactName = args.getString(UserService.PARAM_NAME, "")
             }
         }
+
+        mediaViewModel.progressData.observe(viewLifecycleOwner, Observer(::updateProgress))
+        mediaViewModel.pickedImageData.observe(viewLifecycleOwner, Observer(::onImagePicked))
+        mediaViewModel.cameraFileCreatedData.observe(
+            viewLifecycleOwner,
+            Observer(::onCameraFileCreated)
+        )
+        messagesViewModel.progressData.observe(viewLifecycleOwner, Observer(::updateProgress))
+        mediaViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
+        messagesViewModel.failureData.observe(viewLifecycleOwner, Observer(::handleFailure))
+        messagesViewModel
+            .getMessagesData(contactId)
+            .observe(viewLifecycleOwner, Observer(::handleMessages))
 
         messages_btn_send.setOnClickListener {
             sendMessage()
@@ -76,14 +79,6 @@ class MessagesFragment : BaseListFragment() {
                 }
             }
         }
-
-        AppDatabase.getInstance(requireContext())
-            .messageDao()
-            .getLiveMessagesWithContact(contactId)
-            .observe(
-                viewLifecycleOwner,
-                Observer { messages -> handleMessages(messages.map(MessageEntity::toDomain)) }
-            )
 
         viewAdapter.setOnClick(
             click = { _, view ->

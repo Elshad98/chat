@@ -1,5 +1,6 @@
 package com.example.chat.data.local
 
+import androidx.lifecycle.LiveData
 import com.example.chat.data.local.dao.MessageDao
 import com.example.chat.data.local.model.MessageEntity
 import javax.inject.Inject
@@ -22,5 +23,9 @@ class MessageLocalDataSource @Inject constructor(
 
     fun getMessagesWithContact(contactId: Long): List<MessageEntity> {
         return messageDao.getMessagesWithContact(contactId)
+    }
+
+    fun getLiveMessagesWithContact(contactId: Long): LiveData<List<MessageEntity>> {
+        return messageDao.getLiveMessagesWithContact(contactId)
     }
 }
