@@ -47,7 +47,7 @@ class MessageRepositoryImpl @Inject constructor(
                         .let(::Right)
                 }
             }
-            .map { messages -> messages.distinctBy { message -> message.contact.id } }
+            .map { messages -> messages.distinctBy { it.contact.id } }
     }
 
     override fun getLiveMessagesWithContact(contactId: Long): LiveData<List<Message>> {

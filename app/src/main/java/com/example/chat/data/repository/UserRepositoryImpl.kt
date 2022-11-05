@@ -106,13 +106,12 @@ class UserRepositoryImpl @Inject constructor(
                         user.name,
                         user.password,
                         user.status,
-                        user.token,
+                        it.token,
                         user.image
                     )
                     .map { response -> response.user.toDomain() }
             }
             .onSuccess {
-                user.image = it.image
                 userLocalDataSource.saveUser(user.copy(image = it.image).toEntity())
             }
     }
