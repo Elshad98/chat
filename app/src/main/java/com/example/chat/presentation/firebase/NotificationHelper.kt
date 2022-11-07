@@ -116,7 +116,9 @@ class NotificationHelper @Inject constructor(
             email = requestUser.getString(UserService.PARAM_EMAIL),
             image = requestUser.getString(UserService.PARAM_USER_ID),
             status = requestUser.getString(UserService.PARAM_STATUS),
-            friendsId = jsonMessage.getLong(UserService.PARAM_FRIENDS_ID)
+            friendsId = jsonMessage.getLong(UserService.PARAM_FRIENDS_ID),
+            isRequest = 0,
+            lastSeen = 0
         )
     }
 
