@@ -7,6 +7,7 @@ class ApiParamBuilder {
         private const val PARAM_NAME = "name"
         private const val PARAM_EMAIL = "email"
         private const val PARAM_TOKEN = "token"
+        private const val PARAM_IMAGE = "image"
         private const val PARAM_STATUS = "status"
         private const val PARAM_USER_ID = "user_id"
         private const val PARAM_MESSAGE = "message"
@@ -23,6 +24,7 @@ class ApiParamBuilder {
     private var userId: Long? = null
     private var name: String? = null
     private var email: String? = null
+    private var image: String? = null
     private var token: String? = null
     private var status: String? = null
     private var userDate: Long? = null
@@ -42,6 +44,11 @@ class ApiParamBuilder {
 
     fun email(email: String): ApiParamBuilder {
         this.email = email
+        return this
+    }
+
+    fun image(image: String): ApiParamBuilder {
+        this.image = image
         return this
     }
 
@@ -109,6 +116,7 @@ class ApiParamBuilder {
         val params = HashMap<String, String>()
         name?.let { params[PARAM_NAME] = it }
         email?.let { params[PARAM_EMAIL] = it }
+        image?.let { params[PARAM_IMAGE] = it }
         status?.let { params[PARAM_STATUS] = it }
         token?.let { params[PARAM_TOKEN] = it }
         message?.let { params[PARAM_MESSAGE] = it }

@@ -78,33 +78,15 @@ class UserRemoteDataSource @Inject constructor(
         token: String,
         image: String
     ): Either<Failure, UserResponse> {
-        val params = createUserEditMap(userId, email, name, password, status, token, image)
+        val params = ApiParamBuilder()
+            .password(password)
+            .userId(userId)
+            .status(status)
+            .email(email)
+            .token(token)
+            .image(image)
+            .name(name)
+            .build()
         return request.make(service.editUser(params))
-    }
-
-    private fun createUserEditMap(
-        userId: Long,
-        email: String,
-        name: String,
-        password: String,
-        status: String,
-        token: String,
-        image: String
-    ): Map<String, String> {
-        val map = HashMap<String, String>()
-        map[UserService.PARAM_NAME] = name
-        map[UserService.PARAM_EMAIL] = email
-        map[UserService.PARAM_TOKEN] = token
-        map[UserService.PARAM_STATUS] = status
-        map[UserService.PARAM_PASSWORD] = password
-        map[UserService.PARAM_USER_ID] = userId.toString()
-        if (image.startsWith("../")) {
-            map[UserService.PARAM_IMAGE_UPLOADED] = image
-        } else {
-            map[UserService.PARAM_IMAGE_NEW] = image
-            map[UserService.PARAM_IMAGE_NEW_NAME] =
-                "user_${userId}_${System.currentTimeMillis()}_photo"
-        }
-        return map
     }
 }
