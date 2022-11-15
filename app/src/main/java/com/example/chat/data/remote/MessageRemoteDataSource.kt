@@ -7,7 +7,6 @@ import com.example.chat.data.remote.core.Request
 import com.example.chat.data.remote.model.response.BaseResponse
 import com.example.chat.data.remote.model.response.MessagesResponse
 import com.example.chat.data.remote.service.MessageService
-import com.example.chat.data.remote.service.UserService
 import javax.inject.Inject
 
 class MessageRemoteDataSource @Inject constructor(
@@ -28,9 +27,17 @@ class MessageRemoteDataSource @Inject constructor(
         receiverId: Long,
         token: String,
         message: String,
-        image: String
+        image: String,
+        messageDate: Long
     ): Either<Failure, BaseResponse> {
-        val params = createSendMessageMap(senderId, receiverId, token, message, image)
+        val params = ApiParamBuilder()
+            .messageDate(messageDate)
+            .receiverId(receiverId)
+            .senderId(senderId)
+            .message(message)
+            .image(image)
+            .token(token)
+            .build()
         return request.make(service.sendMessage(params))
     }
 
@@ -58,30 +65,5 @@ class MessageRemoteDataSource @Inject constructor(
             .token(token)
             .build()
         return request.make(service.deleteMessageByUser(params))
-    }
-
-    private fun createSendMessageMap(
-        fromId: Long,
-        toId: Long,
-        token: String,
-        message: String,
-        image: String
-    ): Map<String, String> {
-        val map = HashMap<String, String>()
-        val time = System.currentTimeMillis()
-        var type = 1
-
-        if (image.isNotBlank()) {
-            type = 2
-            map[UserService.PARAM_IMAGE_NEW] = image
-            map[UserService.PARAM_IMAGE_NEW_NAME] = "user_${fromId}_${time}_photo"
-        }
-        map[UserService.PARAM_TOKEN] = token
-        map[UserService.PARAM_MESSAGE] = message
-        map[UserService.PARAM_SENDER_ID] = fromId.toString()
-        map[UserService.PARAM_RECEIVER_ID] = toId.toString()
-        map[UserService.PARAM_MESSAGE_TYPE] = type.toString()
-        map[UserService.PARAM_MESSAGE_DATE] = time.toString()
-        return map
     }
 }

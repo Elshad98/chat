@@ -12,24 +12,16 @@ interface UserService {
     companion object {
 
         const val PARAM_EMAIL = "email"
-        const val PARAM_PASSWORD = "password"
         const val PARAM_NAME = "name"
-        const val PARAM_TOKEN = "token"
         const val PARAM_USER_ID = "user_id"
         const val PARAM_FRIENDS_ID = "friends_id"
         const val PARAM_STATUS = "status"
         const val PARAM_REQUEST_USER = "request_user"
         const val PARAM_APPROVED_USER = "approved_user"
-        const val PARAM_IMAGE_NEW = "image_new"
-        const val PARAM_IMAGE_NEW_NAME = "image_new_name"
-        const val PARAM_IMAGE_UPLOADED = "image_uploaded"
         const val PARAM_IMAGE = "image"
 
-        const val PARAM_SENDER_ID = "sender_id"
-        const val PARAM_RECEIVER_ID = "receiver_id"
         const val PARAM_MESSAGE = "message"
         const val PARAM_MESSAGE_TYPE = "message_type_id"
-        const val PARAM_MESSAGE_DATE = "message_date"
         const val PARAM_CONTACT_ID = "contact_id"
 
         const val PARAM_SENDER_USER = "senderUser"

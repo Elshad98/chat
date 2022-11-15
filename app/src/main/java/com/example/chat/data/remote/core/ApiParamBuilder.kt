@@ -15,9 +15,12 @@ class ApiParamBuilder {
         private const val PARAM_USER_DATE = "user_date"
         private const val PARAM_OLD_TOKEN = "old_token"
         private const val PARAM_LAST_SEEN = "last_seen"
+        private const val PARAM_SENDER_ID = "sender_id"
         private const val PARAM_FRIENDS_ID = "friends_id"
         private const val PARAM_CONTACT_ID = "contact_id"
         private const val PARAM_MESSAGE_ID = "message_id"
+        private const val PARAM_RECEIVER_ID = "receiver_id"
+        private const val PARAM_MESSAGE_DATE = "message_date"
         private const val PARAM_REQUEST_USER_ID = "request_user_id"
     }
 
@@ -29,12 +32,15 @@ class ApiParamBuilder {
     private var status: String? = null
     private var userDate: Long? = null
     private var lastSeen: Long? = null
+    private var senderId: Long? = null
     private var friendsId: Long? = null
     private var messageId: Long? = null
     private var contactId: Long? = null
     private var message: String? = null
     private var oldToken: String? = null
     private var password: String? = null
+    private var receiverId: Long? = null
+    private var messageDate: Long? = null
     private var requestUserId: Long? = null
 
     fun name(name: String): ApiParamBuilder {
@@ -82,6 +88,11 @@ class ApiParamBuilder {
         return this
     }
 
+    fun senderId(senderId: Long): ApiParamBuilder {
+        this.senderId = senderId
+        return this
+    }
+
     fun messageId(messageId: Long): ApiParamBuilder {
         this.messageId = messageId
         return this
@@ -107,6 +118,16 @@ class ApiParamBuilder {
         return this
     }
 
+    fun messageDate(messageDate: Long): ApiParamBuilder {
+        this.messageDate = messageDate
+        return this
+    }
+
+    fun receiverId(receiverId: Long): ApiParamBuilder {
+        this.receiverId = receiverId
+        return this
+    }
+
     fun requestUserId(requestUserId: Long): ApiParamBuilder {
         this.requestUserId = requestUserId
         return this
@@ -125,9 +146,12 @@ class ApiParamBuilder {
         userId?.let { params[PARAM_USER_ID] = it.toString() }
         userDate?.let { params[PARAM_USER_DATE] = it.toString() }
         lastSeen?.let { params[PARAM_LAST_SEEN] = it.toString() }
+        senderId?.let { params[PARAM_SENDER_ID] = it.toString() }
         friendsId?.let { params[PARAM_FRIENDS_ID] = it.toString() }
         messageId?.let { params[PARAM_MESSAGE_ID] = it.toString() }
         contactId?.let { params[PARAM_CONTACT_ID] = it.toString() }
+        receiverId?.let { params[PARAM_RECEIVER_ID] = it.toString() }
+        messageDate?.let { params[PARAM_MESSAGE_DATE] = it.toString() }
         requestUserId?.let { params[PARAM_REQUEST_USER_ID] = it.toString() }
         return params
     }

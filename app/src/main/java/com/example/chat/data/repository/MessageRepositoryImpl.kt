@@ -90,7 +90,14 @@ class MessageRepositoryImpl @Inject constructor(
             .getUser()
             .flatMap { user ->
                 messageRemoteDataSource
-                    .sendMessage(user.id, receiverId, user.token, message, image)
+                    .sendMessage(
+                        user.id,
+                        receiverId,
+                        user.token,
+                        message,
+                        image,
+                        messageDate = System.currentTimeMillis()
+                    )
                     .map { None() }
             }
     }
