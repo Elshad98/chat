@@ -7,7 +7,7 @@ import com.example.chat.data.local.model.UserEntity
 import javax.inject.Inject
 
 class UserLocalDataSource @Inject constructor(
-    private val appDatabase: AppDatabase,
+    private val chatDatabase: ChatDatabase,
     private val prefsManager: SharedPrefsManager
 ) {
 
@@ -22,7 +22,7 @@ class UserLocalDataSource @Inject constructor(
     fun saveUser(user: UserEntity): Either<Failure, None> = prefsManager.saveUser(user)
 
     fun logout(): Either<Failure, None> {
-        appDatabase.clearAllTables()
+        chatDatabase.clearAllTables()
         return prefsManager.deleteUser()
     }
 }

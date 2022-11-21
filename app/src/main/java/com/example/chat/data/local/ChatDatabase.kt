@@ -11,18 +11,25 @@ import com.example.chat.data.local.dao.MessageDao
 import com.example.chat.data.local.model.FriendEntity
 import com.example.chat.data.local.model.MessageEntity
 
-@Database(entities = [FriendEntity::class, MessageEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        FriendEntity::class,
+        MessageEntity::class
+    ],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(ContactConverter::class)
-abstract class AppDatabase : RoomDatabase() {
+abstract class ChatDatabase : RoomDatabase() {
 
     companion object {
 
         private const val DB_NAME = "chat_database"
 
-        private var INSTANCE: AppDatabase? = null
+        private var INSTANCE: ChatDatabase? = null
         private var LOCK = Any()
 
-        fun getInstance(context: Context): AppDatabase {
+        fun getInstance(context: Context): ChatDatabase {
             INSTANCE?.let {
                 return it
             }
@@ -32,7 +39,7 @@ abstract class AppDatabase : RoomDatabase() {
                     return it
                 }
                 val db = Room
-                    .databaseBuilder(context, AppDatabase::class.java, DB_NAME)
+                    .databaseBuilder(context, ChatDatabase::class.java, DB_NAME)
                     .build()
                 INSTANCE = db
                 return db

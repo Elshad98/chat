@@ -1,9 +1,9 @@
 package com.example.chat.di
 
 import com.example.chat.data.repository.FriendRepositoryImpl
-import com.example.chat.data.repository.media.MediaRepositoryImpl
 import com.example.chat.data.repository.MessageRepositoryImpl
 import com.example.chat.data.repository.UserRepositoryImpl
+import com.example.chat.data.repository.media.MediaRepositoryImpl
 import com.example.chat.domain.friend.FriendRepository
 import com.example.chat.domain.media.MediaRepository
 import com.example.chat.domain.message.MessageRepository
@@ -25,9 +25,9 @@ interface DomainModule {
 
     @Binds
     @Singleton
-    fun bindUserRepository(impl: UserRepositoryImpl): UserRepository
+    fun bindMediaRepository(impl: MediaRepositoryImpl): MediaRepository
 
     @Binds
     @Singleton
-    fun bindMediaRepository(impl: MediaRepositoryImpl): MediaRepository
+    fun bindUserRepository(impl: UserRepositoryImpl): UserRepository
 }

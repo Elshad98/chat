@@ -3,7 +3,7 @@ package com.example.chat.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.chat.BuildConfig
-import com.example.chat.data.local.AppDatabase
+import com.example.chat.data.local.ChatDatabase
 import com.example.chat.data.local.dao.FriendDao
 import com.example.chat.data.local.dao.MessageDao
 import com.example.chat.data.remote.service.FriendService
@@ -22,20 +22,20 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(context: Context): AppDatabase {
-        return AppDatabase.getInstance(context)
+    fun provideChatDatabase(context: Context): ChatDatabase {
+        return ChatDatabase.getInstance(context)
     }
 
     @Provides
     @Singleton
-    fun provideFriendCache(appDatabase: AppDatabase): FriendDao {
-        return appDatabase.friendDao()
+    fun provideFriendDao(database: ChatDatabase): FriendDao {
+        return database.friendDao()
     }
 
     @Provides
     @Singleton
-    fun provideMessageCache(chatDatabase: AppDatabase): MessageDao {
-        return chatDatabase.messageDao()
+    fun provideMessageDao(database: ChatDatabase): MessageDao {
+        return database.messageDao()
     }
 
     @Provides
