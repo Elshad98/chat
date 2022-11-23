@@ -111,8 +111,6 @@ class UserRepositoryImpl @Inject constructor(
                     )
                     .map { response -> response.user.toDomain() }
             }
-            .onSuccess {
-                userLocalDataSource.saveUser(user.copy(image = it.image).toEntity())
-            }
+            .onSuccess { userLocalDataSource.saveUser(user.copy(image = it.image).toEntity()) }
     }
 }

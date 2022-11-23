@@ -3,7 +3,6 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/athens_gray</item>
         <item name="colorPrimaryDark">@color/pale_sky</item>
-        <item name="tint">@color/woodsmoke</item>
         <item name="toolbarStyle">@style/ToolBarStyle</item>
     </style>
 

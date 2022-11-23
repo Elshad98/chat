@@ -32,7 +32,6 @@ class SharedPrefsManager @Inject constructor(
         preferences.edit {
             putString(PREF_USER_TOKEN, token)
         }
-
         return Either.Right(None())
     }
 
@@ -47,7 +46,6 @@ class SharedPrefsManager @Inject constructor(
             putSafely(PREF_USER_DATA, user.userData)
             putSafely(PREF_USER_PASSWORD, user.password)
         }
-
         return Either.Right(None())
     }
 
@@ -71,17 +69,10 @@ class SharedPrefsManager @Inject constructor(
         return Either.Right(user)
     }
 
-    fun deleteUser(): Either.Right<None> {
+    fun clear(): Either.Right<None> {
         preferences.edit {
-            remove(PREF_USER_ID)
-            remove(PREF_USER_NAME)
-            remove(PREF_USER_DATA)
-            remove(PREF_USER_EMAIL)
-            remove(PREF_USER_IMAGE)
-            remove(PREF_USER_STATUS)
-            remove(PREF_USER_PASSWORD)
+            clear()
         }
-
         return Either.Right(None())
     }
 

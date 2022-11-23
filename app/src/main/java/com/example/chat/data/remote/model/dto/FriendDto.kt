@@ -10,6 +10,7 @@ data class FriendDto(
     val email: String,
     val image: String,
     val status: String,
+    @SerializedName("is_request")
     val isRequest: Int,
     @SerializedName("last_seen")
     val lastSeen: Long,

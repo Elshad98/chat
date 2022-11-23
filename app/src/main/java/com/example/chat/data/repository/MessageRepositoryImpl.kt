@@ -119,7 +119,7 @@ class MessageRepositoryImpl @Inject constructor(
                 messageRemoteDataSource
                     .deleteMessageByUser(user.id, messageId, user.token)
                     .map { None() }
-                    .onSuccess { messageLocalDataSource.deleteMessageByUser(messageId) }
             }
+            .onSuccess { messageLocalDataSource.deleteMessageByUser(messageId) }
     }
 }

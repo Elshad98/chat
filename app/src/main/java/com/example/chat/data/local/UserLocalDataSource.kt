@@ -23,6 +23,6 @@ class UserLocalDataSource @Inject constructor(
 
     fun logout(): Either<Failure, None> {
         chatDatabase.clearAllTables()
-        return prefsManager.deleteUser()
+        return prefsManager.clear()
     }
 }

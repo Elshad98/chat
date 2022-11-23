@@ -41,11 +41,7 @@ class FriendRepositoryImpl @Inject constructor(
                 }
             }
             .map { friends -> friends.sortedBy { friend -> friend.name } }
-            .onSuccess { friends ->
-                friends
-                    .map(Friend::toEntity)
-                    .let(friendLocalDataSource::saveFriends)
-            }
+            .onSuccess { friends -> friendLocalDataSource.saveFriends(friends.map(Friend::toEntity)) }
     }
 
     override fun getFriendRequest(needFetch: Boolean): Either<Failure, List<Friend>> {
@@ -64,11 +60,6 @@ class FriendRepositoryImpl @Inject constructor(
                 }
             }
             .map { friends -> friends.sortedBy { friend -> friend.name } }
-            .onSuccess { friends ->
-                friends.forEach { friend ->
-                    friendLocalDataSource.saveFriend(friend.copy(isRequest = 1).toEntity())
-                }
-            }
     }
 
     override fun approveFriendRequest(friend: Friend): Either<Failure, None> {
@@ -79,9 +70,7 @@ class FriendRepositoryImpl @Inject constructor(
                     .approveFriendRequest(user.id, friend.id, friend.friendsId, user.token)
                     .map { None() }
             }
-            .onSuccess {
-                friendLocalDataSource.saveFriend(friend.copy(isRequest = 0).toEntity())
-            }
+            .onSuccess { friendLocalDataSource.saveFriend(friend.copy(isRequest = 0).toEntity()) }
     }
 
     override fun cancelFriendRequest(friend: Friend): Either<Failure, None> {
