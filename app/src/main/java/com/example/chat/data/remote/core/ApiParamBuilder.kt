@@ -43,6 +43,11 @@ class ApiParamBuilder {
     private var messageDate: Long? = null
     private var requestUserId: Long? = null
 
+    fun userId(userId: Long): ApiParamBuilder {
+        this.userId = userId
+        return this
+    }
+
     fun name(name: String): ApiParamBuilder {
         this.name = name
         return this
@@ -68,18 +73,8 @@ class ApiParamBuilder {
         return this
     }
 
-    fun friendsId(friendsId: Long): ApiParamBuilder {
-        this.friendsId = friendsId
-        return this
-    }
-
     fun userDate(userDate: Long): ApiParamBuilder {
         this.userDate = userDate
-        return this
-    }
-
-    fun userId(userId: Long): ApiParamBuilder {
-        this.userId = userId
         return this
     }
 
@@ -90,6 +85,11 @@ class ApiParamBuilder {
 
     fun senderId(senderId: Long): ApiParamBuilder {
         this.senderId = senderId
+        return this
+    }
+
+    fun friendsId(friendsId: Long): ApiParamBuilder {
+        this.friendsId = friendsId
         return this
     }
 
@@ -108,23 +108,23 @@ class ApiParamBuilder {
         return this
     }
 
-    fun password(password: String): ApiParamBuilder {
-        this.password = password
-        return this
-    }
-
     fun oldToken(oldToken: String): ApiParamBuilder {
         this.oldToken = oldToken
         return this
     }
 
-    fun messageDate(messageDate: Long): ApiParamBuilder {
-        this.messageDate = messageDate
+    fun password(password: String): ApiParamBuilder {
+        this.password = password
         return this
     }
 
     fun receiverId(receiverId: Long): ApiParamBuilder {
         this.receiverId = receiverId
+        return this
+    }
+
+    fun messageDate(messageDate: Long): ApiParamBuilder {
+        this.messageDate = messageDate
         return this
     }
 
@@ -138,8 +138,8 @@ class ApiParamBuilder {
         name?.let { params[PARAM_NAME] = it }
         email?.let { params[PARAM_EMAIL] = it }
         image?.let { params[PARAM_IMAGE] = it }
-        status?.let { params[PARAM_STATUS] = it }
         token?.let { params[PARAM_TOKEN] = it }
+        status?.let { params[PARAM_STATUS] = it }
         message?.let { params[PARAM_MESSAGE] = it }
         password?.let { params[PARAM_PASSWORD] = it }
         oldToken?.let { params[PARAM_OLD_TOKEN] = it }

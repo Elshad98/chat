@@ -7,9 +7,6 @@ import com.example.chat.core.extension.getConnectivityManager
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/**
- * Injectable class which returns information about the network connection state.
- */
 @Singleton
 class NetworkHandler @Inject constructor(
     private val context: Context
@@ -20,12 +17,12 @@ class NetworkHandler @Inject constructor(
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             connectivityManager
                 .getNetworkCapabilities(connectivityManager.activeNetwork)
-                ?.let { capabilities ->
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN) ||
-                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
-                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ||
-                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH)
+                ?.run {
+                    hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                        hasTransport(NetworkCapabilities.TRANSPORT_VPN) ||
+                        hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                        hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ||
+                        hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH)
                 }
                 ?: false
         } else {
