@@ -1,27 +1,30 @@
 plugins {
+    id 'org.jetbrains.kotlin.plugin.serialization' version "$kotlinVersion"
+    id 'org.jlleitschuh.gradle.ktlint'
     id 'com.android.application'
-    id 'com.google.gms.google-services'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs'
 }
 
-apply from: "${project.rootDir}/gradle-script/ktlint.gradle"
-apply from: "${project.rootDir}/gradle-script/versions.gradle"
+ktlint {
+    enableExperimentalRules.set(true)
+}
 
 repositories {
     jcenter()
 }
 
 android {
-    compileSdkVersion vAndroidCompileSdk
-    buildToolsVersion vAndroidBuildTools
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
         applicationId "com.example.chat"
-        minSdkVersion vAndroidMinSdk
-        targetSdkVersion vAndroidTargetSdk
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -37,88 +40,68 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
+    buildFeatures {
+        viewBinding true
     }
+}
 
-    dataBinding {
-        enabled = true
+project.afterEvaluate {
+    if (project.tasks.findByName('preBuild')) {
+        def preBuildTask = project.tasks.findByName('preBuild')
+        preBuildTask.dependsOn('ktlintCheck')
     }
 }
 
 dependencies {
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$vKotlin"
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.core:core-ktx:$adndroidxKtxVersion"
+    implementation "com.google.android.material:material:$materialComponentsVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintLayoutVersion"
 
-    // Firebase
-    implementation "com.google.firebase:firebase-analytics:$vFirebaseAnalytics"
-    implementation "com.google.firebase:firebase-messaging:$vFirebaseMessaging"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$androidxLifecycleVersion"
 
-    // Android support
-    implementation "androidx.appcompat:appcompat:$vAndroidxAppCompat"
-    implementation "androidx.core:core-ktx:$vAndroidxAppCompat"
-    implementation "com.google.android.material:material:$vGoogleAndroidMaterial"
-    implementation "androidx.constraintlayout:constraintlayout:$vAndroidxConstraintLayout"
+    implementation "com.google.firebase:firebase-analytics:$frebaseAnalyticsVersion"
+    implementation "com.google.firebase:firebase-messaging:$firebaseMessagingVersion"
 
-    // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$vNavigation"
-    implementation "androidx.navigation:navigation-ui-ktx:$vNavigation"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-    // Kotlin
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$vKotlinCoroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
 
-    // Dagger
-    implementation "com.google.dagger:dagger:$vDagger"
-    implementation "com.google.dagger:dagger-android:$vDagger"
-    implementation "com.google.dagger:dagger-android-support:$vDagger"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt "com.google.dagger:dagger-compiler:$vDagger"
-    kapt "com.google.dagger:dagger-android-processor:$vDagger"
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$vRetrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$vRetrofit"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
-    // Gson
-    implementation "com.google.code.gson:gson:$vGson"
+    implementation "com.google.code.gson:gson:$gsonVersion"
 
-    // OkHttp
-    implementation "com.squareup.okhttp3:okhttp:$vOkHttp"
-    implementation "com.squareup.okhttp3:logging-interceptor:$vOkHttp"
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
-    // Room
-    implementation "androidx.room:room-runtime:$vRoom"
-    kapt "androidx.room:room-compiler:$vRoom"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
-    // LifeCycle
-    kapt "androidx.lifecycle:lifecycle-compiler:$vAndroidxLifecycle"
-    implementation "androidx.lifecycle:lifecycle-runtime:$vAndroidxLifecycle"
-    implementation "androidx.lifecycle:lifecycle-extensions:$vAndroidxLifecycle"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$vAndroidxLifecycle"
+    implementation "com.andreabaccega:android-form-edittext:$formEditTextVersion"
 
-    // Form edit text
-    implementation "com.andreabaccega:android-form-edittext:$vFormEditText"
+    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
 
-    // Circle image view
-    implementation "de.hdodenhof:circleimageview:$vCircleImageView"
+    implementation "com.github.kayvannj:PermissionUtils:$permissionUtilsVersion"
 
-    // Permission Utils
-    implementation "com.github.kayvannj:PermissionUtils:$vPermissionUtils"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
-    // Glide
-    implementation "com.github.bumptech.glide:glide:$vGlide"
-    annotationProcessor "com.github.bumptech.glide:compiler:$vGlide"
+    implementation "com.github.chrisbanes:PhotoView:$photoViewVersion"
 
-    // Photo view
-    implementation "com.github.chrisbanes:PhotoView:$vPhotoView"
-
-    // Test
-    testImplementation "junit:junit:$vJunit4"
-    androidTestImplementation "androidx.test.ext:junit:$vAndroidxJunit"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$vAndroidxEspresso"
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoVersion"
 }
