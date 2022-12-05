@@ -53,10 +53,7 @@ object MediaHelper {
 
             return getAbsolutePath(context, tempUri)
         } else {
-            if (
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
-                DocumentsContract.isDocumentUri(context, uri)
-            ) {
+            if (DocumentsContract.isDocumentUri(context, uri)) {
                 if (uri.isExternalStorageDocument) {
                     val docId = DocumentsContract.getDocumentId(uri)
                     val split =
