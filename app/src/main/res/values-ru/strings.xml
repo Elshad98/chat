@@ -45,6 +45,12 @@
     <string name="update_account">Сохранить</string>
     <string name="send_request">Отправить запрос</string>
 
+    <string name="home_drawer_logout">Выйти</string>
+    <string name="home_drawer_friends">Друзья</string>
+    <string name="home_drawer_settings">Настройки</string>
+    <string name="home_drawer_invite_friend">Пригласить друга</string>
+    <string name="home_drawer_friend_requests">Входящие приглашения</string>
+
     <string name="name_colon">Имя:</string>
     <string name="email_colon">Email:</string>
     <string name="status_colon">Статус:</string>
