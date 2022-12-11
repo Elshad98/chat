@@ -3,73 +3,25 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/athens_gray</item>
         <item name="colorPrimaryDark">@color/pale_sky</item>
-        <item name="toolbarStyle">@style/ToolBarStyle</item>
-    </style>
-
-    <style name="ToolBarStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="titleTextAppearance">@style/TitleTextAppearance</item>
-    </style>
-
-    <style name="TitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/woodsmoke</item>
-    </style>
-
-    <style name="Button.Primary" parent="Base.Widget.AppCompat.Button">
-        <item name="android:foreground">?attr/selectableItemBackground</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:background">@drawable/rounded_button</item>
-        <item name="android:textAppearance">@style/ButtonTextAppearance</item>
-    </style>
-
-    <style name="ButtonTextAppearance" parent="TextAppearance.AppCompat">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/medium_text_size</item>
-    </style>
-
-    <style name="DialogFullscreen" parent="android:Theme.Dialog">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">fill_parent</item>
-
-        <item name="android:windowBackground">@color/translucent</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">false</item>
-    </style>
-
-    <style name="TextView">
-        <item name="android:textAppearance">@style/Text</item>
-    </style>
-
-    <style name="TextView.Primary">
-        <item name="android:textAppearance">@style/Text.Primary</item>
-    </style>
-
-    <style name="TextView.Secondary">
-        <item name="android:textAppearance">@style/Text.Secondary</item>
-    </style>
-
-    <style name="TextView.Primary.Bold">
-        <item name="android:textAppearance">@style/Text.Primary.Bold</item>
     </style>
 
     <style name="Text" parent="TextAppearance.AppCompat">
-        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textDirection">locale</item>
     </style>
 
     <style name="Text.Primary">
-        <item name="android:textColor">@color/woodsmoke</item>
         <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/woodsmoke</item>
     </style>
 
     <style name="Text.Secondary">
         <item name="android:textColor">@color/dark_grey</item>
     </style>
 
-    <style name="Text.Primary.Bold">
-        <item name="android:textStyle">bold</item>
+    <style name="Text.Footnote">
+        <item name="android:textSize">@dimen/font_extra_small</item>
+        <item name="android:textColor">@color/pale_sky</item>
     </style>
 </resources>
