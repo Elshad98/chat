@@ -2,8 +2,8 @@ package com.example.chat.data.remote
 
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
-import com.example.chat.data.remote.core.ApiParamBuilder
-import com.example.chat.data.remote.core.Request
+import com.example.chat.data.remote.common.ApiParamBuilder
+import com.example.chat.data.remote.common.Request
 import com.example.chat.data.remote.model.response.BaseResponse
 import com.example.chat.data.remote.model.response.MessagesResponse
 import com.example.chat.data.remote.service.MessageService

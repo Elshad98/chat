@@ -1,4 +1,4 @@
-package com.example.chat.data.remote.core
+package com.example.chat.data.remote.common
 
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either

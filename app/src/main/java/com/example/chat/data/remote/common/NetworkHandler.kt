@@ -1,4 +1,4 @@
-package com.example.chat.data.remote.core
+package com.example.chat.data.remote.common
 
 import android.content.Context
 import android.net.NetworkCapabilities

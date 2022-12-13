@@ -1,4 +1,4 @@
-package com.example.chat.data.remote.core
+package com.example.chat.data.remote.common
 
 class ApiParamBuilder {
 
@@ -43,94 +43,76 @@ class ApiParamBuilder {
     private var messageDate: Long? = null
     private var requestUserId: Long? = null
 
-    fun userId(userId: Long): ApiParamBuilder {
+    fun userId(userId: Long) = apply {
         this.userId = userId
-        return this
     }
 
-    fun name(name: String): ApiParamBuilder {
+    fun name(name: String) = apply {
         this.name = name
-        return this
     }
 
-    fun email(email: String): ApiParamBuilder {
+    fun email(email: String) = apply {
         this.email = email
-        return this
     }
 
-    fun image(image: String): ApiParamBuilder {
+    fun image(image: String) = apply {
         this.image = image
-        return this
     }
 
-    fun token(token: String): ApiParamBuilder {
+    fun token(token: String) = apply {
         this.token = token
-        return this
     }
 
-    fun status(status: String): ApiParamBuilder {
+    fun status(status: String) = apply {
         this.status = status
-        return this
     }
 
-    fun userDate(userDate: Long): ApiParamBuilder {
+    fun userDate(userDate: Long) = apply {
         this.userDate = userDate
-        return this
     }
 
-    fun lastSeen(lastSeen: Long): ApiParamBuilder {
+    fun lastSeen(lastSeen: Long) = apply {
         this.lastSeen = lastSeen
-        return this
     }
 
-    fun senderId(senderId: Long): ApiParamBuilder {
+    fun senderId(senderId: Long) = apply {
         this.senderId = senderId
-        return this
     }
 
-    fun friendsId(friendsId: Long): ApiParamBuilder {
+    fun friendsId(friendsId: Long) = apply {
         this.friendsId = friendsId
-        return this
     }
 
-    fun messageId(messageId: Long): ApiParamBuilder {
+    fun messageId(messageId: Long) = apply {
         this.messageId = messageId
-        return this
     }
 
-    fun contactId(contactId: Long): ApiParamBuilder {
+    fun contactId(contactId: Long) = apply {
         this.contactId = contactId
-        return this
     }
 
-    fun message(message: String): ApiParamBuilder {
+    fun message(message: String) = apply {
         this.message = message
-        return this
     }
 
-    fun oldToken(oldToken: String): ApiParamBuilder {
+    fun oldToken(oldToken: String) = apply {
         this.oldToken = oldToken
-        return this
     }
 
-    fun password(password: String): ApiParamBuilder {
+    fun password(password: String) = apply {
         this.password = password
-        return this
     }
 
-    fun receiverId(receiverId: Long): ApiParamBuilder {
+    fun receiverId(receiverId: Long) = apply {
         this.receiverId = receiverId
-        return this
     }
 
-    fun messageDate(messageDate: Long): ApiParamBuilder {
+    fun messageDate(messageDate: Long) = apply {
         this.messageDate = messageDate
-        return this
     }
 
-    fun requestUserId(requestUserId: Long): ApiParamBuilder {
+    fun requestUserId(requestUserId: Long) = apply {
         this.requestUserId = requestUserId
-        return this
     }
 
     fun build(): Map<String, String> {
