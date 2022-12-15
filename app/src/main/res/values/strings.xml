@@ -26,7 +26,7 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="name">Name</string>
-    <string name="register">Register</string>
+    <string name="sign_up">Sign up</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="account_created">Account created</string>
     <string name="need_account">Need an account?</string>

@@ -26,7 +26,7 @@
     <string name="password">Пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
     <string name="name">Имя</string>
-    <string name="register">Регистрация</string>
+    <string name="sign_up">Зарегистрироваться</string>
     <string name="already_have_account">Уже есть аккаунт?</string>
     <string name="account_created">Аккаунт создан</string>
     <string name="need_account">Еще нет аккаунт?</string>
