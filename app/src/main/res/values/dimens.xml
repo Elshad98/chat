@@ -13,4 +13,6 @@
     <dimen name="font_large">20sp</dimen>
 
     <dimen name="image_size_medium">56dp</dimen>
+    <dimen name="image_size_large">72dp</dimen>
+    <dimen name="image_size_extra_large">112dp</dimen>
 </resources>

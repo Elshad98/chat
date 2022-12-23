@@ -1,6 +1,7 @@
 package com.example.chat.di
 
 import com.example.chat.presentation.firebase.FirebaseService
+import com.example.chat.presentation.splash.SplashFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -16,4 +17,6 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(service: FirebaseService)
+
+    fun inject(fragment: SplashFragment)
 }
