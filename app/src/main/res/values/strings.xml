@@ -20,6 +20,9 @@
     <string name="error_cannot_send_email">Cannot send emails.</string>
     <string name="error_already_requested_friend">You have already sent a friend request.</string>
     <string name="error_email_already_exist">A user with that email address already exists.</string>
+    <string name="error_email_address_not_valid">Email address not valid</string>
+    <string name="error_invalid_email_or_password">Invalid email or password</string>
+    <string name="error_field_required">This field is required</string>
     <string name="error_picking_file">Error processing file.</string>
 
     <string name="email">Email</string>

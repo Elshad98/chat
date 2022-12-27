@@ -3,18 +3,19 @@
 
     <color name="grey">#898989</color>
     <color name="dark_grey">#4F5660</color>
-    <color name="light_grey">#D2D6DA</color>
+    <color name="light_grey">#ACB2BB</color>
     <color name="athens_gray">#F2F3F5</color>
 
     <color name="light_magenta">#E3BFE3</color>
     <color name="translucent">#191919</color>
     <color name="eastern_blue">#268AB5</color>
-    <color name="woodsmoke">#060607</color>
+    <color name="woodsmoke">#333333</color>
     <color name="blueberry">#7189D7</color>
     <color name="ocean_blue">#677BC4</color>
     <color name="pale_sky">#6A7480</color>
     <color name="white">@android:color/white</color>
 
+    <color name="status_red">#ED4245</color>
     <color name="background">@color/white</color>
 
     <color name="progressBarTint">@color/white</color>

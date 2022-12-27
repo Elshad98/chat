@@ -7,7 +7,7 @@ import com.example.chat.core.exception.Failure
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val _failure: MutableLiveData<Failure> = MutableLiveData()
+    private val _failure = MutableLiveData<Failure>()
     val failure: LiveData<Failure>
         get() = _failure
 
