@@ -1,8 +1,5 @@
 package com.example.chat.core.exception
 
-/**
- * Base Class for handling errors/failures/exceptions.
- */
 sealed class Failure {
 
     object AlreadyRequestedFriendError : Failure()
