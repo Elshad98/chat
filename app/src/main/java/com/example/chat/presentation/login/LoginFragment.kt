@@ -44,13 +44,17 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        addTextChangeListeners()
         setupClickListeners()
         observeViewModel()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStart() {
+        super.onStart()
+        addTextChangeListeners()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 
@@ -62,7 +66,7 @@ class LoginFragment : Fragment() {
             binding.inputLayoutEmail.error = if (it) {
                 getString(R.string.error_field_required)
             } else {
-                ""
+                null
             }
         }
         viewModel.errorInputPassword.observe(viewLifecycleOwner) {
@@ -70,7 +74,7 @@ class LoginFragment : Fragment() {
             binding.inputLayoutPassword.error = if (it) {
                 getString(R.string.error_field_required)
             } else {
-                ""
+                null
             }
         }
     }
@@ -112,6 +116,8 @@ class LoginFragment : Fragment() {
         when (failure) {
             is Failure.AuthError -> showToast(R.string.error_auth)
             is Failure.ServerError -> showToast(R.string.error_server)
+            is Failure.NetworkConnectionError -> showToast(R.string.error_network)
+            else -> showToast(R.string.error_something_went_wrong)
         }
     }
 }

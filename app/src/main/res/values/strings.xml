@@ -10,6 +10,7 @@
 
     <string name="error_server">Server error.</string>
     <string name="error_network">Please check your network connection.</string>
+    <string name="error_something_went_wrong">Oops, something went wrong</string>
     <string name="error_wrong_password">Password incorrect.</string>
     <string name="error_auth">The email or password incorrect.</string>
     <string name="error_password_mismatch">Those passwords didn\'t match.</string>
@@ -33,6 +34,8 @@
     <string name="already_have_account">Already have an account?</string>
     <string name="account_created">Account created</string>
     <string name="need_account">Need an account?</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="user_greeting">We\'re so excited to see you again!</string>
     <string name="forget_password">Forgot your password?</string>
     <string name="login">Login</string>
     <string name="chats">Chats</string>
