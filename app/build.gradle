@@ -63,7 +63,6 @@ project.afterEvaluate {
 dependencies {
 
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-    implementation "androidx.core:core-ktx:$adndroidxKtxVersion"
     implementation "com.google.android.material:material:$materialComponentsVersion"
     implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintLayoutVersion"
 
@@ -94,7 +93,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    implementation "com.andreabaccega:android-form-edittext:$formEditTextVersion"
+    implementation "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$viewBindingPropertyDelegate"
 
     implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
 
