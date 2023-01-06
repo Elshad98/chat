@@ -57,6 +57,9 @@
     <string name="home_drawer_invite_friend">Пригласить друга</string>
     <string name="home_drawer_friend_requests">Входящие приглашения</string>
 
+    <string name="forgot_password_header">Восстановление пароля</string>
+    <string name="forgot_password_body">Введите свой адрес электронной почты, чтобы восстановить пароль</string>
+
     <string name="name_colon">Имя:</string>
     <string name="email_colon">Email:</string>
     <string name="status_colon">Статус:</string>

@@ -57,6 +57,9 @@
     <string name="home_drawer_invite_friend">Invite a friend</string>
     <string name="home_drawer_friend_requests">Incoming invitations</string>
 
+    <string name="forgot_password_header">Forgot your password?</string>
+    <string name="forgot_password_body">Enter your email address to retrieve your password</string>
+
     <string name="name_colon">Name:</string>
     <string name="email_colon">Email:</string>
     <string name="status_colon">Status:</string>

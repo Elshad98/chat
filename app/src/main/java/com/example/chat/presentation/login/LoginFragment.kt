@@ -1,49 +1,38 @@
 package com.example.chat.presentation.login
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.showToast
+import com.example.chat.core.extension.supportActionBar
 import com.example.chat.core.extension.trimmedText
 import com.example.chat.databinding.FragmentLoginBinding
 import com.example.chat.di.ViewModelFactory
 import com.example.chat.presentation.App
 import javax.inject.Inject
 
-class LoginFragment : Fragment() {
-
-    private var _binding: FragmentLoginBinding? = null
-    private val binding: FragmentLoginBinding
-        get() = _binding!!
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: LoginViewModel by viewModels(factoryProducer = { viewModelFactory })
+    private val binding by viewBinding(FragmentLoginBinding::bind)
+    private val viewModel by viewModels<LoginViewModel>(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         App.appComponent.inject(this)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentLoginBinding.inflate(inflater)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        supportActionBar?.hide()
         setupClickListeners()
         observeViewModel()
     }
@@ -53,28 +42,27 @@ class LoginFragment : Fragment() {
         addTextChangeListeners()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun observeViewModel() {
         viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
         viewModel.loginSuccess.observe(viewLifecycleOwner) { launchHomeFragment() }
         viewModel.errorInputEmail.observe(viewLifecycleOwner) {
-            binding.inputLayoutEmail.isErrorEnabled = it
-            binding.inputLayoutEmail.error = if (it) {
-                getString(R.string.error_field_required)
-            } else {
-                null
+            with(binding) {
+                inputLayoutEmail.isErrorEnabled = it
+                inputLayoutEmail.error = if (it) {
+                    getString(R.string.error_field_required)
+                } else {
+                    null
+                }
             }
         }
         viewModel.errorInputPassword.observe(viewLifecycleOwner) {
-            binding.inputLayoutPassword.isErrorEnabled = it
-            binding.inputLayoutPassword.error = if (it) {
-                getString(R.string.error_field_required)
-            } else {
-                null
+            with(binding) {
+                inputLayoutPassword.isErrorEnabled = it
+                inputLayoutPassword.error = if (it) {
+                    getString(R.string.error_field_required)
+                } else {
+                    null
+                }
             }
         }
     }
@@ -85,7 +73,9 @@ class LoginFragment : Fragment() {
 
     private fun launchRegisterFragment() = Unit
 
-    private fun launchForgetPasswordFragment() = Unit
+    private fun launchForgetPasswordFragment() {
+        findNavController().navigate(R.id.action_loginFragment_to_forgetPasswordFragment)
+    }
 
     private fun setupClickListeners() {
         with(binding) {
@@ -117,7 +107,6 @@ class LoginFragment : Fragment() {
             is Failure.AuthError -> showToast(R.string.error_auth)
             is Failure.ServerError -> showToast(R.string.error_server)
             is Failure.NetworkConnectionError -> showToast(R.string.error_network)
-            else -> showToast(R.string.error_something_went_wrong)
         }
     }
 }

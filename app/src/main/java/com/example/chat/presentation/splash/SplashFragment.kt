@@ -7,6 +7,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.chat.R
+import com.example.chat.core.extension.supportActionBar
 import com.example.chat.presentation.App
 import javax.inject.Inject
 
@@ -22,6 +23,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        supportActionBar?.hide()
         authenticator.userLoggedIn { isLoggedIn ->
             Handler(Looper.getMainLooper()).postDelayed(
                 { if (isLoggedIn) launchHomeFragment() else launchLoginFragment() },

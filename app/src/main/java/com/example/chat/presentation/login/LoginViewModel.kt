@@ -7,7 +7,7 @@ import com.example.chat.domain.user.Login
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: Login
+    private val login: Login
 ) : BaseViewModel() {
 
     private val _loginSuccess = MutableLiveData<Unit>()
@@ -24,7 +24,7 @@ class LoginViewModel @Inject constructor(
 
     fun login(email: String, password: String) {
         if (validateInput(email, password)) {
-            loginUseCase(Login.Params(email, password)) { either ->
+            login(Login.Params(email, password)) { either ->
                 either.fold(::handleFailure) { _loginSuccess.value = Unit }
             }
         }
