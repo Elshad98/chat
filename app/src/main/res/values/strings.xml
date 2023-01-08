@@ -10,27 +10,30 @@
 
     <string name="error_server">Server error.</string>
     <string name="error_network">Please check your network connection.</string>
-    <string name="error_something_went_wrong">Oops, something went wrong</string>
+    <string name="error_something_went_wrong">Oops, something went wrong.</string>
     <string name="error_wrong_password">Password incorrect.</string>
     <string name="error_auth">The email or password incorrect.</string>
     <string name="error_password_mismatch">Those passwords didn\'t match.</string>
-    <string name="email_not_registered">Email not registered</string>
+    <string name="email_not_registered">Email not registered.</string>
     <string name="error_already_friend">Already your friend.</string>
     <string name="error_contact_not_found">User is not found.</string>
     <string name="error_empty_password">Password field cannot be empty.</string>
     <string name="error_cannot_send_email">Cannot send emails.</string>
     <string name="error_already_requested_friend">You have already sent a friend request.</string>
     <string name="error_email_already_exist">A user with that email address already exists.</string>
-    <string name="error_email_address_not_valid">Email address not valid</string>
-    <string name="error_invalid_email_or_password">Invalid email or password</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_email_address_not_valid">Email address not valid.</string>
+    <string name="error_invalid_email_or_password">Invalid email or password.</string>
+    <string name="error_field_required">This field is required.</string>
+    <string name="error_invalid_password">Enter a combination of at least six numbers, letters and punctuation marks (such as ! and &amp;).</string>
+    <string name="error_invalid_email">Please enter a valid email address.</string>
+    <string name="error_invalid_username">The username must be between 2 and 32 characters.</string>
     <string name="error_picking_file">Error processing file.</string>
 
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
-    <string name="name">Name</string>
-    <string name="sign_up">Sign up</string>
+    <string name="username">Username</string>
+    <string name="register">Register</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="account_created">Account created</string>
     <string name="need_account">Need an account?</string>
@@ -57,8 +60,10 @@
     <string name="home_drawer_invite_friend">Invite a friend</string>
     <string name="home_drawer_friend_requests">Incoming invitations</string>
 
-    <string name="forgot_password_header">Forgot your password?</string>
-    <string name="forgot_password_body">Enter your email address to retrieve your password</string>
+    <string name="forget_password_header">Forgot your password?</string>
+    <string name="forget_password_body">Enter your email address to retrieve your password</string>
+
+    <string name="register_header">Create an account</string>
 
     <string name="name_colon">Name:</string>
     <string name="email_colon">Email:</string>

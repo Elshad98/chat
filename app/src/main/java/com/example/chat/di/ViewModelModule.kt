@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.chat.di.annotations.ViewModelKey
 import com.example.chat.presentation.forgetpassword.ForgetPasswordViewModel
 import com.example.chat.presentation.login.LoginViewModel
+import com.example.chat.presentation.register.RegisterViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,6 +20,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegisterViewModel::class)
+    fun bindRegisterViewModel(registerViewModel: RegisterViewModel): ViewModel
 
     @Binds
     @IntoMap

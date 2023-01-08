@@ -71,7 +71,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
     }
 
-    private fun launchRegisterFragment() = Unit
+    private fun launchRegisterFragment() {
+        findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+    }
 
     private fun launchForgetPasswordFragment() {
         findNavController().navigate(R.id.action_loginFragment_to_forgetPasswordFragment)
@@ -105,8 +107,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun handleFailure(failure: Failure) {
         when (failure) {
             is Failure.AuthError -> showToast(R.string.error_auth)
-            is Failure.ServerError -> showToast(R.string.error_server)
             is Failure.NetworkConnectionError -> showToast(R.string.error_network)
+            else -> showToast(R.string.error_server)
         }
     }
 }

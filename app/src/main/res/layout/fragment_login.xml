@@ -43,7 +43,7 @@
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_medium"
             app:endIconMode="clear_text"
             app:layout_constraintBottom_toTopOf="@+id/input_layout_password"
             app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_tiny"
-                android:text="@string/sign_up"
+                android:text="@string/register"
                 android:textAppearance="@style/Text.Blueberry" />
 
         </LinearLayout>
