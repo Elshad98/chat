@@ -7,6 +7,12 @@
         <item name="colorError">@color/status_red</item>
     </style>
 
+    <style name="NavigationViewStyle" parent="Widget.MaterialComponents.NavigationRailView">
+        <item name="itemTextAppearance">@style/Text</item>
+        <item name="itemTextColor">@color/woodsmoke</item>
+        <item name="itemIconTint">@color/light_grey</item>
+    </style>
+
     <style name="Text" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="android:textSize">@dimen/font_normal</item>

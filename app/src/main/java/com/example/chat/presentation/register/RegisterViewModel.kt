@@ -19,7 +19,7 @@ class RegisterViewModel @Inject constructor(
         get() = _state
 
     fun register(username: String, email: String, password: String) {
-        val invalidFields = getInvalidField(username, email, password)
+        val invalidFields = getInvalidFields(username, email, password)
 
         if (invalidFields.isEmpty()) {
             register(Register.Params(email, username, password)) { either ->
@@ -33,7 +33,7 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    private fun getInvalidField(
+    private fun getInvalidFields(
         username: String,
         email: String,
         password: String
