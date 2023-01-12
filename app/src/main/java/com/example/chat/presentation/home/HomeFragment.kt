@@ -15,7 +15,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        supportActionBar?.hide()
+        setupToolbar()
         setupNavigationDrawer()
     }
 
@@ -24,25 +24,41 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             when (menuItem.itemId) {
                 R.id.nav_friends -> {
                     launchFriendsFragment()
+                    binding.drawerLayout.close()
                     true
                 }
                 R.id.nav_invite_friend -> {
                     launchInviteFriendFragment()
+                    binding.drawerLayout.close()
                     true
                 }
                 R.id.nav_friend_requests -> {
                     launchFriendRequestsFragment()
+                    binding.drawerLayout.close()
                     true
                 }
                 R.id.nav_settings -> {
                     launchSettingsFragment()
+                    binding.drawerLayout.close()
                     true
                 }
                 R.id.nav_logout -> {
                     showToast("logout")
+                    binding.drawerLayout.close()
                     true
                 }
                 else -> false
+            }
+        }
+    }
+
+    private fun setupToolbar() {
+        with(binding) {
+            supportActionBar?.hide()
+            toolbar.title = getString(R.string.app_name)
+            toolbar.setNavigationIcon(R.drawable.ic_menu)
+            toolbar.setNavigationOnClickListener {
+                drawerLayout.open()
             }
         }
     }

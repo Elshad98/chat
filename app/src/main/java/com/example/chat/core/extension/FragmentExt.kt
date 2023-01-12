@@ -9,14 +9,14 @@ import androidx.fragment.app.Fragment
 val Fragment.supportActionBar: ActionBar?
     get() = (requireActivity() as AppCompatActivity).supportActionBar
 
+fun Fragment.setSupportActionBar(toolbar: Toolbar) {
+    (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+}
+
 fun Fragment.showToast(text: CharSequence) {
     requireActivity().showToast(text)
 }
 
 fun Fragment.showToast(@StringRes resId: Int) {
     requireActivity().showToast(resId)
-}
-
-fun Fragment.setSupportActionBar(toolbar: Toolbar) {
-    (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
 }
