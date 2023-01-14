@@ -20,8 +20,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupNavigationDrawer() {
-        binding.navigationView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
+        binding.navigationView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.nav_friends -> {
                     launchFriendsFragment()
                     binding.drawerLayout.close()
