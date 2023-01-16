@@ -20,6 +20,7 @@ class SharedPrefsManager @Inject constructor(
         private const val PREF_USER_EMAIL = "user_email"
         private const val PREF_USER_IMAGE = "user_image"
         private const val PREF_USER_TOKEN = "user_token"
+        private const val PREF_USER_PHOTO = "user_photo"
         private const val PREF_USER_STATUS = "user_status"
         private const val PREF_USER_PASSWORD = "user_password"
     }
@@ -63,6 +64,7 @@ class SharedPrefsManager @Inject constructor(
             email = preferences.getString(PREF_USER_EMAIL, "")!!,
             image = preferences.getString(PREF_USER_IMAGE, "")!!,
             token = preferences.getString(PREF_USER_TOKEN, "")!!,
+            photo = preferences.getString(PREF_USER_PHOTO, "")!!,
             status = preferences.getString(PREF_USER_STATUS, "")!!,
             password = preferences.getString(PREF_USER_PASSWORD, "")!!
         )

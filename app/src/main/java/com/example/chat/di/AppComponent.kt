@@ -2,6 +2,7 @@ package com.example.chat.di
 
 import com.example.chat.presentation.firebase.FirebaseService
 import com.example.chat.presentation.forgetpassword.ForgetPasswordFragment
+import com.example.chat.presentation.home.HomeFragment
 import com.example.chat.presentation.login.LoginFragment
 import com.example.chat.presentation.register.RegisterFragment
 import com.example.chat.presentation.splash.SplashFragment
@@ -20,6 +21,8 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(service: FirebaseService)
+
+    fun inject(fragment: HomeFragment)
 
     fun inject(fragment: SplashFragment)
 
