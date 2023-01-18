@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
 import com.example.chat.core.exception.Failure
@@ -47,6 +48,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun observeViewModel() {
         viewModel.user.observe(viewLifecycleOwner, ::handleUser)
         viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
+        viewModel.navigateToLogin.observe(viewLifecycleOwner) { launchLoginFragment() }
     }
 
     private fun handleFailure(failure: Failure) {
@@ -71,6 +73,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         textEmail = header.findViewById(R.id.text_email)
         textStatus = header.findViewById(R.id.text_status)
 
+        header.setOnClickListener {
+            launchSettingsFragment()
+            binding.drawerLayout.close()
+        }
+
         binding.navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_friends -> {
@@ -94,7 +101,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     true
                 }
                 R.id.nav_logout -> {
-                    showToast("logout")
+                    viewModel.logout()
                     binding.drawerLayout.close()
                     true
                 }
@@ -112,6 +119,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 drawerLayout.open()
             }
         }
+    }
+
+    private fun launchLoginFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
     }
 
     private fun launchFriendsFragment() = Unit
