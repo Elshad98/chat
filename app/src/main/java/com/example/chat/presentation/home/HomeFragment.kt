@@ -67,45 +67,47 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupNavigationDrawer() {
-        val header = binding.navigationView.getHeaderView(0)
-        textName = header.findViewById(R.id.text_name)
-        imageUser = header.findViewById(R.id.image_user)
-        textEmail = header.findViewById(R.id.text_email)
-        textStatus = header.findViewById(R.id.text_status)
+        with(binding) {
+            val header = navigationView.getHeaderView(0)
+            textName = header.findViewById(R.id.text_name)
+            imageUser = header.findViewById(R.id.image_user)
+            textEmail = header.findViewById(R.id.text_email)
+            textStatus = header.findViewById(R.id.text_status)
 
-        header.setOnClickListener {
-            launchSettingsFragment()
-            binding.drawerLayout.close()
-        }
+            header.setOnClickListener {
+                launchSettingsFragment()
+                drawerLayout.close()
+            }
 
-        binding.navigationView.setNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_friends -> {
-                    launchFriendsFragment()
-                    binding.drawerLayout.close()
-                    true
+            navigationView.setNavigationItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.nav_friends -> {
+                        launchFriendsFragment()
+                        drawerLayout.close()
+                        true
+                    }
+                    R.id.nav_invite_friend -> {
+                        launchInviteFriendFragment()
+                        drawerLayout.close()
+                        true
+                    }
+                    R.id.nav_friend_requests -> {
+                        launchFriendRequestsFragment()
+                        drawerLayout.close()
+                        true
+                    }
+                    R.id.nav_settings -> {
+                        launchSettingsFragment()
+                        drawerLayout.close()
+                        true
+                    }
+                    R.id.nav_logout -> {
+                        viewModel.logout()
+                        drawerLayout.close()
+                        true
+                    }
+                    else -> false
                 }
-                R.id.nav_invite_friend -> {
-                    launchInviteFriendFragment()
-                    binding.drawerLayout.close()
-                    true
-                }
-                R.id.nav_friend_requests -> {
-                    launchFriendRequestsFragment()
-                    binding.drawerLayout.close()
-                    true
-                }
-                R.id.nav_settings -> {
-                    launchSettingsFragment()
-                    binding.drawerLayout.close()
-                    true
-                }
-                R.id.nav_logout -> {
-                    viewModel.logout()
-                    binding.drawerLayout.close()
-                    true
-                }
-                else -> false
             }
         }
     }
