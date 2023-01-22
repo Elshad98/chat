@@ -8,6 +8,6 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="@dimen/image_size_extra_large"
         android:layout_height="@dimen/image_size_extra_large"
-        android:src="@mipmap/ic_launcher_round" />
+        android:src="@mipmap/ic_launcher" />
 
 </LinearLayout>
