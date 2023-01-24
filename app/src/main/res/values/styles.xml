@@ -5,6 +5,7 @@
         <item name="colorPrimaryDark">@color/pale_sky</item>
         <item name="colorOnSurface">@color/light_grey</item>
         <item name="colorError">@color/status_red</item>
+        <item name="android:textColorHint">@color/grey</item>
     </style>
 
     <style name="NavigationViewStyle" parent="Widget.MaterialComponents.NavigationRailView">

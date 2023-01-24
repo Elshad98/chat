@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.chat.data.local.converter.ContactConverter
+import com.example.chat.data.local.converter.MessageTypeConverter
 import com.example.chat.data.local.dao.FriendDao
 import com.example.chat.data.local.dao.MessageDao
 import com.example.chat.data.local.model.FriendEntity
@@ -19,7 +20,10 @@ import com.example.chat.data.local.model.MessageEntity
     version = 1,
     exportSchema = false
 )
-@TypeConverters(ContactConverter::class)
+@TypeConverters(
+    ContactConverter::class,
+    MessageTypeConverter::class
+)
 abstract class ChatDatabase : RoomDatabase() {
 
     companion object {

@@ -16,6 +16,7 @@ import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.databinding.FragmentHomeBinding
 import com.example.chat.di.ViewModelFactory
+import com.example.chat.domain.message.Message
 import com.example.chat.domain.user.User
 import com.example.chat.presentation.App
 import javax.inject.Inject
@@ -24,6 +25,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+    private lateinit var chatListItemAdapter: ChatListItemAdapter
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel by viewModels<HomeViewModel>(factoryProducer = { viewModelFactory })
 
@@ -39,20 +41,32 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUser()
         setupToolbar()
+        setupRecyclerView()
+        setupClickListener()
         setupNavigationDrawer()
         observeViewModel()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.getUser()
+        viewModel.getChats()
+    }
+
     private fun observeViewModel() {
         viewModel.user.observe(viewLifecycleOwner, ::handleUser)
+        viewModel.chatList.observe(viewLifecycleOwner, ::handleChats)
         viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
         viewModel.navigateToLogin.observe(viewLifecycleOwner) { launchLoginFragment() }
     }
 
     private fun handleFailure(failure: Failure) {
         showToast(getString(R.string.error_server))
+    }
+
+    private fun handleChats(messages: List<Message>) {
+        chatListItemAdapter.submitList(messages)
     }
 
     private fun handleUser(user: User) {
@@ -63,6 +77,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             textStatus.gone()
         } else {
             textStatus.text = user.status
+        }
+    }
+
+    private fun setupRecyclerView() {
+        chatListItemAdapter = ChatListItemAdapter()
+        binding.recyclerView.apply {
+            adapter = chatListItemAdapter
+        }
+    }
+
+    private fun setupClickListener() {
+        chatListItemAdapter.onItemClickListener = {
+            launchMessagesFragment()
         }
     }
 
@@ -128,6 +155,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun launchFriendsFragment() = Unit
+
+    private fun launchMessagesFragment() = Unit
 
     private fun launchSettingsFragment() = Unit
 

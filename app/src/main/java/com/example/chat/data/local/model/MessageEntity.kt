@@ -9,8 +9,8 @@ import com.example.chat.domain.message.Message
 data class MessageEntity(
     @PrimaryKey
     val id: Long,
-    val type: Int,
     val date: Long,
+    val type: MessageTypeEntity,
     @ColumnInfo(name = "from_me")
     val fromMe: Boolean,
     val message: String,
@@ -28,10 +28,10 @@ data class MessageEntity(
 fun Message.toEntity() = MessageEntity(
     id = id,
     date = date,
-    type = type,
     fromMe = fromMe,
     message = message,
     senderId = senderId,
+    type = type.toEntity(),
     receiverId = receiverId,
     contact = contact.toEntity(),
     deletedBySender = deletedBySender,
@@ -41,10 +41,10 @@ fun Message.toEntity() = MessageEntity(
 fun MessageEntity.toDomain() = Message(
     id = id,
     date = date,
-    type = type,
     fromMe = fromMe,
     message = message,
     senderId = senderId,
+    type = type.toDomain(),
     receiverId = receiverId,
     contact = contact.toDomain(),
     deletedBySender = deletedBySender,

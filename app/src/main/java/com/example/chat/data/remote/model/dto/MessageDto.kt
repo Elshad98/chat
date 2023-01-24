@@ -9,7 +9,7 @@ data class MessageDto(
     @SerializedName("message_date")
     val date: Long,
     @SerializedName("message_type_id")
-    val type: Int,
+    val type: MessageTypeDto,
     @SerializedName("from_me")
     val fromMe: Boolean,
     val message: String,
@@ -27,10 +27,10 @@ data class MessageDto(
 fun MessageDto.toDomain() = Message(
     id = id,
     date = date,
-    type = type,
     fromMe = fromMe,
     message = message,
     senderId = senderId,
+    type = type.toDomain(),
     receiverId = receiverId,
     contact = contact.toDomain(),
     deletedBySender = deletedBySender,

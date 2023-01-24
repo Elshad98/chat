@@ -90,6 +90,9 @@
     <string name="friend_request_approved">Friend request confirmed</string>
     <string name="friend_request_cancelled">Friend request canceled</string>
 
+    <string name="chat_list_you">You: %s</string>
+    <string name="chat_list_photo">Photo</string>
+
     <string name="pick">Choose a photo</string>
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>

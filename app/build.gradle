@@ -29,6 +29,7 @@ android {
         versionName "1.0"
 
         buildConfigField "String", "BASE_URL", "\"http://n964182b.bget.ru/rest_api/\""
+        buildConfigField "String", "BASE_URL_IMAGE", "\"http://n964182b.bget.ru/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

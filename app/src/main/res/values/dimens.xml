@@ -13,9 +13,10 @@
     <dimen name="font_medium">18sp</dimen>
     <dimen name="font_large">20sp</dimen>
 
-    <dimen name="image_size_medium">56dp</dimen>
+    <dimen name="image_size_small">52dp</dimen>
+    <dimen name="image_size_medium">64dp</dimen>
     <dimen name="image_size_large">72dp</dimen>
-    <dimen name="image_size_extra_large">200dp</dimen>
+    <dimen name="image_size_extra_large">162dp</dimen>
 
     <dimen name="corner_radius">8dp</dimen>
 </resources>
