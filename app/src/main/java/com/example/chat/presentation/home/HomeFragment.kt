@@ -62,7 +62,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun handleFailure(failure: Failure) {
-        showToast(getString(R.string.error_server))
+        when (failure) {
+            is Failure.NetworkConnectionError -> showToast(R.string.error_network)
+            else -> showToast(R.string.error_server)
+        }
     }
 
     private fun handleChats(messages: List<Message>) {
@@ -160,7 +163,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun launchSettingsFragment() = Unit
 
-    private fun launchInviteFriendFragment() = Unit
+    private fun launchInviteFriendFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_inviteFriendFragment)
+    }
 
     private fun launchFriendRequestsFragment() = Unit
 }

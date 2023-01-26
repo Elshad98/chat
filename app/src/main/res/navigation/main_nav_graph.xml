@@ -59,6 +59,10 @@
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
 
+        <action
+            android:id="@+id/action_homeFragment_to_inviteFriendFragment"
+            app:destination="@id/inviteFriendFragment" />
+
     </fragment>
 
     <fragment
@@ -80,5 +84,11 @@
             app:popUpToInclusive="true" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/inviteFriendFragment"
+        android:name="com.example.chat.presentation.invitefriend.InviteFriendFragment"
+        android:label="InviteFriendFragment"
+        tools:layout="@layout/fragment_invite_friend" />
 
 </navigation>

@@ -1,28 +1,28 @@
-package com.example.chat.presentation.forgetpassword
+package com.example.chat.presentation.invitefriend
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.chat.core.extension.isValidEmail
 import com.example.chat.core.platform.BaseViewModel
-import com.example.chat.domain.user.ForgetPassword
+import com.example.chat.domain.friend.AddFriend
 import javax.inject.Inject
 
-class ForgetPasswordViewModel @Inject constructor(
-    private val forgetPassword: ForgetPassword
+class InviteFriendViewModel @Inject constructor(
+    private val addFriend: AddFriend
 ) : BaseViewModel() {
 
     private val _errorInputEmail = MutableLiveData<Boolean>()
     val errorInputEmail: LiveData<Boolean>
         get() = _errorInputEmail
 
-    private val _resetSuccess = MutableLiveData<Unit>()
-    val resetSuccess: LiveData<Unit>
-        get() = _resetSuccess
+    private val _navigateToHome = MutableLiveData<Unit>()
+    val navigateToHome: LiveData<Unit>
+        get() = _navigateToHome
 
-    fun forgetPassword(email: String) {
+    fun addFriend(email: String) {
         if (email.isValidEmail()) {
-            forgetPassword(ForgetPassword.Params(email)) { either ->
-                either.fold(::handleFailure) { _resetSuccess.value = Unit }
+            addFriend(AddFriend.Params(email)) { either ->
+                either.fold(::handleFailure) { _navigateToHome.value = Unit }
             }
         } else {
             _errorInputEmail.value = true

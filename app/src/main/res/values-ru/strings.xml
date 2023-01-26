@@ -63,6 +63,10 @@
     <string name="forget_password_header">Восстановление пароля</string>
     <string name="forget_password_body">Введите свой адрес электронной почты, чтобы восстановить пароль</string>
 
+    <string name="invite_friend_header">Пригласить друга</string>
+    <string name="invite_friend_body">Пригласите друга присоединиться к приложению по электронной почте</string>
+    <string name="invite_friend_button">Отправить приглашение</string>
+
     <string name="register_header">Создать учетную запись</string>
 
     <string name="name_colon">Имя:</string>

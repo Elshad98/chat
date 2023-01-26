@@ -63,6 +63,10 @@
     <string name="forget_password_header">Forgot your password?</string>
     <string name="forget_password_body">Enter your email address to retrieve your password</string>
 
+    <string name="invite_friend_header">Invite a friend</string>
+    <string name="invite_friend_body">Invite a friend to join the app by email</string>
+    <string name="invite_friend_button">Send invite</string>
+
     <string name="register_header">Create an account</string>
 
     <string name="name_colon">Name:</string>
