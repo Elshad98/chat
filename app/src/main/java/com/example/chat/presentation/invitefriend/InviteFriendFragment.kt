@@ -66,12 +66,12 @@ class InviteFriendFragment : Fragment(R.layout.fragment_invite_friend) {
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            is Failure.NetworkConnectionError -> showToast(R.string.error_network)
-            is Failure.AlreadyFriendError -> showToast(R.string.error_already_friend)
-            is Failure.ContactNotFoundError -> showToast(R.string.error_contact_not_found)
-            is Failure.AlreadyRequestedFriendError -> showToast(R.string.error_already_requested_friend)
-            else -> showToast(R.string.error_server)
-        }
+            is Failure.NetworkConnectionError -> R.string.error_network
+            is Failure.AlreadyFriendError -> R.string.error_already_friend
+            is Failure.ContactNotFoundError -> R.string.error_contact_not_found
+            is Failure.AlreadyRequestedFriendError -> R.string.error_already_requested_friend
+            else -> R.string.error_server
+        }.let(::showToast)
     }
 
     private fun setupClickListener() {

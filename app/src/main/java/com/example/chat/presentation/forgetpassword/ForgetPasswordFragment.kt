@@ -80,10 +80,10 @@ class ForgetPasswordFragment : Fragment(R.layout.fragment_forget_password) {
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            is Failure.NetworkConnectionError -> showToast(R.string.error_network)
-            is Failure.CantSendEmailError -> showToast(getString(R.string.error_cannot_send_email))
-            is Failure.EmailNotRegisteredError -> showToast(getString(R.string.email_not_registered))
-            else -> showToast(R.string.error_server)
-        }
+            is Failure.NetworkConnectionError -> R.string.error_network
+            is Failure.CantSendEmailError -> R.string.error_cannot_send_email
+            is Failure.EmailNotRegisteredError -> R.string.email_not_registered
+            else -> R.string.error_server
+        }.let(::showToast)
     }
 }

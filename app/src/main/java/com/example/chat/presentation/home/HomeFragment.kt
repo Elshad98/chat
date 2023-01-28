@@ -63,9 +63,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            is Failure.NetworkConnectionError -> showToast(R.string.error_network)
-            else -> showToast(R.string.error_server)
-        }
+            is Failure.NetworkConnectionError -> R.string.error_network
+            else -> R.string.error_server
+        }.let(::showToast)
     }
 
     private fun handleChats(messages: List<Message>) {

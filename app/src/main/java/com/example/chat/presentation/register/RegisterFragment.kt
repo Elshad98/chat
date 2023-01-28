@@ -107,9 +107,9 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            is Failure.NetworkConnectionError -> showToast(R.string.error_network)
-            is Failure.EmailAlreadyExistError -> showToast(R.string.error_email_already_exist)
-            else -> showToast(R.string.error_server)
-        }
+            is Failure.NetworkConnectionError -> R.string.error_network
+            is Failure.EmailAlreadyExistError -> R.string.error_email_already_exist
+            else -> R.string.error_server
+        }.let(::showToast)
     }
 }

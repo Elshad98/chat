@@ -106,9 +106,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            is Failure.AuthError -> showToast(R.string.error_auth)
-            is Failure.NetworkConnectionError -> showToast(R.string.error_network)
-            else -> showToast(R.string.error_server)
-        }
+            is Failure.AuthError -> R.string.error_auth
+            is Failure.NetworkConnectionError -> R.string.error_network
+            else -> R.string.error_server
+        }.let(::showToast)
     }
 }
