@@ -143,10 +143,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupToolbar() {
+        supportActionBar?.hide()
         with(binding) {
-            supportActionBar?.hide()
-            toolbar.title = getString(R.string.app_name)
-            toolbar.setNavigationIcon(R.drawable.ic_menu)
             toolbar.setNavigationOnClickListener {
                 drawerLayout.open()
             }

@@ -31,7 +31,7 @@ class InviteFriendFragment : Fragment(R.layout.fragment_invite_friend) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolbar()
+        supportActionBar?.show()
         setupClickListener()
         observeViewModel()
     }
@@ -39,13 +39,6 @@ class InviteFriendFragment : Fragment(R.layout.fragment_invite_friend) {
     override fun onStart() {
         super.onStart()
         addTextChangeListener()
-    }
-
-    private fun setupToolbar() {
-        supportActionBar?.run {
-            show()
-            setDisplayShowTitleEnabled(false)
-        }
     }
 
     private fun observeViewModel() {

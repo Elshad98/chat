@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Чат</string>
 
-    <string name="screen_friends">Друзья</string>
-    <string name="screen_account">Аккаунт</string>
-    <string name="screen_user">Пользователь</string>
-    <string name="screen_login">Авторизация</string>
-    <string name="screen_register">Регистрация</string>
-    <string name="screen_forget_password">Восстановление пароля</string>
+    <string name="title_home">Главная</string>
+    <string name="title_splash">Splash</string>
+    <string name="title_login">Авторизация</string>
+    <string name="title_register">Регистрация</string>
+    <string name="title_invite_friend">Пригласить друга</string>
+    <string name="title_forget_password">Восстановление пароля</string>
 
     <string name="error_server">Ошибка сервера.</string>
     <string name="error_field_required">Обязательное поле.</string>
@@ -63,11 +63,12 @@
     <string name="forget_password_header">Восстановление пароля</string>
     <string name="forget_password_body">Введите свой адрес электронной почты, чтобы восстановить пароль</string>
 
-    <string name="invite_friend_header">Пригласить друга</string>
-    <string name="invite_friend_body">Пригласите друга присоединиться к приложению по электронной почте</string>
-    <string name="invite_friend_button">Отправить приглашение</string>
+    <string name="invite_friend_header">Пригласите друга присоединиться к приложению по электронной почте</string>
+    <string name="invite_friend_send_button">Отправить приглашение</string>
 
     <string name="register_header">Создать учетную запись</string>
+
+    <string name="home_title">Чат</string>
 
     <string name="name_colon">Имя:</string>
     <string name="email_colon">Email:</string>

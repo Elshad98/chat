@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.chat.presentation.splash.SplashFragment"
-        android:label="SplashFragment"
+        android:label="@string/title_splash"
         tools:layout="@layout/fragment_splash">
 
         <action
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.chat.presentation.login.LoginFragment"
-        android:label="LoginFragment"
+        android:label="@string/title_login"
         tools:layout="@layout/fragment_login">
 
         <action
@@ -50,7 +50,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.chat.presentation.home.HomeFragment"
-        android:label="HomeFragment"
+        android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
 
         <action
@@ -68,13 +68,13 @@
     <fragment
         android:id="@+id/forgetPasswordFragment"
         android:name="com.example.chat.presentation.forgetpassword.ForgetPasswordFragment"
-        android:label="ForgetPasswordFragment"
+        android:label="@string/title_forget_password"
         tools:layout="@layout/fragment_forget_password" />
 
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.chat.presentation.register.RegisterFragment"
-        android:label="RegisterFragment"
+        android:label="@string/title_register"
         tools:layout="@layout/fragment_register">
 
         <action
@@ -88,7 +88,7 @@
     <fragment
         android:id="@+id/inviteFriendFragment"
         android:name="com.example.chat.presentation.invitefriend.InviteFriendFragment"
-        android:label="InviteFriendFragment"
+        android:label="@string/title_invite_friend"
         tools:layout="@layout/fragment_invite_friend" />
 
 </navigation>
