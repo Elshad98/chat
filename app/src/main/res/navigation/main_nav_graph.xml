@@ -63,6 +63,10 @@
             android:id="@+id/action_homeFragment_to_inviteFriendFragment"
             app:destination="@id/inviteFriendFragment" />
 
+        <action
+            android:id="@+id/action_homeFragment_to_friendListFragment"
+            app:destination="@id/friendListFragment" />
+
     </fragment>
 
     <fragment
@@ -90,5 +94,11 @@
         android:name="com.example.chat.presentation.invitefriend.InviteFriendFragment"
         android:label="@string/title_invite_friend"
         tools:layout="@layout/fragment_invite_friend" />
+
+    <fragment
+        android:id="@+id/friendListFragment"
+        android:name="com.example.chat.presentation.friend.FriendListFragment"
+        android:label="@string/title_friend_list"
+        tools:layout="@layout/fragment_friend_list" />
 
 </navigation>

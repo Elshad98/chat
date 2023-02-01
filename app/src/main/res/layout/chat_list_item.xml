@@ -13,10 +13,10 @@
         android:layout_marginStart="@dimen/spacing_small"
         android:layout_marginTop="@dimen/spacing_small"
         android:layout_marginBottom="@dimen/spacing_small"
-        android:background="@drawable/ic_avatar_placeholder"
         app:layout_constraintBottom_toBottomOf="@+id/separator"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/ic_avatar_placeholder" />
 
     <LinearLayout
         android:id="@+id/container"

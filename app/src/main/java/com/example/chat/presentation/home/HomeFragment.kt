@@ -56,8 +56,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun observeViewModel() {
         viewModel.user.observe(viewLifecycleOwner, ::handleUser)
-        viewModel.chatList.observe(viewLifecycleOwner, ::handleChats)
         viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
+        viewModel.chatList.observe(viewLifecycleOwner, ::handleChatList)
         viewModel.navigateToLogin.observe(viewLifecycleOwner) { launchLoginFragment() }
     }
 
@@ -68,7 +68,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }.let(::showToast)
     }
 
-    private fun handleChats(messages: List<Message>) {
+    private fun handleChatList(messages: List<Message>) {
         chatListItemAdapter.submitList(messages)
     }
 
@@ -112,7 +112,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             navigationView.setNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.nav_friends -> {
-                        launchFriendsFragment()
+                        launchFriendListFragment()
                         drawerLayout.close()
                         true
                     }
@@ -155,9 +155,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
     }
 
-    private fun launchFriendsFragment() = Unit
-
     private fun launchMessagesFragment() = Unit
+
+    private fun launchFriendListFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_friendListFragment)
+    }
 
     private fun launchSettingsFragment() = Unit
 

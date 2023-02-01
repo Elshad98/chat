@@ -7,6 +7,7 @@ data class Friend(
     val friendsId: Long,
     val status: String,
     val image: String,
+    val photo: String,
     val isRequest: Int,
     val lastSeen: Long
 )

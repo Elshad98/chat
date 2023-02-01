@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.chat.di.annotations.ViewModelKey
 import com.example.chat.presentation.forgetpassword.ForgetPasswordViewModel
+import com.example.chat.presentation.friend.FriendListViewModel
 import com.example.chat.presentation.home.HomeViewModel
 import com.example.chat.presentation.invitefriend.InviteFriendViewModel
 import com.example.chat.presentation.login.LoginViewModel
@@ -32,6 +33,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(RegisterViewModel::class)
     fun bindRegisterViewModel(registerViewModel: RegisterViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FriendListViewModel::class)
+    fun bindFriendListViewModel(friendListViewModel: FriendListViewModel): ViewModel
 
     @Binds
     @IntoMap
