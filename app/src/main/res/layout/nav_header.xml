@@ -13,7 +13,7 @@
         android:layout_height="@dimen/image_size_medium"
         android:layout_marginStart="@dimen/spacing_normal"
         android:layout_marginTop="@dimen/spacing_huge"
-        android:src="@drawable/ic_avatar_placeholder" />
+        android:src="@drawable/user_placeholder" />
 
     <TextView
         android:id="@+id/text_name"

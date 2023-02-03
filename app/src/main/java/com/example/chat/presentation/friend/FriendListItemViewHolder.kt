@@ -12,7 +12,7 @@ class FriendListItemViewHolder(
 
     override fun bind(item: Friend) {
         with(binding) {
-            imageUser.load(item.photo, R.drawable.ic_avatar_placeholder)
+            imageUser.load(item.photo, R.drawable.user_placeholder)
             textName.text = item.name
         }
     }

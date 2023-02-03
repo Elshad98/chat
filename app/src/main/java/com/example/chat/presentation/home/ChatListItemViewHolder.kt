@@ -31,7 +31,7 @@ class ChatListItemViewHolder(
                 }
             }
             textName.text = item.contact.name
-            imageUser.load(item.contact.image, R.drawable.ic_avatar_placeholder)
+            imageUser.load(item.contact.image, R.drawable.user_placeholder)
         }
     }
 }

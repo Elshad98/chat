@@ -75,7 +75,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun handleUser(user: User) {
         textName.text = user.name
         textEmail.text = user.email
-        imageUser.load(user.photo, R.drawable.ic_avatar_placeholder)
+        imageUser.load(user.photo, R.drawable.user_placeholder)
         if (user.status.isEmpty()) {
             textStatus.gone()
         } else {

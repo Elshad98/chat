@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/separator"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/ic_avatar_placeholder" />
+        tools:background="@drawable/user_placeholder" />
 
     <LinearLayout
         android:id="@+id/container"
@@ -72,6 +72,6 @@
         android:background="@color/black_haze"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

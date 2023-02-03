@@ -16,14 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/text_name"
         app:layout_constraintBottom_toTopOf="@id/separator"
-        tools:background="@drawable/ic_avatar_placeholder" />
+        tools:background="@drawable/user_placeholder" />
 
     <TextView
         android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:layout_marginStart="@dimen/spacing_tiny"
+        android:layout_marginStart="@dimen/spacing_small"
         android:maxLines="1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_user"
@@ -49,6 +49,6 @@
         android:background="@color/black_haze"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/text_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
