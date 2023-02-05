@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/separator"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/user_placeholder" />
+        tools:src="@drawable/user_placeholder" />
 
     <LinearLayout
         android:id="@+id/container"

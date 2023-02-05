@@ -1,4 +1,4 @@
-package com.example.chat.presentation.friend
+package com.example.chat.presentation.invitation
 
 import android.os.Bundle
 import android.view.View
@@ -9,20 +9,19 @@ import com.example.chat.R
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
-import com.example.chat.databinding.FragmentFriendListBinding
+import com.example.chat.databinding.FragmentInvitationListBinding
 import com.example.chat.di.ViewModelFactory
-import com.example.chat.domain.friend.Friend
 import com.example.chat.presentation.App
 import javax.inject.Inject
 
-class FriendListFragment : Fragment(R.layout.fragment_friend_list) {
+class InvitationListFragment : Fragment(R.layout.fragment_invitation_list) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var adapter: FriendListItemAdapter
-    private val binding by viewBinding(FragmentFriendListBinding::bind)
-    private val viewModel by viewModels<FriendListViewModel>(factoryProducer = { viewModelFactory })
+    private lateinit var adapter: InvitationListItemAdapter
+    private val binding by viewBinding(FragmentInvitationListBinding::bind)
+    private val viewModel by viewModels<InvitationListViewModel>(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,27 +37,27 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list) {
 
     override fun onStart() {
         super.onStart()
-        viewModel.getFriends()
+        viewModel.getFriendRequests(true)
     }
 
     private fun observeViewModel() {
         viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
-        viewModel.friendList.observe(viewLifecycleOwner, ::handleFriendList)
+        viewModel.friendRequests.observe(viewLifecycleOwner, adapter::submitList)
     }
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            is Failure.NetworkConnectionError -> R.string.error_network
+            Failure.AlreadyFriendError -> R.string.error_already_friend
+            Failure.NetworkConnectionError -> R.string.error_network
             else -> R.string.error_server
         }.let(::showToast)
     }
 
-    private fun handleFriendList(friends: List<Friend>) {
-        adapter.submitList(friends)
-    }
-
     private fun setupRecyclerView() {
-        adapter = FriendListItemAdapter()
+        adapter = InvitationListItemAdapter(
+            onConfirmClickListener = viewModel::approveFriend,
+            onDeclineClickListener = viewModel::cancelFriend
+        )
         binding.recyclerView.adapter = adapter
     }
 }

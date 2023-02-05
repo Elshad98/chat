@@ -19,6 +19,10 @@ class InviteFriendViewModel @Inject constructor(
     val navigateToHome: LiveData<Unit>
         get() = _navigateToHome
 
+    override fun onCleared() {
+        addFriend.unsubscribe()
+    }
+
     fun addFriend(email: String) {
         if (email.isValidEmail()) {
             addFriend(AddFriend.Params(email)) { either ->

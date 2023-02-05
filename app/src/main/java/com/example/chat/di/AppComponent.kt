@@ -4,6 +4,7 @@ import com.example.chat.presentation.firebase.FirebaseService
 import com.example.chat.presentation.forgetpassword.ForgetPasswordFragment
 import com.example.chat.presentation.friend.FriendListFragment
 import com.example.chat.presentation.home.HomeFragment
+import com.example.chat.presentation.invitation.InvitationListFragment
 import com.example.chat.presentation.invitefriend.InviteFriendFragment
 import com.example.chat.presentation.login.LoginFragment
 import com.example.chat.presentation.register.RegisterFragment
@@ -35,6 +36,8 @@ interface AppComponent {
     fun inject(fragment: FriendListFragment)
 
     fun inject(fragment: InviteFriendFragment)
+
+    fun inject(fragment: InvitationListFragment)
 
     fun inject(fragment: ForgetPasswordFragment)
 }

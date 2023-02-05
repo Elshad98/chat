@@ -15,6 +15,10 @@ class FriendListViewModel @Inject constructor(
     val friendList: LiveData<List<Friend>>
         get() = _friendList
 
+    override fun onCleared() {
+        getFriends.unsubscribe()
+    }
+
     fun getFriends() {
         getFriends(true) { either ->
             either.fold(::handleFailure, _friendList::setValue)

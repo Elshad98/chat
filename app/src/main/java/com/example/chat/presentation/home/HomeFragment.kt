@@ -25,7 +25,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var chatListItemAdapter: ChatListItemAdapter
+    private lateinit var adapter: ChatListItemAdapter
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel by viewModels<HomeViewModel>(factoryProducer = { viewModelFactory })
 
@@ -69,7 +69,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun handleChatList(messages: List<Message>) {
-        chatListItemAdapter.submitList(messages)
+        adapter.submitList(messages)
     }
 
     private fun handleUser(user: User) {
@@ -84,14 +84,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupRecyclerView() {
-        chatListItemAdapter = ChatListItemAdapter()
-        binding.recyclerView.apply {
-            adapter = chatListItemAdapter
-        }
+        adapter = ChatListItemAdapter()
+        binding.recyclerView.adapter = adapter
     }
 
     private fun setupClickListener() {
-        chatListItemAdapter.onItemClickListener = {
+        adapter.onItemClickListener = {
             launchMessagesFragment()
         }
     }
@@ -122,7 +120,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         true
                     }
                     R.id.nav_friend_requests -> {
-                        launchFriendRequestsFragment()
+                        launchInvitationListFragment()
                         drawerLayout.close()
                         true
                     }
@@ -167,5 +165,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         findNavController().navigate(R.id.action_homeFragment_to_inviteFriendFragment)
     }
 
-    private fun launchFriendRequestsFragment() = Unit
+    private fun launchInvitationListFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_invitationListFragment)
+    }
 }

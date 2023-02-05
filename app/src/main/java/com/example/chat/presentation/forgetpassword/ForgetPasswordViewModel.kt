@@ -19,6 +19,10 @@ class ForgetPasswordViewModel @Inject constructor(
     val resetSuccess: LiveData<Unit>
         get() = _resetSuccess
 
+    override fun onCleared() {
+        forgetPassword.unsubscribe()
+    }
+
     fun forgetPassword(email: String) {
         if (email.isValidEmail()) {
             forgetPassword(ForgetPassword.Params(email)) { either ->

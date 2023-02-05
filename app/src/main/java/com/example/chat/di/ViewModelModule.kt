@@ -6,6 +6,7 @@ import com.example.chat.di.annotations.ViewModelKey
 import com.example.chat.presentation.forgetpassword.ForgetPasswordViewModel
 import com.example.chat.presentation.friend.FriendListViewModel
 import com.example.chat.presentation.home.HomeViewModel
+import com.example.chat.presentation.invitation.InvitationListViewModel
 import com.example.chat.presentation.invitefriend.InviteFriendViewModel
 import com.example.chat.presentation.login.LoginViewModel
 import com.example.chat.presentation.register.RegisterViewModel
@@ -43,6 +44,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(InviteFriendViewModel::class)
     fun bindInviteFriendViewModel(inviteFriendViewModel: InviteFriendViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InvitationListViewModel::class)
+    fun bindInvitationListViewModel(invitationListViewModel: InvitationListViewModel): ViewModel
 
     @Binds
     @IntoMap

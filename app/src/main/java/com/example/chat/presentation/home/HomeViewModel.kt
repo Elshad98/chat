@@ -28,6 +28,12 @@ class HomeViewModel @Inject constructor(
 
     val chatList = getLiveChats()
 
+    override fun onCleared() {
+        logout.unsubscribe()
+        getUser.unsubscribe()
+        getChats.unsubscribe()
+    }
+
     fun getChats() {
         getChats(GetChats.Params(true)) { either ->
             either.fold(::handleFailure) { }

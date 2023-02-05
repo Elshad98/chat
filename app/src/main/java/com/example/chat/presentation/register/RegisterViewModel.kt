@@ -18,6 +18,10 @@ class RegisterViewModel @Inject constructor(
     val state: LiveData<State>
         get() = _state
 
+    override fun onCleared() {
+        register.unsubscribe()
+    }
+
     fun register(username: String, email: String, password: String) {
         val invalidFields = getInvalidFields(username, email, password)
 

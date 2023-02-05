@@ -22,6 +22,10 @@ class LoginViewModel @Inject constructor(
     val errorInputPassword: LiveData<Boolean>
         get() = _errorInputPassword
 
+    override fun onCleared() {
+        login.unsubscribe()
+    }
+
     fun login(email: String, password: String) {
         if (validateInput(email, password)) {
             login(Login.Params(email, password)) { either ->
