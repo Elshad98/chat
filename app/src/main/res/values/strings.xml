@@ -8,7 +8,7 @@
     <string name="title_friend_list">Friends</string>
     <string name="title_invite_friend">Invite a friend</string>
     <string name="title_forget_password">Forgot password</string>
-    <string name="title_invitation_list">Incoming invitations</string>
+    <string name="title_friend_requests">Incoming invitations</string>
 
     <string name="error_server">Server error.</string>
     <string name="error_network">Please check your network connection.</string>
@@ -70,8 +70,8 @@
 
     <string name="register_header">Create an account</string>
 
-    <string name="invitation_list_item_add_button">Add</string>
-    <string name="invitation_list_item_decline_button">Decline</string>
+    <string name="item_friend_request_add_button">Add</string>
+    <string name="item_friend_request_decline_button">Decline</string>
 
     <string name="home_title">Chat</string>
 

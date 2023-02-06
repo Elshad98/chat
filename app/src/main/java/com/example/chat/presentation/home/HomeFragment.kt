@@ -120,7 +120,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         true
                     }
                     R.id.nav_friend_requests -> {
-                        launchInvitationListFragment()
+                        launchFriendRequestsFragment()
                         drawerLayout.close()
                         true
                     }
@@ -165,7 +165,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         findNavController().navigate(R.id.action_homeFragment_to_inviteFriendFragment)
     }
 
-    private fun launchInvitationListFragment() {
-        findNavController().navigate(R.id.action_homeFragment_to_invitationListFragment)
+    private fun launchFriendRequestsFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_friendRequestsFragment)
     }
 }

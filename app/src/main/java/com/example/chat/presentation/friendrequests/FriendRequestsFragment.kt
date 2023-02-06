@@ -1,4 +1,4 @@
-package com.example.chat.presentation.invitation
+package com.example.chat.presentation.friendrequests
 
 import android.os.Bundle
 import android.view.View
@@ -9,19 +9,19 @@ import com.example.chat.R
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
-import com.example.chat.databinding.FragmentInvitationListBinding
+import com.example.chat.databinding.FragmentFriendRequestsBinding
 import com.example.chat.di.ViewModelFactory
 import com.example.chat.presentation.App
 import javax.inject.Inject
 
-class InvitationListFragment : Fragment(R.layout.fragment_invitation_list) {
+class FriendRequestsFragment : Fragment(R.layout.fragment_friend_requests) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var adapter: InvitationListItemAdapter
-    private val binding by viewBinding(FragmentInvitationListBinding::bind)
-    private val viewModel by viewModels<InvitationListViewModel>(factoryProducer = { viewModelFactory })
+    private lateinit var adapter: FriendRequestsAdapter
+    private val binding by viewBinding(FragmentFriendRequestsBinding::bind)
+    private val viewModel by viewModels<FriendRequestsViewModel>(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +54,9 @@ class InvitationListFragment : Fragment(R.layout.fragment_invitation_list) {
     }
 
     private fun setupRecyclerView() {
-        adapter = InvitationListItemAdapter(
-            onConfirmClickListener = viewModel::approveFriend,
-            onDeclineClickListener = viewModel::cancelFriend
+        adapter = FriendRequestsAdapter(
+            onConfirmClickListener = viewModel::approveFriendRequest,
+            onDeclineClickListener = viewModel::cancelFriendRequest
         )
         binding.recyclerView.adapter = adapter
     }

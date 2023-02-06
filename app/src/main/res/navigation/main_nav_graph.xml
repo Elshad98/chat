@@ -68,8 +68,8 @@
             app:destination="@id/friendListFragment" />
 
         <action
-            android:id="@+id/action_homeFragment_to_invitationListFragment"
-            app:destination="@id/invitationListFragment" />
+            android:id="@+id/action_homeFragment_to_friendRequestsFragment"
+            app:destination="@id/friendRequestsFragment" />
 
     </fragment>
 
@@ -106,9 +106,9 @@
         tools:layout="@layout/fragment_friend_list" />
 
     <fragment
-        android:id="@+id/invitationListFragment"
-        android:name="com.example.chat.presentation.invitation.InvitationListFragment"
-        android:label="@string/title_invitation_list"
-        tools:layout="@layout/fragment_invitation_list" />
+        android:id="@+id/friendRequestsFragment"
+        android:name="com.example.chat.presentation.friendrequests.FriendRequestsFragment"
+        android:label="@string/title_friend_requests"
+        tools:layout="@layout/fragment_friend_requests" />
 
 </navigation>
