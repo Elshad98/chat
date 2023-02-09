@@ -110,7 +110,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             navigationView.setNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.nav_friends -> {
-                        launchFriendListFragment()
+                        launchFriendsFragment()
                         drawerLayout.close()
                         true
                     }
@@ -153,11 +153,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
     }
 
-    private fun launchMessagesFragment() = Unit
-
-    private fun launchFriendListFragment() {
-        findNavController().navigate(R.id.action_homeFragment_to_friendListFragment)
+    private fun launchFriendsFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_friendsFragment)
     }
+
+    private fun launchMessagesFragment() = Unit
 
     private fun launchSettingsFragment() = Unit
 

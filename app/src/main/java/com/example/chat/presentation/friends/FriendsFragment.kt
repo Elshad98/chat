@@ -1,4 +1,4 @@
-package com.example.chat.presentation.friend
+package com.example.chat.presentation.friends
 
 import android.os.Bundle
 import android.view.View
@@ -9,20 +9,20 @@ import com.example.chat.R
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
-import com.example.chat.databinding.FragmentFriendListBinding
+import com.example.chat.databinding.FragmentFriendsBinding
 import com.example.chat.di.ViewModelFactory
 import com.example.chat.domain.friend.Friend
 import com.example.chat.presentation.App
 import javax.inject.Inject
 
-class FriendListFragment : Fragment(R.layout.fragment_friend_list) {
+class FriendsFragment : Fragment(R.layout.fragment_friends) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var adapter: FriendListItemAdapter
-    private val binding by viewBinding(FragmentFriendListBinding::bind)
-    private val viewModel by viewModels<FriendListViewModel>(factoryProducer = { viewModelFactory })
+    private lateinit var adapter: FriendsAdapter
+    private val binding by viewBinding(FragmentFriendsBinding::bind)
+    private val viewModel by viewModels<FriendsViewModel>(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +58,7 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list) {
     }
 
     private fun setupRecyclerView() {
-        adapter = FriendListItemAdapter()
+        adapter = FriendsAdapter()
         binding.recyclerView.adapter = adapter
     }
 }

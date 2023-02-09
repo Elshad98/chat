@@ -1,4 +1,4 @@
-package com.example.chat.presentation.friend
+package com.example.chat.presentation.friends
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.chat.domain.friend.Friend
