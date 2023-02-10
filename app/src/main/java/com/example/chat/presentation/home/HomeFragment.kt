@@ -25,7 +25,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var adapter: ChatListItemAdapter
+
+    private lateinit var adapter: ChatsAdapter
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel by viewModels<HomeViewModel>(factoryProducer = { viewModelFactory })
 
@@ -84,7 +85,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupRecyclerView() {
-        adapter = ChatListItemAdapter()
+        adapter = ChatsAdapter()
         binding.recyclerView.adapter = adapter
     }
 

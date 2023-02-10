@@ -21,6 +21,7 @@ class InviteFriendFragment : Fragment(R.layout.fragment_invite_friend) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
     private val binding by viewBinding(FragmentInviteFriendBinding::bind)
     private val viewModel by viewModels<InviteFriendViewModel>(factoryProducer = { viewModelFactory })
 

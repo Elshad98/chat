@@ -3,12 +3,12 @@ package com.example.chat.presentation.home
 import com.example.chat.R
 import com.example.chat.core.extension.load
 import com.example.chat.core.platform.BaseViewHolder
-import com.example.chat.databinding.ChatListItemBinding
+import com.example.chat.databinding.ItemChatBinding
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.MessageType
 
-class ChatListItemViewHolder(
-    private val binding: ChatListItemBinding
+class ChatViewHolder(
+    private val binding: ItemChatBinding
 ) : BaseViewHolder<Message>(binding.root) {
 
     override fun bind(item: Message) {
