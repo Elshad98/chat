@@ -160,7 +160,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun launchMessagesFragment() = Unit
 
-    private fun launchSettingsFragment() = Unit
+    private fun launchSettingsFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+    }
 
     private fun launchInviteFriendFragment() {
         findNavController().navigate(R.id.action_homeFragment_to_inviteFriendFragment)

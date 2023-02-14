@@ -71,6 +71,10 @@
             android:id="@+id/action_homeFragment_to_friendRequestsFragment"
             app:destination="@id/friendRequestsFragment" />
 
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+
     </fragment>
 
     <fragment
@@ -110,5 +114,11 @@
         android:name="com.example.chat.presentation.friendrequests.FriendRequestsFragment"
         android:label="@string/title_friend_requests"
         tools:layout="@layout/fragment_friend_requests" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.chat.presentation.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>

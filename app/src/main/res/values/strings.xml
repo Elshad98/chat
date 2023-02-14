@@ -4,6 +4,7 @@
     <string name="title_home">Home</string>
     <string name="title_login">Login</string>
     <string name="title_splash">Splash</string>
+    <string name="title_settings">Settings</string>
     <string name="title_register">Register</string>
     <string name="title_friends">Friends</string>
     <string name="title_invite_friend">Invite a friend</string>
@@ -99,6 +100,9 @@
     <string name="friend_request">Friend request</string>
     <string name="friend_request_approved">Friend request confirmed</string>
     <string name="friend_request_cancelled">Friend request canceled</string>
+
+    <string name="settings_category_account">Account</string>
+    <string name="settings_change_status">Change status</string>
 
     <string name="chat_list_you">You: %s</string>
     <string name="chat_list_photo">Photo</string>
