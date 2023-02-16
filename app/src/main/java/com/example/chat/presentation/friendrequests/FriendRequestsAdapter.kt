@@ -24,7 +24,7 @@ class FriendRequestsAdapter(
         with(holder.binding) {
             val friend = getItem(position)
             textName.text = friend.name
-            imageUser.load(friend.photo, R.drawable.user_placeholder)
+            imageUser.load(friend.image, R.drawable.user_placeholder)
             buttonAdd.setOnClickListener {
                 onConfirmClickListener(friend)
             }

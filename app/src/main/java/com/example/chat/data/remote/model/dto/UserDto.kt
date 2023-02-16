@@ -3,8 +3,6 @@ package com.example.chat.data.remote.model.dto
 import com.example.chat.domain.user.User
 import com.google.gson.annotations.SerializedName
 
-private const val SERVER_URL = "http://n964182b.bget.ru"
-
 data class UserDto(
     @SerializedName("user_id")
     val id: Long,
@@ -26,6 +24,5 @@ fun UserDto.toDomain() = User(
     image = image,
     status = status,
     userData = userData,
-    password = password.orEmpty(),
-    photo = SERVER_URL + image.replace("..", "")
+    password = password.orEmpty()
 )

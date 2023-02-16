@@ -6,7 +6,6 @@ data class User(
     val email: String,
     val token: String,
     val image: String,
-    val photo: String,
     val status: String,
     val userData: Long,
     val password: String

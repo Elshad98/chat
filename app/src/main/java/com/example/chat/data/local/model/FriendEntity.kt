@@ -12,7 +12,6 @@ data class FriendEntity(
     val name: String,
     val email: String,
     val image: String,
-    val photo: String,
     val status: String,
     @ColumnInfo(name = "last_seen")
     val lastSeen: Long,
@@ -27,7 +26,6 @@ fun Friend.toEntity() = FriendEntity(
     name = name,
     email = email,
     image = image,
-    photo = photo,
     status = status,
     lastSeen = lastSeen,
     isRequest = isRequest,
@@ -39,7 +37,6 @@ fun FriendEntity.toDomain() = Friend(
     name = name,
     email = email,
     image = image,
-    photo = photo,
     status = status,
     lastSeen = lastSeen,
     isRequest = isRequest,

@@ -8,7 +8,6 @@ data class UserEntity(
     val email: String,
     val token: String,
     val image: String,
-    val photo: String,
     val status: String,
     val userData: Long,
     val password: String
@@ -20,7 +19,6 @@ fun User.toEntity() = UserEntity(
     email = email,
     token = token,
     image = image,
-    photo = photo,
     status = status,
     userData = userData,
     password = password
@@ -32,7 +30,6 @@ fun UserEntity.toDomain() = User(
     email = email,
     token = token,
     image = image,
-    photo = photo,
     status = status,
     userData = userData,
     password = password

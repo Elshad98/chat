@@ -13,7 +13,7 @@ class FriendViewHolder(
     override fun bind(item: Friend) {
         with(binding) {
             textName.text = item.name
-            imageUser.load(item.photo, R.drawable.user_placeholder)
+            imageUser.load(item.image, R.drawable.user_placeholder)
         }
     }
 }
