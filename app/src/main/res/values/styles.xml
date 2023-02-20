@@ -1,11 +1,31 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorError">@color/status_red</item>
         <item name="colorPrimary">@color/blueberry</item>
         <item name="colorPrimaryDark">@color/pale_sky</item>
         <item name="colorOnSurface">@color/light_grey</item>
-        <item name="colorError">@color/status_red</item>
         <item name="android:textColorHint">@color/grey</item>
+        <item name="preferenceTheme">@style/PreferenceTheme</item>
+        <item name="android:textColorSecondary">@color/pale_sky</item>
+        <item name="android:textAppearanceListItem">@style/Text</item>
+        <item name="android:textAppearanceSmall">@style/Text.Footnote</item>
+        <item name="android:textAppearanceListItemSecondary">@style/Text.Footnote</item>
+    </style>
+
+    <style name="PreferenceTheme" parent="@style/PreferenceThemeOverlay.v14.Material">
+        <item name="preferenceStyle">@style/PreferenceStyle</item>
+        <item name="preferenceCategoryTitleTextColor">@color/blueberry</item>
+        <item name="preferenceCategoryStyle">@style/PreferenceCategoryStyle</item>
+        <item name="preferenceCategoryTitleTextAppearance">@style/Text.CategoryTitle</item>
+    </style>
+
+    <style name="PreferenceStyle" parent="Preference.Material">
+        <item name="iconSpaceReserved">false</item>
+    </style>
+
+    <style name="PreferenceCategoryStyle" parent="Preference.Category.Material">
+        <item name="iconSpaceReserved">false</item>
     </style>
 
     <style name="NavigationViewStyle" parent="Widget.MaterialComponents.NavigationRailView">
@@ -40,6 +60,11 @@
 
     <style name="Text.Medium">
         <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+    <style name="Text.CategoryTitle">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="Text.Error">

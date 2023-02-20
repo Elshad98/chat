@@ -101,9 +101,6 @@
     <string name="friend_request_approved">Запрос в друзья подтвержден</string>
     <string name="friend_request_cancelled">Запрос в друзья отменен</string>
 
-    <string name="settings_category_account">Аккаунт</string>
-    <string name="settings_change_status">Изменить статус</string>
-
     <string name="chat_list_you">Вы: %s</string>
     <string name="chat_list_photo">Фотография</string>
 
@@ -121,4 +118,8 @@
 
     <string name="resend_password">Получить пароль</string>
     <string name="email_sent">Пароль отправлен на указанный email</string>
+
+    <string name="settings_heading_account">Аккаунт</string>
+    <string name="settings_status_title">Статус</string>
+    <string name="settings_status_summary">Напишите немного о себе</string>
 </resources>

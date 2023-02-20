@@ -64,6 +64,7 @@ project.afterEvaluate {
 dependencies {
 
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.preference:preference-ktx:$androidxPreferenceVersion"
     implementation "com.google.android.material:material:$materialComponentsVersion"
     implementation "androidx.constraintlayout:constraintlayout:$androidxConstraintLayoutVersion"
 

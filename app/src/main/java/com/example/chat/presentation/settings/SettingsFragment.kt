@@ -1,26 +1,14 @@
 package com.example.chat.presentation.settings
 
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
-import by.kirich1409.viewbindingdelegate.viewBinding
+import androidx.preference.PreferenceFragmentCompat
 import com.example.chat.R
 import com.example.chat.core.extension.supportActionBar
-import com.example.chat.databinding.FragmentSettingsBinding
 
-class SettingsFragment : Fragment(R.layout.fragment_settings) {
+class SettingsFragment : PreferenceFragmentCompat() {
 
-    private val binding by viewBinding(FragmentSettingsBinding::bind)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.general_preferences, rootKey)
         supportActionBar?.show()
-        setupClickListeners()
-    }
-
-    private fun setupClickListeners() {
-        with(binding) {
-            textChangeStatus.setOnClickListener { }
-        }
     }
 }

@@ -101,9 +101,6 @@
     <string name="friend_request_approved">Friend request confirmed</string>
     <string name="friend_request_cancelled">Friend request canceled</string>
 
-    <string name="settings_category_account">Account</string>
-    <string name="settings_change_status">Change status</string>
-
     <string name="chat_list_you">You: %s</string>
     <string name="chat_list_photo">Photo</string>
 
@@ -121,4 +118,8 @@
 
     <string name="resend_password">Get the password</string>
     <string name="email_sent">Password was sent to the specified email address</string>
+
+    <string name="settings_heading_account">Account</string>
+    <string name="settings_status_title">Status</string>
+    <string name="settings_status_summary">Add a few words about yourself</string>
 </resources>

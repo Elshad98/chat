@@ -6,9 +6,12 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.FontRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 
 fun Context.showToast(text: CharSequence) {
     Toast.makeText(this, text, Toast.LENGTH_LONG).show()
@@ -17,6 +20,10 @@ fun Context.showToast(text: CharSequence) {
 fun Activity.showToast(@StringRes resId: Int) {
     Toast.makeText(this, resId, Toast.LENGTH_LONG).show()
 }
+
+fun Context.getFontCompat(@FontRes id: Int) = ResourcesCompat.getFont(this, id)
+
+fun Context.getColorCompat(@ColorRes id: Int) = ContextCompat.getColor(this, id)
 
 fun Context.getDrawableCompat(@DrawableRes id: Int) = ContextCompat.getDrawable(this, id)
 
