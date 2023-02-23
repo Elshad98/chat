@@ -12,8 +12,7 @@ data class UserDto(
     val image: String,
     val status: String,
     @SerializedName("user_data")
-    val userData: Long,
-    val password: String?
+    val userData: Long
 )
 
 fun UserDto.toDomain() = User(
@@ -24,5 +23,5 @@ fun UserDto.toDomain() = User(
     image = image,
     status = status,
     userData = userData,
-    password = password.orEmpty()
+    password = ""
 )

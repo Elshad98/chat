@@ -58,7 +58,7 @@ class UserRemoteDataSource @Inject constructor(
         password: String,
         token: String,
         userDate: Long
-    ): Either<Failure, BaseResponse> {
+    ): Either<Failure, UserResponse> {
         val params = ApiParamBuilder()
             .password(password)
             .userDate(userDate)

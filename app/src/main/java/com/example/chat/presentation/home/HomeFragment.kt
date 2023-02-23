@@ -12,6 +12,7 @@ import com.example.chat.R
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.gone
 import com.example.chat.core.extension.load
+import com.example.chat.core.extension.navigateSafely
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.databinding.FragmentHomeBinding
@@ -64,9 +65,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            is Failure.NetworkConnectionError -> R.string.error_network
-            else -> R.string.error_server
-        }.let(::showToast)
+            is Failure.NetworkConnectionError -> showToast(R.string.error_network)
+            is Failure.NoSavedAccountsError,
+            is Failure.TokenError -> launchLoginFragment()
+            else -> showToast(R.string.error_server)
+        }
     }
 
     private fun handleChatList(messages: List<Message>) {
@@ -151,7 +154,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun launchLoginFragment() {
-        findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+        findNavController().navigateSafely(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
     }
 
     private fun launchFriendsFragment() {

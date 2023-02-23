@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/blueberry</item>
         <item name="colorPrimaryDark">@color/pale_sky</item>
         <item name="colorOnSurface">@color/light_grey</item>
+
         <item name="android:textColorHint">@color/grey</item>
         <item name="preferenceTheme">@style/PreferenceTheme</item>
         <item name="android:textColorSecondary">@color/pale_sky</item>

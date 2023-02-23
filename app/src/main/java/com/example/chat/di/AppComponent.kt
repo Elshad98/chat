@@ -8,7 +8,6 @@ import com.example.chat.presentation.home.HomeFragment
 import com.example.chat.presentation.invitefriend.InviteFriendFragment
 import com.example.chat.presentation.login.LoginFragment
 import com.example.chat.presentation.register.RegisterFragment
-import com.example.chat.presentation.splash.SplashFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -26,8 +25,6 @@ interface AppComponent {
     fun inject(service: FirebaseService)
 
     fun inject(fragment: HomeFragment)
-
-    fun inject(fragment: SplashFragment)
 
     fun inject(fragment: LoginFragment)
 

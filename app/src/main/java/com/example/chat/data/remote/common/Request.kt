@@ -44,7 +44,7 @@ private fun <T : BaseResponse> Response<T>.parseError(): Failure {
         "There is a user has this email",
         "Email already exists" -> Failure.EmailAlreadyExistError
         "Error in email or password" -> Failure.AuthError
-        "Token is invalid" -> Failure.TokenError
+        "Invalid token" -> Failure.TokenError
         "This contact is already in your friends list" -> Failure.AlreadyFriendError
         "Already found in your friend requests",
         "You requested adding this friend before" -> Failure.AlreadyRequestedFriendError

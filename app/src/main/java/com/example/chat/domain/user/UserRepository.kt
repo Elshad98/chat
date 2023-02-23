@@ -22,5 +22,5 @@ interface UserRepository {
 
     fun login(email: String, password: String): Either<Failure, User>
 
-    fun register(email: String, name: String, password: String): Either<Failure, None>
+    fun register(email: String, name: String, password: String): Either<Failure, User>
 }

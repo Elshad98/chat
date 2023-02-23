@@ -42,19 +42,16 @@ class UserRepositoryImpl @Inject constructor(
         return userLocalDataSource.checkAuth()
     }
 
-    override fun register(email: String, name: String, password: String): Either<Failure, None> {
+    override fun register(email: String, name: String, password: String): Either<Failure, User> {
         return userLocalDataSource
             .getToken()
             .flatMap { token ->
                 userRemoteDataSource
-                    .register(
-                        email,
-                        name,
-                        password,
-                        token,
-                        userDate = System.currentTimeMillis()
-                    )
-                    .map { None() }
+                    .register(email, name, password, token, userDate = System.currentTimeMillis())
+                    .map { response -> response.user.toDomain() }
+            }
+            .onSuccess { user ->
+                userLocalDataSource.saveUser(user.copy(password = password).toEntity())
             }
     }
 
@@ -86,11 +83,7 @@ class UserRepositoryImpl @Inject constructor(
             .getUser()
             .flatMap { user ->
                 userRemoteDataSource
-                    .updateUserLastSeen(
-                        user.id,
-                        user.token,
-                        lastSeen = System.currentTimeMillis()
-                    )
+                    .updateUserLastSeen(user.id, user.token, lastSeen = System.currentTimeMillis())
                     .map { None() }
             }
     }

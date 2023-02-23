@@ -1,6 +1,5 @@
 package com.example.chat.domain.user
 
-import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.domain.interactor.UseCase
@@ -8,9 +7,9 @@ import javax.inject.Inject
 
 class Register @Inject constructor(
     private val repository: UserRepository
-) : UseCase<None, Register.Params>() {
+) : UseCase<User, Register.Params>() {
 
-    override suspend fun run(params: Params): Either<Failure, None> =
+    override suspend fun run(params: Params): Either<Failure, User> =
         repository.register(params.email, params.name, params.password)
 
     data class Params(

@@ -2,7 +2,6 @@
     <string name="app_name">Чат</string>
 
     <string name="title_home">Главная</string>
-    <string name="title_splash">Splash</string>
     <string name="title_friends">Друзья</string>
     <string name="title_login">Авторизация</string>
     <string name="title_settings">Настройки</string>

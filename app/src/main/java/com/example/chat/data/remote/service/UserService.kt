@@ -15,7 +15,7 @@ interface UserService {
 
     @FormUrlEncoded
     @POST("register.php")
-    fun register(@FieldMap params: Map<String, String>): Call<BaseResponse>
+    fun register(@FieldMap params: Map<String, String>): Call<UserResponse>
 
     @FormUrlEncoded
     @POST("editUser.php")
