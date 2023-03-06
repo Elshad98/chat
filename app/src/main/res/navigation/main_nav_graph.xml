@@ -98,6 +98,18 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.chat.presentation.settings.SettingsFragment"
-        android:label="@string/title_settings" />
+        android:label="@string/title_settings">
+
+        <action
+            android:id="@+id/action_settingsFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/statusFragment"
+        android:name="com.example.chat.presentation.settings.status.StatusFragment"
+        android:label="@string/title_status"
+        tools:layout="@layout/fragment_status" />
 
 </navigation>

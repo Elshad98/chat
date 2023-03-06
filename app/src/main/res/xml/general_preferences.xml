@@ -4,6 +4,7 @@
 
         <Preference
             android:key="status"
+            android:fragment="com.example.chat.presentation.settings.status.StatusFragment"
             android:summary="@string/settings_status_summary"
             android:title="@string/settings_status_title" />
 

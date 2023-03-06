@@ -2,6 +2,7 @@
     <string name="app_name">Чат</string>
 
     <string name="title_home">Главная</string>
+    <string name="title_status">Статус</string>
     <string name="title_friends">Друзья</string>
     <string name="title_login">Авторизация</string>
     <string name="title_settings">Настройки</string>
@@ -31,6 +32,7 @@
     <string name="error_invalid_username">Имя пользователя должно содержать от 2 до 30 символов.</string>
     <string name="error_invalid_password">Введите не менее восьми символов, включая числа, буквы и знаки препинания (например, "!" или "&amp;").</string>
 
+    <string name="save">Сохранить</string>
     <string name="email">Электронная почта</string>
     <string name="password">Пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
@@ -69,6 +71,9 @@
     <string name="invite_friend_send_button">Отправить приглашение</string>
 
     <string name="register_header">Создать учетную запись</string>
+
+    <string name="status_title">Статус</string>
+    <string name="status_header">Вы можете добавить несколько строк о себе. Они будут видны всем, кто откроет Ваш профиль.</string>
 
     <string name="item_friend_request_add_button">Добавить</string>
     <string name="item_friend_request_decline_button">Отклонить</string>

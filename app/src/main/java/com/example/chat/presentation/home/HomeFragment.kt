@@ -15,6 +15,7 @@ import com.example.chat.core.extension.load
 import com.example.chat.core.extension.navigateSafely
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
+import com.example.chat.core.extension.visible
 import com.example.chat.databinding.FragmentHomeBinding
 import com.example.chat.di.ViewModelFactory
 import com.example.chat.domain.message.Message
@@ -83,6 +84,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         if (user.status.isEmpty()) {
             textStatus.gone()
         } else {
+            textStatus.visible()
             textStatus.text = user.status
         }
     }
