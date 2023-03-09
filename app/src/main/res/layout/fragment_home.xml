@@ -17,15 +17,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_menu">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_title"
-                android:textAppearance="@style/Text.Headline" />
-
-        </androidx.appcompat.widget.Toolbar>
+            android:elevation="0dp"
+            app:navigationIcon="@drawable/ic_menu"
+            app:title="@string/home_title"
+            app:titleTextAppearance="@style/Text.Headline"
+            app:titleTextColor="@color/woodsmoke" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

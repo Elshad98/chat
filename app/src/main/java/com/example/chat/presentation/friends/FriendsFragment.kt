@@ -31,7 +31,7 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        supportActionBar?.show()
+        setupToolbar()
         setupRecyclerView()
         observeViewModel()
     }
@@ -39,6 +39,13 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     override fun onStart() {
         super.onStart()
         viewModel.getFriends()
+    }
+
+    private fun setupToolbar() {
+        supportActionBar?.run {
+            show()
+            setDisplayShowTitleEnabled(true)
+        }
     }
 
     private fun observeViewModel() {

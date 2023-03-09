@@ -8,7 +8,7 @@
 
         <item name="android:textColorHint">@color/grey</item>
         <item name="preferenceTheme">@style/PreferenceTheme</item>
-        <item name="android:textColorSecondary">@color/pale_sky</item>
+        <item name="android:textColorSecondary">@color/woodsmoke</item>
         <item name="android:textAppearanceListItem">@style/Text</item>
         <item name="android:textAppearanceSmall">@style/Text.Footnote</item>
         <item name="android:textAppearanceListItemSecondary">@style/Text.Footnote</item>

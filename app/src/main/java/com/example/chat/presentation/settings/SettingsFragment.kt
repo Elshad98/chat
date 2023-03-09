@@ -17,7 +17,7 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        supportActionBar?.show()
+        setupToolbar()
     }
 
     override fun onPreferenceStartFragment(
@@ -30,6 +30,13 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
                 true
             }
             else -> false
+        }
+    }
+
+    private fun setupToolbar() {
+        supportActionBar?.run {
+            show()
+            setDisplayShowTitleEnabled(true)
         }
     }
 
