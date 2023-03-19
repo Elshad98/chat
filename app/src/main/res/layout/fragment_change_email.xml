@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_done"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/change_email_title"
+        app:titleTextAppearance="@style/Text.Headline"
+        app:titleTextColor="@color/woodsmoke" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_email"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@id/text_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_email"
+            style="@style/EditTextStyle"
+            android:hint="@string/email"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:textAppearance="@style/Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_email"
+        tools:text="@string/change_email_header" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

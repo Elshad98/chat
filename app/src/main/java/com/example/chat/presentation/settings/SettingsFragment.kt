@@ -7,7 +7,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.chat.R
 import com.example.chat.core.extension.supportActionBar
-import com.example.chat.presentation.settings.status.StatusFragment
+import com.example.chat.presentation.settings.email.ChangeEmailFragment
+import com.example.chat.presentation.settings.status.UpdateStatusFragment
 
 class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
@@ -25,8 +26,12 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
         pref: Preference
     ): Boolean {
         return when (pref.fragment) {
-            StatusFragment::class.java.name -> {
-                launchStatusFragment()
+            UpdateStatusFragment::class.java.name -> {
+                launchUpdateStatusFragment()
+                true
+            }
+            ChangeEmailFragment::class.java.name -> {
+                launchChangeEmailFragment()
                 true
             }
             else -> false
@@ -40,7 +45,11 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
         }
     }
 
-    private fun launchStatusFragment() {
-        findNavController().navigate(R.id.action_settingsFragment_to_statusFragment)
+    private fun launchChangeEmailFragment() {
+        findNavController().navigate(R.id.action_settingsFragment_to_changeEmailFragment)
+    }
+
+    private fun launchUpdateStatusFragment() {
+        findNavController().navigate(R.id.action_settingsFragment_to_updateStatusFragment)
     }
 }

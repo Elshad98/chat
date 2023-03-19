@@ -8,7 +8,8 @@ import com.example.chat.presentation.home.HomeFragment
 import com.example.chat.presentation.invitefriend.InviteFriendFragment
 import com.example.chat.presentation.login.LoginFragment
 import com.example.chat.presentation.register.RegisterFragment
-import com.example.chat.presentation.settings.status.StatusFragment
+import com.example.chat.presentation.settings.email.ChangeEmailFragment
+import com.example.chat.presentation.settings.status.UpdateStatusFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -29,7 +30,9 @@ interface AppComponent {
 
     fun inject(fragment: LoginFragment)
 
-    fun inject(fragment: StatusFragment)
+    fun inject(fragment: ChangeEmailFragment)
+
+    fun inject(fragment: UpdateStatusFragment)
 
     fun inject(fragment: RegisterFragment)
 

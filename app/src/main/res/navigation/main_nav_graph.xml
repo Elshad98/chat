@@ -101,15 +101,25 @@
         android:label="@string/title_settings">
 
         <action
-            android:id="@+id/action_settingsFragment_to_statusFragment"
-            app:destination="@id/statusFragment" />
+            android:id="@+id/action_settingsFragment_to_updateStatusFragment"
+            app:destination="@id/updateStatusFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_changeEmailFragment"
+            app:destination="@id/changeEmailFragment" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/statusFragment"
-        android:name="com.example.chat.presentation.settings.status.StatusFragment"
+        android:id="@+id/updateStatusFragment"
+        android:name="com.example.chat.presentation.settings.status.UpdateStatusFragment"
         android:label="@string/title_status"
-        tools:layout="@layout/fragment_status" />
+        tools:layout="@layout/fragment_update_status" />
+
+    <fragment
+        android:id="@+id/changeEmailFragment"
+        android:name="com.example.chat.presentation.settings.email.ChangeEmailFragment"
+        android:label="ChangeEmailFragment"
+        tools:layout="@layout/fragment_change_email"/>
 
 </navigation>

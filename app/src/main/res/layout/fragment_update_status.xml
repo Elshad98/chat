@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_done"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="@string/status_title"
+        app:title="@string/update_status_title"
         app:titleTextAppearance="@style/Text.Headline"
         app:titleTextColor="@color/woodsmoke" />
 
@@ -49,7 +49,7 @@
         android:layout_marginStart="@dimen/spacing_normal"
         android:layout_marginTop="@dimen/spacing_normal"
         android:layout_marginEnd="@dimen/spacing_normal"
-        android:text="@string/status_header"
+        android:text="@string/update_status_header"
         android:textAppearance="@style/Text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

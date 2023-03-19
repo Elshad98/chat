@@ -11,18 +11,18 @@ import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.core.extension.trimmedText
-import com.example.chat.databinding.FragmentStatusBinding
+import com.example.chat.databinding.FragmentUpdateStatusBinding
 import com.example.chat.di.ViewModelFactory
 import com.example.chat.presentation.App
 import javax.inject.Inject
 
-class StatusFragment : Fragment(R.layout.fragment_status) {
+class UpdateStatusFragment : Fragment(R.layout.fragment_update_status) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val binding by viewBinding(FragmentStatusBinding::bind)
-    private val viewModel by viewModels<StatusViewModel>(factoryProducer = { viewModelFactory })
+    private val binding by viewBinding(FragmentUpdateStatusBinding::bind)
+    private val viewModel by viewModels<UpdateStatusViewModel>(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
