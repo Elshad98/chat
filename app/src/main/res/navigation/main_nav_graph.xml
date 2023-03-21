@@ -108,6 +108,10 @@
             android:id="@+id/action_settingsFragment_to_changeEmailFragment"
             app:destination="@id/changeEmailFragment" />
 
+        <action
+            android:id="@+id/action_settingsFragment_to_changeUsernameFragment"
+            app:destination="@id/changeUsernameFragment" />
+
     </fragment>
 
     <fragment
@@ -120,6 +124,12 @@
         android:id="@+id/changeEmailFragment"
         android:name="com.example.chat.presentation.settings.email.ChangeEmailFragment"
         android:label="ChangeEmailFragment"
-        tools:layout="@layout/fragment_change_email"/>
+        tools:layout="@layout/fragment_change_email" />
+
+    <fragment
+        android:id="@+id/changeUsernameFragment"
+        android:name="com.example.chat.presentation.settings.username.ChangeUsernameFragment"
+        android:label="@string/title_change_username"
+        tools:layout="@layout/fragment_change_username" />
 
 </navigation>

@@ -3,15 +3,18 @@
     <PreferenceCategory android:title="@string/settings_heading_account">
 
         <Preference
+            android:key="username"
+            android:fragment="com.example.chat.presentation.settings.username.ChangeUsernameFragment"
+            android:title="@string/settings_username_title" />
+
+        <Preference
             android:key="status"
             android:fragment="com.example.chat.presentation.settings.status.UpdateStatusFragment"
-            android:summary="@string/settings_status_summary"
             android:title="@string/settings_status_title" />
 
         <Preference
             android:key="email"
             android:fragment="com.example.chat.presentation.settings.email.ChangeEmailFragment"
-            android:summary="@string/settings_email_summary"
             android:title="@string/settings_email_title" />
 
     </PreferenceCategory>

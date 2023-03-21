@@ -9,6 +9,7 @@ import com.example.chat.R
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.presentation.settings.email.ChangeEmailFragment
 import com.example.chat.presentation.settings.status.UpdateStatusFragment
+import com.example.chat.presentation.settings.username.ChangeUsernameFragment
 
 class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
@@ -30,6 +31,10 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
                 launchUpdateStatusFragment()
                 true
             }
+            ChangeUsernameFragment::class.java.name -> {
+                launchChangeUsernameFragment()
+                true
+            }
             ChangeEmailFragment::class.java.name -> {
                 launchChangeEmailFragment()
                 true
@@ -45,11 +50,15 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
         }
     }
 
-    private fun launchChangeEmailFragment() {
-        findNavController().navigate(R.id.action_settingsFragment_to_changeEmailFragment)
+    private fun launchChangeUsernameFragment() {
+        findNavController().navigate(R.id.action_settingsFragment_to_changeUsernameFragment)
     }
 
     private fun launchUpdateStatusFragment() {
         findNavController().navigate(R.id.action_settingsFragment_to_updateStatusFragment)
+    }
+
+    private fun launchChangeEmailFragment() {
+        findNavController().navigate(R.id.action_settingsFragment_to_changeEmailFragment)
     }
 }

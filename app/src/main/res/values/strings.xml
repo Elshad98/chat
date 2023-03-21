@@ -9,6 +9,7 @@
     <string name="title_friends">Friends</string>
     <string name="title_change_email">Change Email</string>
     <string name="title_invite_friend">Invite a friend</string>
+    <string name="title_change_username">Change Username</string>
     <string name="title_forget_password">Forgot password</string>
     <string name="title_friend_requests">Incoming invitations</string>
 
@@ -76,6 +77,8 @@
     <string name="update_status_title">Status</string>
     <string name="update_status_header">You can add a few lines about yourself. Anyone who opens your profile will see this text.</string>
 
+    <string name="change_username_title">Change Username</string>
+
     <string name="change_email_title">Change Email</string>
     <string name="change_email_header">Your current email address is %s What would you like to change it to?</string>
 
@@ -130,6 +133,7 @@
     <string name="settings_heading_account">Account</string>
     <string name="settings_email_title">Email</string>
     <string name="settings_status_title">Status</string>
+    <string name="settings_username_title">Username</string>
     <string name="settings_status_summary">Add a few words about yourself</string>
     <string name="settings_email_summary">Used for restoring access to your account</string>
 </resources>

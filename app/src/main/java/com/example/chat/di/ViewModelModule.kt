@@ -12,6 +12,7 @@ import com.example.chat.presentation.login.LoginViewModel
 import com.example.chat.presentation.register.RegisterViewModel
 import com.example.chat.presentation.settings.email.ChangeEmailViewModel
 import com.example.chat.presentation.settings.status.UpdateStatusViewModel
+import com.example.chat.presentation.settings.username.ChangeUsernameViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -51,6 +52,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(UpdateStatusViewModel::class)
     fun bindUpdateStatusViewModel(updateStatusViewModel: UpdateStatusViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChangeUsernameViewModel::class)
+    fun bindChangeUsernameViewModel(changeUsernameViewModel: ChangeUsernameViewModel): ViewModel
 
     @Binds
     @IntoMap
