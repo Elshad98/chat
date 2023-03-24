@@ -23,7 +23,7 @@ class ForgetPasswordFragment : Fragment(R.layout.fragment_forget_password) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by viewBinding(FragmentForgetPasswordBinding::bind)
-    private val viewModel by viewModels<ForgetPasswordViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: ForgetPasswordViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

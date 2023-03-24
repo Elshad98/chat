@@ -23,7 +23,7 @@ class ChangeUsernameFragment : Fragment(R.layout.fragment_change_username) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by viewBinding(FragmentChangeUsernameBinding::bind)
-    private val viewModel by viewModels<ChangeUsernameViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: ChangeUsernameViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

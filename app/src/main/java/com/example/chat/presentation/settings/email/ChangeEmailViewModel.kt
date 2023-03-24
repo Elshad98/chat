@@ -34,6 +34,11 @@ class ChangeEmailViewModel @Inject constructor(
         }
     }
 
+    override fun onCleared() {
+        getUser.unsubscribe()
+        editUser.unsubscribe()
+    }
+
     fun changeEmail(email: String) {
         if (!email.isValidEmail()) {
             _inputEmailError.value = true

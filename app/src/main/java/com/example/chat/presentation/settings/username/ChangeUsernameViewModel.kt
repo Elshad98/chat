@@ -34,6 +34,11 @@ class ChangeUsernameViewModel @Inject constructor(
         }
     }
 
+    override fun onCleared() {
+        getUser.unsubscribe()
+        editUser.unsubscribe()
+    }
+
     fun changeUsername(username: String) {
         if (!username.isValidUsername()) {
             _errorInputUsername.value = true

@@ -30,7 +30,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var adapter: ChatsAdapter
     private val binding by viewBinding(FragmentHomeBinding::bind)
-    private val viewModel by viewModels<HomeViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: HomeViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     private lateinit var textName: TextView
     private lateinit var textEmail: TextView

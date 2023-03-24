@@ -22,7 +22,7 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
 
     private lateinit var adapter: FriendsAdapter
     private val binding by viewBinding(FragmentFriendsBinding::bind)
-    private val viewModel by viewModels<FriendsViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: FriendsViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

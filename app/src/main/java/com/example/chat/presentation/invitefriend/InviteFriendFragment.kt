@@ -23,7 +23,7 @@ class InviteFriendFragment : Fragment(R.layout.fragment_invite_friend) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by viewBinding(FragmentInviteFriendBinding::bind)
-    private val viewModel by viewModels<InviteFriendViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: InviteFriendViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

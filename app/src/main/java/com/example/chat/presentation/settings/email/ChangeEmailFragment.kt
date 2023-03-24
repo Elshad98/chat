@@ -23,7 +23,7 @@ class ChangeEmailFragment : Fragment(R.layout.fragment_change_email) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by viewBinding(FragmentChangeEmailBinding::bind)
-    private val viewModel by viewModels<ChangeEmailViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: ChangeEmailViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

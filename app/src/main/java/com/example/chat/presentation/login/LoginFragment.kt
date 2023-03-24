@@ -23,7 +23,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by viewBinding(FragmentLoginBinding::bind)
-    private val viewModel by viewModels<LoginViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: LoginViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

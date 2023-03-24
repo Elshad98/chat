@@ -34,6 +34,11 @@ class UpdateStatusViewModel @Inject constructor(
         }
     }
 
+    override fun onCleared() {
+        getUser.unsubscribe()
+        editUser.unsubscribe()
+    }
+
     fun updateStatus(status: String) {
         if (status.length > STATUS_MAX_LENGTH) {
             return

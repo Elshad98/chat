@@ -19,6 +19,12 @@ class FriendRequestsViewModel @Inject constructor(
     val friendRequests: LiveData<List<Friend>>
         get() = _friendRequests
 
+    override fun onCleared() {
+        getFriendRequests.unsubscribe()
+        cancelFriendRequest.unsubscribe()
+        approveFriendRequest.unsubscribe()
+    }
+
     fun approveFriendRequest(friend: Friend) {
         approveFriendRequest(friend) { either ->
             either.fold(::handleFailure) { getFriendRequests() }

@@ -21,7 +21,7 @@ class FriendRequestsFragment : Fragment(R.layout.fragment_friend_requests) {
 
     private lateinit var adapter: FriendRequestsAdapter
     private val binding by viewBinding(FragmentFriendRequestsBinding::bind)
-    private val viewModel by viewModels<FriendRequestsViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: FriendRequestsViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

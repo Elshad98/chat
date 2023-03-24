@@ -22,7 +22,7 @@ class UpdateStatusFragment : Fragment(R.layout.fragment_update_status) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by viewBinding(FragmentUpdateStatusBinding::bind)
-    private val viewModel by viewModels<UpdateStatusViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: UpdateStatusViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

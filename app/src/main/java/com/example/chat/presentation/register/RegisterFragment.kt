@@ -23,7 +23,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val binding by viewBinding(FragmentRegisterBinding::bind)
-    private val viewModel by viewModels<RegisterViewModel>(factoryProducer = { viewModelFactory })
+    private val viewModel: RegisterViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
