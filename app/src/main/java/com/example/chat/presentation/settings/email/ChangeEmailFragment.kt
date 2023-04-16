@@ -1,6 +1,9 @@
 package com.example.chat.presentation.settings.email
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -10,7 +13,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.showToast
-import com.example.chat.core.extension.supportActionBar
 import com.example.chat.core.extension.trimmedText
 import com.example.chat.databinding.FragmentChangeEmailBinding
 import com.example.chat.di.ViewModelFactory
@@ -27,18 +29,31 @@ class ChangeEmailFragment : Fragment(R.layout.fragment_change_email) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         App.appComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolbar()
         observeViewModel()
     }
 
     override fun onStart() {
         super.onStart()
         addTextChangeListener()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_done, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (item.itemId == R.id.done) {
+            viewModel.changeEmail(binding.inputEmail.trimmedText)
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
     }
 
     private fun observeViewModel() {
@@ -72,24 +87,6 @@ class ChangeEmailFragment : Fragment(R.layout.fragment_change_email) {
     private fun addTextChangeListener() {
         binding.inputEmail.doOnTextChanged { _, _, _, _ ->
             viewModel.resetErrorInputEmail()
-        }
-    }
-
-    private fun setupToolbar() {
-        supportActionBar?.hide()
-        with(binding) {
-            toolbar.setNavigationOnClickListener {
-                findNavController().popBackStack()
-            }
-            toolbar.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.done -> {
-                        viewModel.changeEmail(inputEmail.trimmedText)
-                        true
-                    }
-                    else -> false
-                }
-            }
         }
     }
 }
