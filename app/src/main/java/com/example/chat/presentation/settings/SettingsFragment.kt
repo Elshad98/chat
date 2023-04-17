@@ -8,6 +8,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.example.chat.R
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.presentation.settings.email.ChangeEmailFragment
+import com.example.chat.presentation.settings.password.ChangePasswordFragment
 import com.example.chat.presentation.settings.status.UpdateStatusFragment
 import com.example.chat.presentation.settings.username.ChangeUsernameFragment
 
@@ -39,6 +40,10 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
                 launchChangeEmailFragment()
                 true
             }
+            ChangePasswordFragment::class.java.name -> {
+                launchChangePasswordFragment()
+                true
+            }
             else -> false
         }
     }
@@ -48,6 +53,10 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
             show()
             setDisplayShowTitleEnabled(true)
         }
+    }
+
+    private fun launchChangePasswordFragment() {
+        findNavController().navigate(R.id.action_settingsFragment_to_changePasswordFragment)
     }
 
     private fun launchChangeUsernameFragment() {

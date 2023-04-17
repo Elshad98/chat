@@ -11,6 +11,7 @@ import com.example.chat.presentation.invitefriend.InviteFriendViewModel
 import com.example.chat.presentation.login.LoginViewModel
 import com.example.chat.presentation.register.RegisterViewModel
 import com.example.chat.presentation.settings.email.ChangeEmailViewModel
+import com.example.chat.presentation.settings.password.ChangePasswordViewModel
 import com.example.chat.presentation.settings.status.UpdateStatusViewModel
 import com.example.chat.presentation.settings.username.ChangeUsernameViewModel
 import dagger.Binds
@@ -57,6 +58,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(ChangeUsernameViewModel::class)
     fun bindChangeUsernameViewModel(changeUsernameViewModel: ChangeUsernameViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChangePasswordViewModel::class)
+    fun bindChangePasswordViewModel(changePasswordViewModel: ChangePasswordViewModel): ViewModel
 
     @Binds
     @IntoMap

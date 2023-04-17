@@ -9,6 +9,7 @@ import com.example.chat.presentation.invitefriend.InviteFriendFragment
 import com.example.chat.presentation.login.LoginFragment
 import com.example.chat.presentation.register.RegisterFragment
 import com.example.chat.presentation.settings.email.ChangeEmailFragment
+import com.example.chat.presentation.settings.password.ChangePasswordFragment
 import com.example.chat.presentation.settings.status.UpdateStatusFragment
 import com.example.chat.presentation.settings.username.ChangeUsernameFragment
 import dagger.Component
@@ -36,6 +37,8 @@ interface AppComponent {
     fun inject(fragment: UpdateStatusFragment)
 
     fun inject(fragment: ChangeUsernameFragment)
+
+    fun inject(fragment: ChangePasswordFragment)
 
     fun inject(fragment: RegisterFragment)
 

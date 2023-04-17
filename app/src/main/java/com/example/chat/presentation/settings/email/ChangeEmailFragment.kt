@@ -58,7 +58,7 @@ class ChangeEmailFragment : Fragment(R.layout.fragment_change_email) {
 
     private fun observeViewModel() {
         viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
-        viewModel.inputEmailError.observe(viewLifecycleOwner) {
+        viewModel.errorInputEmail.observe(viewLifecycleOwner) {
             with(binding) {
                 inputLayoutEmail.isErrorEnabled = it
                 inputLayoutEmail.error = if (it) {

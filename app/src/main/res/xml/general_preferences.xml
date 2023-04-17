@@ -17,6 +17,11 @@
             android:fragment="com.example.chat.presentation.settings.email.ChangeEmailFragment"
             android:title="@string/settings_email_title" />
 
+        <Preference
+            android:key="password"
+            android:fragment="com.example.chat.presentation.settings.password.ChangePasswordFragment"
+            android:title="@string/settings_password_title" />
+
     </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

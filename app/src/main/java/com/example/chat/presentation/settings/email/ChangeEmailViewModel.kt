@@ -14,9 +14,9 @@ class ChangeEmailViewModel @Inject constructor(
     private val editUser: EditUser
 ) : BaseViewModel() {
 
-    private val _inputEmailError = MutableLiveData<Boolean>()
-    val inputEmailError: LiveData<Boolean>
-        get() = _inputEmailError
+    private val _errorInputEmail = MutableLiveData<Boolean>()
+    val errorInputEmail: LiveData<Boolean>
+        get() = _errorInputEmail
 
     private val _updateSuccess = MutableLiveData<Unit>()
     val updateSuccess: LiveData<Unit>
@@ -41,7 +41,7 @@ class ChangeEmailViewModel @Inject constructor(
 
     fun changeEmail(email: String) {
         if (!email.isValidEmail()) {
-            _inputEmailError.value = true
+            _errorInputEmail.value = true
             return
         }
 
@@ -57,6 +57,6 @@ class ChangeEmailViewModel @Inject constructor(
     }
 
     fun resetErrorInputEmail() {
-        _inputEmailError.value = false
+        _errorInputEmail.value = false
     }
 }

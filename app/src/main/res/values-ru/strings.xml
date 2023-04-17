@@ -8,6 +8,7 @@
     <string name="title_settings">Настройки</string>
     <string name="title_register">Регистрация</string>
     <string name="title_invite_friend">Пригласить друга</string>
+    <string name="title_change_password">Обновите пароль</string>
     <string name="title_change_email">Сменить адрес эл. почты</string>
     <string name="title_friend_requests">Входящие приглашения</string>
     <string name="title_forget_password">Восстановление пароля</string>
@@ -74,12 +75,10 @@
 
     <string name="register_header">Создать учетную запись</string>
 
-    <string name="update_status_title">Статус</string>
     <string name="update_status_header">Вы можете добавить несколько строк о себе. Они будут видны всем, кто откроет Ваш профиль.</string>
 
-    <string name="change_username_title">Изменить имя пользователя</string>
+    <string name="change_password_header">Введите текущий и новый пароль.</string>
 
-    <string name="change_email_title">Сменить адрес эл. почты</string>
     <string name="change_email_header">Ваш текущий адрес электронной почты: %s. Хотите его зименить?</string>
 
     <string name="item_friend_request_add_button">Добавить</string>
@@ -134,6 +133,7 @@
     <string name="settings_status_title">Статус</string>
     <string name="settings_username_title">Имя пользователя</string>
     <string name="settings_email_title">Электронная почта</string>
+    <string name="settings_password_title">Пароль</string>
     <string name="settings_status_summary">Напишите немного о себе</string>
     <string name="settings_email_summary">Используется для восстановления доступа к вашему аккаунту</string>
 </resources>

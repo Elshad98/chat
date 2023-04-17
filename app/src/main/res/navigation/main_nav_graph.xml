@@ -112,6 +112,10 @@
             android:id="@+id/action_settingsFragment_to_changeUsernameFragment"
             app:destination="@id/changeUsernameFragment" />
 
+        <action
+            android:id="@+id/action_settingsFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+
     </fragment>
 
     <fragment
@@ -131,5 +135,11 @@
         android:name="com.example.chat.presentation.settings.username.ChangeUsernameFragment"
         android:label="@string/title_change_username"
         tools:layout="@layout/fragment_change_username" />
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.chat.presentation.settings.password.ChangePasswordFragment"
+        android:label="@string/title_change_password"
+        tools:layout="@layout/fragment_change_password" />
 
 </navigation>
