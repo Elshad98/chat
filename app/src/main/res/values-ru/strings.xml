@@ -67,6 +67,10 @@
     <string name="home_drawer_invite_friend">Пригласить друга</string>
     <string name="home_drawer_friend_requests">Входящие приглашения</string>
 
+    <string name="settings_menu_save">Сохранить</string>
+    <string name="settings_menu_update_status">Обновить статус</string>
+    <string name="settings_menu_set_profile_photo">Установить фото профиля</string>
+
     <string name="forget_password_header">Восстановление пароля</string>
     <string name="forget_password_body">Введите свой адрес электронной почты, чтобы восстановить пароль</string>
 

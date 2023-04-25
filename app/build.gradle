@@ -13,10 +13,6 @@ ktlint {
     enableExperimentalRules.set(true)
 }
 
-repositories {
-    jcenter()
-}
-
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
@@ -98,8 +94,6 @@ dependencies {
     implementation "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$viewBindingPropertyDelegate"
 
     implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
-
-    implementation "com.github.kayvannj:PermissionUtils:$permissionUtilsVersion"
 
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"

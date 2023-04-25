@@ -8,11 +8,6 @@
             android:title="@string/settings_username_title" />
 
         <Preference
-            android:key="status"
-            android:fragment="com.example.chat.presentation.settings.status.UpdateStatusFragment"
-            android:title="@string/settings_status_title" />
-
-        <Preference
             android:key="email"
             android:fragment="com.example.chat.presentation.settings.email.ChangeEmailFragment"
             android:title="@string/settings_email_title" />

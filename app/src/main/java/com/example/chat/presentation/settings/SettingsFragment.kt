@@ -1,18 +1,26 @@
 package com.example.chat.presentation.settings
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.chat.R
+import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.presentation.settings.email.ChangeEmailFragment
 import com.example.chat.presentation.settings.password.ChangePasswordFragment
-import com.example.chat.presentation.settings.status.UpdateStatusFragment
 import com.example.chat.presentation.settings.username.ChangeUsernameFragment
 
 class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.general_preferences, rootKey)
@@ -28,10 +36,6 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
         pref: Preference
     ): Boolean {
         return when (pref.fragment) {
-            UpdateStatusFragment::class.java.name -> {
-                launchUpdateStatusFragment()
-                true
-            }
             ChangeUsernameFragment::class.java.name -> {
                 launchChangeUsernameFragment()
                 true
@@ -45,6 +49,24 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
                 true
             }
             else -> false
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.settings_action_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.update_status -> {
+                launchUpdateStatusFragment()
+                true
+            }
+            R.id.set_profile_photo -> {
+                showToast("Set profile photo")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

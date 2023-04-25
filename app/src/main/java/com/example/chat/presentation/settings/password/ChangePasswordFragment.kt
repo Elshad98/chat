@@ -44,11 +44,11 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_password) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_done, menu)
+        inflater.inflate(R.menu.settings_menu_done, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.done) {
+        return if (item.itemId == R.id.save) {
             with(binding) {
                 viewModel.changePassword(
                     inputPassword.trimmedText,

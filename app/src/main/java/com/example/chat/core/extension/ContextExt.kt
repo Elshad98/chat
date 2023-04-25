@@ -1,8 +1,8 @@
 package com.example.chat.core.extension
 
-import android.app.Activity
 import android.app.NotificationManager
 import android.content.Context
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -17,7 +17,7 @@ fun Context.showToast(text: CharSequence) {
     Toast.makeText(this, text, Toast.LENGTH_LONG).show()
 }
 
-fun Activity.showToast(@StringRes resId: Int) {
+fun Context.showToast(@StringRes resId: Int) {
     Toast.makeText(this, resId, Toast.LENGTH_LONG).show()
 }
 
@@ -35,3 +35,9 @@ fun Context.getInputMethodManager() =
 
 fun Context.getNotificationManager() =
     getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+fun Context.isPermissionGranted(permission: String) =
+    ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+
+fun Context.arePermissionsGranted(vararg permissions: String) =
+    permissions.all(::isPermissionGranted)
