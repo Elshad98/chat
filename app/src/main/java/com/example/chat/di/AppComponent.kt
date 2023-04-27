@@ -8,6 +8,7 @@ import com.example.chat.presentation.home.HomeFragment
 import com.example.chat.presentation.invitefriend.InviteFriendFragment
 import com.example.chat.presentation.login.LoginFragment
 import com.example.chat.presentation.register.RegisterFragment
+import com.example.chat.presentation.settings.SettingsFragment
 import com.example.chat.presentation.settings.email.ChangeEmailFragment
 import com.example.chat.presentation.settings.password.ChangePasswordFragment
 import com.example.chat.presentation.settings.status.UpdateStatusFragment
@@ -31,6 +32,8 @@ interface AppComponent {
     fun inject(fragment: HomeFragment)
 
     fun inject(fragment: LoginFragment)
+
+    fun inject(fragment: SettingsFragment)
 
     fun inject(fragment: ChangeEmailFragment)
 

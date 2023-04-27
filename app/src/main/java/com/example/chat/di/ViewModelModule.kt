@@ -10,6 +10,7 @@ import com.example.chat.presentation.home.HomeViewModel
 import com.example.chat.presentation.invitefriend.InviteFriendViewModel
 import com.example.chat.presentation.login.LoginViewModel
 import com.example.chat.presentation.register.RegisterViewModel
+import com.example.chat.presentation.settings.SettingsViewModel
 import com.example.chat.presentation.settings.email.ChangeEmailViewModel
 import com.example.chat.presentation.settings.password.ChangePasswordViewModel
 import com.example.chat.presentation.settings.status.UpdateStatusViewModel
@@ -43,6 +44,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(RegisterViewModel::class)
     fun bindRegisterViewModel(registerViewModel: RegisterViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingsViewModel::class)
+    fun bindSettingsViewModel(settingsViewModel: SettingsViewModel): ViewModel
 
     @Binds
     @IntoMap

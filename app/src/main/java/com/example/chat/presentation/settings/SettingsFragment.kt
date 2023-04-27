@@ -5,51 +5,53 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.chat.R
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
-import com.example.chat.presentation.settings.email.ChangeEmailFragment
-import com.example.chat.presentation.settings.password.ChangePasswordFragment
-import com.example.chat.presentation.settings.username.ChangeUsernameFragment
+import com.example.chat.di.ViewModelFactory
+import com.example.chat.presentation.App
+import javax.inject.Inject
 
-class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+class SettingsFragment : PreferenceFragmentCompat() {
+
+    companion object {
+
+        private const val PREFERENCE_EMAIL = "email"
+        private const val PREFERENCE_USERNAME = "username"
+        private const val PREFERENCE_PASSWORD = "password"
+    }
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel: SettingsViewModel by viewModels(factoryProducer = { viewModelFactory })
+
+    private var emailPreference: Preference? = null
+    private var usernamePreference: Preference? = null
+    private var passwordPreference: Preference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        App.appComponent.inject(this)
         setHasOptionsMenu(true)
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.general_preferences, rootKey)
+        emailPreference = findPreference(PREFERENCE_EMAIL)
+        passwordPreference = findPreference(PREFERENCE_PASSWORD)
+        usernamePreference = findPreference(PREFERENCE_USERNAME)
+        setupPreferenceClickListeners()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
-    }
-
-    override fun onPreferenceStartFragment(
-        caller: PreferenceFragmentCompat,
-        pref: Preference
-    ): Boolean {
-        return when (pref.fragment) {
-            ChangeUsernameFragment::class.java.name -> {
-                launchChangeUsernameFragment()
-                true
-            }
-            ChangeEmailFragment::class.java.name -> {
-                launchChangeEmailFragment()
-                true
-            }
-            ChangePasswordFragment::class.java.name -> {
-                launchChangePasswordFragment()
-                true
-            }
-            else -> false
-        }
+        observeViewModel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -67,6 +69,28 @@ class SettingsFragment : PreferenceFragmentCompat(), PreferenceFragmentCompat.On
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.user.observe(viewLifecycleOwner) { user ->
+            emailPreference?.summary = user.email
+            usernamePreference?.summary = user.name
+        }
+    }
+
+    private fun setupPreferenceClickListeners() {
+        usernamePreference?.setOnPreferenceClickListener {
+            launchChangeUsernameFragment()
+            true
+        }
+        passwordPreference?.setOnPreferenceClickListener {
+            launchChangePasswordFragment()
+            true
+        }
+        emailPreference?.setOnPreferenceClickListener {
+            launchChangeEmailFragment()
+            true
         }
     }
 
