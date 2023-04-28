@@ -6,6 +6,6 @@
         android:id="@+id/save"
         android:icon="@drawable/ic_done"
         android:title="@string/settings_menu_save"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
 </menu>

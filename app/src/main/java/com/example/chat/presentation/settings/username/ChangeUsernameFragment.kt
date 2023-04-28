@@ -44,15 +44,17 @@ class ChangeUsernameFragment : Fragment(R.layout.fragment_change_username) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.settings_menu_confirm, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.save) {
-            viewModel.changeUsername(binding.inputUsername.trimmedText)
-            true
-        } else {
-            super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.save -> {
+                viewModel.changeUsername(binding.inputUsername.trimmedText)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

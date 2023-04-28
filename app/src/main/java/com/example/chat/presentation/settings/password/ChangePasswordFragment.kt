@@ -44,21 +44,23 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_password) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.settings_menu_confirm, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.save) {
-            with(binding) {
-                viewModel.changePassword(
-                    inputPassword.trimmedText,
-                    inputNewPassword.trimmedText,
-                    inputConfirmPassword.trimmedText
-                )
+        return when (item.itemId) {
+            R.id.save -> {
+                with(binding) {
+                    viewModel.changePassword(
+                        inputPassword.trimmedText,
+                        inputNewPassword.trimmedText,
+                        inputConfirmPassword.trimmedText
+                    )
+                }
+                true
             }
-            true
-        } else {
-            super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

@@ -44,15 +44,17 @@ class ChangeEmailFragment : Fragment(R.layout.fragment_change_email) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.settings_menu_confirm, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.save) {
-            viewModel.changeEmail(binding.inputEmail.trimmedText)
-            true
-        } else {
-            super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.save -> {
+                viewModel.changeEmail(binding.inputEmail.trimmedText)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
