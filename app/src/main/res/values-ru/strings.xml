@@ -118,9 +118,11 @@
     <string name="chat_list_you">Вы: %s</string>
     <string name="chat_list_photo">Фотография</string>
 
-    <string name="pick">Выберите фото</string>
-    <string name="gallery">Галерея</string>
-    <string name="camera">Камера</string>
+    <string name="choose_photo">Выберите фото</string>
+    <string-array name="photo_picker_items">
+        <item>Галерея</item>
+        <item>Камера</item>
+    </string-array>
 
     <string name="send">Отправить</string>
     <string name="send_message">отправляет вам сообщение</string>

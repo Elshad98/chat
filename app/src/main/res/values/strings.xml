@@ -118,9 +118,11 @@
     <string name="chat_list_you">You: %s</string>
     <string name="chat_list_photo">Photo</string>
 
-    <string name="pick">Choose a photo</string>
-    <string name="gallery">Gallery</string>
-    <string name="camera">Camera</string>
+    <string name="choose_photo">Choose a photo</string>
+    <string-array name="photo_picker_items">
+        <item>Gallery</item>
+        <item>Camera</item>
+    </string-array>
 
     <string name="send">Send</string>
     <string name="send_message"> sends you a message</string>

@@ -1,18 +1,24 @@
 package com.example.chat.presentation.settings
 
+import android.Manifest
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts.GetContent
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.chat.R
+import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.di.ViewModelFactory
+import com.example.chat.domain.user.User
 import com.example.chat.presentation.App
 import javax.inject.Inject
 
@@ -33,6 +39,16 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private var emailPreference: Preference? = null
     private var usernamePreference: Preference? = null
     private var passwordPreference: Preference? = null
+
+    private val contentLauncher = registerForActivityResult(GetContent()) { uri ->
+        viewModel.onImagePicked(uri)
+    }
+
+    private val permissionLauncher = registerForActivityResult(RequestPermission()) { isGranted ->
+        if (isGranted) {
+            contentLauncher.launch("image/*")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,18 +82,42 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 true
             }
             R.id.set_profile_photo -> {
-                showToast("Set profile photo")
+                showImagePickDialog()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    private fun showImagePickDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.choose_photo)
+            .setItems(R.array.photo_picker_items) { _, which ->
+                when (which) {
+                    0 -> permissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                }
+            }
+            .show()
+    }
+
     private fun observeViewModel() {
-        viewModel.user.observe(viewLifecycleOwner) { user ->
-            emailPreference?.summary = user.email
-            usernamePreference?.summary = user.name
+        viewModel.user.observe(viewLifecycleOwner, ::handleUser)
+        viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
+        viewModel.updateProfileSuccess.observe(viewLifecycleOwner) {
+            showToast(R.string.success_edit_user)
         }
+    }
+
+    private fun handleFailure(failure: Failure) {
+        when (failure) {
+            Failure.FilePickError -> R.string.error_picking_file
+            else -> R.string.error_server
+        }.let(::showToast)
+    }
+
+    private fun handleUser(user: User) {
+        emailPreference?.summary = user.email
+        usernamePreference?.summary = user.name
     }
 
     private fun setupPreferenceClickListeners() {
