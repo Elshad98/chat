@@ -15,6 +15,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.chat.R
 import com.example.chat.core.exception.Failure
+import com.example.chat.core.extension.openSystemSettings
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.di.ViewModelFactory
@@ -47,6 +48,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private val permissionLauncher = registerForActivityResult(RequestPermission()) { isGranted ->
         if (isGranted) {
             contentLauncher.launch("image/*")
+        } else {
+            showWriteStoragePermissionDeniedDialog()
         }
     }
 
@@ -96,6 +99,16 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 when (which) {
                     0 -> permissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 }
+            }
+            .show()
+    }
+
+    private fun showWriteStoragePermissionDeniedDialog() {
+        AlertDialog.Builder(requireContext())
+            .setMessage(R.string.write_external_storage_permission_dialog_message)
+            .setNegativeButton(R.string.permission_dialog_cancel, null)
+            .setPositiveButton(R.string.permission_dialog_ok) { _, _ ->
+                requireContext().openSystemSettings()
             }
             .show()
     }

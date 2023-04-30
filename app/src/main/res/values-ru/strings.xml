@@ -35,6 +35,11 @@
     <string name="error_invalid_username">Имя пользователя должно содержать от 2 до 30 символов.</string>
     <string name="error_invalid_password">Введите не менее восьми символов, включая числа, буквы и знаки препинания (например, "!" или "&amp;").</string>
 
+    <string name="permission_dialog_cancel">Отклонить</string>
+    <string name="permission_dialog_ok">Разрешить</string>
+
+    <string name="write_external_storage_permission_dialog_message">Приложению требуется доступ к памяти устройства. Предоставить доступ можно в настройках.</string>
+
     <string name="save">Сохранить</string>
     <string name="email">Электронная почта</string>
     <string name="password">Пароль</string>

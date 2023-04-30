@@ -35,6 +35,11 @@
     <string name="error_invalid_username">The username must be between 2 and 32 characters.</string>
     <string name="error_picking_file">Error processing file.</string>
 
+    <string name="permission_dialog_cancel">Deny</string>
+    <string name="permission_dialog_ok">Allow</string>
+
+    <string name="write_external_storage_permission_dialog_message">This app requires access to devices\'s storage. You can allow access in your settings.</string>
+
     <string name="email">Email</string>
     <string name="save">Сохранить</string>
     <string name="password">Password</string>
