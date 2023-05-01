@@ -38,6 +38,7 @@
     <string name="permission_dialog_cancel">Deny</string>
     <string name="permission_dialog_ok">Allow</string>
 
+    <string name="camera_permission_dialog_message">This app requires access to the following tools and data: camera, device\'s storage. You can allow access in your settings.</string>
     <string name="write_external_storage_permission_dialog_message">This app requires access to devices\'s storage. You can allow access in your settings.</string>
 
     <string name="email">Email</string>
@@ -123,16 +124,15 @@
     <string name="chat_list_you">You: %s</string>
     <string name="chat_list_photo">Photo</string>
 
-    <string name="choose_photo">Choose a photo</string>
+    <string name="photo">Choose a photo</string>
     <string-array name="photo_picker_items">
-        <item>Gallery</item>
-        <item>Camera</item>
+        <item>Upload from device</item>
+        <item>Take photo</item>
     </string-array>
 
     <string name="send">Send</string>
     <string name="send_message"> sends you a message</string>
     <string name="success_edit_user">Data updated successfully</string>
-    <string name="photo">Photo</string>
     <string name="delete_message_title">Delete message</string>
     <string name="delete_message_text">Are you sure you want to delete this message?</string>
     <string name="send_friend_message">Send a message</string>

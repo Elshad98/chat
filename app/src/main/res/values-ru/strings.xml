@@ -38,6 +38,7 @@
     <string name="permission_dialog_cancel">Отклонить</string>
     <string name="permission_dialog_ok">Разрешить</string>
 
+    <string name="camera_permission_dialog_message">Приложению требуется доступ к следующим инструментам или данным: камере, памяти устройства. Предоставить доступ можно в настройках.</string>
     <string name="write_external_storage_permission_dialog_message">Приложению требуется доступ к памяти устройства. Предоставить доступ можно в настройках.</string>
 
     <string name="save">Сохранить</string>
@@ -123,16 +124,15 @@
     <string name="chat_list_you">Вы: %s</string>
     <string name="chat_list_photo">Фотография</string>
 
-    <string name="choose_photo">Выберите фото</string>
+    <string name="photo">Фотограция</string>
     <string-array name="photo_picker_items">
-        <item>Галерея</item>
-        <item>Камера</item>
+        <item>Загрузить с устройства</item>
+        <item>Сделать снимок</item>
     </string-array>
 
     <string name="send">Отправить</string>
     <string name="send_message">отправляет вам сообщение</string>
     <string name="success_edit_user">Данные успешно обновлены</string>
-    <string name="photo">Фотография</string>
     <string name="delete_message_title">Удалить сообщение</string>
     <string name="delete_message_text">Вы точно хотите удалить это сообщение?</string>
     <string name="send_friend_message">Отправить сообщение</string>

@@ -7,7 +7,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts.GetContent
+import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
 import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.activity.result.contract.ActivityResultContracts.TakePicture
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,6 +18,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.example.chat.R
 import com.example.chat.core.exception.Failure
+import com.example.chat.core.extension.arePermissionsGranted
+import com.example.chat.core.extension.isPermissionGranted
 import com.example.chat.core.extension.openSystemSettings
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
@@ -45,11 +50,25 @@ class SettingsFragment : PreferenceFragmentCompat() {
         viewModel.onImagePicked(uri)
     }
 
-    private val permissionLauncher = registerForActivityResult(RequestPermission()) { isGranted ->
+    private val readStoragePermissionLauncher = registerForActivityResult(RequestPermission()) { isGranted ->
         if (isGranted) {
             contentLauncher.launch("image/*")
         } else {
             showWriteStoragePermissionDeniedDialog()
+        }
+    }
+
+    private val cameraPermissionLauncher = registerForActivityResult(RequestMultiplePermissions()) { grantResults ->
+        if (grantResults.values.all { it }) {
+            viewModel.changeProfilePhoto()
+        } else {
+            showCameraPermissionDeniedDialog()
+        }
+    }
+
+    private val takePictureLauncher = registerForActivityResult(TakePicture()) { isSuccess ->
+        if (isSuccess) {
+            viewModel.changeProfilePhoto()
         }
     }
 
@@ -94,18 +113,43 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun showImagePickDialog() {
         AlertDialog.Builder(requireContext())
-            .setTitle(R.string.choose_photo)
+            .setTitle(R.string.photo)
             .setItems(R.array.photo_picker_items) { _, which ->
                 when (which) {
-                    0 -> permissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    0 -> {
+                        if (requireContext().isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                            contentLauncher.launch("image/*")
+                        } else {
+                            readStoragePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        }
+                    }
+                    1 -> {
+                        val permissions = arrayOf(
+                            Manifest.permission.CAMERA,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        )
+                        if (requireContext().arePermissionsGranted(*permissions)) {
+                            viewModel.createCameraFile()
+                        } else {
+                            cameraPermissionLauncher.launch(permissions)
+                        }
+                    }
                 }
             }
             .show()
     }
 
     private fun showWriteStoragePermissionDeniedDialog() {
+        showPermissionDeniedDialog(R.string.write_external_storage_permission_dialog_message)
+    }
+
+    private fun showCameraPermissionDeniedDialog() {
+        showPermissionDeniedDialog(R.string.camera_permission_dialog_message)
+    }
+
+    private fun showPermissionDeniedDialog(@StringRes messageId: Int) {
         AlertDialog.Builder(requireContext())
-            .setMessage(R.string.write_external_storage_permission_dialog_message)
+            .setMessage(messageId)
             .setNegativeButton(R.string.permission_dialog_cancel, null)
             .setPositiveButton(R.string.permission_dialog_ok) { _, _ ->
                 requireContext().openSystemSettings()
@@ -116,6 +160,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun observeViewModel() {
         viewModel.user.observe(viewLifecycleOwner, ::handleUser)
         viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
+        viewModel.cameraFile.observe(viewLifecycleOwner, takePictureLauncher::launch)
         viewModel.updateProfileSuccess.observe(viewLifecycleOwner) {
             showToast(R.string.success_edit_user)
         }

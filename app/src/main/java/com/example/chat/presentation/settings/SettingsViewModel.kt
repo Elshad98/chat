@@ -1,10 +1,12 @@
 package com.example.chat.presentation.settings
 
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.chat.core.None
 import com.example.chat.core.platform.BaseViewModel
+import com.example.chat.domain.media.CreateImageFile
 import com.example.chat.domain.media.EncodeImageBitmap
 import com.example.chat.domain.media.GetPickedImage
 import com.example.chat.domain.user.EditUser
@@ -16,6 +18,7 @@ class SettingsViewModel @Inject constructor(
     private val getUser: GetUser,
     private val editUser: EditUser,
     private val getPickedImage: GetPickedImage,
+    private val createImageFile: CreateImageFile,
     private val encodeImageBitmap: EncodeImageBitmap
 ) : BaseViewModel() {
 
@@ -27,10 +30,15 @@ class SettingsViewModel @Inject constructor(
     val updateProfileSuccess: LiveData<Unit>
         get() = _updateProfileSuccess
 
+    private val _cameraFile = MutableLiveData<Uri>()
+    val cameraFile: LiveData<Uri>
+        get() = _cameraFile
+
     override fun onCleared() {
         getUser.unsubscribe()
         editUser.unsubscribe()
         getPickedImage.unsubscribe()
+        createImageFile.unsubscribe()
         encodeImageBitmap.unsubscribe()
     }
 
@@ -42,15 +50,29 @@ class SettingsViewModel @Inject constructor(
 
     fun onImagePicked(uri: Uri?) {
         getPickedImage(uri) { either ->
-            either.fold(::handleFailure) { bitmap ->
-                encodeImageBitmap(bitmap) { either ->
-                    either.fold(::handleFailure, ::changeImage)
-                }
-            }
+            either.fold(::handleFailure, ::handleImageBitmap)
         }
     }
 
-    private fun changeImage(image: String) {
+    fun createCameraFile() {
+        createImageFile(None()) { either ->
+            either.fold(::handleFailure, _cameraFile::setValue)
+        }
+    }
+
+    fun changeProfilePhoto() {
+        getPickedImage(_cameraFile.value) { either ->
+            either.fold(::handleFailure, ::handleImageBitmap)
+        }
+    }
+
+    private fun handleImageBitmap(bitmap: Bitmap) {
+        encodeImageBitmap(bitmap) { either ->
+            either.fold(::handleFailure, ::changeProfilePhoto)
+        }
+    }
+
+    private fun changeProfilePhoto(image: String) {
         getUser(None()) { either ->
             either.fold(::handleFailure) { user ->
                 editUser(user.copy(image = image)) { either ->
