@@ -95,6 +95,8 @@
     <string name="item_friend_request_decline_button">Отклонить</string>
 
     <string name="home_title">Чат</string>
+    <string name="home_chat_list_empty_title">Давайте начнем общаться!</string>
+    <string name="home_chat_list_empty_description">Как насчет того, чтобы отправить свое первое сообщение другу?</string>
 
     <string name="name_colon">Имя:</string>
     <string name="email_colon">Email:</string>

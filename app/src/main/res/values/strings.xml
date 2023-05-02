@@ -95,6 +95,8 @@
     <string name="item_friend_request_decline_button">Decline</string>
 
     <string name="home_title">Chat</string>
+    <string name="home_chat_list_empty_title">Let\'s start chatting!</string>
+    <string name="home_chat_list_empty_description">How about sending your first message to a friend?</string>
 
     <string name="name_colon">Name:</string>
     <string name="email_colon">Email:</string>
