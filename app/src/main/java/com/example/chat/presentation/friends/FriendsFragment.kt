@@ -65,7 +65,13 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     }
 
     private fun setupRecyclerView() {
-        adapter = FriendsAdapter()
+        adapter = FriendsAdapter(
+            onFriendClickListener = { friend ->
+                launchUserFragment(friend.id)
+            }
+        )
         binding.recyclerView.adapter = adapter
     }
+
+    private fun launchUserFragment(userId: Long) = Unit
 }
