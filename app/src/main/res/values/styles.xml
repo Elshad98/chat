@@ -1,7 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorError">@color/status_red</item>
+        <item name="colorError">@color/accent_red</item>
         <item name="colorPrimary">@color/blueberry</item>
         <item name="colorPrimaryDark">@color/pale_sky</item>
         <item name="colorOnSurface">@color/light_grey</item>

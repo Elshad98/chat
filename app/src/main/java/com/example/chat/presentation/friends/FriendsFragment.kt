@@ -67,11 +67,17 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     private fun setupRecyclerView() {
         adapter = FriendsAdapter(
             onFriendClickListener = { friend ->
-                launchUserFragment(friend.id)
+                FriendDialogFragment.newInstance(friend).apply {
+                    setOnFriendClickListener(
+                        object : FriendDialogFragment.OnFriendClickListener {
+                            override fun onRemoveClick(friend: Friend) = Unit
+
+                            override fun onMessageClick(friend: Friend) = Unit
+                        }
+                    )
+                }.show(parentFragmentManager, FriendDialogFragment.TAG)
             }
         )
         binding.recyclerView.adapter = adapter
     }
-
-    private fun launchUserFragment(userId: Long) = Unit
 }

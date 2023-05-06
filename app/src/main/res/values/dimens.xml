@@ -17,7 +17,7 @@
     <dimen name="image_size_tiny">42dp</dimen>
     <dimen name="image_size_small">50dp</dimen>
     <dimen name="image_size_medium">64dp</dimen>
-    <dimen name="image_size_large">70dp</dimen>
+    <dimen name="image_size_large">76dp</dimen>
     <dimen name="image_size_extra_large">112dp</dimen>
 
     <dimen name="corner_radius">8dp</dimen>

@@ -5,7 +5,5 @@
             <solid android:color="@color/blueberry" />
         </shape>
     </item>
-    <item
-        android:bottom="-4dp"
-        android:drawable="@drawable/ic_person" />
+    <item android:drawable="@drawable/ic_person" />
 </layer-list>

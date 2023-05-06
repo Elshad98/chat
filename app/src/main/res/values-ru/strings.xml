@@ -83,6 +83,10 @@
     <string name="invite_friend_header">Пригласите друга присоединиться к приложению по электронной почте</string>
     <string name="invite_friend_send_button">Отправить приглашение</string>
 
+    <string name="friend_option_remove">Удалить из друзей</string>
+    <string name="friend_option_message">Сообщение</string>
+    <string name="friend_option_cancel">Отмена</string>
+
     <string name="register_header">Создать учетную запись</string>
 
     <string name="update_status_header">Вы можете добавить несколько строк о себе. Они будут видны всем, кто откроет Ваш профиль.</string>
