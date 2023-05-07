@@ -15,8 +15,8 @@ interface FriendService {
     fun addFriend(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
     @FormUrlEncoded
-    @POST("deleteFriend.php")
-    fun deleteFriend(@FieldMap params: Map<String, String>): Call<BaseResponse>
+    @POST("removeFriend.php")
+    fun removeFriend(@FieldMap params: Map<String, String>): Call<BaseResponse>
 
     @FormUrlEncoded
     @POST("getContactsByUser.php")

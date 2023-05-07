@@ -74,7 +74,7 @@ class FriendRemoteDataSource @Inject constructor(
         return request.make(service.cancelFriendRequest(params))
     }
 
-    fun deleteFriend(
+    fun removeFriend(
         userId: Long,
         requestUserId: Long,
         friendsId: Long,
@@ -86,6 +86,6 @@ class FriendRemoteDataSource @Inject constructor(
             .userId(userId)
             .token(token)
             .build()
-        return request.make(service.deleteFriend(params))
+        return request.make(service.removeFriend(params))
     }
 }

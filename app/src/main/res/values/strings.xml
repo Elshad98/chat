@@ -83,6 +83,9 @@
     <string name="invite_friend_header">Invite a friend to join the app by email</string>
     <string name="invite_friend_send_button">Send invite</string>
 
+    <string name="friend_remove_dialog_title">Unfriend</string>
+    <string name="friend_remove_dialog_message">Do you really want to unfriend %s?</string>
+    <string name="friend_remove_success">You unfriended %s</string>
     <string name="friend_option_remove">Remove from friend</string>
     <string name="friend_option_message">Message</string>
     <string name="friend_option_cancel">Cancel</string>
@@ -145,6 +148,9 @@
 
     <string name="resend_password">Get the password</string>
     <string name="email_sent">Password was sent to the specified email address</string>
+
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
 
     <string name="settings_heading_account">Account</string>
     <string name="settings_email_title">Email</string>

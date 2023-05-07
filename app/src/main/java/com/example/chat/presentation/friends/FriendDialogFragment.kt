@@ -66,6 +66,7 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
         with(binding) {
             optionRemove.setOnClickListener {
                 onFriendClickListener?.onRemoveClick(friend)
+                dismiss()
             }
             optionMessage.setOnClickListener {
                 onFriendClickListener?.onMessageClick(friend)

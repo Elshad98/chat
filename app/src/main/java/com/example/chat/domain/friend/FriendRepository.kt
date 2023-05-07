@@ -8,7 +8,7 @@ interface FriendRepository {
 
     fun addFriend(email: String): Either<Failure, None>
 
-    fun deleteFriend(friend: Friend): Either<Failure, None>
+    fun removeFriend(friend: Friend): Either<Failure, None>
 
     fun cancelFriendRequest(friend: Friend): Either<Failure, None>
 

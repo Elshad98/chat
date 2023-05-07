@@ -8,8 +8,8 @@ class FriendLocalDataSource @Inject constructor(
     private val friendDao: FriendDao
 ) {
 
-    fun deleteFriend(id: Long) {
-        friendDao.deleteFriend(id)
+    fun removeFriend(id: Long) {
+        friendDao.removeFriend(id)
     }
 
     fun saveFriend(friend: FriendEntity) {

@@ -83,6 +83,9 @@
     <string name="invite_friend_header">Пригласите друга присоединиться к приложению по электронной почте</string>
     <string name="invite_friend_send_button">Отправить приглашение</string>
 
+    <string name="friend_remove_dialog_title">Удалить из друзей</string>
+    <string name="friend_remove_dialog_message">Вы действительно хотите удалить пользователя %s из своего списка друзей?</string>
+    <string name="friend_remove_success">%s был удалён из вашего списка друзей</string>
     <string name="friend_option_remove">Удалить из друзей</string>
     <string name="friend_option_message">Сообщение</string>
     <string name="friend_option_cancel">Отмена</string>
@@ -145,6 +148,9 @@
 
     <string name="resend_password">Получить пароль</string>
     <string name="email_sent">Пароль отправлен на указанный email</string>
+
+    <string name="dialog_yes">Да</string>
+    <string name="dialog_no">Нет</string>
 
     <string name="settings_heading_account">Аккаунт</string>
     <string name="settings_status_title">Статус</string>

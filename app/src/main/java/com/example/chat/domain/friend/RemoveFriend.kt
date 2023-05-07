@@ -6,11 +6,11 @@ import com.example.chat.core.functional.Either
 import com.example.chat.domain.interactor.UseCase
 import javax.inject.Inject
 
-class DeleteFriend @Inject constructor(
+class RemoveFriend @Inject constructor(
     private val friendRepository: FriendRepository
 ) : UseCase<None, Friend>() {
 
     override suspend fun run(params: Friend): Either<Failure, None> {
-        return friendRepository.deleteFriend(params)
+        return friendRepository.removeFriend(params)
     }
 }
