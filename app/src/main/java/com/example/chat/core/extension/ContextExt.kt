@@ -4,12 +4,13 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.provider.Settings
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 import androidx.annotation.StringRes
@@ -24,11 +25,11 @@ fun Context.showToast(@StringRes resId: Int) {
     Toast.makeText(this, resId, Toast.LENGTH_LONG).show()
 }
 
-fun Context.getFontCompat(@FontRes id: Int) = ResourcesCompat.getFont(this, id)
+fun Context.getFontCompat(@FontRes id: Int): Typeface? =
+    ResourcesCompat.getFont(this, id)
 
-fun Context.getColorCompat(@ColorRes id: Int) = ContextCompat.getColor(this, id)
-
-fun Context.getDrawableCompat(@DrawableRes id: Int) = ContextCompat.getDrawable(this, id)
+fun Context.getDrawableCompat(@DrawableRes id: Int): Drawable? =
+    ContextCompat.getDrawable(this, id)
 
 fun Context.getConnectivityManager() =
     getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -39,10 +40,10 @@ fun Context.getInputMethodManager() =
 fun Context.getNotificationManager() =
     getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-fun Context.isPermissionGranted(permission: String) =
+fun Context.isPermissionGranted(permission: String): Boolean =
     ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
 
-fun Context.arePermissionsGranted(vararg permissions: String) =
+fun Context.arePermissionsGranted(vararg permissions: String): Boolean =
     permissions.all(::isPermissionGranted)
 
 fun Context.openSystemSettings() {

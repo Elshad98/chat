@@ -8,7 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
 import com.example.chat.core.extension.gone
 import com.example.chat.core.extension.load
-import com.example.chat.databinding.FragmentFriendBinding
+import com.example.chat.databinding.DialogFriendBinding
 import com.example.chat.domain.friend.Friend
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -29,7 +29,7 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
     }
 
     private val friend by lazy { requireArguments().getParcelable<Friend>(ARG_FRIEND)!! }
-    private val binding by viewBinding(FragmentFriendBinding::bind)
+    private val binding by viewBinding(DialogFriendBinding::bind)
     private var onFriendClickListener: OnFriendClickListener? = null
 
     override fun onCreateView(
@@ -37,7 +37,7 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_friend, container, false)
+        return inflater.inflate(R.layout.dialog_friend, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
