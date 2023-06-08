@@ -91,6 +91,8 @@
     <string name="friend_option_message">Message</string>
     <string name="friend_option_cancel">Cancel</string>
 
+    <string name="action_info">Info</string>
+
     <string name="register_header">Create an account</string>
 
     <string name="update_status_header">You can add a few lines about yourself. Anyone who opens your profile will see this text.</string>

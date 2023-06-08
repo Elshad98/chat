@@ -6,8 +6,8 @@
         <item name="colorPrimaryDark">@color/pale_sky</item>
         <item name="colorOnSurface">@color/light_grey</item>
         <item name="colorControlNormal">@color/woodsmoke</item>
-
         <item name="preferenceTheme">@style/PreferenceTheme</item>
+        <item name="android:windowBackground">@color/white</item>
         <item name="android:textColorHint">@color/grey</item>
         <item name="android:textColorSecondary">@color/grey</item>
         <item name="android:textAppearanceListItem">@style/Text</item>

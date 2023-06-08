@@ -97,8 +97,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupClickListener() {
-        adapter.onItemClickListener = {
-            launchMessagesFragment()
+        adapter.onItemClickListener = { message ->
+            launchMessagesFragment(message.contact.id, message.contact.name)
         }
     }
 
@@ -158,14 +158,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun launchLoginFragment() {
-        findNavController().navigateSafely(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+        findNavController()
+            .navigateSafely(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
     }
 
     private fun launchFriendsFragment() {
         findNavController().navigate(R.id.action_homeFragment_to_friendsFragment)
     }
 
-    private fun launchMessagesFragment() = Unit
+    private fun launchMessagesFragment(friendId: Long, friendName: String) {
+        findNavController()
+            .navigate(HomeFragmentDirections.actionHomeFragmentToMessageListFragment(friendId, friendName))
+    }
 
     private fun launchSettingsFragment() {
         findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)

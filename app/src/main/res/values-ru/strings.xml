@@ -91,6 +91,8 @@
     <string name="friend_option_message">Сообщение</string>
     <string name="friend_option_cancel">Отмена</string>
 
+    <string name="action_info">Информация</string>
+
     <string name="register_header">Создать учетную запись</string>
 
     <string name="update_status_header">Вы можете добавить несколько строк о себе. Они будут видны всем, кто откроет Ваш профиль.</string>

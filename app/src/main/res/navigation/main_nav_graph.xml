@@ -33,6 +33,10 @@
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
 
+        <action
+            android:id="@+id/action_homeFragment_to_messageListFragment"
+            app:destination="@id/messageListFragment" />
+
     </fragment>
 
     <fragment
@@ -87,7 +91,13 @@
         android:id="@+id/friendsFragment"
         android:name="com.example.chat.presentation.friends.FriendsFragment"
         android:label="@string/title_friends"
-        tools:layout="@layout/fragment_friends" />
+        tools:layout="@layout/fragment_friends">
+
+        <action
+            android:id="@+id/action_friendsFragment_to_messageListFragment"
+            app:destination="@id/messageListFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/friendRequestsFragment"
@@ -141,5 +151,21 @@
         android:name="com.example.chat.presentation.settings.password.ChangePasswordFragment"
         android:label="@string/title_change_password"
         tools:layout="@layout/fragment_change_password" />
+
+    <fragment
+        android:id="@+id/messageListFragment"
+        android:name="com.example.chat.presentation.messages.MessageListFragment"
+        android:label=""
+        tools:layout="@layout/fragment_message_list">
+
+        <argument
+            android:name="friendId"
+            app:argType="long" />
+
+        <argument
+            android:name="friendName"
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>
