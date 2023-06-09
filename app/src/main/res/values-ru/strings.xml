@@ -74,9 +74,10 @@
     <string name="home_drawer_invite_friend">Пригласить друга</string>
     <string name="home_drawer_friend_requests">Входящие приглашения</string>
 
-    <string name="settings_menu_save">Сохранить</string>
-    <string name="settings_menu_update_status">Обновить статус</string>
-    <string name="settings_menu_set_profile_photo">Установить фото профиля</string>
+    <string name="save_button">Сохранить</string>
+    <string name="info_button">Информация</string>
+    <string name="update_status_button">Обновить статус</string>
+    <string name="set_profile_photo_button">Установить фото профиля</string>
 
     <string name="forget_password_header">Восстановление пароля</string>
     <string name="forget_password_body">Введите свой адрес электронной почты, чтобы восстановить пароль</string>
@@ -90,8 +91,6 @@
     <string name="friend_option_remove">Удалить из друзей</string>
     <string name="friend_option_message">Сообщение</string>
     <string name="friend_option_cancel">Отмена</string>
-
-    <string name="action_info">Информация</string>
 
     <string name="register_header">Создать учетную запись</string>
 

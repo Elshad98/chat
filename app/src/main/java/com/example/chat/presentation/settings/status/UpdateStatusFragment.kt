@@ -39,12 +39,12 @@ class UpdateStatusFragment : Fragment(R.layout.fragment_update_status) {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.settings_menu_confirm, menu)
+        inflater.inflate(R.menu.menu_save, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.save -> {
+            R.id.action_save -> {
                 viewModel.updateStatus(binding.inputStatus.trimmedText)
                 true
             }

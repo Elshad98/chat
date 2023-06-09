@@ -2,13 +2,13 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="120dp"
     android:height="120dp"
-    android:tint="@android:color/white"
+    android:tint="#FFFFFF"
     android:viewportWidth="120"
     android:viewportHeight="120">
     <path
-        android:fillColor="@android:color/white"
+        android:fillColor="#FFFFFF"
         android:pathData="M92 80C92 69.36 70.64 64 60 64C49.36 64 28 69.36 28 80V81.28C35.76 90.24 47.2 96 60 96C72.8 96 84.24 90.24 92 81.28V80Z" />
     <path
-        android:fillColor="@android:color/white"
+        android:fillColor="#FFFFFF"
         android:pathData="M44 40C44 48.8 51.2 56 60 56C68.8 56 76 48.8 76 40C76 31.2 68.8 24 60 24C51.2 24 44 31.2 44 40Z" />
 </vector>

@@ -74,9 +74,10 @@
     <string name="home_drawer_invite_friend">Invite a friend</string>
     <string name="home_drawer_friend_requests">Incoming invitations</string>
 
-    <string name="settings_menu_save">Save</string>
-    <string name="settings_menu_update_status">Update status</string>
-    <string name="settings_menu_set_profile_photo">Set profile photo</string>
+    <string name="save_button">Save</string>
+    <string name="info_button">Info</string>
+    <string name="update_status_button">Update status</string>
+    <string name="set_profile_photo_button">Set profile photo</string>
 
     <string name="forget_password_header">Forgot your password?</string>
     <string name="forget_password_body">Enter your email address to retrieve your password</string>
@@ -90,8 +91,6 @@
     <string name="friend_option_remove">Remove from friend</string>
     <string name="friend_option_message">Message</string>
     <string name="friend_option_cancel">Cancel</string>
-
-    <string name="action_info">Info</string>
 
     <string name="register_header">Create an account</string>
 

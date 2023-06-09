@@ -94,16 +94,16 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.settings_action_menu, menu)
+        inflater.inflate(R.menu.menu_settings, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.update_status -> {
+            R.id.action_update_status -> {
                 launchUpdateStatusFragment()
                 true
             }
-            R.id.set_profile_photo -> {
+            R.id.action_set_profile_photo -> {
                 showImagePickDialog()
                 true
             }
