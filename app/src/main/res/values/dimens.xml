@@ -7,7 +7,12 @@
     <dimen name="spacing_large">32dp</dimen>
     <dimen name="spacing_huge">40dp</dimen>
 
-    <dimen name="font_extra_small">12sp</dimen>
+    <dimen name="line_spacing_small">3sp</dimen>
+    <dimen name="line_spacing_normal">4sp</dimen>
+    <dimen name="line_spacing_medium">6sp</dimen>
+    <dimen name="line_spacing_large">8sp</dimen>
+
+    <dimen name="font_tiny">12sp</dimen>
     <dimen name="font_small">14sp</dimen>
     <dimen name="font_normal">16sp</dimen>
     <dimen name="font_medium">18sp</dimen>
