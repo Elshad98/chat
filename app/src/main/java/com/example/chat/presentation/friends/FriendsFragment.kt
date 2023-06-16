@@ -2,9 +2,9 @@ package com.example.chat.presentation.friends
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
 import com.example.chat.core.exception.Failure
@@ -72,30 +72,22 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         adapter = FriendsAdapter(
             onFriendClickListener = { friend ->
                 FriendDialogFragment.newInstance(friend).apply {
-                    setOnFriendClickListener(
-                        object : FriendDialogFragment.OnFriendClickListener {
-                            override fun onRemoveClick(friend: Friend) {
-                                AlertDialog.Builder(requireContext())
-                                    .setTitle(R.string.friend_remove_dialog_title)
-                                    .setMessage(
-                                        getString(
-                                            R.string.friend_remove_dialog_message,
-                                            friend.name
-                                        )
-                                    )
-                                    .setNegativeButton(R.string.dialog_no, null)
-                                    .setPositiveButton(R.string.dialog_yes) { _, _ ->
-                                        viewModel.removeFriend(friend)
-                                    }
-                                    .show()
-                            }
+                    setOnMessageClickListener(
+                        object : FriendDialogFragment.OnMessageClickListener {
 
-                            override fun onMessageClick(friend: Friend) = Unit
+                            override fun onClick(friend: Friend) {
+                                launchMessagesFragment(friend.friendsId, friend.name)
+                            }
                         }
                     )
                 }.show(parentFragmentManager, FriendDialogFragment.TAG)
             }
         )
         binding.recyclerView.adapter = adapter
+    }
+
+    private fun launchMessagesFragment(contactId: Long, contactName: String) {
+        findNavController()
+            .navigate(FriendsFragmentDirections.actionFriendsFragmentToMessageListFragment(contactId, contactName))
     }
 }

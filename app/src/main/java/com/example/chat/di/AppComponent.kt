@@ -3,10 +3,12 @@ package com.example.chat.di
 import com.example.chat.presentation.firebase.FirebaseService
 import com.example.chat.presentation.forgetpassword.ForgetPasswordFragment
 import com.example.chat.presentation.friendrequests.FriendRequestsFragment
+import com.example.chat.presentation.friends.FriendDialogFragment
 import com.example.chat.presentation.friends.FriendsFragment
 import com.example.chat.presentation.home.HomeFragment
 import com.example.chat.presentation.invitefriend.InviteFriendFragment
 import com.example.chat.presentation.login.LoginFragment
+import com.example.chat.presentation.messages.MessageListFragment
 import com.example.chat.presentation.register.RegisterFragment
 import com.example.chat.presentation.settings.SettingsFragment
 import com.example.chat.presentation.settings.email.ChangeEmailFragment
@@ -43,11 +45,15 @@ interface AppComponent {
 
     fun inject(fragment: ChangePasswordFragment)
 
+    fun inject(fragment: FriendDialogFragment)
+
     fun inject(fragment: RegisterFragment)
 
     fun inject(fragment: FriendsFragment)
 
     fun inject(fragment: InviteFriendFragment)
+
+    fun inject(fragment: MessageListFragment)
 
     fun inject(fragment: FriendRequestsFragment)
 

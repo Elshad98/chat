@@ -44,6 +44,13 @@ class FriendRepositoryImpl @Inject constructor(
             .onSuccess { friends -> friendLocalDataSource.saveFriends(friends.map(Friend::toEntity)) }
     }
 
+    override fun getFriendById(id: Long): Either<Failure, Friend?> {
+        return friendLocalDataSource
+            .getFriendById(id)
+            ?.let(FriendEntity::toDomain)
+            .let(::Right)
+    }
+
     override fun getFriendRequest(needFetch: Boolean): Either<Failure, List<Friend>> {
         return userLocalDataSource
             .getUser()

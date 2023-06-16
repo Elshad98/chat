@@ -4,13 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
+import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.gone
 import com.example.chat.core.extension.load
+import com.example.chat.core.extension.showToast
 import com.example.chat.databinding.DialogFriendBinding
+import com.example.chat.di.ViewModelFactory
 import com.example.chat.domain.friend.Friend
+import com.example.chat.presentation.App
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import javax.inject.Inject
 
 class FriendDialogFragment : BottomSheetDialogFragment() {
 
@@ -28,9 +35,18 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private val friend by lazy { requireArguments().getParcelable<Friend>(ARG_FRIEND)!! }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     private val binding by viewBinding(DialogFriendBinding::bind)
-    private var onFriendClickListener: OnFriendClickListener? = null
+    private val friend by lazy { requireArguments().getParcelable<Friend>(ARG_FRIEND)!! }
+    private val viewModel: FriendViewModel by viewModels(factoryProducer = { viewModelFactory })
+    private var onMessageClickListener: OnMessageClickListener? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        App.appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,11 +59,12 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
+        observeViewModel()
         bindViews()
     }
 
-    fun setOnFriendClickListener(onFriendClickListener: OnFriendClickListener) {
-        this.onFriendClickListener = onFriendClickListener
+    fun setOnMessageClickListener(onMessageClickListener: OnMessageClickListener) {
+        this.onMessageClickListener = onMessageClickListener
     }
 
     private fun bindViews() {
@@ -62,14 +79,35 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
+    private fun observeViewModel() {
+        viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
+        viewModel.removeSuccess.observe(viewLifecycleOwner) {
+            dismiss()
+        }
+    }
+
+    private fun handleFailure(failure: Failure) {
+        when (failure) {
+            is Failure.NetworkConnectionError -> R.string.error_network
+            else -> R.string.error_server
+        }.let(::showToast)
+    }
+
     private fun setupClickListeners() {
         with(binding) {
             optionRemove.setOnClickListener {
-                onFriendClickListener?.onRemoveClick(friend)
-                dismiss()
+                AlertDialog.Builder(requireContext())
+                    .setTitle(R.string.friend_remove_dialog_title)
+                    .setMessage(getString(R.string.friend_remove_dialog_message, friend.name))
+                    .setNegativeButton(R.string.dialog_no, null)
+                    .setPositiveButton(R.string.dialog_yes) { _, _ ->
+                        viewModel.removeFriend(friend)
+                    }
+                    .show()
             }
             optionMessage.setOnClickListener {
-                onFriendClickListener?.onMessageClick(friend)
+                onMessageClickListener?.onClick(friend)
+                dismiss()
             }
             optionCancel.setOnClickListener {
                 dismiss()
@@ -77,10 +115,8 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    interface OnFriendClickListener {
+    interface OnMessageClickListener {
 
-        fun onRemoveClick(friend: Friend)
-
-        fun onMessageClick(friend: Friend)
+        fun onClick(friend: Friend)
     }
 }

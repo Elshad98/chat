@@ -24,7 +24,7 @@ class FriendLocalDataSource @Inject constructor(
         return friendDao.getFriends()
     }
 
-    fun getFriend(id: Long): FriendEntity? {
+    fun getFriendById(id: Long): FriendEntity? {
         return friendDao.getFriend(id)
     }
 

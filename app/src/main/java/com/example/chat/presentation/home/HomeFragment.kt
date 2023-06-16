@@ -166,9 +166,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         findNavController().navigate(R.id.action_homeFragment_to_friendsFragment)
     }
 
-    private fun launchMessagesFragment(friendId: Long, friendName: String) {
+    private fun launchMessagesFragment(contactId: Long, contactName: String) {
         findNavController()
-            .navigate(HomeFragmentDirections.actionHomeFragmentToMessageListFragment(friendId, friendName))
+            .navigate(HomeFragmentDirections.actionHomeFragmentToMessageListFragment(contactId, contactName))
     }
 
     private fun launchSettingsFragment() {

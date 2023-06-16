@@ -159,11 +159,11 @@
         tools:layout="@layout/fragment_message_list">
 
         <argument
-            android:name="friendId"
+            android:name="contactId"
             app:argType="long" />
 
         <argument
-            android:name="friendName"
+            android:name="contactName"
             app:argType="string" />
 
     </fragment>
