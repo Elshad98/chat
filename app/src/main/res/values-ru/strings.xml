@@ -11,7 +11,7 @@
     <string name="title_invite_friend">Пригласить друга</string>
     <string name="title_change_password">Обновите пароль</string>
     <string name="title_change_email">Сменить адрес эл. почты</string>
-    <string name="title_friend_requests">Входящие приглашения</string>
+    <string name="title_friend_request_list">Входящие приглашения</string>
     <string name="title_forget_password">Восстановление пароля</string>
     <string name="title_change_username">Изменить имя пользователя</string>
 

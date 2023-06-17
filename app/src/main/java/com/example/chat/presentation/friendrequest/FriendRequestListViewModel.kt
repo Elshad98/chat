@@ -1,4 +1,4 @@
-package com.example.chat.presentation.friendrequests
+package com.example.chat.presentation.friendrequest
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.friend.GetFriendRequests
 import javax.inject.Inject
 
-class FriendRequestsViewModel @Inject constructor(
+class FriendRequestListViewModel @Inject constructor(
     private val getFriendRequests: GetFriendRequests,
     private val cancelFriendRequest: CancelFriendRequest,
     private val approveFriendRequest: ApproveFriendRequest

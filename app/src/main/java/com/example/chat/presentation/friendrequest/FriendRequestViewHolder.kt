@@ -1,4 +1,4 @@
-package com.example.chat.presentation.friendrequests
+package com.example.chat.presentation.friendrequest
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chat.databinding.ItemFriendRequestBinding

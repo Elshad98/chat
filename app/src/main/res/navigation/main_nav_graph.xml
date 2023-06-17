@@ -26,8 +26,8 @@
             app:destination="@id/friendsFragment" />
 
         <action
-            android:id="@+id/action_homeFragment_to_friendRequestsFragment"
-            app:destination="@id/friendRequestsFragment" />
+            android:id="@+id/action_homeFragment_to_friendRequestListFragment"
+            app:destination="@id/friendRequestListFragment" />
 
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
@@ -100,10 +100,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/friendRequestsFragment"
-        android:name="com.example.chat.presentation.friendrequests.FriendRequestsFragment"
-        android:label="@string/title_friend_requests"
-        tools:layout="@layout/fragment_friend_requests" />
+        android:id="@+id/friendRequestListFragment"
+        android:name="com.example.chat.presentation.friendrequest.FriendRequestListFragment"
+        android:label="@string/title_friend_request_list"
+        tools:layout="@layout/fragment_friend_request_list" />
 
     <fragment
         android:id="@+id/settingsFragment"

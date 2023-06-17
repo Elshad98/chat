@@ -13,7 +13,7 @@
     <string name="title_change_username">Change Username</string>
     <string name="title_forget_password">Forgot password</string>
     <string name="title_change_password">Update your password</string>
-    <string name="title_friend_requests">Incoming invitations</string>
+    <string name="title_friend_request_list">Incoming invitations</string>
 
     <string name="error_server">Server error.</string>
     <string name="error_network">Please check your network connection.</string>

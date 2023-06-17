@@ -1,4 +1,4 @@
-package com.example.chat.presentation.friendrequests
+package com.example.chat.presentation.friendrequest
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -9,7 +9,7 @@ import com.example.chat.databinding.ItemFriendRequestBinding
 import com.example.chat.domain.friend.Friend
 import com.example.chat.presentation.friends.FriendDiffCallback
 
-class FriendRequestsAdapter(
+class FriendRequestAdapter(
     private val onConfirmClickListener: (Friend) -> Unit,
     private val onDeclineClickListener: (Friend) -> Unit
 ) : ListAdapter<Friend, FriendRequestViewHolder>(FriendDiffCallback()) {

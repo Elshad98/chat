@@ -14,7 +14,7 @@
         android:title="@string/home_drawer_invite_friend" />
 
     <item
-        android:id="@+id/nav_friend_requests"
+        android:id="@+id/nav_friend_request_list"
         android:icon="@drawable/ic_friend_requests"
         android:title="@string/home_drawer_friend_requests" />
 

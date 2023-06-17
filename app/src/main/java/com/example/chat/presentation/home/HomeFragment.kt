@@ -127,8 +127,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         drawerLayout.close()
                         true
                     }
-                    R.id.nav_friend_requests -> {
-                        launchFriendRequestsFragment()
+                    R.id.nav_friend_request_list -> {
+                        launchFriendRequestListFragment()
                         drawerLayout.close()
                         true
                     }
@@ -179,7 +179,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         findNavController().navigate(R.id.action_homeFragment_to_inviteFriendFragment)
     }
 
-    private fun launchFriendRequestsFragment() {
-        findNavController().navigate(R.id.action_homeFragment_to_friendRequestsFragment)
+    private fun launchFriendRequestListFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_friendRequestListFragment)
     }
 }
