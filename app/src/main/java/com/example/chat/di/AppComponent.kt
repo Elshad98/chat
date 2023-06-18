@@ -2,9 +2,9 @@ package com.example.chat.di
 
 import com.example.chat.presentation.firebase.FirebaseService
 import com.example.chat.presentation.forgetpassword.ForgetPasswordFragment
+import com.example.chat.presentation.friend.FriendDialogFragment
+import com.example.chat.presentation.friend.FriendListFragment
 import com.example.chat.presentation.friendrequest.FriendRequestListFragment
-import com.example.chat.presentation.friends.FriendDialogFragment
-import com.example.chat.presentation.friends.FriendsFragment
 import com.example.chat.presentation.home.HomeFragment
 import com.example.chat.presentation.invitefriend.InviteFriendFragment
 import com.example.chat.presentation.login.LoginFragment
@@ -49,7 +49,7 @@ interface AppComponent {
 
     fun inject(fragment: RegisterFragment)
 
-    fun inject(fragment: FriendsFragment)
+    fun inject(fragment: FriendListFragment)
 
     fun inject(fragment: InviteFriendFragment)
 

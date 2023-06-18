@@ -117,8 +117,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             navigationView.setNavigationItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.nav_friends -> {
-                        launchFriendsFragment()
+                    R.id.nav_friend_list -> {
+                        launchFriendListFragment()
                         drawerLayout.close()
                         true
                     }
@@ -162,8 +162,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             .navigateSafely(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
     }
 
-    private fun launchFriendsFragment() {
-        findNavController().navigate(R.id.action_homeFragment_to_friendsFragment)
+    private fun launchFriendListFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_friendListFragment)
     }
 
     private fun launchMessagesFragment(contactId: Long, contactName: String) {

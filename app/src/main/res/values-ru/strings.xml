@@ -4,7 +4,7 @@
 
     <string name="title_home">Главная</string>
     <string name="title_status">Статус</string>
-    <string name="title_friends">Друзья</string>
+    <string name="title_friend_list">Друзья</string>
     <string name="title_login">Авторизация</string>
     <string name="title_settings">Настройки</string>
     <string name="title_register">Регистрация</string>

@@ -4,7 +4,7 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/nav_friends"
+        android:id="@+id/nav_friend_list"
         android:icon="@drawable/ic_friends"
         android:title="@string/home_drawer_friends" />
 

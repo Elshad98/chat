@@ -7,7 +7,7 @@ import com.example.chat.core.extension.inflater
 import com.example.chat.core.extension.load
 import com.example.chat.databinding.ItemFriendRequestBinding
 import com.example.chat.domain.friend.Friend
-import com.example.chat.presentation.friends.FriendDiffCallback
+import com.example.chat.presentation.friend.FriendDiffCallback
 
 class FriendRequestAdapter(
     private val onConfirmClickListener: (Friend) -> Unit,

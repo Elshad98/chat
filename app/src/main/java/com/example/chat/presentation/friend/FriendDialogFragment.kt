@@ -1,4 +1,4 @@
-package com.example.chat.presentation.friends
+package com.example.chat.presentation.friend
 
 import android.os.Bundle
 import android.view.LayoutInflater

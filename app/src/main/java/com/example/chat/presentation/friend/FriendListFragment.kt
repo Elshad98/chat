@@ -1,4 +1,4 @@
-package com.example.chat.presentation.friends
+package com.example.chat.presentation.friend
 
 import android.os.Bundle
 import android.view.View
@@ -10,20 +10,20 @@ import com.example.chat.R
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
-import com.example.chat.databinding.FragmentFriendsBinding
+import com.example.chat.databinding.FragmentFriendListBinding
 import com.example.chat.di.ViewModelFactory
 import com.example.chat.domain.friend.Friend
 import com.example.chat.presentation.App
 import javax.inject.Inject
 
-class FriendsFragment : Fragment(R.layout.fragment_friends) {
+class FriendListFragment : Fragment(R.layout.fragment_friend_list) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var adapter: FriendsAdapter
-    private val binding by viewBinding(FragmentFriendsBinding::bind)
-    private val viewModel: FriendsViewModel by viewModels(factoryProducer = { viewModelFactory })
+    private lateinit var adapter: FriendAdapter
+    private val binding by viewBinding(FragmentFriendListBinding::bind)
+    private val viewModel: FriendListViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +69,7 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     }
 
     private fun setupRecyclerView() {
-        adapter = FriendsAdapter(
+        adapter = FriendAdapter(
             onFriendClickListener = { friend ->
                 FriendDialogFragment.newInstance(friend).apply {
                     setOnMessageClickListener(
@@ -81,6 +81,9 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
                         }
                     )
                 }.show(parentFragmentManager, FriendDialogFragment.TAG)
+            },
+            onMessageClickListener = { friend ->
+                launchMessagesFragment(friend.friendsId, friend.name)
             }
         )
         binding.recyclerView.adapter = adapter
@@ -88,6 +91,6 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
 
     private fun launchMessagesFragment(contactId: Long, contactName: String) {
         findNavController()
-            .navigate(FriendsFragmentDirections.actionFriendsFragmentToMessageListFragment(contactId, contactName))
+            .navigate(FriendListFragmentDirections.actionFriendListFragmentToMessageListFragment(contactId, contactName))
     }
 }

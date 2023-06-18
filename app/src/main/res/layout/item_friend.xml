@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_user"
         android:layout_width="@dimen/image_size_tiny"
         android:layout_height="@dimen/image_size_tiny"
-        android:layout_marginTop="@dimen/spacing_small"
         android:layout_marginStart="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_small"
         android:layout_marginBottom="@dimen/spacing_small"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_name"
         app:layout_constraintBottom_toTopOf="@id/separator"
+        app:layout_constraintEnd_toStartOf="@+id/text_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
         android:layout_marginStart="@dimen/spacing_small"
+        android:ellipsize="end"
         android:maxLines="1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_user"
-        app:layout_constraintBottom_toTopOf="@id/separator"
         android:textAppearance="@style/Text.Primary"
+        app:layout_constraintBottom_toTopOf="@id/separator"
+        app:layout_constraintStart_toEndOf="@+id/image_user"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Ivan Ivanov" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageButton
+        android:id="@+id/button_message"
         android:layout_width="@dimen/image_size_extra_tiny"
         android:layout_height="@dimen/image_size_extra_tiny"
+        android:layout_marginEnd="@dimen/spacing_small"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:scaleType="center"
         android:src="@drawable/ic_message"
         app:layout_constraintBottom_toTopOf="@id/separator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
-        android:layout_marginEnd="@dimen/spacing_small"
         app:layout_constraintStart_toEndOf="@+id/text_name"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,4 +1,4 @@
-package com.example.chat.presentation.friends
+package com.example.chat.presentation.friend
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.example.chat.domain.friend.GetFriends
 import com.example.chat.domain.friend.RemoveFriend
 import javax.inject.Inject
 
-class FriendsViewModel @Inject constructor(
+class FriendListViewModel @Inject constructor(
     private val getFriends: GetFriends,
     private val removeFriend: RemoveFriend
 ) : BaseViewModel() {
