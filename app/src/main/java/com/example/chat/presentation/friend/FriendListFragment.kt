@@ -76,20 +76,20 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list) {
                         object : FriendDialogFragment.OnMessageClickListener {
 
                             override fun onClick(friend: Friend) {
-                                launchMessagesFragment(friend.friendsId, friend.name)
+                                launchMessageListFragment(friend.friendsId, friend.name)
                             }
                         }
                     )
                 }.show(parentFragmentManager, FriendDialogFragment.TAG)
             },
             onMessageClickListener = { friend ->
-                launchMessagesFragment(friend.friendsId, friend.name)
+                launchMessageListFragment(friend.friendsId, friend.name)
             }
         )
         binding.recyclerView.adapter = adapter
     }
 
-    private fun launchMessagesFragment(contactId: Long, contactName: String) {
+    private fun launchMessageListFragment(contactId: Long, contactName: String) {
         findNavController()
             .navigate(FriendListFragmentDirections.actionFriendListFragmentToMessageListFragment(contactId, contactName))
     }

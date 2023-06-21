@@ -29,7 +29,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var adapter: ChatsAdapter
+    private lateinit var adapter: ChatAdapter
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels(factoryProducer = { viewModelFactory })
 
@@ -47,7 +47,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         setupRecyclerView()
-        setupClickListener()
         setupNavigationDrawer()
         observeViewModel()
     }
@@ -92,14 +91,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupRecyclerView() {
-        adapter = ChatsAdapter()
+        adapter = ChatAdapter(
+            onChatClickListener = { message ->
+                launchMessageListFragment(message.contact.id, message.contact.name)
+            }
+        )
         binding.recyclerView.adapter = adapter
-    }
-
-    private fun setupClickListener() {
-        adapter.onItemClickListener = { message ->
-            launchMessagesFragment(message.contact.id, message.contact.name)
-        }
     }
 
     private fun setupNavigationDrawer() {
@@ -166,7 +163,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         findNavController().navigate(R.id.action_homeFragment_to_friendListFragment)
     }
 
-    private fun launchMessagesFragment(contactId: Long, contactName: String) {
+    private fun launchMessageListFragment(contactId: Long, contactName: String) {
         findNavController()
             .navigate(HomeFragmentDirections.actionHomeFragmentToMessageListFragment(contactId, contactName))
     }
