@@ -41,7 +41,6 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
     private val binding by viewBinding(DialogFriendBinding::bind)
     private val friend by lazy { requireArguments().getParcelable<Friend>(ARG_FRIEND)!! }
     private val viewModel: FriendViewModel by viewModels(factoryProducer = { viewModelFactory })
-    private var onMessageClickListener: OnMessageClickListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,10 +60,6 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
         setupClickListeners()
         observeViewModel()
         bindViews()
-    }
-
-    fun setOnMessageClickListener(onMessageClickListener: OnMessageClickListener) {
-        this.onMessageClickListener = onMessageClickListener
     }
 
     private fun bindViews() {
@@ -106,7 +101,7 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
                     .show()
             }
             optionMessage.setOnClickListener {
-                onMessageClickListener?.onClick(friend)
+                (targetFragment as OnMessageClickListener).onClick(friend)
                 dismiss()
             }
             optionCancel.setOnClickListener {

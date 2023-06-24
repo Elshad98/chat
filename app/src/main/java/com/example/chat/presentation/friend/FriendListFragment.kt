@@ -16,7 +16,7 @@ import com.example.chat.domain.friend.Friend
 import com.example.chat.presentation.App
 import javax.inject.Inject
 
-class FriendListFragment : Fragment(R.layout.fragment_friend_list) {
+class FriendListFragment : Fragment(R.layout.fragment_friend_list), FriendDialogFragment.OnMessageClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -40,6 +40,10 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list) {
     override fun onStart() {
         super.onStart()
         viewModel.getFriends()
+    }
+
+    override fun onClick(friend: Friend) {
+        launchMessageListFragment(friend.friendsId, friend.name)
     }
 
     private fun setupToolbar() {
@@ -72,15 +76,9 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list) {
         adapter = FriendAdapter(
             onFriendClickListener = { friend ->
                 FriendDialogFragment.newInstance(friend).apply {
-                    setOnMessageClickListener(
-                        object : FriendDialogFragment.OnMessageClickListener {
-
-                            override fun onClick(friend: Friend) {
-                                launchMessageListFragment(friend.friendsId, friend.name)
-                            }
-                        }
-                    )
-                }.show(parentFragmentManager, FriendDialogFragment.TAG)
+                    setTargetFragment(this@FriendListFragment, 0)
+                    show(this@FriendListFragment.parentFragmentManager, FriendDialogFragment.TAG)
+                }
             },
             onMessageClickListener = { friend ->
                 launchMessageListFragment(friend.friendsId, friend.name)
