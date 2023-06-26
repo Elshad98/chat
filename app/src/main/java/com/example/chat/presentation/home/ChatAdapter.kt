@@ -8,6 +8,7 @@ import com.example.chat.core.extension.load
 import com.example.chat.databinding.ItemChatBinding
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.MessageType
+import com.example.chat.presentation.message.MessageDiffCallback
 
 class ChatAdapter(
     private val onChatClickListener: (Message) -> Unit

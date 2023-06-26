@@ -1,4 +1,4 @@
-package com.example.chat.presentation.home
+package com.example.chat.presentation.message
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.chat.domain.message.Message

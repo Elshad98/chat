@@ -1,4 +1,4 @@
-package com.example.chat.presentation.messages
+package com.example.chat.presentation.message
 
 import androidx.lifecycle.LiveData
 import com.example.chat.core.platform.BaseViewModel

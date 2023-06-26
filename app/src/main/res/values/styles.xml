@@ -10,7 +10,7 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColorHint">@color/grey</item>
         <item name="android:textColorSecondary">@color/grey</item>
-        <item name="android:lineSpacingExtra">@dimen/line_spacing_normal</item>
+        <item name="android:lineSpacingExtra">@dimen/text_line_spacing_normal</item>
         <item name="android:textAppearanceListItem">@style/Text</item>
         <item name="android:textAppearanceSmall">@style/Text.Footnote</item>
         <item name="android:textAppearanceListItemSecondary">@style/Text.Footnote</item>
@@ -39,9 +39,13 @@
 
     <style name="Text" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/inter_medium</item>
-        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
         <item name="android:textColor">@color/woodsmoke</item>
         <item name="android:textDirection">locale</item>
+    </style>
+
+    <style name="Text.Body">
+        <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
     <style name="Text.Primary">
@@ -57,27 +61,27 @@
     </style>
 
     <style name="Text.Footnote">
-        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:textColor">@color/pale_sky</item>
     </style>
 
     <style name="Text.Medium">
-        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
     <style name="Text.CategoryTitle">
         <item name="android:fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
     </style>
 
     <style name="Text.Error">
         <item name="android:fontFamily">@font/inter_regular</item>
-        <item name="android:textSize">@dimen/font_tiny</item>
+        <item name="android:textSize">@dimen/text_size_tiny</item>
     </style>
 
     <style name="Text.Headline">
         <item name="android:fontFamily">@font/inter_bold</item>
-        <item name="android:textSize">@dimen/font_large</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
     </style>
 
     <style name="Text.Button">

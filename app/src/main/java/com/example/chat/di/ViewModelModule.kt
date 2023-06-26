@@ -10,7 +10,7 @@ import com.example.chat.presentation.friendrequest.FriendRequestListViewModel
 import com.example.chat.presentation.home.HomeViewModel
 import com.example.chat.presentation.invitefriend.InviteFriendViewModel
 import com.example.chat.presentation.login.LoginViewModel
-import com.example.chat.presentation.messages.MessageListViewModel
+import com.example.chat.presentation.message.MessageListViewModel
 import com.example.chat.presentation.register.RegisterViewModel
 import com.example.chat.presentation.settings.SettingsViewModel
 import com.example.chat.presentation.settings.email.ChangeEmailViewModel

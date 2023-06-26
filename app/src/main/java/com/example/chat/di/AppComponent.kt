@@ -8,7 +8,7 @@ import com.example.chat.presentation.friendrequest.FriendRequestListFragment
 import com.example.chat.presentation.home.HomeFragment
 import com.example.chat.presentation.invitefriend.InviteFriendFragment
 import com.example.chat.presentation.login.LoginFragment
-import com.example.chat.presentation.messages.MessageListFragment
+import com.example.chat.presentation.message.MessageListFragment
 import com.example.chat.presentation.register.RegisterFragment
 import com.example.chat.presentation.settings.SettingsFragment
 import com.example.chat.presentation.settings.email.ChangeEmailFragment

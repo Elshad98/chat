@@ -154,7 +154,7 @@
 
     <fragment
         android:id="@+id/messageListFragment"
-        android:name="com.example.chat.presentation.messages.MessageListFragment"
+        android:name="com.example.chat.presentation.message.MessageListFragment"
         android:label=""
         tools:layout="@layout/fragment_message_list">
 
