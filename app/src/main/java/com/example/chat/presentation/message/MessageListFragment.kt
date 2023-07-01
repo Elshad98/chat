@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
 import com.example.chat.core.extension.supportActionBar
+import com.example.chat.core.extension.trimmedText
 import com.example.chat.databinding.FragmentMessageListBinding
 import com.example.chat.di.ViewModelFactory
 import com.example.chat.domain.message.Message
@@ -34,7 +35,17 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         setupRecyclerView()
+        setupClickListeners()
         observeViewModel()
+    }
+
+    private fun setupClickListeners() {
+        with(binding) {
+            buttonSendMessage.setOnClickListener {
+                viewModel.sendMessage(args.contactId, inputMessage.trimmedText, "")
+                inputMessage.text?.clear()
+            }
+        }
     }
 
     private fun setupRecyclerView() {

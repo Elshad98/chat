@@ -12,18 +12,16 @@ class MessagePlainTextViewHolder(
 
     override fun bind(message: Message) {
         with(binding) {
-            container.apply {
-                updateLayoutParams<ConstraintLayout.LayoutParams> {
-                    horizontalBias = if (message.fromMe) 1f else 0f
-                }
-                val resId = if (message.fromMe) {
-                    R.drawable.shape_message_background_user
-                } else {
-                    R.drawable.shape_message_background_other
-                }
-                setBackgroundResource(resId)
+            val resId = if (message.fromMe) {
+                R.drawable.shape_message_background_user
+            } else {
+                R.drawable.shape_message_background_other
             }
             textMessage.text = message.message
+            container.setBackgroundResource(resId)
+            container.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                horizontalBias = if (message.fromMe) 1f else 0f
+            }
         }
     }
 }

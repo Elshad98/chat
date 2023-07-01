@@ -6,10 +6,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:padding="@dimen/spacing_small"
+        android:paddingBottom="@dimen/spacing_small"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/message_input_container"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,22 +46,33 @@
             android:scaleType="center"
             android:src="@drawable/ic_photo_camera"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/input_message"
+            app:layout_constraintEnd_toStartOf="@+id/input_layout_message"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/separator" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_message"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:hint="@string/message"
-            android:padding="@dimen/spacing_small"
-            android:textAppearance="@style/Text"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_send_message"
             app:layout_constraintStart_toEndOf="@+id/button_photo"
-            app:layout_constraintTop_toBottomOf="@+id/separator" />
+            app:layout_constraintTop_toBottomOf="@+id/separator">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:hint="@string/message"
+                android:maxLines="5"
+                android:padding="@dimen/spacing_small"
+                android:textAppearance="@style/Text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
             android:id="@+id/button_send_message"
@@ -76,7 +87,7 @@
             android:src="@drawable/ic_send"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/input_message"
+            app:layout_constraintStart_toEndOf="@+id/input_layout_message"
             app:layout_constraintTop_toBottomOf="@+id/separator" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

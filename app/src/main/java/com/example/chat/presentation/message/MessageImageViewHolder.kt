@@ -13,18 +13,16 @@ class MessageImageViewHolder(
 
     override fun bind(message: Message) {
         with(binding) {
-            container.apply {
-                updateLayoutParams<ConstraintLayout.LayoutParams> {
-                    horizontalBias = if (message.fromMe) 1f else 0f
-                }
-                val resId = if (message.fromMe) {
-                    R.drawable.shape_message_background_user
-                } else {
-                    R.drawable.shape_message_background_other
-                }
-                setBackgroundResource(resId)
+            val resId = if (message.fromMe) {
+                R.drawable.shape_message_background_user
+            } else {
+                R.drawable.shape_message_background_other
             }
-            binding.imagePhoto.load(message.message, R.drawable.user_placeholder)
+            container.setBackgroundResource(resId)
+            imagePhoto.load(message.message, R.drawable.user_placeholder)
+            container.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                horizontalBias = if (message.fromMe) 1f else 0f
+            }
         }
     }
 }
