@@ -60,7 +60,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private val cameraPermissionLauncher = registerForActivityResult(RequestMultiplePermissions()) { grantResults ->
         if (grantResults.values.all { it }) {
-            viewModel.changeProfilePhoto()
+            viewModel.createCameraFile()
         } else {
             showCameraPermissionDeniedDialog()
         }
@@ -168,7 +168,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            Failure.FilePickError -> R.string.error_picking_file
+            is Failure.FilePickError -> R.string.error_picking_file
             else -> R.string.error_server
         }.let(::showToast)
     }

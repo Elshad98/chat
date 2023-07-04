@@ -54,8 +54,8 @@ class FriendRequestListFragment : Fragment(R.layout.fragment_friend_request_list
 
     private fun handleFailure(failure: Failure) {
         when (failure) {
-            Failure.AlreadyFriendError -> R.string.error_already_friend
-            Failure.NetworkConnectionError -> R.string.error_network
+            is Failure.AlreadyFriendError -> R.string.error_already_friend
+            is Failure.NetworkConnectionError -> R.string.error_network
             else -> R.string.error_server
         }.let(::showToast)
     }

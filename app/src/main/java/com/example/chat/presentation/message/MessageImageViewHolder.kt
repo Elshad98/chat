@@ -19,7 +19,7 @@ class MessageImageViewHolder(
                 R.drawable.shape_message_background_other
             }
             container.setBackgroundResource(resId)
-            imagePhoto.load(message.message, R.drawable.user_placeholder)
+            imagePhoto.load(message.message, R.drawable.picture_placeholder)
             container.updateLayoutParams<ConstraintLayout.LayoutParams> {
                 horizontalBias = if (message.fromMe) 1f else 0f
             }
