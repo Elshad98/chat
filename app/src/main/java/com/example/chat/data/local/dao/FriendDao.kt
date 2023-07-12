@@ -25,5 +25,5 @@ interface FriendDao {
     fun getFriendRequests(): List<FriendEntity>
 
     @Query("DELETE FROM friends WHERE id = :id")
-    fun removeFriend(id: Long)
+    fun deleteFriend(id: Long)
 }

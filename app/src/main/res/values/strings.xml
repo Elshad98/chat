@@ -88,7 +88,7 @@
     <string name="friend_remove_dialog_title">Unfriend</string>
     <string name="friend_remove_dialog_message">Do you really want to unfriend %s?</string>
     <string name="friend_remove_success">You unfriended %s</string>
-    <string name="friend_option_remove">Remove from friend</string>
+    <string name="friend_option_remove">Remove from friends</string>
     <string name="friend_option_message">Message</string>
     <string name="friend_option_cancel">Cancel</string>
 

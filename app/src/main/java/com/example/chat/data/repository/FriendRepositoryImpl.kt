@@ -88,7 +88,7 @@ class FriendRepositoryImpl @Inject constructor(
                     .cancelFriendRequest(user.id, friend.id, friend.friendsId, user.token)
                     .map { None() }
             }
-            .onSuccess { friendLocalDataSource.removeFriend(friend.id) }
+            .onSuccess { friendLocalDataSource.deleteFriend(friend.id) }
     }
 
     override fun addFriend(email: String): Either<Failure, None> {
@@ -101,14 +101,14 @@ class FriendRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun removeFriend(friend: Friend): Either<Failure, None> {
+    override fun deleteFriend(friend: Friend): Either<Failure, None> {
         return userLocalDataSource
             .getUser()
             .flatMap { user ->
                 friendRemoteDataSource
-                    .removeFriend(user.id, friend.id, friend.friendsId, user.token)
+                    .deleteFriend(user.id, friend.id, friend.friendsId, user.token)
                     .map { None() }
             }
-            .onSuccess { friendLocalDataSource.removeFriend(friend.id) }
+            .onSuccess { friendLocalDataSource.deleteFriend(friend.id) }
     }
 }

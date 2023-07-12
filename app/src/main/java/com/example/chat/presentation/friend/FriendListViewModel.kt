@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.friend.GetFriends
-import com.example.chat.domain.friend.RemoveFriend
+import com.example.chat.domain.friend.DeleteFriend
 import javax.inject.Inject
 
 class FriendListViewModel @Inject constructor(
     private val getFriends: GetFriends,
-    private val removeFriend: RemoveFriend
+    private val deleteFriend: DeleteFriend
 ) : BaseViewModel() {
 
     private val _friendList = MutableLiveData<List<Friend>>()
@@ -23,7 +23,7 @@ class FriendListViewModel @Inject constructor(
 
     override fun onCleared() {
         getFriends.unsubscribe()
-        removeFriend.unsubscribe()
+        deleteFriend.unsubscribe()
     }
 
     fun getFriends() {
@@ -32,8 +32,8 @@ class FriendListViewModel @Inject constructor(
         }
     }
 
-    fun removeFriend(friend: Friend) {
-        removeFriend(friend) { either ->
+    fun deleteFriend(friend: Friend) {
+        deleteFriend(friend) { either ->
             either.fold(::handleFailure) {
                 _removedFriend.value = friend
                 getFriends()

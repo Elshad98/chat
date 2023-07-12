@@ -76,7 +76,7 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
 
     private fun observeViewModel() {
         viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
-        viewModel.removeSuccess.observe(viewLifecycleOwner) {
+        viewModel.deleteSuccess.observe(viewLifecycleOwner) {
             dismiss()
         }
     }
@@ -96,7 +96,7 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
                     .setMessage(getString(R.string.friend_remove_dialog_message, friend.name))
                     .setNegativeButton(R.string.dialog_no, null)
                     .setPositiveButton(R.string.dialog_yes) { _, _ ->
-                        viewModel.removeFriend(friend)
+                        viewModel.deleteFriend(friend)
                     }
                     .show()
             }

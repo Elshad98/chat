@@ -10,7 +10,7 @@ interface FriendRepository {
 
     fun getFriendById(id: Long): Either<Failure, Friend?>
 
-    fun removeFriend(friend: Friend): Either<Failure, None>
+    fun deleteFriend(friend: Friend): Either<Failure, None>
 
     fun cancelFriendRequest(friend: Friend): Either<Failure, None>
 
