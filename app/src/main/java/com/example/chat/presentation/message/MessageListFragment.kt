@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
 import com.example.chat.core.exception.Failure
@@ -133,7 +134,12 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
 
     private fun setupRecyclerView() {
         adapter = MessageAdapter()
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.apply {
+            this.adapter = this@MessageListFragment.adapter
+            layoutManager = LinearLayoutManager(context).apply {
+                stackFromEnd = true
+            }
+        }
     }
 
     private fun setupToolbar() {

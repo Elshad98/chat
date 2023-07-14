@@ -56,7 +56,7 @@
     <string name="forget_password">Forgot your password?</string>
     <string name="login">Login</string>
     <string name="chats">Chats</string>
-    <string name="message">Type a message…</string>
+    <string name="message">Message</string>
     <string name="friends">Friends</string>
     <string name="add_friend">Invite a friend</string>
     <string name="profile">Profile</string>
@@ -91,6 +91,8 @@
     <string name="friend_option_remove">Remove from friends</string>
     <string name="friend_option_message">Message</string>
     <string name="friend_option_cancel">Cancel</string>
+    <string name="friend_status_last_seen">Last seen %s</string>
+    <string name="friend_status_last_seen_just_now">Last seen just now</string>
 
     <string name="register_header">Create an account</string>
 
@@ -161,4 +163,6 @@
     <string name="settings_username_title">Username</string>
     <string name="settings_status_summary">Add a few words about yourself</string>
     <string name="settings_email_summary">Used for restoring access to your account</string>
+
+    <string name="app_notification_channel_id" translatable="false">DefaultChannelID</string>
 </resources>

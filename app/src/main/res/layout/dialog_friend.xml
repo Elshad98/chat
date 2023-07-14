@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
-        android:textAppearance="@style/Text.Primary"
+        android:textAppearance="@style/Text.Headline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_user"
@@ -36,11 +36,25 @@
         android:layout_marginTop="@dimen/spacing_tiny"
         android:layout_marginEnd="@dimen/spacing_normal"
         android:textAlignment="center"
-        android:textAppearance="@style/Text.Footnote"
+        android:textAppearance="@style/Text.Secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_name"
         tools:text="Always learning new stuff" />
+
+    <TextView
+        android:id="@+id/text_last_seen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:textAlignment="center"
+        android:textAppearance="@style/Text.Footnote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_status"
+        tools:text="Last seen 6 days ago" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,7 +67,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_status">
+        app:layout_constraintTop_toBottomOf="@+id/text_last_seen">
 
         <TextView
             android:id="@+id/option_remove"

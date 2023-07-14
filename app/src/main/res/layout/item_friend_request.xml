@@ -15,65 +15,72 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/text_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_small"
-        android:textAppearance="@style/Text.Primary"
-        app:layout_constraintStart_toEndOf="@+id/image_user"
-        app:layout_constraintTop_toTopOf="@+id/image_user"
-        tools:text="Ivan Ivanov" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_small"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:paddingStart="@dimen/spacing_medium"
-        android:paddingTop="@dimen/spacing_tiny"
-        android:paddingEnd="@dimen/spacing_medium"
-        android:paddingBottom="@dimen/spacing_tiny"
-        android:text="@string/item_friend_request_add_button"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/image_user"
-        app:layout_constraintEnd_toStartOf="@+id/button_decline"
-        app:layout_constraintStart_toEndOf="@+id/image_user"
-        app:layout_constraintTop_toBottomOf="@+id/text_name" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_decline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_small"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:backgroundTint="#dbdee1"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:paddingStart="@dimen/spacing_medium"
-        android:paddingTop="@dimen/spacing_tiny"
-        android:paddingEnd="@dimen/spacing_medium"
-        android:paddingBottom="@dimen/spacing_tiny"
-        android:text="@string/item_friend_request_decline_button"
-        android:textAllCaps="false"
-        android:textColor="@color/dark_grey"
-        app:layout_constraintBottom_toBottomOf="@+id/image_user"
-        app:layout_constraintStart_toEndOf="@+id/button_add"
-        app:layout_constraintTop_toBottomOf="@+id/text_name" />
-
-
-    <View
-        android:id="@+id/separator"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:background="@color/black_haze"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button_add"
-        app:layout_constraintTop_toBottomOf="@+id/button_add" />
+        app:layout_constraintStart_toEndOf="@+id/image_user"
+        app:layout_constraintTop_toTopOf="@+id/image_user">
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text.Primary"
+            tools:text="Ivan Ivanov" />
+
+        <TextView
+            android:id="@+id/text_last_seen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Text.Footnote"
+            tools:text="Last seen 6 days ago" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingStart="@dimen/spacing_medium"
+                android:paddingTop="@dimen/spacing_small"
+                android:paddingEnd="@dimen/spacing_medium"
+                android:paddingBottom="@dimen/spacing_small"
+                android:text="@string/item_friend_request_add_button"
+                android:textAllCaps="false" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_decline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:backgroundTint="#dbdee1"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingStart="@dimen/spacing_medium"
+                android:paddingTop="@dimen/spacing_small"
+                android:paddingEnd="@dimen/spacing_medium"
+                android:paddingBottom="@dimen/spacing_small"
+                android:text="@string/item_friend_request_decline_button"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_grey" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@color/black_haze" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

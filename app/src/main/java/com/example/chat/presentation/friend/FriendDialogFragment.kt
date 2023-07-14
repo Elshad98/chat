@@ -16,6 +16,7 @@ import com.example.chat.databinding.DialogFriendBinding
 import com.example.chat.di.ViewModelFactory
 import com.example.chat.domain.friend.Friend
 import com.example.chat.presentation.App
+import com.example.chat.presentation.extension.getLastSeenText
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import javax.inject.Inject
 
@@ -64,6 +65,7 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
 
     private fun bindViews() {
         with(binding) {
+            textLastSeen.text = friend.getLastSeenText(requireContext())
             imageUser.load(friend.image, R.drawable.user_placeholder)
             textName.text = friend.name
             if (friend.status.isEmpty()) {
