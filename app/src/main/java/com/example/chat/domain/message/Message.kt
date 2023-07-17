@@ -1,8 +1,10 @@
 package com.example.chat.domain.message
 
+import java.util.Date
+
 data class Message(
     val id: Long,
-    val date: Long,
+    val date: Date,
     val senderId: Long,
     val fromMe: Boolean,
     val message: String,

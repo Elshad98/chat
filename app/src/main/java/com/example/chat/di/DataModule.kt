@@ -6,16 +6,20 @@ import com.example.chat.BuildConfig
 import com.example.chat.data.local.ChatDatabase
 import com.example.chat.data.local.dao.FriendDao
 import com.example.chat.data.local.dao.MessageDao
+import com.example.chat.data.remote.serializer.DateDeserializer
 import com.example.chat.data.remote.service.FriendService
 import com.example.chat.data.remote.service.MessageService
 import com.example.chat.data.remote.service.UserService
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.Date
+import javax.inject.Singleton
 
 @Module
 class DataModule {
@@ -84,11 +88,19 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideGson(): Gson {
+        return GsonBuilder()
+            .registerTypeAdapter(Date::class.java, DateDeserializer())
+            .create()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 }

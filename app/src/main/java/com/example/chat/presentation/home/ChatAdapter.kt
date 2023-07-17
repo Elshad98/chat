@@ -8,6 +8,7 @@ import com.example.chat.core.extension.load
 import com.example.chat.databinding.ItemChatBinding
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.MessageType
+import com.example.chat.presentation.extension.getDateText
 import com.example.chat.presentation.message.MessageDiffCallback
 
 class ChatAdapter(
@@ -26,24 +27,25 @@ class ChatAdapter(
             root.setOnClickListener {
                 onChatClickListener.invoke(item)
             }
-            textMessage.text = when (item.type) {
+            textLastMessage.text = when (item.type) {
                 MessageType.TEXT -> {
                     if (item.fromMe) {
-                        textMessage.context.getString(R.string.chat_list_you, item.message)
+                        root.context.getString(R.string.chat_list_you, item.message)
                     } else {
                         item.message
                     }
                 }
                 MessageType.IMAGE -> {
-                    val photo = textMessage.context.getString(R.string.chat_list_photo)
+                    val photo = root.context.getString(R.string.chat_list_photo)
                     if (item.fromMe) {
-                        textMessage.context.getString(R.string.chat_list_you, photo)
+                        root.context.getString(R.string.chat_list_you, photo)
                     } else {
                         photo
                     }
                 }
             }
             textName.text = item.contact.name
+            textLastMessageTime.text = item.getDateText(root.context)
             imageUser.load(item.contact.image, R.drawable.user_placeholder)
         }
     }

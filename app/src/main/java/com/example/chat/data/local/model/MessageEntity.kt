@@ -4,12 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.chat.domain.message.Message
+import java.util.Date
 
 @Entity(tableName = "messages")
 data class MessageEntity(
     @PrimaryKey
     val id: Long,
-    val date: Long,
+    val date: Date,
     val type: MessageTypeEntity,
     @ColumnInfo(name = "from_me")
     val fromMe: Boolean,

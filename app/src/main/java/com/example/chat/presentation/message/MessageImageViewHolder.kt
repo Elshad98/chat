@@ -6,6 +6,7 @@ import com.example.chat.R
 import com.example.chat.core.extension.load
 import com.example.chat.databinding.ItemMessageImageBinding
 import com.example.chat.domain.message.Message
+import com.example.chat.presentation.extension.getDateText
 
 class MessageImageViewHolder(
     private val binding: ItemMessageImageBinding
@@ -17,6 +18,10 @@ class MessageImageViewHolder(
                 R.drawable.shape_message_background_user
             } else {
                 R.drawable.shape_message_background_other
+            }
+            textMessageTime.text = message.getDateText(root.context)
+            textMessageTime.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                horizontalBias = if (message.fromMe) 1f else 0f
             }
             container.setBackgroundResource(resId)
             imagePhoto.load(message.message, R.drawable.picture_placeholder)

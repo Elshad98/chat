@@ -2,12 +2,13 @@ package com.example.chat.data.remote.model.dto
 
 import com.example.chat.domain.message.Message
 import com.google.gson.annotations.SerializedName
+import java.util.Date
 
 data class MessageDto(
     @SerializedName("message_id")
     val id: Long,
     @SerializedName("message_date")
-    val date: Long,
+    val date: Date,
     @SerializedName("message_type_id")
     val type: MessageTypeDto,
     @SerializedName("from_me")

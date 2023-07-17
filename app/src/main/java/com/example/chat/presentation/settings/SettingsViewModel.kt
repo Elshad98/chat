@@ -42,7 +42,7 @@ class SettingsViewModel @Inject constructor(
         encodeImageBitmap.unsubscribe()
     }
 
-    init {
+    fun getUser() {
         getUser(None()) { either ->
             either.fold(::handleFailure, _user::setValue)
         }

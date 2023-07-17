@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.chat.data.local.converter.ContactConverter
+import com.example.chat.data.local.converter.DateConverter
 import com.example.chat.data.local.converter.MessageTypeConverter
 import com.example.chat.data.local.dao.FriendDao
 import com.example.chat.data.local.dao.MessageDao
@@ -21,6 +22,7 @@ import com.example.chat.data.local.model.MessageEntity
     exportSchema = false
 )
 @TypeConverters(
+    DateConverter::class,
     ContactConverter::class,
     MessageTypeConverter::class
 )

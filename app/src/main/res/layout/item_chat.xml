@@ -27,7 +27,7 @@
         android:layout_marginBottom="@dimen/spacing_small"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/separator"
-        app:layout_constraintEnd_toStartOf="@+id/text_time"
+        app:layout_constraintEnd_toStartOf="@+id/text_last_message_time"
         app:layout_constraintStart_toEndOf="@+id/image_user"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -41,7 +41,7 @@
             tools:text="Ivan Ivanov" />
 
         <TextView
-            android:id="@+id/text_message"
+            android:id="@+id/text_last_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_tiny"
@@ -53,7 +53,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/text_time"
+        android:id="@+id/text_last_message_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_small"

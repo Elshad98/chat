@@ -92,6 +92,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
         observeViewModel()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.getUser()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_settings, menu)
@@ -176,6 +181,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private fun handleUser(user: User) {
         emailPreference?.summary = user.email
         usernamePreference?.summary = user.name
+        passwordPreference?.summary = "*".repeat(user.password.length)
     }
 
     private fun setupPreferenceClickListeners() {

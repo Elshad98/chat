@@ -63,6 +63,7 @@
     <string name="friend_requests">Incoming invitations</string>
     <string name="logout">Logout</string>
     <string name="status">Status</string>
+    <string name="yesterday">Yesterday</string>
     <string name="current_password">Current password</string>
     <string name="new_password">New password</string>
     <string name="update_account">Complete</string>

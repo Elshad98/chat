@@ -61,6 +61,7 @@
     <string name="friend_requests">Входящие приглашения</string>
     <string name="logout">Выйти</string>
     <string name="status">Статус</string>
+    <string name="yesterday">Вчера</string>
     <string name="current_password">Текущий пароль</string>
     <string name="new_password">Новый пароль</string>
     <string name="update_account">Сохранить</string>
