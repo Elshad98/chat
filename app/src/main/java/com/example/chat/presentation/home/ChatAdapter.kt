@@ -7,8 +7,8 @@ import com.example.chat.core.extension.inflater
 import com.example.chat.core.extension.load
 import com.example.chat.databinding.ItemChatBinding
 import com.example.chat.domain.message.Message
-import com.example.chat.domain.message.MessageType
 import com.example.chat.presentation.extension.getDateText
+import com.example.chat.presentation.extension.messagePreview
 import com.example.chat.presentation.message.MessageDiffCallback
 
 class ChatAdapter(
@@ -23,30 +23,14 @@ class ChatAdapter(
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         with(holder.binding) {
-            val item = getItem(position)
+            val message = getItem(position)
             root.setOnClickListener {
-                onChatClickListener.invoke(item)
+                onChatClickListener.invoke(message)
             }
-            textLastMessage.text = when (item.type) {
-                MessageType.TEXT -> {
-                    if (item.fromMe) {
-                        root.context.getString(R.string.chat_list_you, item.message)
-                    } else {
-                        item.message
-                    }
-                }
-                MessageType.IMAGE -> {
-                    val photo = root.context.getString(R.string.chat_list_photo)
-                    if (item.fromMe) {
-                        root.context.getString(R.string.chat_list_you, photo)
-                    } else {
-                        photo
-                    }
-                }
-            }
-            textName.text = item.contact.name
-            textLastMessageTime.text = item.getDateText(root.context)
-            imageUser.load(item.contact.image, R.drawable.user_placeholder)
+            textName.text = message.contact.name
+            textLastMessage.text = message.messagePreview(root.context)
+            textLastMessageTime.text = message.getDateText(root.context)
+            imageUser.load(message.contact.image, R.drawable.user_placeholder)
         }
     }
 }

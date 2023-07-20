@@ -1,5 +1,9 @@
 package com.example.chat.core.extension
 
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.util.Patterns
 
 private val EMAIL_REGEX = Patterns.EMAIL_ADDRESS.toRegex()
@@ -16,4 +20,10 @@ fun String.isValidPassword(): Boolean {
 
 fun String.isValidEmail(): Boolean {
     return isNotEmpty() && EMAIL_REGEX.matches(this)
+}
+
+fun String.bold(): CharSequence {
+    return SpannableString(this).apply {
+        setSpan(StyleSpan(Typeface.BOLD), 0, length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+    }
 }

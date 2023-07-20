@@ -33,8 +33,8 @@ class MessageAdapter() : ListAdapter<Message, BaseMessageViewHolder>(MessageDiff
     }
 
     override fun onBindViewHolder(holder: BaseMessageViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        val message = getItem(position)
+        holder.bind(message)
     }
 
     override fun getItemViewType(position: Int): Int {
