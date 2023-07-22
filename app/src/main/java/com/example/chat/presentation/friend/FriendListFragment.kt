@@ -34,6 +34,7 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list), FriendDialog
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         setupRecyclerView()
+        setupClickListener()
         observeViewModel()
     }
 
@@ -50,6 +51,12 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list), FriendDialog
         supportActionBar?.run {
             show()
             setDisplayShowTitleEnabled(true)
+        }
+    }
+
+    private fun setupClickListener() {
+        binding.buttonInviteFriend.setOnClickListener {
+            launchInviteFriendFragment()
         }
     }
 
@@ -81,7 +88,7 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list), FriendDialog
                 }
             },
             onMessageClickListener = { friend ->
-                launchMessageListFragment(friend.friendsId, friend.name)
+                launchMessageListFragment(friend.id, friend.name)
             }
         )
         binding.recyclerView.adapter = adapter
@@ -90,5 +97,9 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list), FriendDialog
     private fun launchMessageListFragment(contactId: Long, contactName: String) {
         findNavController()
             .navigate(FriendListFragmentDirections.actionFriendListFragmentToMessageListFragment(contactId, contactName))
+    }
+
+    private fun launchInviteFriendFragment() {
+        findNavController().navigate(R.id.action_friendListFragment_to_inviteFriendFragment)
     }
 }

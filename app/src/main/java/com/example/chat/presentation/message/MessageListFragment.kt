@@ -74,6 +74,11 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
         observeViewModel()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.getMessagesWithContact(args.contactId)
+    }
+
     private fun setupClickListeners() {
         with(binding) {
             buttonSendMessage.setOnClickListener {

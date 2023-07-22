@@ -77,17 +77,17 @@ class MessageListViewModel @Inject constructor(
         }
     }
 
+    fun getMessagesWithContact(contactId: Long) {
+        getMessagesWithContact(GetMessagesWithContact.Params(contactId, true)) { either ->
+            either.fold(::handleFailure) { }
+        }
+    }
+
     private fun sendMessage(receiverId: Long, message: String, image: String) {
         sendMessage(SendMessage.Params(receiverId, message, image)) { either ->
             either.fold(::handleFailure) {
                 getMessagesWithContact(receiverId)
             }
-        }
-    }
-
-    private fun getMessagesWithContact(contactId: Long) {
-        getMessagesWithContact(GetMessagesWithContact.Params(contactId, true)) { either ->
-            either.fold(::handleFailure) { }
         }
     }
 }

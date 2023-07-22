@@ -97,6 +97,10 @@
             android:id="@+id/action_friendListFragment_to_messageListFragment"
             app:destination="@id/messageListFragment" />
 
+        <action
+            android:id="@+id/action_friendListFragment_to_inviteFriendFragment"
+            app:destination="@id/inviteFriendFragment" />
+
     </fragment>
 
     <fragment
