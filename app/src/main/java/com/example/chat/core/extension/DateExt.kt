@@ -3,11 +3,13 @@ package com.example.chat.core.extension
 import java.util.Calendar
 import java.util.Date
 
-val Date.isToday: Boolean
-    get() = isDateIn(this, 0)
+private const val ONE_MINUTE_IN_MILLIS = 60_000
 
-val Date.isYesterday: Boolean
-    get() = isDateIn(this, -1)
+fun Date.isToday(): Boolean = isDateIn(this, 0)
+
+fun Date.isYesterday(): Boolean = isDateIn(this, -1)
+
+fun Date.isInLastMinute(): Boolean = (Date().time - ONE_MINUTE_IN_MILLIS < time)
 
 private fun isDateIn(date: Date, amount: Int = 0): Boolean {
     val now = Calendar.getInstance().apply { add(Calendar.DATE, amount) }

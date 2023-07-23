@@ -2,6 +2,7 @@ package com.example.chat.data.remote.model.dto
 
 import com.example.chat.domain.friend.Friend
 import com.google.gson.annotations.SerializedName
+import java.util.Date
 
 data class FriendDto(
     @SerializedName("user_id")
@@ -13,7 +14,7 @@ data class FriendDto(
     @SerializedName("is_request")
     val isRequest: Int,
     @SerializedName("last_seen")
-    val lastSeen: Long,
+    val lastSeen: Date,
     @SerializedName("friends_id")
     val friendsId: Long
 )

@@ -2,6 +2,7 @@ package com.example.chat.domain.friend
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import java.util.Date
 
 @Parcelize
 data class Friend(
@@ -12,5 +13,5 @@ data class Friend(
     val status: String,
     val image: String,
     val isRequest: Int,
-    val lastSeen: Long
+    val lastSeen: Date
 ) : Parcelable

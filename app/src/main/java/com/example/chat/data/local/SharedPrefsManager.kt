@@ -14,43 +14,43 @@ class SharedPrefsManager @Inject constructor(
 
     companion object {
 
-        private const val PREF_USER_ID = "user_id"
-        private const val PREF_USER_NAME = "user_name"
-        private const val PREF_USER_DATA = "user_data"
-        private const val PREF_USER_EMAIL = "user_email"
-        private const val PREF_USER_IMAGE = "user_image"
-        private const val PREF_USER_TOKEN = "user_token"
-        private const val PREF_USER_STATUS = "user_status"
-        private const val PREF_USER_PASSWORD = "user_password"
+        private const val KEY_USER_ID = "user_id"
+        private const val KEY_USER_NAME = "user_name"
+        private const val KEY_USER_EMAIL = "user_email"
+        private const val KEY_USER_IMAGE = "user_image"
+        private const val KEY_USER_TOKEN = "user_token"
+        private const val KEY_USER_STATUS = "user_status"
+        private const val KEY_USER_PASSWORD = "user_password"
+        private const val KEY_USER_CREATE_AT = "user_create_at"
     }
 
     fun getToken(): Either.Right<String> {
-        return Either.Right(preferences.getString(PREF_USER_TOKEN, "")!!)
+        return Either.Right(preferences.getString(KEY_USER_TOKEN, "")!!)
     }
 
     fun saveToken(token: String): Either.Right<None> {
         preferences.edit {
-            putString(PREF_USER_TOKEN, token)
+            putString(KEY_USER_TOKEN, token)
         }
         return Either.Right(None())
     }
 
     fun saveUser(user: UserEntity): Either.Right<None> {
         preferences.edit {
-            putSafely(PREF_USER_ID, user.id)
-            putSafely(PREF_USER_NAME, user.name)
-            putSafely(PREF_USER_EMAIL, user.email)
-            putSafely(PREF_USER_TOKEN, user.token)
-            putSafely(PREF_USER_IMAGE, user.image)
-            putString(PREF_USER_STATUS, user.status)
-            putSafely(PREF_USER_DATA, user.userData)
-            putSafely(PREF_USER_PASSWORD, user.password)
+            putSafely(KEY_USER_ID, user.id)
+            putSafely(KEY_USER_NAME, user.name)
+            putSafely(KEY_USER_EMAIL, user.email)
+            putSafely(KEY_USER_TOKEN, user.token)
+            putSafely(KEY_USER_IMAGE, user.image)
+            putString(KEY_USER_STATUS, user.status)
+            putSafely(KEY_USER_PASSWORD, user.password)
+            putSafely(KEY_USER_CREATE_AT, user.createdAt)
         }
         return Either.Right(None())
     }
 
     fun getUser(): Either<Failure, UserEntity> {
-        val id = preferences.getLong(PREF_USER_ID, 0)
+        val id = preferences.getLong(KEY_USER_ID, 0)
 
         if (id == 0L) {
             return Either.Left(Failure.NoSavedAccountsError)
@@ -58,13 +58,13 @@ class SharedPrefsManager @Inject constructor(
 
         val user = UserEntity(
             id = id,
-            userData = preferences.getLong(PREF_USER_DATA, 0),
-            name = preferences.getString(PREF_USER_NAME, "")!!,
-            email = preferences.getString(PREF_USER_EMAIL, "")!!,
-            image = preferences.getString(PREF_USER_IMAGE, "")!!,
-            token = preferences.getString(PREF_USER_TOKEN, "")!!,
-            status = preferences.getString(PREF_USER_STATUS, "")!!,
-            password = preferences.getString(PREF_USER_PASSWORD, "")!!
+            name = preferences.getString(KEY_USER_NAME, "")!!,
+            email = preferences.getString(KEY_USER_EMAIL, "")!!,
+            image = preferences.getString(KEY_USER_IMAGE, "")!!,
+            token = preferences.getString(KEY_USER_TOKEN, "")!!,
+            status = preferences.getString(KEY_USER_STATUS, "")!!,
+            password = preferences.getString(KEY_USER_PASSWORD, "")!!,
+            createdAt = preferences.getLong(KEY_USER_CREATE_AT, 0)
         )
         return Either.Right(user)
     }
@@ -77,7 +77,7 @@ class SharedPrefsManager @Inject constructor(
     }
 
     fun containsAnyUser(): Either.Right<Boolean> {
-        val id = preferences.getLong(PREF_USER_ID, 0)
+        val id = preferences.getLong(KEY_USER_ID, 0)
         return Either.Right(id != 0L)
     }
 }

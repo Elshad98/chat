@@ -7,6 +7,6 @@ data class User(
     val token: String,
     val image: String,
     val status: String,
-    val userData: Long,
+    val createdAt: Long,
     val password: String
 )

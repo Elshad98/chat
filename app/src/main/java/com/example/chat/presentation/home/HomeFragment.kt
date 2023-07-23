@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -76,7 +75,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun handleChatList(messages: List<Message>) {
         adapter.submitList(messages)
-        binding.emptyView.isVisible = messages.isEmpty()
     }
 
     private fun handleUser(user: User) {

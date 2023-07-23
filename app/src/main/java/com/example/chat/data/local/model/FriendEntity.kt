@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.chat.domain.friend.Friend
+import java.util.Date
 
 @Entity(tableName = "friends")
 data class FriendEntity(
@@ -14,7 +15,7 @@ data class FriendEntity(
     val image: String,
     val status: String,
     @ColumnInfo(name = "last_seen")
-    val lastSeen: Long,
+    val lastSeen: Date,
     @ColumnInfo(name = "is_request")
     val isRequest: Int,
     @ColumnInfo(name = "friends_id")

@@ -4,8 +4,8 @@ import java.util.Date
 
 data class Message(
     val id: Long,
-    val date: Date,
     val senderId: Long,
+    val createdAt: Date,
     val fromMe: Boolean,
     val message: String,
     val contact: Contact,

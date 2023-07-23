@@ -17,9 +17,9 @@ private val dateFormatterFullDate = SimpleDateFormat(DateFormat.getBestDateTimeP
 
 fun Message.getDateText(context: Context): String {
     return when {
-        date.isToday -> timeFormatter.format(date)
-        date.isYesterday -> context.getString(R.string.yesterday)
-        else -> dateFormatterFullDate.format(date)
+        createdAt.isToday() -> timeFormatter.format(createdAt)
+        createdAt.isYesterday() -> context.getString(R.string.yesterday)
+        else -> dateFormatterFullDate.format(createdAt)
     }
 }
 

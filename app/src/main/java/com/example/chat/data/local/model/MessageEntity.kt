@@ -10,7 +10,7 @@ import java.util.Date
 data class MessageEntity(
     @PrimaryKey
     val id: Long,
-    val date: Date,
+    val createdAt: Date,
     val type: MessageTypeEntity,
     @ColumnInfo(name = "from_me")
     val fromMe: Boolean,
@@ -28,10 +28,10 @@ data class MessageEntity(
 
 fun Message.toEntity() = MessageEntity(
     id = id,
-    date = date,
     fromMe = fromMe,
     message = message,
     senderId = senderId,
+    createdAt = createdAt,
     type = type.toEntity(),
     receiverId = receiverId,
     contact = contact.toEntity(),
@@ -41,10 +41,10 @@ fun Message.toEntity() = MessageEntity(
 
 fun MessageEntity.toDomain() = Message(
     id = id,
-    date = date,
     fromMe = fromMe,
     message = message,
     senderId = senderId,
+    createdAt = createdAt,
     type = type.toDomain(),
     receiverId = receiverId,
     contact = contact.toDomain(),
