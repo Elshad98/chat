@@ -16,8 +16,7 @@ class FriendRequestListViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _friendRequests = MutableLiveData<List<Friend>>()
-    val friendRequests: LiveData<List<Friend>>
-        get() = _friendRequests
+    val friendRequests: LiveData<List<Friend>> = _friendRequests
 
     override fun onCleared() {
         getFriendRequests.unsubscribe()

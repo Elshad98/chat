@@ -15,16 +15,11 @@ class ChangeEmailViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _errorInputEmail = MutableLiveData<Boolean>()
-    val errorInputEmail: LiveData<Boolean>
-        get() = _errorInputEmail
-
     private val _updateSuccess = MutableLiveData<Unit>()
-    val updateSuccess: LiveData<Unit>
-        get() = _updateSuccess
-
     private val _email = MutableLiveData<String>()
-    val email: LiveData<String>
-        get() = _email
+    val errorInputEmail: LiveData<Boolean> = _errorInputEmail
+    val updateSuccess: LiveData<Unit> = _updateSuccess
+    val email: LiveData<String> = _email
 
     init {
         getUser(None()) { either ->

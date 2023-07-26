@@ -7,6 +7,7 @@ import com.example.chat.core.extension.inflater
 import com.example.chat.core.extension.load
 import com.example.chat.databinding.ItemFriendBinding
 import com.example.chat.domain.friend.Friend
+import com.example.chat.presentation.extension.getLastSeenText
 
 class FriendAdapter(
     private val onFriendClickListener: (Friend) -> Unit,
@@ -29,6 +30,7 @@ class FriendAdapter(
                 onMessageClickListener.invoke(friend)
             }
             textName.text = friend.name
+            textLastSeen.text = friend.getLastSeenText(root.context)
             imageUser.load(friend.image, R.drawable.user_placeholder)
         }
     }

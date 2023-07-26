@@ -24,8 +24,7 @@ class MessageListViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _cameraFile = MutableLiveData<Uri>()
-    val cameraFile: LiveData<Uri>
-        get() = _cameraFile
+    val cameraFile: LiveData<Uri> = _cameraFile
 
     override fun onCleared() {
         super.onCleared()

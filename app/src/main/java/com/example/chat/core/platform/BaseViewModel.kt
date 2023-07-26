@@ -8,8 +8,7 @@ import com.example.chat.core.exception.Failure
 abstract class BaseViewModel : ViewModel() {
 
     private val _failure = MutableLiveData<Failure>()
-    val failure: LiveData<Failure>
-        get() = _failure
+    val failure: LiveData<Failure> = _failure
 
     protected fun handleFailure(failure: Failure) {
         _failure.value = failure

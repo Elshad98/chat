@@ -23,16 +23,11 @@ class SettingsViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _user = MutableLiveData<User>()
-    val user: LiveData<User>
-        get() = _user
-
     private val _updateProfileSuccess = MutableLiveData<Unit>()
-    val updateProfileSuccess: LiveData<Unit>
-        get() = _updateProfileSuccess
-
     private val _cameraFile = MutableLiveData<Uri>()
-    val cameraFile: LiveData<Uri>
-        get() = _cameraFile
+    val user: LiveData<User> = _user
+    val updateProfileSuccess: LiveData<Unit> = _updateProfileSuccess
+    val cameraFile: LiveData<Uri> = _cameraFile
 
     override fun onCleared() {
         getUser.unsubscribe()

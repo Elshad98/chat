@@ -19,12 +19,9 @@ class UpdateStatusViewModel @Inject constructor(
     }
 
     private val _status = MutableLiveData<String>()
-    val status: LiveData<String>
-        get() = _status
-
     private val _updateSuccess = MutableLiveData<Unit>()
-    val updateSuccess: LiveData<Unit>
-        get() = _updateSuccess
+    val status: LiveData<String> = _status
+    val updateSuccess: LiveData<Unit> = _updateSuccess
 
     init {
         getUser(None()) { either ->

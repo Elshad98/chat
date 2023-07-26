@@ -11,16 +11,11 @@ class LoginViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _loginSuccess = MutableLiveData<Unit>()
-    val loginSuccess: LiveData<Unit>
-        get() = _loginSuccess
-
     private val _errorInputEmail = MutableLiveData<Boolean>()
-    val errorInputEmail: LiveData<Boolean>
-        get() = _errorInputEmail
-
     private val _errorInputPassword = MutableLiveData<Boolean>()
-    val errorInputPassword: LiveData<Boolean>
-        get() = _errorInputPassword
+    val loginSuccess: LiveData<Unit> = _loginSuccess
+    val errorInputEmail: LiveData<Boolean> = _errorInputEmail
+    val errorInputPassword: LiveData<Boolean> = _errorInputPassword
 
     override fun onCleared() {
         login.unsubscribe()

@@ -89,6 +89,8 @@
             android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_normal"
             android:layout_marginBottom="@dimen/spacing_normal"
+            android:clickable="true"
+            android:focusable="true"
             android:text="@string/forget_password"
             android:textAppearance="@style/Text.Blueberry"
             app:layout_constraintBottom_toTopOf="@id/button_login"

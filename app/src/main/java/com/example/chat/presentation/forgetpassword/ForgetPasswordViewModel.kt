@@ -12,12 +12,9 @@ class ForgetPasswordViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _errorInputEmail = MutableLiveData<Boolean>()
-    val errorInputEmail: LiveData<Boolean>
-        get() = _errorInputEmail
-
     private val _resetSuccess = MutableLiveData<Unit>()
-    val resetSuccess: LiveData<Unit>
-        get() = _resetSuccess
+    val errorInputEmail: LiveData<Boolean> = _errorInputEmail
+    val resetSuccess: LiveData<Unit> = _resetSuccess
 
     override fun onCleared() {
         forgetPassword.unsubscribe()

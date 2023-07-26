@@ -15,16 +15,11 @@ class ChangeUsernameViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _username = MutableLiveData<String>()
-    val username: LiveData<String>
-        get() = _username
-
     private val _updateSuccess = MutableLiveData<Unit>()
-    val updateSuccess: LiveData<Unit>
-        get() = _updateSuccess
-
     private val _errorInputUsername = MutableLiveData<Boolean>()
-    val errorInputUsername: LiveData<Boolean>
-        get() = _errorInputUsername
+    val username: LiveData<String> = _username
+    val updateSuccess: LiveData<Unit> = _updateSuccess
+    val errorInputUsername: LiveData<Boolean> = _errorInputUsername
 
     init {
         getUser(None()) { either ->

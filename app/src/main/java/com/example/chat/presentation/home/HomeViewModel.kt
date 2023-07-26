@@ -21,13 +21,9 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _user = MutableLiveData<User>()
-    val user: LiveData<User>
-        get() = _user
-
     private val _navigateToLogin = MutableLiveData<Unit>()
-    val navigateToLogin: LiveData<Unit>
-        get() = _navigateToLogin
-
+    val user: LiveData<User> = _user
+    val navigateToLogin: LiveData<Unit> = _navigateToLogin
     val chatList = getLiveChats()
 
     override fun onCleared() {

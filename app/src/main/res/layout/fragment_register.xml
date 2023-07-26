@@ -99,6 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_normal"
+            android:clickable="true"
+            android:focusable="true"
             android:text="@string/already_have_account"
             android:textAppearance="@style/Text.Blueberry"
             app:layout_constraintBottom_toTopOf="@+id/button_register"

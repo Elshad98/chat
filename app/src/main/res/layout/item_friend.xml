@@ -16,20 +16,8 @@
         app:layout_constraintEnd_toStartOf="@+id/text_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
         tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/text_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_small"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textAppearance="@style/Text.Primary"
-        app:layout_constraintBottom_toTopOf="@id/separator"
-        app:layout_constraintStart_toEndOf="@+id/image_user"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ivan Ivanov" />
 
     <ImageButton
         android:id="@+id/button_message"
@@ -45,6 +33,33 @@
         app:layout_constraintStart_toEndOf="@+id/text_name"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/Text.Primary"
+        app:layout_constraintBottom_toTopOf="@+id/text_last_seen"
+        app:layout_constraintStart_toEndOf="@+id/image_user"
+        app:layout_constraintTop_toTopOf="@+id/image_user"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Ivan Ivanov" />
+
+    <TextView
+        android:id="@+id/text_last_seen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:textAppearance="@style/Text.Footnote"
+        app:layout_constraintBottom_toTopOf="@+id/separator"
+        app:layout_constraintStart_toEndOf="@+id/image_user"
+        app:layout_constraintTop_toBottomOf="@+id/text_name"
+        tools:text="Last seen 6 days ago" />
+
     <View
         android:id="@+id/separator"
         android:layout_width="0dp"
@@ -52,6 +67,6 @@
         android:background="@color/black_haze"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/text_name" />
+        app:layout_constraintStart_toStartOf="@+id/text_last_seen" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

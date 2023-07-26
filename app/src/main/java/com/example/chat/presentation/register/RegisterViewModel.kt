@@ -15,8 +15,7 @@ class RegisterViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _state = MutableLiveData<State>()
-    val state: LiveData<State>
-        get() = _state
+    val state: LiveData<State> = _state
 
     override fun onCleared() {
         register.unsubscribe()

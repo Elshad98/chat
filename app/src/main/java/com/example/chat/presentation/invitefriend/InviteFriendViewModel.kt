@@ -12,12 +12,9 @@ class InviteFriendViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _errorInputEmail = MutableLiveData<Boolean>()
-    val errorInputEmail: LiveData<Boolean>
-        get() = _errorInputEmail
-
     private val _navigateToHome = MutableLiveData<Unit>()
-    val navigateToHome: LiveData<Unit>
-        get() = _navigateToHome
+    val errorInputEmail: LiveData<Boolean> = _errorInputEmail
+    val navigateToHome: LiveData<Unit> = _navigateToHome
 
     override fun onCleared() {
         addFriend.unsubscribe()
