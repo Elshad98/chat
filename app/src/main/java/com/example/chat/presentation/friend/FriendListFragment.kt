@@ -43,7 +43,7 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list), FriendDialog
         viewModel.getFriends()
     }
 
-    override fun onClick(friend: Friend) {
+    override fun onMessageClick(friend: Friend) {
         launchMessageListFragment(friend.friendsId, friend.name)
     }
 

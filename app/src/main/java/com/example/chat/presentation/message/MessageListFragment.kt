@@ -3,7 +3,10 @@ package com.example.chat.presentation.message
 import android.Manifest
 import android.os.Bundle
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.GetContent
+import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
+import androidx.activity.result.contract.ActivityResultContracts.RequestPermission
+import androidx.activity.result.contract.ActivityResultContracts.TakePicture
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -35,11 +38,11 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
     private val binding by viewBinding(FragmentMessageListBinding::bind)
     private val viewModel: MessageListViewModel by viewModels(factoryProducer = { viewModelFactory })
 
-    private val contentLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+    private val contentLauncher = registerForActivityResult(GetContent()) { uri ->
         viewModel.sendMessage(args.contactId, uri)
     }
 
-    private val readStoragePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+    private val readStoragePermissionLauncher = registerForActivityResult(RequestPermission()) { isGranted ->
         if (isGranted) {
             contentLauncher.launch("image/*")
         } else {
@@ -47,7 +50,7 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
         }
     }
 
-    private val cameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { grantResults ->
+    private val cameraPermissionLauncher = registerForActivityResult(RequestMultiplePermissions()) { grantResults ->
         if (grantResults.values.all { it }) {
             viewModel.createCameraFile()
         } else {
@@ -55,7 +58,7 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
         }
     }
 
-    private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
+    private val takePictureLauncher = registerForActivityResult(TakePicture()) { isSuccess ->
         if (isSuccess) {
             viewModel.sendImage(args.contactId)
         }
@@ -138,7 +141,18 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
     }
 
     private fun setupRecyclerView() {
-        adapter = MessageAdapter()
+        adapter = MessageAdapter(
+            onMessageLongClickListener = { message ->
+                AlertDialog.Builder(requireContext())
+                    .setTitle(requireContext().getString(R.string.delete_message_title))
+                    .setMessage(requireContext().getString(R.string.delete_message_text))
+                    .setPositiveButton(R.string.dialog_yes) { _, _ ->
+                        viewModel.deleteMessage(message.id, args.contactId)
+                    }
+                    .setNegativeButton(R.string.dialog_no, null)
+                    .show()
+            }
+        )
         binding.recyclerView.apply {
             this.adapter = this@MessageListFragment.adapter
             layoutManager = LinearLayoutManager(context).apply {

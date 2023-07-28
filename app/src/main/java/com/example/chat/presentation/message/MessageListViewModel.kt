@@ -8,6 +8,7 @@ import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.media.CreateImageFile
 import com.example.chat.domain.media.EncodeImageBitmap
 import com.example.chat.domain.media.GetPickedImage
+import com.example.chat.domain.message.DeleteMessage
 import com.example.chat.domain.message.GetLiveMessagesWithContact
 import com.example.chat.domain.message.GetMessagesWithContact
 import com.example.chat.domain.message.Message
@@ -16,6 +17,7 @@ import javax.inject.Inject
 
 class MessageListViewModel @Inject constructor(
     private val sendMessage: SendMessage,
+    private val deleteMessage: DeleteMessage,
     private val getPickedImage: GetPickedImage,
     private val createImageFile: CreateImageFile,
     private val encodeImageBitmap: EncodeImageBitmap,
@@ -29,6 +31,7 @@ class MessageListViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         sendMessage.unsubscribe()
+        deleteMessage.unsubscribe()
         getPickedImage.unsubscribe()
         createImageFile.unsubscribe()
         encodeImageBitmap.unsubscribe()
@@ -50,6 +53,12 @@ class MessageListViewModel @Inject constructor(
 
     fun getMessages(contactId: Long): LiveData<List<Message>> {
         return getLiveMessages(contactId)
+    }
+
+    fun deleteMessage(messageId: Long, contactId: Long) {
+        deleteMessage(DeleteMessage.Params(messageId)) { either ->
+            either.fold(::handleFailure) { getMessagesWithContact(contactId) }
+        }
     }
 
     fun sendMessage(receiverId: Long, uri: Uri?) {

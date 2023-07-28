@@ -103,7 +103,7 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
                     .show()
             }
             optionMessage.setOnClickListener {
-                (targetFragment as OnMessageClickListener).onClick(friend)
+                (targetFragment as OnMessageClickListener).onMessageClick(friend)
                 dismiss()
             }
             optionCancel.setOnClickListener {
@@ -114,6 +114,6 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
 
     interface OnMessageClickListener {
 
-        fun onClick(friend: Friend)
+        fun onMessageClick(friend: Friend)
     }
 }

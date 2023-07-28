@@ -8,7 +8,9 @@ import com.example.chat.databinding.ItemMessagePlainTextBinding
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.MessageType
 
-class MessageAdapter() : ListAdapter<Message, BaseMessageViewHolder>(MessageDiffCallback()) {
+class MessageAdapter(
+    private val onMessageLongClickListener: (Message) -> Unit
+) : ListAdapter<Message, BaseMessageViewHolder>(MessageDiffCallback()) {
 
     companion object {
 
@@ -35,6 +37,10 @@ class MessageAdapter() : ListAdapter<Message, BaseMessageViewHolder>(MessageDiff
     override fun onBindViewHolder(holder: BaseMessageViewHolder, position: Int) {
         val message = getItem(position)
         holder.bind(message)
+        holder.itemView.setOnLongClickListener {
+            onMessageLongClickListener.invoke(message)
+            true
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
