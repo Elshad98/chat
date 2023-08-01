@@ -8,7 +8,8 @@ import com.example.chat.domain.message.Message
 import com.example.chat.presentation.extension.getDateText
 
 class MessagePlainTextViewHolder(
-    private val binding: ItemMessagePlainTextBinding
+    private val binding: ItemMessagePlainTextBinding,
+    private val onMessageClickListener: OnMessageClickListener
 ) : BaseMessageViewHolder(binding.root) {
 
     override fun bind(message: Message) {
@@ -26,6 +27,10 @@ class MessagePlainTextViewHolder(
             container.setBackgroundResource(resId)
             container.updateLayoutParams<ConstraintLayout.LayoutParams> {
                 horizontalBias = if (message.fromMe) 1f else 0f
+            }
+            root.setOnLongClickListener {
+                onMessageClickListener.onMessageLongClick(message)
+                true
             }
         }
     }

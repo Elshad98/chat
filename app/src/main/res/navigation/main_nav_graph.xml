@@ -170,6 +170,22 @@
             android:name="contactName"
             app:argType="string" />
 
+        <action
+            android:id="@+id/action_messageListFragment_to_imageViewerFragment"
+            app:destination="@id/imageViewerFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/imageViewerFragment"
+        android:name="com.example.chat.presentation.imageviewer.ImageViewerFragment"
+        android:label=""
+        tools:layout="@layout/fragment_image_viewer">
+
+        <argument
+            android:name="image"
+            app:argType="string" />
+
     </fragment>
 
 </navigation>

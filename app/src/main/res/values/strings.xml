@@ -136,7 +136,7 @@
     <string name="friend_request_cancelled">Friend request canceled</string>
 
     <string name="chat_list_you">You</string>
-    <string name="chat_list_photo">&#128444; Photo</string>
+    <string name="chat_list_photo">&#127748; Photo</string>
 
     <string name="photo">Choose a photo</string>
     <string-array name="photo_picker_items">

@@ -9,7 +9,8 @@ import com.example.chat.domain.message.Message
 import com.example.chat.presentation.extension.getDateText
 
 class MessageImageViewHolder(
-    private val binding: ItemMessageImageBinding
+    private val binding: ItemMessageImageBinding,
+    private val onMessageClickListener: OnMessageClickListener
 ) : BaseMessageViewHolder(binding.root) {
 
     override fun bind(message: Message) {
@@ -27,6 +28,13 @@ class MessageImageViewHolder(
             imagePhoto.load(message.message, R.drawable.picture_placeholder)
             container.updateLayoutParams<ConstraintLayout.LayoutParams> {
                 horizontalBias = if (message.fromMe) 1f else 0f
+            }
+            root.setOnClickListener {
+                onMessageClickListener.onMessageClick(message)
+            }
+            root.setOnLongClickListener {
+                onMessageClickListener.onMessageLongClick(message)
+                true
             }
         }
     }

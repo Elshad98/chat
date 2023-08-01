@@ -9,7 +9,7 @@ import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.MessageType
 
 class MessageAdapter(
-    private val onMessageLongClickListener: (Message) -> Unit
+    private val onMessageClickListener: OnMessageClickListener
 ) : ListAdapter<Message, BaseMessageViewHolder>(MessageDiffCallback()) {
 
     companion object {
@@ -21,14 +21,12 @@ class MessageAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseMessageViewHolder {
         return when (viewType) {
             TYPE_IMAGE -> {
-                ItemMessageImageBinding
-                    .inflate(parent.inflater)
-                    .let(::MessageImageViewHolder)
+                val binding = ItemMessageImageBinding.inflate(parent.inflater)
+                MessageImageViewHolder(binding, onMessageClickListener)
             }
             TYPE_PLAIN_TEXT -> {
-                ItemMessagePlainTextBinding
-                    .inflate(parent.inflater)
-                    .let(::MessagePlainTextViewHolder)
+                val binding = ItemMessagePlainTextBinding.inflate(parent.inflater)
+                MessagePlainTextViewHolder(binding, onMessageClickListener)
             }
             else -> throw IllegalArgumentException("Unhandled view type ($viewType)")
         }
@@ -37,15 +35,11 @@ class MessageAdapter(
     override fun onBindViewHolder(holder: BaseMessageViewHolder, position: Int) {
         val message = getItem(position)
         holder.bind(message)
-        holder.itemView.setOnLongClickListener {
-            onMessageLongClickListener.invoke(message)
-            true
-        }
     }
 
     override fun getItemViewType(position: Int): Int {
-        val item = getItem(position)
-        return when (item.type) {
+        val message = getItem(position)
+        return when (message.type) {
             MessageType.IMAGE -> TYPE_IMAGE
             MessageType.TEXT -> TYPE_PLAIN_TEXT
         }

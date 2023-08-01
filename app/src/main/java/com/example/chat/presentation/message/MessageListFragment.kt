@@ -11,6 +11,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -142,15 +143,15 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
 
     private fun setupRecyclerView() {
         adapter = MessageAdapter(
-            onMessageLongClickListener = { message ->
-                AlertDialog.Builder(requireContext())
-                    .setTitle(requireContext().getString(R.string.delete_message_title))
-                    .setMessage(requireContext().getString(R.string.delete_message_text))
-                    .setPositiveButton(R.string.dialog_yes) { _, _ ->
-                        viewModel.deleteMessage(message.id, args.contactId)
-                    }
-                    .setNegativeButton(R.string.dialog_no, null)
-                    .show()
+            object : OnMessageClickListener {
+
+                override fun onMessageClick(message: Message) {
+                    launchImageViewerFragment(message)
+                }
+
+                override fun onMessageLongClick(message: Message) {
+                    showDeleteMessageDialog(message)
+                }
             }
         )
         binding.recyclerView.apply {
@@ -187,5 +188,21 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
         adapter.submitList(messages) {
             binding.recyclerView.scrollToPosition(messages.lastIndex)
         }
+    }
+
+    private fun showDeleteMessageDialog(message: Message) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(requireContext().getString(R.string.delete_message_title))
+            .setMessage(requireContext().getString(R.string.delete_message_text))
+            .setPositiveButton(R.string.dialog_yes) { _, _ ->
+                viewModel.deleteMessage(message.id, args.contactId)
+            }
+            .setNegativeButton(R.string.dialog_no, null)
+            .show()
+    }
+
+    private fun launchImageViewerFragment(message: Message) {
+        findNavController()
+            .navigate(MessageListFragmentDirections.actionMessageListFragmentToImageViewerFragment(message.message))
     }
 }
