@@ -7,9 +7,10 @@ import com.example.chat.core.extension.isValidEmail
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.user.EditUser
 import com.example.chat.domain.user.GetUser
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class ChangeEmailViewModel @Inject constructor(
+@InjectConstructor
+class ChangeEmailViewModel(
     private val getUser: GetUser,
     private val editUser: EditUser
 ) : BaseViewModel() {

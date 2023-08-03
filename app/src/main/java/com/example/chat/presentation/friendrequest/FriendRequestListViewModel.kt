@@ -7,9 +7,10 @@ import com.example.chat.domain.friend.ApproveFriendRequest
 import com.example.chat.domain.friend.CancelFriendRequest
 import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.friend.GetFriendRequests
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class FriendRequestListViewModel @Inject constructor(
+@InjectConstructor
+class FriendRequestListViewModel(
     private val getFriendRequests: GetFriendRequests,
     private val cancelFriendRequest: CancelFriendRequest,
     private val approveFriendRequest: ApproveFriendRequest

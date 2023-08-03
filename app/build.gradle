@@ -76,8 +76,12 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
 
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation "com.github.stephanenicolas.toothpick:smoothie-lifecycle-viewmodel-ktp:$toothpickVersion"
+    implementation "com.github.stephanenicolas.toothpick:smoothie-lifecycle-ktp:$toothpickVersion"
+    implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:$toothpickVersion"
+    implementation "com.github.stephanenicolas.toothpick:smoothie-androidx:$toothpickVersion"
+    implementation "com.github.stephanenicolas.toothpick:ktp:$toothpickVersion"
+    kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpickVersion"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"

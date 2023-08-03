@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.user.Login
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class LoginViewModel @Inject constructor(
+@InjectConstructor
+class LoginViewModel(
     private val login: Login
 ) : BaseViewModel() {
 

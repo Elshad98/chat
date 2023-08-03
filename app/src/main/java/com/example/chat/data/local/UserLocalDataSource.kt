@@ -4,9 +4,10 @@ import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.data.local.model.UserEntity
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class UserLocalDataSource @Inject constructor(
+@InjectConstructor
+class UserLocalDataSource(
     private val chatDatabase: ChatDatabase,
     private val prefsManager: SharedPrefsManager
 ) {

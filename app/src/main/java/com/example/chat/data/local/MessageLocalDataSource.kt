@@ -3,9 +3,10 @@ package com.example.chat.data.local
 import androidx.lifecycle.LiveData
 import com.example.chat.data.local.dao.MessageDao
 import com.example.chat.data.local.model.MessageEntity
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class MessageLocalDataSource @Inject constructor(
+@InjectConstructor
+class MessageLocalDataSource(
     private val messageDao: MessageDao
 ) {
 

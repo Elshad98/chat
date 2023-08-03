@@ -4,9 +4,10 @@ import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.domain.interactor.UseCase
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class UpdateToken @Inject constructor(
+@InjectConstructor
+class UpdateToken(
     private val userRepository: UserRepository
 ) : UseCase<None, UpdateToken.Params>() {
 

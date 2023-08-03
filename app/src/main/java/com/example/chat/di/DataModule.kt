@@ -2,105 +2,65 @@ package com.example.chat.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.chat.BuildConfig
 import com.example.chat.data.local.ChatDatabase
 import com.example.chat.data.local.dao.FriendDao
 import com.example.chat.data.local.dao.MessageDao
-import com.example.chat.data.remote.serializer.DateDeserializer
+import com.example.chat.data.remote.common.NetworkHandler
+import com.example.chat.data.remote.common.Request
 import com.example.chat.data.remote.service.FriendService
 import com.example.chat.data.remote.service.MessageService
 import com.example.chat.data.remote.service.UserService
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import dagger.Module
-import dagger.Provides
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.Date
-import javax.inject.Singleton
+import toothpick.config.Module
 
-@Module
-class DataModule {
+class DataModule(
+    context: Context
+) : Module() {
 
-    @Provides
-    @Singleton
-    fun provideChatDatabase(context: Context): ChatDatabase {
-        return ChatDatabase.getInstance(context)
-    }
+    init {
+        bind(ChatDatabase::class.java)
+            .toProvider(ChatDatabaseProvider::class.java)
+            .providesSingleton()
 
-    @Provides
-    @Singleton
-    fun provideFriendDao(database: ChatDatabase): FriendDao {
-        return database.friendDao()
-    }
+        bind(FriendDao::class.java)
+            .toProvider(FriendDaoProvider::class.java)
+            .providesSingleton()
 
-    @Provides
-    @Singleton
-    fun provideMessageDao(database: ChatDatabase): MessageDao {
-        return database.messageDao()
-    }
+        bind(MessageDao::class.java)
+            .toProvider(MessageDaoProvider::class.java)
+            .providesSingleton()
 
-    @Provides
-    @Singleton
-    fun provideSharedPreferences(context: Context): SharedPreferences {
-        return context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
-    }
+        bind(Gson::class.java)
+            .toProvider(GsonProvider::class.java)
+            .providesSingleton()
 
-    @Provides
-    @Singleton
-    fun provideUserService(retrofit: Retrofit): UserService {
-        return retrofit.create(UserService::class.java)
-    }
+        bind(OkHttpClient::class.java)
+            .toProvider(OkHttpClientProvider::class.java)
+            .providesSingleton()
 
-    @Provides
-    @Singleton
-    fun provideMessageService(retrofit: Retrofit): MessageService {
-        return retrofit.create(MessageService::class.java)
-    }
+        bind(Retrofit::class.java)
+            .toProvider(RetrofitProvider::class.java)
+            .providesSingleton()
 
-    @Provides
-    @Singleton
-    fun provideFriendService(retrofit: Retrofit): FriendService {
-        return retrofit.create(FriendService::class.java)
-    }
+        bind(UserService::class.java)
+            .toProvider(UserServiceProvider::class.java)
+            .providesSingleton()
 
-    @Provides
-    @Singleton
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().apply {
-            level = if (BuildConfig.DEBUG) {
-                HttpLoggingInterceptor.Level.BODY
-            } else {
-                HttpLoggingInterceptor.Level.NONE
-            }
-        }
-    }
+        bind(MessageService::class.java)
+            .toProvider(MessageServiceProvider::class.java)
+            .providesSingleton()
 
-    @Provides
-    @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .build()
-    }
+        bind(FriendService::class.java)
+            .toProvider(FriendServiceProvider::class.java)
+            .providesSingleton()
 
-    @Provides
-    @Singleton
-    fun provideGson(): Gson {
-        return GsonBuilder()
-            .registerTypeAdapter(Date::class.java, DateDeserializer())
-            .create()
-    }
+        bind(Request::class.java).singleton()
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
+        bind(NetworkHandler::class.java).singleton()
+
+        bind(SharedPreferences::class.java)
+            .toInstance(context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE))
     }
 }

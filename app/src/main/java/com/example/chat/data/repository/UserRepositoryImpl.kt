@@ -14,9 +14,10 @@ import com.example.chat.data.remote.UserRemoteDataSource
 import com.example.chat.data.remote.model.dto.toDomain
 import com.example.chat.domain.user.User
 import com.example.chat.domain.user.UserRepository
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class UserRepositoryImpl @Inject constructor(
+@InjectConstructor
+class UserRepositoryImpl(
     private val userLocalDataSource: UserLocalDataSource,
     private val userRemoteDataSource: UserRemoteDataSource
 ) : UserRepository {

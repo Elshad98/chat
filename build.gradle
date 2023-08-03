@@ -61,7 +61,7 @@ ext {
     junitVersion = '4.13.2'
     coroutinesVersion = '1.6.4'
     viewBindingPropertyDelegate = '1.5.3'
-    daggerVersion = '2.35.1'
+    toothpickVersion = '3.1.0'
     retrofitVersion = '2.9.0'
     gsonVersion = '2.10'
     roomVersion = '2.3.0'

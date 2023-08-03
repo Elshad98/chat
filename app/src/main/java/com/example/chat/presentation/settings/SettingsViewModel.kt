@@ -12,9 +12,10 @@ import com.example.chat.domain.media.GetPickedImage
 import com.example.chat.domain.user.EditUser
 import com.example.chat.domain.user.GetUser
 import com.example.chat.domain.user.User
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class SettingsViewModel @Inject constructor(
+@InjectConstructor
+class SettingsViewModel(
     private val getUser: GetUser,
     private val editUser: EditUser,
     private val getPickedImage: GetPickedImage,

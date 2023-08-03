@@ -1,21 +1,17 @@
 package com.example.chat.presentation.firebase
 
 import com.example.chat.domain.user.UpdateToken
-import com.example.chat.presentation.App
 import com.google.firebase.messaging.FirebaseMessagingService
-import javax.inject.Inject
+import toothpick.ktp.KTP
+import toothpick.ktp.delegate.inject
 
 class FirebaseService : FirebaseMessagingService() {
 
-    @Inject
-    lateinit var updateToken: UpdateToken
-
-    @Inject
-    lateinit var notificationHelper: NotificationHelper
+    private val updateToken by inject<UpdateToken>()
 
     override fun onCreate() {
         super.onCreate()
-        App.appComponent.inject(this)
+        KTP.openRootScope().inject(this)
     }
 
     override fun onNewToken(token: String) {

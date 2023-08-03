@@ -10,9 +10,10 @@ import com.example.chat.domain.user.GetUser
 import com.example.chat.domain.user.Logout
 import com.example.chat.domain.user.UpdateLastSeen
 import com.example.chat.domain.user.User
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class HomeViewModel @Inject constructor(
+@InjectConstructor
+class HomeViewModel(
     getLiveChats: GetLiveChats,
     private val logout: Logout,
     private val getUser: GetUser,

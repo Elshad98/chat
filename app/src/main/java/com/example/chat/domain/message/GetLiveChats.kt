@@ -1,9 +1,10 @@
 package com.example.chat.domain.message
 
 import androidx.lifecycle.LiveData
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class GetLiveChats @Inject constructor(
+@InjectConstructor
+class GetLiveChats(
     private val messageRepository: MessageRepository
 ) {
 

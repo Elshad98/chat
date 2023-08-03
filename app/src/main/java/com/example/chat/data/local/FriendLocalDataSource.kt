@@ -2,9 +2,10 @@ package com.example.chat.data.local
 
 import com.example.chat.data.local.dao.FriendDao
 import com.example.chat.data.local.model.FriendEntity
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class FriendLocalDataSource @Inject constructor(
+@InjectConstructor
+class FriendLocalDataSource(
     private val friendDao: FriendDao
 ) {
 

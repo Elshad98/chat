@@ -2,9 +2,10 @@ package com.example.chat.presentation.firebase
 
 import android.content.Context
 import com.example.chat.core.extension.getNotificationManager
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class NotificationHelper @Inject constructor(context: Context) {
+@InjectConstructor
+class NotificationHelper(context: Context) {
 
     companion object {
 

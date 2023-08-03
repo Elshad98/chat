@@ -8,9 +8,10 @@ import com.example.chat.data.remote.model.response.BaseResponse
 import com.example.chat.data.remote.model.response.FriendRequestsResponse
 import com.example.chat.data.remote.model.response.FriendsResponse
 import com.example.chat.data.remote.service.FriendService
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class FriendRemoteDataSource @Inject constructor(
+@InjectConstructor
+class FriendRemoteDataSource(
     private val request: Request,
     private val service: FriendService
 ) {

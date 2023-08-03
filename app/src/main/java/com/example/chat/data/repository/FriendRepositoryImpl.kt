@@ -17,9 +17,10 @@ import com.example.chat.data.remote.model.dto.FriendDto
 import com.example.chat.data.remote.model.dto.toDomain
 import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.friend.FriendRepository
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class FriendRepositoryImpl @Inject constructor(
+@InjectConstructor
+class FriendRepositoryImpl(
     private val userLocalDataSource: UserLocalDataSource,
     private val friendLocalDataSource: FriendLocalDataSource,
     private val friendRemoteDataSource: FriendRemoteDataSource

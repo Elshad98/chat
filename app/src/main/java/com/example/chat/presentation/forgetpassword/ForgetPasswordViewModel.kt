@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import com.example.chat.core.extension.isValidEmail
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.user.ForgetPassword
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class ForgetPasswordViewModel @Inject constructor(
+@InjectConstructor
+class ForgetPasswordViewModel(
     private val forgetPassword: ForgetPassword
 ) : BaseViewModel() {
 

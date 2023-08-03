@@ -7,9 +7,10 @@ import com.example.chat.data.remote.common.Request
 import com.example.chat.data.remote.model.response.BaseResponse
 import com.example.chat.data.remote.model.response.MessagesResponse
 import com.example.chat.data.remote.service.MessageService
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class MessageRemoteDataSource @Inject constructor(
+@InjectConstructor
+class MessageRemoteDataSource(
     private val request: Request,
     private val service: MessageService
 ) {

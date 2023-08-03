@@ -3,13 +3,12 @@ package com.example.chat.data.remote.common
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.data.remote.model.response.BaseResponse
-import javax.inject.Inject
-import javax.inject.Singleton
 import retrofit2.Call
 import retrofit2.Response
+import toothpick.InjectConstructor
 
-@Singleton
-class Request @Inject constructor(
+@InjectConstructor
+class Request(
     private val networkHandler: NetworkHandler
 ) {
 

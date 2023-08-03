@@ -6,10 +6,11 @@ import android.net.Uri
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.domain.media.MediaRepository
+import toothpick.InjectConstructor
 import java.io.File
-import javax.inject.Inject
 
-class MediaRepositoryImpl @Inject constructor(
+@InjectConstructor
+class MediaRepositoryImpl(
     private val context: Context
 ) : MediaRepository {
 

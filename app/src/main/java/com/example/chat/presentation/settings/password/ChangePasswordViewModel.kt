@@ -8,9 +8,10 @@ import com.example.chat.core.extension.isValidPassword
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.user.EditUser
 import com.example.chat.domain.user.GetUser
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class ChangePasswordViewModel @Inject constructor(
+@InjectConstructor
+class ChangePasswordViewModel(
     private val getUser: GetUser,
     private val editUser: EditUser
 ) : BaseViewModel() {

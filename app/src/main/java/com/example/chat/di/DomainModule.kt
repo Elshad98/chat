@@ -8,26 +8,25 @@ import com.example.chat.domain.friend.FriendRepository
 import com.example.chat.domain.media.MediaRepository
 import com.example.chat.domain.message.MessageRepository
 import com.example.chat.domain.user.UserRepository
-import dagger.Binds
-import dagger.Module
-import javax.inject.Singleton
+import toothpick.config.Module
 
-@Module
-interface DomainModule {
+class DomainModule : Module() {
 
-    @Binds
-    @Singleton
-    fun bindMessageRepository(impl: MessageRepositoryImpl): MessageRepository
+    init {
+        bind(MessageRepository::class.java)
+            .to(MessageRepositoryImpl::class.java)
+            .singleton()
 
-    @Binds
-    @Singleton
-    fun bindFriendRepository(impl: FriendRepositoryImpl): FriendRepository
+        bind(FriendRepository::class.java)
+            .to(FriendRepositoryImpl::class.java)
+            .singleton()
 
-    @Binds
-    @Singleton
-    fun bindMediaRepository(impl: MediaRepositoryImpl): MediaRepository
+        bind(MediaRepository::class.java)
+            .to(MediaRepositoryImpl::class.java)
+            .singleton()
 
-    @Binds
-    @Singleton
-    fun bindUserRepository(impl: UserRepositoryImpl): UserRepository
+        bind(UserRepository::class.java)
+            .to(UserRepositoryImpl::class.java)
+            .singleton()
+    }
 }

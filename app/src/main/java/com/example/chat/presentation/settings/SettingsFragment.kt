@@ -12,7 +12,6 @@ import androidx.activity.result.contract.ActivityResultContracts.RequestPermissi
 import androidx.activity.result.contract.ActivityResultContracts.TakePicture
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -23,10 +22,11 @@ import com.example.chat.core.extension.isPermissionGranted
 import com.example.chat.core.extension.openSystemSettings
 import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
-import com.example.chat.di.ViewModelFactory
 import com.example.chat.domain.user.User
-import com.example.chat.presentation.App
-import javax.inject.Inject
+import com.example.chat.presentation.extension.installVMBinding
+import toothpick.ktp.KTP
+import toothpick.ktp.delegate.inject
+import toothpick.smoothie.viewmodel.closeOnViewModelCleared
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -37,10 +37,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         private const val PREFERENCE_PASSWORD = "password"
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val viewModel: SettingsViewModel by viewModels(factoryProducer = { viewModelFactory })
+    private val viewModel by inject<SettingsViewModel>()
 
     private var emailPreference: Preference? = null
     private var usernamePreference: Preference? = null
@@ -74,7 +71,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.appComponent.inject(this)
+        KTP.openRootScope()
+            .openSubScope(this)
+            .installVMBinding<SettingsViewModel>(this)
+            .closeOnViewModelCleared(this)
+            .inject(this)
         setHasOptionsMenu(true)
     }
 

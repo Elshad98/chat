@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
 import com.example.chat.core.exception.Failure
@@ -13,12 +12,13 @@ import com.example.chat.core.extension.gone
 import com.example.chat.core.extension.load
 import com.example.chat.core.extension.showToast
 import com.example.chat.databinding.DialogFriendBinding
-import com.example.chat.di.ViewModelFactory
 import com.example.chat.domain.friend.Friend
-import com.example.chat.presentation.App
 import com.example.chat.presentation.extension.getLastSeenText
+import com.example.chat.presentation.extension.installVMBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import javax.inject.Inject
+import toothpick.ktp.KTP
+import toothpick.ktp.delegate.inject
+import toothpick.smoothie.viewmodel.closeOnViewModelCleared
 
 class FriendDialogFragment : BottomSheetDialogFragment() {
 
@@ -36,16 +36,17 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
+    private val viewModel by inject<FriendViewModel>()
     private val binding by viewBinding(DialogFriendBinding::bind)
     private val friend by lazy { requireArguments().getParcelable<Friend>(ARG_FRIEND)!! }
-    private val viewModel: FriendViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.appComponent.inject(this)
+        KTP.openRootScope()
+            .openSubScope(this)
+            .installVMBinding<FriendViewModel>(this)
+            .closeOnViewModelCleared(this)
+            .inject(this)
     }
 
     override fun onCreateView(

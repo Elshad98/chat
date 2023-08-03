@@ -5,9 +5,10 @@ import android.net.Uri
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.domain.interactor.UseCase
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class GetPickedImage @Inject constructor(
+@InjectConstructor
+class GetPickedImage(
     private val mediaRepository: MediaRepository
 ) : UseCase<Bitmap, Uri?>() {
 

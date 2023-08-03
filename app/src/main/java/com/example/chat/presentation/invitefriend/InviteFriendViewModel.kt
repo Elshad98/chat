@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import com.example.chat.core.extension.isValidEmail
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.friend.AddFriend
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class InviteFriendViewModel @Inject constructor(
+@InjectConstructor
+class InviteFriendViewModel(
     private val addFriend: AddFriend
 ) : BaseViewModel() {
 

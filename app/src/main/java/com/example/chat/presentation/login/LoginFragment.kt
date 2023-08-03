@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.chat.R
@@ -13,21 +12,23 @@ import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.core.extension.trimmedText
 import com.example.chat.databinding.FragmentLoginBinding
-import com.example.chat.di.ViewModelFactory
-import com.example.chat.presentation.App
-import javax.inject.Inject
+import com.example.chat.presentation.extension.installVMBinding
+import toothpick.ktp.KTP
+import toothpick.ktp.delegate.inject
+import toothpick.smoothie.viewmodel.closeOnViewModelCleared
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
+    private val viewModel by inject<LoginViewModel>()
     private val binding by viewBinding(FragmentLoginBinding::bind)
-    private val viewModel: LoginViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.appComponent.inject(this)
+        KTP.openRootScope()
+            .openSubScope(this)
+            .installVMBinding<LoginViewModel>(this)
+            .closeOnViewModelCleared(this)
+            .inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -10,7 +10,6 @@ import androidx.activity.result.contract.ActivityResultContracts.TakePicture
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,20 +23,18 @@ import com.example.chat.core.extension.showToast
 import com.example.chat.core.extension.supportActionBar
 import com.example.chat.core.extension.trimmedText
 import com.example.chat.databinding.FragmentMessageListBinding
-import com.example.chat.di.ViewModelFactory
 import com.example.chat.domain.message.Message
-import com.example.chat.presentation.App
-import javax.inject.Inject
+import com.example.chat.presentation.extension.installVMBinding
+import toothpick.ktp.KTP
+import toothpick.ktp.delegate.inject
+import toothpick.smoothie.viewmodel.closeOnViewModelCleared
 
 class MessageListFragment : Fragment(R.layout.fragment_message_list) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
     private lateinit var adapter: MessageAdapter
     private val args by navArgs<MessageListFragmentArgs>()
+    private val viewModel by inject<MessageListViewModel>()
     private val binding by viewBinding(FragmentMessageListBinding::bind)
-    private val viewModel: MessageListViewModel by viewModels(factoryProducer = { viewModelFactory })
 
     private val contentLauncher = registerForActivityResult(GetContent()) { uri ->
         viewModel.sendMessage(args.contactId, uri)
@@ -67,7 +64,11 @@ class MessageListFragment : Fragment(R.layout.fragment_message_list) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        App.appComponent.inject(this)
+        KTP.openRootScope()
+            .openSubScope(this)
+            .installVMBinding<MessageListViewModel>(this)
+            .closeOnViewModelCleared(this)
+            .inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

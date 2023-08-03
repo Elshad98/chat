@@ -4,11 +4,10 @@ import android.content.Context
 import android.net.NetworkCapabilities
 import android.os.Build
 import com.example.chat.core.extension.getConnectivityManager
-import javax.inject.Inject
-import javax.inject.Singleton
+import toothpick.InjectConstructor
 
-@Singleton
-class NetworkHandler @Inject constructor(
+@InjectConstructor
+class NetworkHandler(
     private val context: Context
 ) {
 

@@ -13,9 +13,10 @@ import com.example.chat.domain.message.GetLiveMessagesWithContact
 import com.example.chat.domain.message.GetMessagesWithContact
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.SendMessage
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class MessageListViewModel @Inject constructor(
+@InjectConstructor
+class MessageListViewModel(
     private val sendMessage: SendMessage,
     private val deleteMessage: DeleteMessage,
     private val getPickedImage: GetPickedImage,

@@ -6,9 +6,10 @@ import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.data.local.model.UserEntity
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class SharedPrefsManager @Inject constructor(
+@InjectConstructor
+class SharedPrefsManager(
     private val preferences: SharedPreferences
 ) {
 

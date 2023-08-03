@@ -8,9 +8,10 @@ import com.example.chat.core.extension.isValidPassword
 import com.example.chat.core.extension.isValidUsername
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.user.Register
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class RegisterViewModel @Inject constructor(
+@InjectConstructor
+class RegisterViewModel(
     private val register: Register
 ) : BaseViewModel() {
 

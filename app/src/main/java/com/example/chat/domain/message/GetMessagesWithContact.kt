@@ -3,9 +3,10 @@ package com.example.chat.domain.message
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.domain.interactor.UseCase
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class GetMessagesWithContact @Inject constructor(
+@InjectConstructor
+class GetMessagesWithContact(
     private val messageRepository: MessageRepository
 ) : UseCase<List<Message>, GetMessagesWithContact.Params>() {
 

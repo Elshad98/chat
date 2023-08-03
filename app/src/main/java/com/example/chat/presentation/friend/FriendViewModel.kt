@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.friend.DeleteFriend
 import com.example.chat.domain.friend.Friend
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class FriendViewModel @Inject constructor(
+@InjectConstructor
+class FriendViewModel(
     private val deleteFriend: DeleteFriend
 ) : BaseViewModel() {
 

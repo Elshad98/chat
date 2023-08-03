@@ -1,16 +1,13 @@
 package com.example.chat.di
 
 import android.content.Context
-import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import toothpick.config.Module
 
-@Module
 class AppModule(
-    private val context: Context
-) {
+    context: Context
+) : Module() {
 
-    @Provides
-    @Singleton
-    fun provideAppContext(): Context = context
+    init {
+        bind(Context::class.java).toInstance(context)
+    }
 }

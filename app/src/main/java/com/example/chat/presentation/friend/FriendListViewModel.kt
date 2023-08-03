@@ -6,9 +6,10 @@ import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.friend.DeleteFriend
 import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.friend.GetFriends
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class FriendListViewModel @Inject constructor(
+@InjectConstructor
+class FriendListViewModel(
     private val getFriends: GetFriends,
     private val deleteFriend: DeleteFriend
 ) : BaseViewModel() {

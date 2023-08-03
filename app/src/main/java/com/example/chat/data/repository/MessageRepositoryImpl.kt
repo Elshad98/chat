@@ -19,9 +19,10 @@ import com.example.chat.data.remote.model.dto.MessageDto
 import com.example.chat.data.remote.model.dto.toDomain
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.MessageRepository
-import javax.inject.Inject
+import toothpick.InjectConstructor
 
-class MessageRepositoryImpl @Inject constructor(
+@InjectConstructor
+class MessageRepositoryImpl(
     private val userLocalDataSource: UserLocalDataSource,
     private val messageLocalDataSource: MessageLocalDataSource,
     private val messageRemoteDataSource: MessageRemoteDataSource

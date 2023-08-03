@@ -1,25 +1,32 @@
 package com.example.chat.presentation
 
 import android.app.Application
-import com.example.chat.di.AppComponent
+import android.content.Context
 import com.example.chat.di.AppModule
-import com.example.chat.di.DaggerAppComponent
+import com.example.chat.di.DataModule
+import com.example.chat.di.DomainModule
+import toothpick.Scope
+import toothpick.ktp.KTP
 
 class App : Application() {
 
-    companion object {
+    private lateinit var scope: Scope
 
-        lateinit var appComponent: AppComponent
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        openAppScope()
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        initAppComponent()
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        scope.release()
     }
 
-    private fun initAppComponent() {
-        appComponent = DaggerAppComponent.builder()
-            .appModule(AppModule(context = this))
-            .build()
+    private fun openAppScope() {
+        scope = KTP.openScope(this).installModules(
+            AppModule(this),
+            DataModule(this),
+            DomainModule()
+        )
     }
 }
