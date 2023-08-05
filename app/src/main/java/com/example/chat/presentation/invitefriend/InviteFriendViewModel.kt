@@ -2,6 +2,7 @@ package com.example.chat.presentation.invitefriend
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.extension.isValidEmail
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.friend.AddFriend
@@ -17,13 +18,9 @@ class InviteFriendViewModel(
     val errorInputEmail: LiveData<Boolean> = _errorInputEmail
     val navigateToHome: LiveData<Unit> = _navigateToHome
 
-    override fun onCleared() {
-        addFriend.unsubscribe()
-    }
-
     fun addFriend(email: String) {
         if (email.isValidEmail()) {
-            addFriend(AddFriend.Params(email)) { either ->
+            addFriend(AddFriend.Params(email), viewModelScope) { either ->
                 either.fold(::handleFailure) { _navigateToHome.value = Unit }
             }
         } else {

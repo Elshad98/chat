@@ -2,6 +2,7 @@ package com.example.chat.presentation.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.user.Login
 import toothpick.InjectConstructor
@@ -17,14 +18,9 @@ class LoginViewModel(
     val loginSuccess: LiveData<Unit> = _loginSuccess
     val errorInputEmail: LiveData<Boolean> = _errorInputEmail
     val errorInputPassword: LiveData<Boolean> = _errorInputPassword
-
-    override fun onCleared() {
-        login.unsubscribe()
-    }
-
     fun login(email: String, password: String) {
         if (validateInput(email, password)) {
-            login(Login.Params(email, password)) { either ->
+            login(Login.Params(email, password), viewModelScope) { either ->
                 either.fold(::handleFailure) { _loginSuccess.value = Unit }
             }
         }

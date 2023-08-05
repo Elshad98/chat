@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.None
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.media.CreateImageFile
@@ -30,48 +31,40 @@ class SettingsViewModel(
     val updateProfileSuccess: LiveData<Unit> = _updateProfileSuccess
     val cameraFile: LiveData<Uri> = _cameraFile
 
-    override fun onCleared() {
-        getUser.unsubscribe()
-        editUser.unsubscribe()
-        getPickedImage.unsubscribe()
-        createImageFile.unsubscribe()
-        encodeImageBitmap.unsubscribe()
-    }
-
     fun getUser() {
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(::handleFailure, _user::setValue)
         }
     }
 
     fun onImagePicked(uri: Uri?) {
-        getPickedImage(uri) { either ->
+        getPickedImage(GetPickedImage.Params(uri), viewModelScope) { either ->
             either.fold(::handleFailure, ::handleImageBitmap)
         }
     }
 
     fun createCameraFile() {
-        createImageFile(None()) { either ->
+        createImageFile(None(), viewModelScope) { either ->
             either.fold(::handleFailure, _cameraFile::setValue)
         }
     }
 
     fun changeProfilePhoto() {
-        getPickedImage(_cameraFile.value) { either ->
+        getPickedImage(GetPickedImage.Params(_cameraFile.value), viewModelScope) { either ->
             either.fold(::handleFailure, ::handleImageBitmap)
         }
     }
 
     private fun handleImageBitmap(bitmap: Bitmap) {
-        encodeImageBitmap(bitmap) { either ->
+        encodeImageBitmap(EncodeImageBitmap.Params(bitmap), viewModelScope) { either ->
             either.fold(::handleFailure, ::changeProfilePhoto)
         }
     }
 
     private fun changeProfilePhoto(image: String) {
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(::handleFailure) { user ->
-                editUser(user.copy(image = image)) { either ->
+                editUser(EditUser.Params(user.copy(image = image)), viewModelScope) { either ->
                     either.fold(::handleFailure) {
                         _updateProfileSuccess.value = Unit
                     }

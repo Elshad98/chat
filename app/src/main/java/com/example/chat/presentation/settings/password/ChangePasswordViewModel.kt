@@ -2,6 +2,7 @@ package com.example.chat.presentation.settings.password
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.isValidPassword
@@ -19,13 +20,8 @@ class ChangePasswordViewModel(
     private val _state = MutableLiveData<State>()
     val state: LiveData<State> = _state
 
-    override fun onCleared() {
-        getUser.unsubscribe()
-        editUser.unsubscribe()
-    }
-
     fun changePassword(password: String, newPassword: String, confirmPassword: String) {
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(
                 { failure ->
                     _state.value = State.Error(failure)
@@ -39,7 +35,7 @@ class ChangePasswordViewModel(
                     )
 
                     if (invalidFields.isEmpty()) {
-                        editUser(user.copy(password = newPassword)) { either ->
+                        editUser(EditUser.Params(user.copy(password = newPassword)), viewModelScope) { either ->
                             either.fold(
                                 { failure -> _state.value = State.Error(failure) },
                                 { _state.value = State.RedirectToSettings }

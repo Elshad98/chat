@@ -2,6 +2,7 @@ package com.example.chat.presentation.settings.status
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.None
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.user.EditUser
@@ -25,16 +26,11 @@ class UpdateStatusViewModel(
     val updateSuccess: LiveData<Unit> = _updateSuccess
 
     init {
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(::handleFailure) { user ->
                 _status.value = user.status
             }
         }
-    }
-
-    override fun onCleared() {
-        getUser.unsubscribe()
-        editUser.unsubscribe()
     }
 
     fun updateStatus(status: String) {
@@ -42,9 +38,9 @@ class UpdateStatusViewModel(
             return
         }
 
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(::handleFailure) { user ->
-                editUser(user.copy(status = status)) { either ->
+                editUser(EditUser.Params(user.copy(status = status)), viewModelScope) { either ->
                     either.fold(::handleFailure) {
                         _updateSuccess.value = Unit
                     }

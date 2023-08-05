@@ -2,6 +2,7 @@ package com.example.chat.presentation.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.isValidEmail
 import com.example.chat.core.extension.isValidPassword
@@ -18,15 +19,11 @@ class RegisterViewModel(
     private val _state = MutableLiveData<State>()
     val state: LiveData<State> = _state
 
-    override fun onCleared() {
-        register.unsubscribe()
-    }
-
     fun register(username: String, email: String, password: String) {
         val invalidFields = getInvalidFields(username, email, password)
 
         if (invalidFields.isEmpty()) {
-            register(Register.Params(email, username, password)) { either ->
+            register(Register.Params(email, username, password), viewModelScope) { either ->
                 either.fold(
                     { failure -> _state.value = State.Error(failure) },
                     { _state.value = State.RedirectToHome }

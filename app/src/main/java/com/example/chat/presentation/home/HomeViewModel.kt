@@ -2,6 +2,7 @@ package com.example.chat.presentation.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.None
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.message.GetChats
@@ -27,33 +28,26 @@ class HomeViewModel(
     val navigateToLogin: LiveData<Unit> = _navigateToLogin
     val chatList = getLiveChats()
 
-    override fun onCleared() {
-        logout.unsubscribe()
-        getUser.unsubscribe()
-        getChats.unsubscribe()
-        updateLastSeen.unsubscribe()
-    }
-
     fun getChats() {
-        getChats(GetChats.Params(true)) { either ->
+        getChats(GetChats.Params(true), viewModelScope) { either ->
             either.fold(::handleFailure) { }
         }
     }
 
     fun logout() {
-        logout(None()) { either ->
+        logout(None(), viewModelScope) { either ->
             either.fold(::handleFailure) { _navigateToLogin.value = Unit }
         }
     }
 
     fun getUser() {
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(::handleFailure, _user::setValue)
         }
     }
 
     fun updateLastSeen() {
-        updateLastSeen(None()) { either ->
+        updateLastSeen(None(), viewModelScope) { either ->
             either.fold(::handleFailure) {}
         }
     }

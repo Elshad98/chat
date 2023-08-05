@@ -2,6 +2,7 @@ package com.example.chat.presentation.friendrequest
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.friend.ApproveFriendRequest
 import com.example.chat.domain.friend.CancelFriendRequest
@@ -19,26 +20,20 @@ class FriendRequestListViewModel(
     private val _friendRequests = MutableLiveData<List<Friend>>()
     val friendRequests: LiveData<List<Friend>> = _friendRequests
 
-    override fun onCleared() {
-        getFriendRequests.unsubscribe()
-        cancelFriendRequest.unsubscribe()
-        approveFriendRequest.unsubscribe()
-    }
-
     fun approveFriendRequest(friend: Friend) {
-        approveFriendRequest(friend) { either ->
+        approveFriendRequest(ApproveFriendRequest.Params(friend), viewModelScope) { either ->
             either.fold(::handleFailure) { getFriendRequests() }
         }
     }
 
     fun cancelFriendRequest(friend: Friend) {
-        cancelFriendRequest(friend) { either ->
+        cancelFriendRequest(CancelFriendRequest.Params(friend), viewModelScope) { either ->
             either.fold(::handleFailure) { getFriendRequests() }
         }
     }
 
     fun getFriendRequests(needFetch: Boolean = false) {
-        getFriendRequests(needFetch) { either ->
+        getFriendRequests(GetFriendRequests.Params(needFetch), viewModelScope) { either ->
             either.fold(::handleFailure, _friendRequests::setValue)
         }
     }

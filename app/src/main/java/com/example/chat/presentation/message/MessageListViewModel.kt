@@ -3,6 +3,7 @@ package com.example.chat.presentation.message
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.None
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.media.CreateImageFile
@@ -29,16 +30,6 @@ class MessageListViewModel(
     private val _cameraFile = MutableLiveData<Uri>()
     val cameraFile: LiveData<Uri> = _cameraFile
 
-    override fun onCleared() {
-        super.onCleared()
-        sendMessage.unsubscribe()
-        deleteMessage.unsubscribe()
-        getPickedImage.unsubscribe()
-        createImageFile.unsubscribe()
-        encodeImageBitmap.unsubscribe()
-        getMessagesWithContact.unsubscribe()
-    }
-
     fun sendMessage(receiverId: Long, message: String) {
         if (message.isEmpty()) {
             return
@@ -47,7 +38,7 @@ class MessageListViewModel(
     }
 
     fun createCameraFile() {
-        createImageFile(None()) { either ->
+        createImageFile(None(), viewModelScope) { either ->
             either.fold(::handleFailure, _cameraFile::setValue)
         }
     }
@@ -57,15 +48,15 @@ class MessageListViewModel(
     }
 
     fun deleteMessage(messageId: Long, contactId: Long) {
-        deleteMessage(DeleteMessage.Params(messageId)) { either ->
+        deleteMessage(DeleteMessage.Params(messageId), viewModelScope) { either ->
             either.fold(::handleFailure) { getMessagesWithContact(contactId) }
         }
     }
 
     fun sendMessage(receiverId: Long, uri: Uri?) {
-        getPickedImage(uri) { either ->
+        getPickedImage(GetPickedImage.Params(uri), viewModelScope) { either ->
             either.fold(::handleFailure) { bitmap ->
-                encodeImageBitmap(bitmap) { either ->
+                encodeImageBitmap(EncodeImageBitmap.Params(bitmap), viewModelScope) { either ->
                     either.fold(::handleFailure) { image ->
                         sendMessage(receiverId, "", image)
                     }
@@ -75,9 +66,9 @@ class MessageListViewModel(
     }
 
     fun sendImage(receiverId: Long) {
-        getPickedImage(_cameraFile.value) { either ->
+        getPickedImage(GetPickedImage.Params(_cameraFile.value), viewModelScope) { either ->
             either.fold(::handleFailure) { bitmap ->
-                encodeImageBitmap(bitmap) { either ->
+                encodeImageBitmap(EncodeImageBitmap.Params(bitmap), viewModelScope) { either ->
                     either.fold(::handleFailure) { image ->
                         sendMessage(receiverId, "", image)
                     }
@@ -87,13 +78,13 @@ class MessageListViewModel(
     }
 
     fun getMessagesWithContact(contactId: Long) {
-        getMessagesWithContact(GetMessagesWithContact.Params(contactId, true)) { either ->
+        getMessagesWithContact(GetMessagesWithContact.Params(contactId, true), viewModelScope) { either ->
             either.fold(::handleFailure) { }
         }
     }
 
     private fun sendMessage(receiverId: Long, message: String, image: String) {
-        sendMessage(SendMessage.Params(receiverId, message, image)) { either ->
+        sendMessage(SendMessage.Params(receiverId, message, image), viewModelScope) { either ->
             either.fold(::handleFailure) {
                 getMessagesWithContact(receiverId)
             }

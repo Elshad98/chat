@@ -2,6 +2,7 @@ package com.example.chat.presentation.settings.username
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.None
 import com.example.chat.core.extension.isValidUsername
 import com.example.chat.core.platform.BaseViewModel
@@ -23,16 +24,11 @@ class ChangeUsernameViewModel(
     val errorInputUsername: LiveData<Boolean> = _errorInputUsername
 
     init {
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(::handleFailure) { user ->
                 _username.value = user.name
             }
         }
-    }
-
-    override fun onCleared() {
-        getUser.unsubscribe()
-        editUser.unsubscribe()
     }
 
     fun changeUsername(username: String) {
@@ -41,9 +37,9 @@ class ChangeUsernameViewModel(
             return
         }
 
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(::handleFailure) { user ->
-                editUser(user.copy(name = username)) { either ->
+                editUser(EditUser.Params(user.copy(name = username)), viewModelScope) { either ->
                     either.fold(::handleFailure) {
                         _updateSuccess.value = Unit
                     }

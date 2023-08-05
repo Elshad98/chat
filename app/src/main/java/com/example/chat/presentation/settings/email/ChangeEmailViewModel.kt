@@ -2,6 +2,7 @@ package com.example.chat.presentation.settings.email
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.chat.core.None
 import com.example.chat.core.extension.isValidEmail
 import com.example.chat.core.platform.BaseViewModel
@@ -23,16 +24,11 @@ class ChangeEmailViewModel(
     val email: LiveData<String> = _email
 
     init {
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(::handleFailure) { user ->
                 _email.value = user.email
             }
         }
-    }
-
-    override fun onCleared() {
-        getUser.unsubscribe()
-        editUser.unsubscribe()
     }
 
     fun changeEmail(email: String) {
@@ -41,9 +37,9 @@ class ChangeEmailViewModel(
             return
         }
 
-        getUser(None()) { either ->
+        getUser(None(), viewModelScope) { either ->
             either.fold(::handleFailure) { user ->
-                editUser(user.copy(email = email)) { either ->
+                editUser(EditUser.Params(user.copy(email = email)), viewModelScope) { either ->
                     either.fold(::handleFailure) {
                         _updateSuccess.value = Unit
                     }
