@@ -19,7 +19,7 @@
             android:id="@+id/input_username"
             style="@style/EditTextStyle"
             android:hint="@string/username"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>

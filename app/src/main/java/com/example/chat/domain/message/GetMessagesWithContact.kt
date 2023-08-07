@@ -11,11 +11,10 @@ class GetMessagesWithContact(
 ) : UseCase<List<Message>, GetMessagesWithContact.Params>() {
 
     override suspend fun run(params: Params): Either<Failure, List<Message>> {
-        return messageRepository.getMessagesWithContact(params.contactId, params.needFetch)
+        return messageRepository.getMessagesWithContact(params.contactId)
     }
 
     data class Params(
-        val contactId: Long,
-        val needFetch: Boolean
+        val contactId: Long
     )
 }

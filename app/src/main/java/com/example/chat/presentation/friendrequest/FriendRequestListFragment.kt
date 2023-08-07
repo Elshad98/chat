@@ -38,7 +38,7 @@ class FriendRequestListFragment : Fragment(R.layout.fragment_friend_request_list
 
     override fun onStart() {
         super.onStart()
-        viewModel.getFriendRequests(true)
+        viewModel.getFriendRequests()
     }
 
     private fun setupToolbar() {

@@ -21,7 +21,7 @@
             android:id="@+id/input_status"
             style="@style/EditTextStyle"
             android:hint="@string/status"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>

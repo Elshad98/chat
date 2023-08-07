@@ -3,6 +3,7 @@ package com.example.chat.presentation.friend
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.chat.core.None
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.friend.DeleteFriend
 import com.example.chat.domain.friend.Friend
@@ -21,7 +22,7 @@ class FriendListViewModel(
     val removedFriend: LiveData<Friend> = _removedFriend
 
     fun getFriends() {
-        getFriends(GetFriends.Params(true), viewModelScope) { either ->
+        getFriends(None(), viewModelScope) { either ->
             either.fold(::handleFailure, _friendList::setValue)
         }
     }

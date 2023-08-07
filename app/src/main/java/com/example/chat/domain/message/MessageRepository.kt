@@ -9,13 +9,13 @@ interface MessageRepository {
 
     fun getLiveChats(): LiveData<List<Message>>
 
-    fun deleteMessageByUser(messageId: Long): Either<Failure, None>
+    fun getChats(): Either<Failure, List<Message>>
 
-    fun getChats(needFetch: Boolean): Either<Failure, List<Message>>
+    fun deleteMessageByUser(messageId: Long): Either<Failure, None>
 
     fun getLiveMessagesWithContact(contactId: Long): LiveData<List<Message>>
 
-    fun sendMessage(receiverId: Long, message: String, image: String): Either<Failure, None>
+    fun getMessagesWithContact(contactId: Long): Either<Failure, List<Message>>
 
-    fun getMessagesWithContact(contactId: Long, needFetch: Boolean): Either<Failure, List<Message>>
+    fun sendMessage(receiverId: Long, message: String, image: String): Either<Failure, None>
 }

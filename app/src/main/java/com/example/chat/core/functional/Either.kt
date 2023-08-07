@@ -13,20 +13,14 @@ sealed class Either<out LeftT, out RightT> {
      */
     data class Left<out LeftT>(
         val value: LeftT
-    ) : Either<LeftT, Nothing>() {
-
-        override fun toString(): String = "Either.Left($value)"
-    }
+    ) : Either<LeftT, Nothing>()
 
     /**
      * The right side of the disjoint union, as opposed to the [Left] side.
      */
     data class Right<out RightT>(
         val value: RightT
-    ) : Either<Nothing, RightT>() {
-
-        override fun toString(): String = "Either.Right($value)"
-    }
+    ) : Either<Nothing, RightT>()
 
     /**
      * Returns `true` if this is a [Right], `false` otherwise.
@@ -60,7 +54,9 @@ sealed class Either<out LeftT, out RightT> {
  * Map, or transform, the right value [RightT] of this [Either] to a new value [T].
  */
 inline fun <Left, RightT, T> Either<Left, RightT>.map(mapper: (RightT) -> T): Either<Left, T> {
-    return flatMap { Either.Right(mapper(it)) }
+    return flatMap {
+        Either.Right(mapper(it))
+    }
 }
 
 /**
@@ -70,7 +66,11 @@ inline fun <Left, RightT, T> Either<Left, RightT>.map(mapper: (RightT) -> T): Ei
 inline fun <LeftT, RightT> Either<LeftT, RightT>.onFailure(
     action: (LeftT) -> Unit
 ): Either<LeftT, RightT> {
-    return apply { if (this is Either.Left) action(value) }
+    return apply {
+        if (this is Either.Left) {
+            action(value)
+        }
+    }
 }
 
 /**
@@ -80,7 +80,11 @@ inline fun <LeftT, RightT> Either<LeftT, RightT>.onFailure(
 inline fun <LeftT, RightT> Either<LeftT, RightT>.onSuccess(
     action: (RightT) -> Unit
 ): Either<LeftT, RightT> {
-    return apply { if (this is Either.Right) action(value) }
+    return apply {
+        if (this is Either.Right) {
+            action(value)
+        }
+    }
 }
 
 /**

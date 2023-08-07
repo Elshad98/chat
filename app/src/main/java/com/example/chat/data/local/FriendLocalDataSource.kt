@@ -24,12 +24,4 @@ class FriendLocalDataSource(
     fun getFriends(): List<FriendEntity> {
         return friendDao.getFriends()
     }
-
-    fun getFriendById(id: Long): FriendEntity? {
-        return friendDao.getFriend(id)
-    }
-
-    fun getFriendRequests(): List<FriendEntity> {
-        return friendDao.getFriendRequests()
-    }
 }

@@ -22,17 +22,11 @@ class HomeViewModel(
     private val updateLastSeen: UpdateLastSeen
 ) : BaseViewModel() {
 
-    private val _user = MutableLiveData<User>()
     private val _navigateToLogin = MutableLiveData<Unit>()
-    val user: LiveData<User> = _user
+    private val _user = MutableLiveData<User>()
     val navigateToLogin: LiveData<Unit> = _navigateToLogin
+    val user: LiveData<User> = _user
     val chatList = getLiveChats()
-
-    fun getChats() {
-        getChats(GetChats.Params(true), viewModelScope) { either ->
-            either.fold(::handleFailure) { }
-        }
-    }
 
     fun logout() {
         logout(None(), viewModelScope) { either ->
@@ -46,9 +40,15 @@ class HomeViewModel(
         }
     }
 
+    fun getChats() {
+        getChats(None(), viewModelScope) { either ->
+            either.fold(::handleFailure) { }
+        }
+    }
+
     fun updateLastSeen() {
         updateLastSeen(None(), viewModelScope) { either ->
-            either.fold(::handleFailure) {}
+            either.fold(::handleFailure) { }
         }
     }
 }

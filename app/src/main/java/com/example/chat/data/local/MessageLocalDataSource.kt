@@ -10,10 +10,6 @@ class MessageLocalDataSource(
     private val messageDao: MessageDao
 ) {
 
-    fun getChats(): List<MessageEntity> {
-        return messageDao.getChats()
-    }
-
     fun deleteMessageByUser(messageId: Long) {
         messageDao.deleteMessageByUser(messageId)
     }

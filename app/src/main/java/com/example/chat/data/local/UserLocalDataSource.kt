@@ -16,8 +16,6 @@ class UserLocalDataSource(
 
     fun getUser(): Either<Failure, UserEntity> = prefsManager.getUser()
 
-    fun checkAuth(): Either<Failure, Boolean> = prefsManager.containsAnyUser()
-
     fun saveToken(token: String): Either<Failure, None> = prefsManager.saveToken(token)
 
     fun saveUser(user: UserEntity): Either<Failure, None> = prefsManager.saveUser(user)

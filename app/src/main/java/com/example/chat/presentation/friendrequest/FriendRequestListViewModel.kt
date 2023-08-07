@@ -3,6 +3,7 @@ package com.example.chat.presentation.friendrequest
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.chat.core.None
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.friend.ApproveFriendRequest
 import com.example.chat.domain.friend.CancelFriendRequest
@@ -32,8 +33,8 @@ class FriendRequestListViewModel(
         }
     }
 
-    fun getFriendRequests(needFetch: Boolean = false) {
-        getFriendRequests(GetFriendRequests.Params(needFetch), viewModelScope) { either ->
+    fun getFriendRequests() {
+        getFriendRequests(None(), viewModelScope) { either ->
             either.fold(::handleFailure, _friendRequests::setValue)
         }
     }

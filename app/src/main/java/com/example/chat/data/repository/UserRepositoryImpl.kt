@@ -26,9 +26,10 @@ class UserRepositoryImpl(
         return userLocalDataSource
             .getToken()
             .flatMap { token ->
-                userRemoteDataSource
-                    .login(email, password, token)
-                    .map { response -> response.user.toDomain() }
+                userRemoteDataSource.login(email, password, token)
+            }
+            .map { response ->
+                response.user.toDomain()
             }
             .onSuccess { user ->
                 userLocalDataSource.saveUser(user.copy(password = password).toEntity())
@@ -39,17 +40,14 @@ class UserRepositoryImpl(
         return userLocalDataSource.logout()
     }
 
-    override fun checkAuth(): Either<Failure, Boolean> {
-        return userLocalDataSource.checkAuth()
-    }
-
     override fun register(email: String, name: String, password: String): Either<Failure, User> {
         return userLocalDataSource
             .getToken()
             .flatMap { token ->
-                userRemoteDataSource
-                    .register(email, name, password, token, userDate = System.currentTimeMillis())
-                    .map { response -> response.user.toDomain() }
+                userRemoteDataSource.register(email, name, password, token, System.currentTimeMillis())
+            }
+            .map { response ->
+                response.user.toDomain()
             }
             .onSuccess { user ->
                 userLocalDataSource.saveUser(user.copy(password = password).toEntity())
@@ -73,20 +71,18 @@ class UserRepositoryImpl(
         return userLocalDataSource
             .getUser()
             .flatMap { user ->
-                userRemoteDataSource
-                    .updateToken(user.id, token, user.token)
-                    .map { None() }
+                userRemoteDataSource.updateToken(user.id, token, user.token)
             }
+            .map { None() }
     }
 
     override fun updateUserLastSeen(): Either<Failure, None> {
         return userLocalDataSource
             .getUser()
             .flatMap { user ->
-                userRemoteDataSource
-                    .updateUserLastSeen(user.id, user.token, lastSeen = System.currentTimeMillis())
-                    .map { None() }
+                userRemoteDataSource.updateUserLastSeen(user.id, user.token, System.currentTimeMillis())
             }
+            .map { None() }
     }
 
     override fun editUser(user: User): Either<Failure, User> {
@@ -94,17 +90,13 @@ class UserRepositoryImpl(
             .getUser()
             .flatMap {
                 userRemoteDataSource
-                    .editUser(
-                        user.id,
-                        user.email,
-                        user.name,
-                        user.password,
-                        user.status,
-                        it.token,
-                        user.image
-                    )
-                    .map { response -> response.user.toDomain() }
+                    .editUser(user.id, user.email, user.name, user.password, user.status, it.token, user.image)
             }
-            .onSuccess { userLocalDataSource.saveUser(user.copy(image = it.image).toEntity()) }
+            .map { response ->
+                response.user.toDomain()
+            }
+            .onSuccess {
+                userLocalDataSource.saveUser(user.copy(image = it.image).toEntity())
+            }
     }
 }

@@ -5,7 +5,6 @@ import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.map
 import com.example.chat.core.functional.Either
-import com.example.chat.core.functional.Either.Right
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
 import com.example.chat.core.functional.onSuccess
@@ -28,57 +27,39 @@ class MessageRepositoryImpl(
     private val messageRemoteDataSource: MessageRemoteDataSource
 ) : MessageRepository {
 
-    override fun getChats(needFetch: Boolean): Either<Failure, List<Message>> {
+    override fun getChats(): Either<Failure, List<Message>> {
         return userLocalDataSource
             .getUser()
             .flatMap { user ->
-                if (needFetch) {
-                    messageRemoteDataSource
-                        .getChats(user.id, user.token)
-                        .map { response -> response.messages.map(MessageDto::toDomain) }
-                        .onSuccess { messages ->
-                            messages
-                                .map(Message::toEntity)
-                                .let(messageLocalDataSource::saveMessages)
-                        }
-                } else {
-                    messageLocalDataSource
-                        .getChats()
-                        .map(MessageEntity::toDomain)
-                        .let(::Right)
-                }
+                messageRemoteDataSource.getChats(user.id, user.token)
             }
-            .map { messages -> messages.distinctBy { it.contact.id } }
+            .map { response ->
+                response.messages.map(MessageDto::toDomain)
+            }
+            .onSuccess { messages ->
+                messageLocalDataSource.saveMessages(messages.map(Message::toEntity))
+            }
     }
 
     override fun getLiveMessagesWithContact(contactId: Long): LiveData<List<Message>> {
         return messageLocalDataSource
             .getLiveMessagesWithContact(contactId)
-            .map { messages -> messages.map(MessageEntity::toDomain) }
+            .map { messages ->
+                messages.map(MessageEntity::toDomain)
+            }
     }
 
-    override fun getMessagesWithContact(
-        contactId: Long,
-        needFetch: Boolean
-    ): Either<Failure, List<Message>> {
+    override fun getMessagesWithContact(contactId: Long): Either<Failure, List<Message>> {
         return userLocalDataSource
             .getUser()
             .flatMap { user ->
-                if (needFetch) {
-                    messageRemoteDataSource
-                        .getMessagesWithContact(contactId, user.id, user.token)
-                        .map { response -> response.messages.map(MessageDto::toDomain) }
-                        .onSuccess { messages ->
-                            messages
-                                .map(Message::toEntity)
-                                .let(messageLocalDataSource::saveMessages)
-                        }
-                } else {
-                    messageLocalDataSource
-                        .getMessagesWithContact(contactId)
-                        .map(MessageEntity::toDomain)
-                        .let(::Right)
-                }
+                messageRemoteDataSource.getMessagesWithContact(contactId, user.id, user.token)
+            }
+            .map { response ->
+                response.messages.map(MessageDto::toDomain)
+            }
+            .onSuccess { messages ->
+                messageLocalDataSource.saveMessages(messages.map(Message::toEntity))
             }
     }
 
@@ -91,16 +72,9 @@ class MessageRepositoryImpl(
             .getUser()
             .flatMap { user ->
                 messageRemoteDataSource
-                    .sendMessage(
-                        user.id,
-                        receiverId,
-                        user.token,
-                        message,
-                        image,
-                        messageDate = System.currentTimeMillis()
-                    )
-                    .map { None() }
+                    .sendMessage(user.id, receiverId, user.token, message, image, System.currentTimeMillis())
             }
+            .map { None() }
     }
 
     override fun getLiveChats(): LiveData<List<Message>> {
@@ -117,10 +91,11 @@ class MessageRepositoryImpl(
         return userLocalDataSource
             .getUser()
             .flatMap { user ->
-                messageRemoteDataSource
-                    .deleteMessageByUser(user.id, messageId, user.token)
-                    .map { None() }
+                messageRemoteDataSource.deleteMessageByUser(user.id, messageId, user.token)
             }
-            .onSuccess { messageLocalDataSource.deleteMessageByUser(messageId) }
+            .map { None() }
+            .onSuccess {
+                messageLocalDataSource.deleteMessageByUser(messageId)
+            }
     }
 }

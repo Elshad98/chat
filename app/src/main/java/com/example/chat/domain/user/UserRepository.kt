@@ -10,8 +10,6 @@ interface UserRepository {
 
     fun getUser(): Either<Failure, User>
 
-    fun checkAuth(): Either<Failure, Boolean>
-
     fun updateUserLastSeen(): Either<Failure, None>
 
     fun editUser(user: User): Either<Failure, User>

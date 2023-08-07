@@ -78,7 +78,7 @@ class MessageListViewModel(
     }
 
     fun getMessagesWithContact(contactId: Long) {
-        getMessagesWithContact(GetMessagesWithContact.Params(contactId, true), viewModelScope) { either ->
+        getMessagesWithContact(GetMessagesWithContact.Params(contactId), viewModelScope) { either ->
             either.fold(::handleFailure) { }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.chat.domain.friend
 
+import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
 import com.example.chat.core.functional.Either
 import com.example.chat.core.interactor.UseCase
@@ -8,13 +9,9 @@ import toothpick.InjectConstructor
 @InjectConstructor
 class GetFriends(
     private val friendRepository: FriendRepository
-) : UseCase<List<Friend>, GetFriends.Params>() {
+) : UseCase<List<Friend>, None>() {
 
-    override suspend fun run(params: Params): Either<Failure, List<Friend>> {
-        return friendRepository.getFriends(params.needFetch)
+    override suspend fun run(params: None): Either<Failure, List<Friend>> {
+        return friendRepository.getFriends()
     }
-
-    data class Params(
-        val needFetch: Boolean
-    )
 }

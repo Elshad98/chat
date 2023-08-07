@@ -39,7 +39,7 @@
             android:id="@+id/input_email"
             style="@style/EditTextStyle"
             android:hint="@string/email"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
