@@ -8,41 +8,48 @@ import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
 import com.example.chat.core.functional.onSuccess
-import com.example.chat.data.local.MessageLocalDataSource
-import com.example.chat.data.local.UserLocalDataSource
+import com.example.chat.data.local.UserStorage
+import com.example.chat.data.local.dao.MessageDao
 import com.example.chat.data.local.model.MessageEntity
 import com.example.chat.data.local.model.toDomain
 import com.example.chat.data.local.model.toEntity
-import com.example.chat.data.remote.MessageRemoteDataSource
+import com.example.chat.data.remote.common.ApiParamBuilder
+import com.example.chat.data.remote.common.Request
 import com.example.chat.data.remote.model.dto.MessageDto
 import com.example.chat.data.remote.model.dto.toDomain
+import com.example.chat.data.remote.service.MessageService
 import com.example.chat.domain.message.Message
 import com.example.chat.domain.message.MessageRepository
 import toothpick.InjectConstructor
 
 @InjectConstructor
 class MessageRepositoryImpl(
-    private val userLocalDataSource: UserLocalDataSource,
-    private val messageLocalDataSource: MessageLocalDataSource,
-    private val messageRemoteDataSource: MessageRemoteDataSource
+    private val request: Request,
+    private val messageDao: MessageDao,
+    private val userStorage: UserStorage,
+    private val messageService: MessageService
 ) : MessageRepository {
 
     override fun getChats(): Either<Failure, List<Message>> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                messageRemoteDataSource.getChats(user.id, user.token)
+                val params = ApiParamBuilder()
+                    .token(user.token)
+                    .userId(user.id)
+                    .build()
+                request.make(messageService.getLastMessages(params))
             }
             .map { response ->
                 response.messages.map(MessageDto::toDomain)
             }
             .onSuccess { messages ->
-                messageLocalDataSource.saveMessages(messages.map(Message::toEntity))
+                messageDao.saveMessages(messages.map(Message::toEntity))
             }
     }
 
     override fun getLiveMessagesWithContact(contactId: Long): LiveData<List<Message>> {
-        return messageLocalDataSource
+        return messageDao
             .getLiveMessagesWithContact(contactId)
             .map { messages ->
                 messages.map(MessageEntity::toDomain)
@@ -50,16 +57,21 @@ class MessageRepositoryImpl(
     }
 
     override fun getMessagesWithContact(contactId: Long): Either<Failure, List<Message>> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                messageRemoteDataSource.getMessagesWithContact(contactId, user.id, user.token)
+                val params = ApiParamBuilder()
+                    .contactId(contactId)
+                    .token(user.token)
+                    .userId(user.id)
+                    .build()
+                request.make(messageService.getMessagesWithContact(params))
             }
             .map { response ->
                 response.messages.map(MessageDto::toDomain)
             }
             .onSuccess { messages ->
-                messageLocalDataSource.saveMessages(messages.map(Message::toEntity))
+                messageDao.saveMessages(messages.map(Message::toEntity))
             }
     }
 
@@ -68,17 +80,24 @@ class MessageRepositoryImpl(
         message: String,
         image: String
     ): Either<Failure, None> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                messageRemoteDataSource
-                    .sendMessage(user.id, receiverId, user.token, message, image, System.currentTimeMillis())
+                val params = ApiParamBuilder()
+                    .messageDate(System.currentTimeMillis())
+                    .receiverId(receiverId)
+                    .token(user.token)
+                    .senderId(user.id)
+                    .message(message)
+                    .image(image)
+                    .build()
+                request.make(messageService.sendMessage(params))
             }
             .map { None() }
     }
 
     override fun getLiveChats(): LiveData<List<Message>> {
-        return messageLocalDataSource
+        return messageDao
             .getLiveChats()
             .map { messages ->
                 messages
@@ -88,14 +107,19 @@ class MessageRepositoryImpl(
     }
 
     override fun deleteMessageByUser(messageId: Long): Either<Failure, None> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                messageRemoteDataSource.deleteMessageByUser(user.id, messageId, user.token)
+                val params = ApiParamBuilder()
+                    .messageId(messageId)
+                    .token(user.token)
+                    .userId(user.id)
+                    .build()
+                request.make(messageService.deleteMessageByUser(params))
             }
             .map { None() }
             .onSuccess {
-                messageLocalDataSource.deleteMessageByUser(messageId)
+                messageDao.deleteMessageByUser(messageId)
             }
     }
 }

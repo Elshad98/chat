@@ -1,7 +1,5 @@
 package com.example.chat.di
 
-import android.content.Context
-import android.content.SharedPreferences
 import com.example.chat.data.local.ChatDatabase
 import com.example.chat.data.local.dao.FriendDao
 import com.example.chat.data.local.dao.MessageDao
@@ -15,9 +13,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import toothpick.config.Module
 
-class DataModule(
-    context: Context
-) : Module() {
+class DataModule : Module() {
 
     init {
         bind(ChatDatabase::class.java)
@@ -59,8 +55,5 @@ class DataModule(
         bind(Request::class.java).singleton()
 
         bind(NetworkHandler::class.java).singleton()
-
-        bind(SharedPreferences::class.java)
-            .toInstance(context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE))
     }
 }

@@ -25,7 +25,7 @@ class App : Application() {
     private fun openAppScope() {
         scope = KTP.openScope(this).installModules(
             AppModule(this),
-            DataModule(this),
+            DataModule(),
             DomainModule()
         )
     }

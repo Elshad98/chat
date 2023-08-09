@@ -1,5 +1,6 @@
 package com.example.chat.data.local
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.example.chat.core.None
@@ -9,12 +10,11 @@ import com.example.chat.data.local.model.UserEntity
 import toothpick.InjectConstructor
 
 @InjectConstructor
-class SharedPrefsManager(
-    private val preferences: SharedPreferences
-) {
+class UserStorage(context: Context) {
 
     companion object {
 
+        private const val PREFERENCES_NAME = "user_store"
         private const val KEY_USER_ID = "user_id"
         private const val KEY_USER_NAME = "user_name"
         private const val KEY_USER_EMAIL = "user_email"
@@ -24,6 +24,8 @@ class SharedPrefsManager(
         private const val KEY_USER_PASSWORD = "user_password"
         private const val KEY_USER_CREATE_AT = "user_create_at"
     }
+
+    private val preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
 
     fun getToken(): Either.Right<String> {
         return Either.Right(preferences.getString(KEY_USER_TOKEN, "")!!)
@@ -54,7 +56,7 @@ class SharedPrefsManager(
         val id = preferences.getLong(KEY_USER_ID, 0)
 
         if (id == 0L) {
-            return Either.Left(Failure.NoSavedAccountsError)
+            return Either.Left(Failure.NoSavedUsersError)
         }
 
         val user = UserEntity(
@@ -75,11 +77,6 @@ class SharedPrefsManager(
             clear()
         }
         return Either.Right(None())
-    }
-
-    fun containsAnyUser(): Either.Right<Boolean> {
-        val id = preferences.getLong(KEY_USER_ID, 0)
-        return Either.Right(id != 0L)
     }
 }
 

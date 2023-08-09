@@ -68,7 +68,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun handleFailure(failure: Failure) {
         when (failure) {
             is Failure.NetworkConnectionError -> showToast(R.string.error_network)
-            is Failure.NoSavedAccountsError,
+            is Failure.NoSavedUsersError,
             is Failure.TokenError -> launchLoginFragment()
             else -> showToast(R.string.error_server)
         }

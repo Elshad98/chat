@@ -6,42 +6,53 @@ import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
 import com.example.chat.core.functional.onSuccess
-import com.example.chat.data.local.FriendLocalDataSource
-import com.example.chat.data.local.UserLocalDataSource
+import com.example.chat.data.local.UserStorage
+import com.example.chat.data.local.dao.FriendDao
 import com.example.chat.data.local.model.toEntity
-import com.example.chat.data.remote.FriendRemoteDataSource
+import com.example.chat.data.remote.common.ApiParamBuilder
+import com.example.chat.data.remote.common.Request
 import com.example.chat.data.remote.model.dto.FriendDto
 import com.example.chat.data.remote.model.dto.toDomain
+import com.example.chat.data.remote.service.FriendService
 import com.example.chat.domain.friend.Friend
 import com.example.chat.domain.friend.FriendRepository
 import toothpick.InjectConstructor
 
 @InjectConstructor
 class FriendRepositoryImpl(
-    private val userLocalDataSource: UserLocalDataSource,
-    private val friendLocalDataSource: FriendLocalDataSource,
-    private val friendRemoteDataSource: FriendRemoteDataSource
+    private val request: Request,
+    private val friendDao: FriendDao,
+    private val userStorage: UserStorage,
+    private val friendService: FriendService
 ) : FriendRepository {
 
     override fun getFriends(): Either<Failure, List<Friend>> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                friendRemoteDataSource.getFriends(user.id, user.token)
+                val params = ApiParamBuilder()
+                    .token(user.token)
+                    .userId(user.id)
+                    .build()
+                request.make(friendService.getFriends(params))
             }
             .map { response ->
                 response.friends.map(FriendDto::toDomain)
             }
             .onSuccess { friends ->
-                friendLocalDataSource.saveFriends(friends.map(Friend::toEntity))
+                friendDao.saveFriends(friends.map(Friend::toEntity))
             }
     }
 
     override fun getFriendRequests(): Either<Failure, List<Friend>> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                friendRemoteDataSource.getFriendRequests(user.id, user.token)
+                val params = ApiParamBuilder()
+                    .token(user.token)
+                    .userId(user.id)
+                    .build()
+                request.make(friendService.getFriendRequests(params))
             }
             .map { response ->
                 response.friendsRequests.map(FriendDto::toDomain)
@@ -49,50 +60,70 @@ class FriendRepositoryImpl(
     }
 
     override fun approveFriendRequest(friend: Friend): Either<Failure, None> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                friendRemoteDataSource
-                    .approveFriendRequest(user.id, friend.id, friend.friendsId, user.token)
+                val params = ApiParamBuilder()
+                    .friendsId(friend.friendsId)
+                    .requestUserId(friend.id)
+                    .token(user.token)
+                    .userId(user.id)
+                    .build()
+                request.make(friendService.approveFriendRequest(params))
             }
             .map { None() }
             .onSuccess {
-                friendLocalDataSource.saveFriend(friend.copy(isRequest = 0).toEntity())
+                friendDao.saveFriend(friend.copy(isRequest = 0).toEntity())
             }
     }
 
     override fun cancelFriendRequest(friend: Friend): Either<Failure, None> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                friendRemoteDataSource
-                    .cancelFriendRequest(user.id, friend.id, friend.friendsId, user.token)
+                val params = ApiParamBuilder()
+                    .friendsId(friend.friendsId)
+                    .requestUserId(friend.id)
+                    .token(user.token)
+                    .userId(user.id)
+                    .build()
+                request.make(friendService.cancelFriendRequest(params))
             }
             .map { None() }
             .onSuccess {
-                friendLocalDataSource.deleteFriend(friend.id)
+                friendDao.deleteFriend(friend.id)
             }
     }
 
     override fun addFriend(email: String): Either<Failure, None> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                friendRemoteDataSource.addFriend(email, user.id, user.token)
+                val params = ApiParamBuilder()
+                    .requestUserId(user.id)
+                    .token(user.token)
+                    .email(email)
+                    .build()
+                request.make(friendService.addFriend(params))
             }
             .map { None() }
     }
 
     override fun deleteFriend(friend: Friend): Either<Failure, None> {
-        return userLocalDataSource
+        return userStorage
             .getUser()
             .flatMap { user ->
-                friendRemoteDataSource
-                    .deleteFriend(user.id, friend.id, friend.friendsId, user.token)
+                val params = ApiParamBuilder()
+                    .friendsId(friend.friendsId)
+                    .requestUserId(friend.id)
+                    .token(user.token)
+                    .userId(user.id)
+                    .build()
+                request.make(friendService.deleteFriend(params))
             }
             .map { None() }
             .onSuccess {
-                friendLocalDataSource.deleteFriend(friend.id)
+                friendDao.deleteFriend(friend.id)
             }
     }
 }
