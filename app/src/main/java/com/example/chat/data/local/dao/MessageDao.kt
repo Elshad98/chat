@@ -14,21 +14,10 @@ interface MessageDao {
     fun saveMessages(messages: List<MessageEntity>)
 
     @Query("SELECT * from messages ORDER BY createdAt DESC")
-    fun getChats(): List<MessageEntity>
-
-    @Query("SELECT * from messages ORDER BY createdAt DESC")
     fun getLiveChats(): LiveData<List<MessageEntity>>
 
     @Query("DELETE from messages WHERE id = :messageId")
     fun deleteMessageByUser(messageId: Long)
-
-    @Query(
-        "SELECT * from messages " +
-            "WHERE (deleted_by_receiver_id = 0 AND deleted_by_sender_id = 0) " +
-            "AND (sender_id = :contactId OR receiver_id = :contactId) " +
-            "ORDER BY createdAt ASC"
-    )
-    fun getMessagesWithContact(contactId: Long): List<MessageEntity>
 
     @Query(
         "SELECT * from messages " +

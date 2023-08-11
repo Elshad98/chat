@@ -1,13 +1,17 @@
 package com.example.chat.data.repository
 
+import androidx.lifecycle.LiveData
 import com.example.chat.core.None
 import com.example.chat.core.exception.Failure
+import com.example.chat.core.extension.map
 import com.example.chat.core.functional.Either
 import com.example.chat.core.functional.flatMap
 import com.example.chat.core.functional.map
 import com.example.chat.core.functional.onSuccess
 import com.example.chat.data.local.UserStorage
 import com.example.chat.data.local.dao.FriendDao
+import com.example.chat.data.local.model.FriendEntity
+import com.example.chat.data.local.model.toDomain
 import com.example.chat.data.local.model.toEntity
 import com.example.chat.data.remote.common.ApiParamBuilder
 import com.example.chat.data.remote.common.Request
@@ -41,6 +45,14 @@ class FriendRepositoryImpl(
             }
             .onSuccess { friends ->
                 friendDao.saveFriends(friends.map(Friend::toEntity))
+            }
+    }
+
+    override fun getLiveFriends(): LiveData<List<Friend>> {
+        return friendDao
+            .getLiveFriends()
+            .map { friends ->
+                friends.map(FriendEntity::toDomain)
             }
     }
 

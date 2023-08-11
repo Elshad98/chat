@@ -9,6 +9,7 @@ import com.example.chat.core.extension.isValidPassword
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.user.EditUser
 import com.example.chat.domain.user.GetUser
+import com.example.chat.domain.user.User
 import toothpick.InjectConstructor
 
 @InjectConstructor
@@ -27,20 +28,9 @@ class ChangePasswordViewModel(
                     _state.value = State.Error(failure)
                 },
                 { user ->
-                    val invalidFields = getInvalidFields(
-                        user.password,
-                        password,
-                        newPassword,
-                        confirmPassword
-                    )
-
+                    val invalidFields = getInvalidFields(user.password, password, newPassword, confirmPassword)
                     if (invalidFields.isEmpty()) {
-                        editUser(EditUser.Params(user.copy(password = newPassword)), viewModelScope) { either ->
-                            either.fold(
-                                { failure -> _state.value = State.Error(failure) },
-                                { _state.value = State.RedirectToSettings }
-                            )
-                        }
+                        changePassword(user.copy(password = newPassword))
                     } else {
                         _state.value = State.ValidateFields(invalidFields)
                     }
@@ -65,6 +55,15 @@ class ChangePasswordViewModel(
             if (newPassword != confirmPassword) {
                 add(ValidatedFiled.CONFIRM_PASSWORD)
             }
+        }
+    }
+
+    private fun changePassword(user: User) {
+        editUser(EditUser.Params(user), viewModelScope) { either ->
+            either.fold(
+                { failure -> _state.value = State.Error(failure) },
+                { _state.value = State.RedirectToSettings }
+            )
         }
     }
 }

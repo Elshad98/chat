@@ -44,16 +44,11 @@ class ForgetPasswordFragment : Fragment(R.layout.fragment_forget_password) {
     }
 
     private fun observeViewModel() {
-        viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
-        viewModel.resetSuccess.observe(viewLifecycleOwner) { findNavController().navigateUp() }
-        viewModel.errorInputEmail.observe(viewLifecycleOwner) {
-            with(binding) {
-                inputLayoutEmail.isErrorEnabled = it
-                inputLayoutEmail.error = if (it) {
-                    getString(R.string.error_invalid_email)
-                } else {
-                    null
-                }
+        viewModel.state.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is State.NavigateUp -> findNavController().navigateUp()
+                is State.ValidationError -> showValidationError()
+                is State.Error -> handleFailure(state.failure)
             }
         }
     }
@@ -67,8 +62,10 @@ class ForgetPasswordFragment : Fragment(R.layout.fragment_forget_password) {
     }
 
     private fun addTextChangeListener() {
-        binding.inputEmail.doOnTextChanged { _, _, _, _ ->
-            viewModel.resetErrorInputEmail()
+        with(binding) {
+            inputEmail.doOnTextChanged { _, _, _, _ ->
+                inputLayoutEmail.isErrorEnabled = false
+            }
         }
     }
 
@@ -76,6 +73,13 @@ class ForgetPasswordFragment : Fragment(R.layout.fragment_forget_password) {
         supportActionBar?.run {
             show()
             setDisplayShowTitleEnabled(false)
+        }
+    }
+
+    private fun showValidationError() {
+        with(binding) {
+            inputLayoutEmail.isErrorEnabled = true
+            inputLayoutEmail.error = getString(R.string.error_invalid_email)
         }
     }
 

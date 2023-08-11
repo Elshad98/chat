@@ -44,26 +44,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun observeViewModel() {
-        viewModel.failure.observe(viewLifecycleOwner, ::handleFailure)
-        viewModel.loginSuccess.observe(viewLifecycleOwner) { launchHomeFragment() }
-        viewModel.errorInputEmail.observe(viewLifecycleOwner) {
-            with(binding) {
-                inputLayoutEmail.isErrorEnabled = it
-                inputLayoutEmail.error = if (it) {
-                    getString(R.string.error_field_required)
-                } else {
-                    null
-                }
-            }
-        }
-        viewModel.errorInputPassword.observe(viewLifecycleOwner) {
-            with(binding) {
-                inputLayoutPassword.isErrorEnabled = it
-                inputLayoutPassword.error = if (it) {
-                    getString(R.string.error_field_required)
-                } else {
-                    null
-                }
+        viewModel.state.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is State.RedirectToHome -> launchHomeFragment()
+                is State.Error -> handleFailure(state.failure)
+                is State.ValidationError -> showValidationErrors(state.invalidFields)
             }
         }
     }
@@ -97,10 +82,21 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun addTextChangeListeners() {
         with(binding) {
             inputEmail.doOnTextChanged { _, _, _, _ ->
-                viewModel.resetErrorInputEmail()
+                inputLayoutEmail.isErrorEnabled = false
             }
             inputPassword.doOnTextChanged { _, _, _, _ ->
-                viewModel.resetErrorInputPassword()
+                inputLayoutPassword.isErrorEnabled = false
+            }
+        }
+    }
+
+    private fun showValidationErrors(invalidFields: List<ValidatedField>) {
+        invalidFields.forEach { validatedField ->
+            when (validatedField) {
+                ValidatedField.EMAIL ->
+                    binding.inputLayoutEmail.error = getString(R.string.error_field_required)
+                ValidatedField.PASSWORD ->
+                    binding.inputLayoutPassword.error = getString(R.string.error_field_required)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.chat.data.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -16,7 +17,7 @@ interface FriendDao {
     fun saveFriends(friends: List<FriendEntity>)
 
     @Query("SELECT * from friends WHERE is_request = 0")
-    fun getFriends(): List<FriendEntity>
+    fun getLiveFriends(): LiveData<List<FriendEntity>>
 
     @Query("DELETE FROM friends WHERE id = :id")
     fun deleteFriend(id: Long)

@@ -3,6 +3,7 @@ package com.example.chat.presentation.forgetpassword
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.chat.core.exception.Failure
 import com.example.chat.core.extension.isValidEmail
 import com.example.chat.core.platform.BaseViewModel
 import com.example.chat.domain.user.ForgetPassword
@@ -13,22 +14,26 @@ class ForgetPasswordViewModel(
     private val forgetPassword: ForgetPassword
 ) : BaseViewModel() {
 
-    private val _errorInputEmail = MutableLiveData<Boolean>()
-    private val _resetSuccess = MutableLiveData<Unit>()
-    val errorInputEmail: LiveData<Boolean> = _errorInputEmail
-    val resetSuccess: LiveData<Unit> = _resetSuccess
+    private val _state = MutableLiveData<State>()
+    val state: LiveData<State> = _state
 
     fun forgetPassword(email: String) {
         if (email.isValidEmail()) {
             forgetPassword(ForgetPassword.Params(email), viewModelScope) { either ->
-                either.fold(::handleFailure) { _resetSuccess.value = Unit }
+                either.fold(
+                    { failure -> _state.value = State.Error(failure) },
+                    { _state.value = State.NavigateUp }
+                )
             }
         } else {
-            _errorInputEmail.value = true
+            _state.value = State.ValidationError
         }
     }
+}
 
-    fun resetErrorInputEmail() {
-        _errorInputEmail.value = false
-    }
+sealed class State {
+
+    object NavigateUp : State()
+    object ValidationError : State()
+    class Error(val failure: Failure) : State()
 }
