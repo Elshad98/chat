@@ -1,4 +1,3 @@
-# http://editorconfig.org
 root = true
 
 [*]
@@ -9,12 +8,9 @@ indent_style = space
 [*.json]
 indent_size = 2
 
-[*.{kt, kts}]
-# There are disabled ("too strict") ktlint checks.
-# If you want to disable rule, but don't know its name - try to find most relevant rule-class here and then take rule name from class constructor:
-# https://github.com/pinterest/ktlint/tree/master/ktlint-ruleset-standard/src/main/kotlin/com/pinterest/ktlint/ruleset/standard
-disabled_rules = no-wildcard-imports, import-ordering, final-newline
-
+[*.{kt,kts}]
+disabled_rules = import-ordering
+max_line_length = 140
 ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL
 ij_kotlin_use_custom_formatting_for_modifiers = true
 ij_continuation_indent_size = 4
