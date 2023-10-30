@@ -10,20 +10,10 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import android.provider.Settings
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
-import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-
-fun Context.showToast(text: CharSequence) {
-    Toast.makeText(this, text, Toast.LENGTH_LONG).show()
-}
-
-fun Context.showToast(@StringRes resId: Int) {
-    Toast.makeText(this, resId, Toast.LENGTH_LONG).show()
-}
 
 fun Context.getFontCompat(@FontRes id: Int): Typeface? =
     ResourcesCompat.getFont(this, id)
@@ -44,7 +34,7 @@ fun Context.isPermissionGranted(permission: String): Boolean =
     ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
 
 fun Context.arePermissionsGranted(vararg permissions: String): Boolean =
-    permissions.all(::isPermissionGranted)
+    permissions.all { ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED }
 
 fun Context.openSystemSettings() {
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
