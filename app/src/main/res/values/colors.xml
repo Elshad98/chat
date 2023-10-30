@@ -16,9 +16,5 @@
     <color name="pale_sky">#6A7480</color>
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
-
     <color name="accent_red">#ED4245</color>
-    <color name="background">@color/white</color>
-
-    <color name="progressBarTint">@color/white</color>
 </resources>

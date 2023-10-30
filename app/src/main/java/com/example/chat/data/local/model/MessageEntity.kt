@@ -10,6 +10,7 @@ import java.util.Date
 data class MessageEntity(
     @PrimaryKey
     val id: Long,
+    @ColumnInfo(name = "created_at")
     val createdAt: Date,
     val type: MessageTypeEntity,
     @ColumnInfo(name = "from_me")

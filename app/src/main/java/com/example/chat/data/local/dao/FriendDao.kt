@@ -16,9 +16,9 @@ interface FriendDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveFriends(friends: List<FriendEntity>)
 
-    @Query("SELECT * from friends WHERE is_request = 0")
-    fun getLiveFriends(): LiveData<List<FriendEntity>>
-
     @Query("DELETE FROM friends WHERE id = :id")
     fun deleteFriend(id: Long)
+
+    @Query("SELECT * from friends WHERE is_request = 0 ORDER BY last_seen")
+    fun getLiveFriends(): LiveData<List<FriendEntity>>
 }

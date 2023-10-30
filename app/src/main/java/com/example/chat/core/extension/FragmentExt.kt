@@ -1,5 +1,6 @@
 package com.example.chat.core.extension
 
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -14,9 +15,9 @@ fun Fragment.setSupportActionBar(toolbar: Toolbar) {
 }
 
 fun Fragment.showToast(text: CharSequence) {
-    requireActivity().showToast(text)
+    Toast.makeText(requireContext(), text, Toast.LENGTH_LONG).show()
 }
 
 fun Fragment.showToast(@StringRes resId: Int) {
-    requireActivity().showToast(resId)
+    Toast.makeText(requireContext(), resId, Toast.LENGTH_LONG).show()
 }
