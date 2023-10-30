@@ -19,7 +19,7 @@ class ContactConverter {
     @TypeConverter
     fun stringToContact(value: String?): ContactEntity? {
         return if (value == null) {
-            return null
+            null
         } else {
             val gson = Gson()
             gson.fromJson(value, ContactEntity::class.java)

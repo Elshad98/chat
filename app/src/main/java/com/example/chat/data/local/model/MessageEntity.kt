@@ -6,10 +6,13 @@ import androidx.room.PrimaryKey
 import com.example.chat.domain.message.Message
 import java.util.Date
 
-@Entity(tableName = "messages")
+const val MESSAGE_ENTITY_TABLE_NAME = "messages"
+
+@Entity(tableName = MESSAGE_ENTITY_TABLE_NAME)
 data class MessageEntity(
     @PrimaryKey
     val id: Long,
+    @ColumnInfo(name = "created_at")
     val createdAt: Date,
     val type: MessageTypeEntity,
     @ColumnInfo(name = "from_me")

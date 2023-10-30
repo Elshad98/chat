@@ -7,11 +7,11 @@ import toothpick.InjectConstructor
 
 @InjectConstructor
 class EditUser(
-    private val repository: UserRepository
+    private val userRepository: UserRepository
 ) : UseCase<User, EditUser.Params>() {
 
     override suspend fun run(params: Params): Either<Failure, User> {
-        return repository.editUser(params.user)
+        return userRepository.editUser(params.user)
     }
 
     data class Params(

@@ -45,7 +45,7 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list), FriendDialog
     }
 
     override fun onMessageClick(friend: Friend) {
-        launchMessageListFragment(friend.friendsId, friend.name)
+        launchMessageListFragment(friend.id, friend.name)
     }
 
     private fun setupToolbar() {
@@ -83,16 +83,21 @@ class FriendListFragment : Fragment(R.layout.fragment_friend_list), FriendDialog
     private fun setupRecyclerView() {
         adapter = FriendAdapter(
             onFriendClickListener = { friend ->
-                FriendDialogFragment.newInstance(friend).apply {
-                    setTargetFragment(this@FriendListFragment, 0)
-                    show(this@FriendListFragment.parentFragmentManager, FriendDialogFragment.TAG)
-                }
+                showFriendDialogFragment(friend)
             },
             onMessageClickListener = { friend ->
                 launchMessageListFragment(friend.id, friend.name)
             }
         )
         binding.recyclerView.adapter = adapter
+    }
+
+    private fun showFriendDialogFragment(friend: Friend) {
+        FriendDialogFragment.newInstance(friend).apply {
+            @Suppress("DEPRECATION")
+            setTargetFragment(this@FriendListFragment, 0)
+            show(this@FriendListFragment.parentFragmentManager, FriendDialogFragment.TAG)
+        }
     }
 
     private fun launchMessageListFragment(contactId: Long, contactName: String) {

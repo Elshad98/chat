@@ -1,5 +1,6 @@
 package com.example.chat.presentation.friend
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,14 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
     private val viewModel by inject<FriendViewModel>()
     private val binding by viewBinding(DialogFriendBinding::bind)
     private val friend by lazy { requireArguments().getParcelable<Friend>(ARG_FRIEND)!! }
+
+    private var onMessageClickListener: OnMessageClickListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        @Suppress("DEPRECATION")
+        onMessageClickListener = targetFragment as OnMessageClickListener
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,7 +113,7 @@ class FriendDialogFragment : BottomSheetDialogFragment() {
                     .show()
             }
             optionMessage.setOnClickListener {
-                (targetFragment as OnMessageClickListener).onMessageClick(friend)
+                onMessageClickListener?.onMessageClick(friend)
                 dismiss()
             }
             optionCancel.setOnClickListener {

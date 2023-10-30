@@ -17,11 +17,6 @@ class App : Application() {
         openAppScope()
     }
 
-    override fun onTrimMemory(level: Int) {
-        super.onTrimMemory(level)
-        scope.release()
-    }
-
     private fun openAppScope() {
         scope = KTP.openScope(this).installModules(
             AppModule(this),

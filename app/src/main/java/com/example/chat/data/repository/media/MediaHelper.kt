@@ -56,6 +56,7 @@ object MediaHelper {
                     val type = split[0]
 
                     if ("primary".equals(type, ignoreCase = true)) {
+                        @Suppress("DEPRECATION")
                         return "${Environment.getExternalStorageDirectory()}/${split[1]}"
                     }
                 }
@@ -107,6 +108,7 @@ object MediaHelper {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
         }
 
+        @Suppress("DEPRECATION")
         val path = MediaStore.Images.Media.insertImage(context.contentResolver, bitmap, "Image", null)
         return path.toUri()
     }
@@ -121,11 +123,13 @@ object MediaHelper {
             return null
         }
 
+        @Suppress("DEPRECATION")
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         return context.contentResolver
             .query(uri, projection, selection, selectionArgs, null)
             ?.use { cursor ->
                 if (cursor.moveToFirst()) {
+                    @Suppress("DEPRECATION")
                     val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
                     cursor.getString(columnIndex)
                 } else {

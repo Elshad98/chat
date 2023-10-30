@@ -25,6 +25,7 @@ class NetworkHandler(
                 }
                 ?: false
         } else {
+            @Suppress("DEPRECATION")
             connectivityManager
                 .activeNetworkInfo
                 ?.isConnected

@@ -7,11 +7,11 @@ import toothpick.InjectConstructor
 
 @InjectConstructor
 class Register(
-    private val repository: UserRepository
+    private val userRepository: UserRepository
 ) : UseCase<User, Register.Params>() {
 
     override suspend fun run(params: Params): Either<Failure, User> {
-        return repository.register(params.email, params.name, params.password)
+        return userRepository.register(params.email, params.name, params.password)
     }
 
     data class Params(

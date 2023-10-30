@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.chat.presentation.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home">
+        tools:layout="">
 
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"

@@ -6,7 +6,9 @@ import androidx.room.PrimaryKey
 import com.example.chat.domain.friend.Friend
 import java.util.Date
 
-@Entity(tableName = "friends")
+const val FRIEND_ENTITY_TABLE_NAME = "friends"
+
+@Entity(tableName = FRIEND_ENTITY_TABLE_NAME)
 data class FriendEntity(
     @PrimaryKey
     val id: Long,

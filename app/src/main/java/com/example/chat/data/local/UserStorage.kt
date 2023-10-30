@@ -15,45 +15,45 @@ class UserStorage(context: Context) {
     companion object {
 
         private const val PREFERENCES_NAME = "user_store"
-        private const val KEY_USER_ID = "user_id"
-        private const val KEY_USER_NAME = "user_name"
-        private const val KEY_USER_EMAIL = "user_email"
-        private const val KEY_USER_IMAGE = "user_image"
-        private const val KEY_USER_TOKEN = "user_token"
-        private const val KEY_USER_STATUS = "user_status"
-        private const val KEY_USER_PASSWORD = "user_password"
-        private const val KEY_USER_CREATE_AT = "user_create_at"
+        private const val KEY_ID = "id"
+        private const val KEY_NAME = "name"
+        private const val KEY_EMAIL = "email"
+        private const val KEY_IMAGE = "image"
+        private const val KEY_TOKEN = "token"
+        private const val KEY_STATUS = "status"
+        private const val KEY_PASSWORD = "password"
+        private const val KEY_CREATE_AT = "create_at"
     }
 
     private val preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
 
     fun getToken(): Either.Right<String> {
-        return Either.Right(preferences.getString(KEY_USER_TOKEN, "")!!)
+        return Either.Right(preferences.getString(KEY_TOKEN, "")!!)
     }
 
     fun saveToken(token: String): Either.Right<None> {
         preferences.edit {
-            putString(KEY_USER_TOKEN, token)
+            putString(KEY_TOKEN, token)
         }
         return Either.Right(None())
     }
 
     fun saveUser(user: UserEntity): Either.Right<None> {
         preferences.edit {
-            putSafely(KEY_USER_ID, user.id)
-            putSafely(KEY_USER_NAME, user.name)
-            putSafely(KEY_USER_EMAIL, user.email)
-            putSafely(KEY_USER_TOKEN, user.token)
-            putSafely(KEY_USER_IMAGE, user.image)
-            putString(KEY_USER_STATUS, user.status)
-            putSafely(KEY_USER_PASSWORD, user.password)
-            putSafely(KEY_USER_CREATE_AT, user.createdAt)
+            putSafely(KEY_ID, user.id)
+            putSafely(KEY_NAME, user.name)
+            putSafely(KEY_EMAIL, user.email)
+            putSafely(KEY_TOKEN, user.token)
+            putSafely(KEY_IMAGE, user.image)
+            putString(KEY_STATUS, user.status)
+            putSafely(KEY_PASSWORD, user.password)
+            putSafely(KEY_CREATE_AT, user.createdAt)
         }
         return Either.Right(None())
     }
 
     fun getUser(): Either<Failure, UserEntity> {
-        val id = preferences.getLong(KEY_USER_ID, 0)
+        val id = preferences.getLong(KEY_ID, 0)
 
         if (id == 0L) {
             return Either.Left(Failure.NoSavedUsersError)
@@ -61,13 +61,13 @@ class UserStorage(context: Context) {
 
         val user = UserEntity(
             id = id,
-            name = preferences.getString(KEY_USER_NAME, "")!!,
-            email = preferences.getString(KEY_USER_EMAIL, "")!!,
-            image = preferences.getString(KEY_USER_IMAGE, "")!!,
-            token = preferences.getString(KEY_USER_TOKEN, "")!!,
-            status = preferences.getString(KEY_USER_STATUS, "")!!,
-            password = preferences.getString(KEY_USER_PASSWORD, "")!!,
-            createdAt = preferences.getLong(KEY_USER_CREATE_AT, 0)
+            name = preferences.getString(KEY_NAME, "")!!,
+            email = preferences.getString(KEY_EMAIL, "")!!,
+            image = preferences.getString(KEY_IMAGE, "")!!,
+            token = preferences.getString(KEY_TOKEN, "")!!,
+            status = preferences.getString(KEY_STATUS, "")!!,
+            password = preferences.getString(KEY_PASSWORD, "")!!,
+            createdAt = preferences.getLong(KEY_CREATE_AT, 0)
         )
         return Either.Right(user)
     }

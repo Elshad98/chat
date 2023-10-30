@@ -17,7 +17,7 @@
         <Preference
             android:key="password"
             android:title="@string/settings_password_title"
-            tools:summary="********"/>
+            tools:summary="********" />
 
     </PreferenceCategory>
 
